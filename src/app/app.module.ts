@@ -3,16 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegformComponent } from './regform/regform.component';
+import { RegformModule } from './regform/regform.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegformComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RegformModule
   ],
   providers: [],
   bootstrap: [AppComponent]
