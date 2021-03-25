@@ -13,7 +13,6 @@ import { TrainingdescriptionComponent } from './trainingdescription.component';
     TrainingdescriptionRoutingModule
   ],
   providers: [],
-  bootstrap: [TrainingdescriptionComponent],
 
   exports: [
     TrainingdescriptionComponent
