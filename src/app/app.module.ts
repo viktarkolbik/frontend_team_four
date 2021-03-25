@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegformModule } from './regform/regform.module';
+import { TrainingdescriptionModule } from './trainingdescription/trainingdescription.module';
+import { HomepageModule } from './homepage/homepage.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +14,9 @@ import { RegformModule } from './regform/regform.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RegformModule
+    RegformModule,
+    TrainingdescriptionModule,
+    HomepageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
