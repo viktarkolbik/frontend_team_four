@@ -10,7 +10,7 @@ import { TrainingdescriptionComponent } from './trainingdescription.component';
   ],
   imports: [
     BrowserModule,
-    TrainingdescriptionRoutingModule
+    TrainingdescriptionRoutingModule,
   ],
   providers: [],
 
