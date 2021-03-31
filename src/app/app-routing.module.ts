@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegformComponent } from './regform/regform.component';
 
 const routes: Routes = [
 ];

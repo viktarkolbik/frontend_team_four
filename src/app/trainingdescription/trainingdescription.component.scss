@@ -62,8 +62,10 @@
       }
       .info-internship {
         display: flex;
+        flex-wrap: wrap;
         .right-box, .left-box {
           width: 40%;
+          margin-right: 10px;
         }
         .condition {
           margin-bottom: 10px;
@@ -89,4 +91,13 @@
     }  
   }
 
+}
+
+@media (max-width:720px) {
+  .container {
+    header {
+      background-position: center;
+    }
+  }
+ 
 }
