@@ -1,0 +1,279 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none !important;
+  border: none;
+}
+
+$colorW: white;
+$colorDark: #003399;
+$colorMid: #598fff;
+$colorLite: #f4f4f4;
+$fontMain:  "Myriad Hebrew", sans-serif;
+
+.header {
+  height: 720px;
+  margin: 0 auto;
+}
+
+header img {
+  width: 320px;
+  display: block;
+  margin: 0 auto;
+}
+
+.container {
+  width: 1140px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.header_title {
+  font-family: $fontMain;
+  font-weight: bold;
+  font-size: 100px;
+  color: $colorW;
+  text-align: center;
+  text-shadow: 0 4px 4px rgb(4, 43, 42), 0 4px 4px rgba(0, 0, 0, 0.25);
+  line-height: 100px;
+  padding: 222px 0 111px 0;
+}
+
+.training {
+  max-height: 2030px;
+  background-color: #f4f4f4;
+  margin: 0 auto;
+  & button {
+    font-family: $fontMain;
+    font-size: 24px;
+    outline: none;
+    color: $colorMid;
+    background: $colorLite;
+  }
+}
+.training_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+}
+.training_title {
+  font-family: $fontMain;
+  font-weight: bold;
+  font-size: 100px;
+  text-align: center;
+  text-transform: uppercase;
+  color: $colorDark;
+  padding: 222px;
+  margin: 0 auto;
+}
+
+.training_navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: $colorMid;
+  font-family: $fontMain;
+  min-width: 320px;
+  margin: 50px auto;
+  & a {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+}
+/* The dropdown container */
+.dropdown {
+  float: right;
+  justify-content: center;
+  overflow: hidden;
+  & .dropbtn {
+    font-size: 36px;
+    border: none;
+    outline: none;
+    color: $colorW;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+  }
+}
+/* Add a background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: $colorDark;
+  width: 320px;
+}
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: $colorW;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba($colorMid, 0.2);
+  z-index: 1;
+
+  & a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  & a:hover {
+    background-color: $colorW;
+    font-weight: bold;
+  }
+}
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.training_wrapper {
+  width: 1520px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.training_course_container {
+  width: 450px;
+  height: 600px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px;
+  background: $colorW;
+}
+.training_course_info {
+  width: inherit;
+  height: 90px;
+  background-color: $colorDark;
+  font-size: 28px;
+  color: $colorW;
+  //vertical-align: middle;
+  padding: 35px 0;
+  text-align: center;
+}
+.training_course_img{
+  width: 150px;
+}
+.training_wrapper button {
+  width: 150px;
+  height: 50px;
+  border-radius: 20px;
+  text-align: center;
+  color: $colorMid;
+  background: $colorLite;
+  //outline: none !important;
+  margin: 30px auto;
+  border: none;
+  &:active, &:focus {
+    //outline: none !important;
+    border: none;
+  }
+  &:hover {
+    transform: scale(1.05, 1.05);
+    transition: 1s;
+    color: $colorDark;
+    opacity: 1;
+    border: none;
+  }
+}
+.training_course_dateRegistration{
+  font-family: $fontMain;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+}
+.container_wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 80%;
+  //margin-bottom: 100px;
+}
+.locations{
+  height: 720px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background: $colorMid;
+}
+.locations_bg {
+  width: 400px;
+  height: 300px;
+}
+.contacts {
+  height: 360px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  //box-shadow: 0 0 13px #cccccc;
+  /*border-color: rgba(55, 55, 55, 0.78);*/
+  background-color: $colorDark;
+}
+.footer_title_right {
+  color: $colorW;
+  width: 320px;
+  text-align: center;
+}
+
+.uni_title {
+  position: absolute;
+  top:-25px;
+  font-size: 28px;
+  color: $colorW;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 auto;
+  //padding: 25px;
+}
+.footer_container{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 1720px;
+  height: 70%;
+  margin-top: 90px;
+}
+.footer_wrapper_icon {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 320px;
+  height: 100%;
+  margin: 10px;
+}
+
+.footer_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  transition: 1000ms;
+  width: 50px;
+  height: 50px;
+  &:hover {
+    transform: scale(1.1, 1.1);
+    transition: 1s;
+  }
+}
