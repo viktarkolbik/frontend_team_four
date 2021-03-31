@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { RegformModule } from './regform/regform.module';
 import { TrainingdescriptionModule } from './trainingdescription/trainingdescription.module';
 import { HomepageModule } from './homepage/homepage.module';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HomepageModule } from './homepage/homepage.module';
     AppRoutingModule,
     RegformModule,
     TrainingdescriptionModule,
-    HomepageModule
+    HomepageModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
