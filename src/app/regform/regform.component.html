@@ -2,7 +2,10 @@
   <div id="header"></div>
   <div class="content">
     <h1>Регистрация на стажировку</h1>
-    <p style="text-indent: 20px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae doloremque dolorum magnam modi praesentium quas quo sed temporibus voluptatum.</p>
+    <p style="text-indent: 20px">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      Aperiam beatae doloremque dolorum magnam modi praesentium quas quo sed temporibus voluptatum.
+    </p>
     <form class="reg-form" [formGroup]="form">
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">Имя</label>
@@ -51,7 +54,9 @@
             class="radio-button"
             color="primary"
             *ngFor="let level of getKeys(englishLevel)" [value]="level"
-          >{{englishLevel[level]}}</mat-radio-button>
+          >
+            {{englishLevel[level]}}
+          </mat-radio-button>
         </mat-radio-group>
       </div>
 
@@ -81,8 +86,11 @@
             <mat-select formControlName="from">
               <mat-option
                 *ngFor="let time of convenientTimeArray"
+                [disabled]="time>formSelectorTime.controls['to'].value-1"
                 [value]="time"
-              >{{time}}:00</mat-option>
+              >
+                {{time}}:00
+              </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="fill" class="selector-time-item">
@@ -92,7 +100,9 @@
                 *ngFor="let time of convenientTimeArray"
                 [disabled]="time<formSelectorTime.controls['from'].value+1"
                 [value]="time"
-              >{{time}}:00</mat-option>
+              >
+                {{time}}:00
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -100,12 +110,22 @@
 
       <mat-form-field appearance="standard" class="form-control">
         <label>Опыт</label>
-        <textarea matInput cdkTextareaAutosize formControlName="userExperience" placeholder="Опыт" maxlength="500"></textarea>
+        <textarea matInput
+          cdkTextareaAutosize
+          formControlName="userExperience"
+          placeholder="Опыт"
+          maxlength="1000"
+        ></textarea>
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
         <label>Образование</label>
-        <textarea matInput cdkTextareaAutosize formControlName="userExperience" placeholder="Образование" maxlength="500"></textarea>
+        <textarea matInput
+          cdkTextareaAutosize
+          formControlName="userExperience"
+          placeholder="Образование"
+          maxlength="1000"
+        ></textarea>
       </mat-form-field>
 
       <div class="input-wrapper">
@@ -113,8 +133,16 @@
         <label>Выберите файл</label>
       </div>
 
-      <mat-checkbox style="margin-top: 20px" formControlName="isConfirm" color="primary">Согласие</mat-checkbox>
-      <button id="submit-button" mat-flat-button color="primary" (click)="submit()" [disabled]="!(form.valid && this.form.get('isConfirm')?.value)">Отправить</button>
+      <mat-checkbox
+        style="margin-top: 20px"
+        formControlName="isConfirm"
+        color="primary"
+      >Согласие</mat-checkbox>
+      <button id="submit-button"
+        mat-flat-button color="primary"
+        (click)="submit()"
+        [disabled]="!(form.valid && this.form.get('isConfirm')?.value)"
+      >Отправить</button>
     </form>
   </div>
 </div>
