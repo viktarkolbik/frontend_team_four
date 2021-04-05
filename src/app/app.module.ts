@@ -6,11 +6,12 @@ import { AppComponent } from './app.component';
 import { RegformModule } from './regform/regform.module';
 import { TrainingdescriptionModule } from './trainingdescription/trainingdescription.module';
 import { HomepageModule } from './homepage/homepage.module';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
