@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { HomepageComponent } from './homepage.component';
 import { HomepageRoutingModule } from "./homepage-routing.module";
+import { HeaderModule } from '../header/header.module';
+import { AppModule } from '../app.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +12,8 @@ import { HomepageRoutingModule } from "./homepage-routing.module";
   ],
   imports: [
     BrowserModule,
-    HomepageRoutingModule
+    HomepageRoutingModule,
+    HeaderModule
   ],
   providers: [],
   exports: [
