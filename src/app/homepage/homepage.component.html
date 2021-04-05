@@ -1,81 +1,57 @@
 <div class="wrapper">
   <ia-header>
-    <p> Hello world!</p>
   </ia-header>
   <main class="training">
-    <div class="container">
-      <div class="training_container">
-        <div class="training_title">training</div>
-        <div class="training_navbar">
-          <div class="dropdown">
-            <button class="dropbtn">Choose a course
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-              <a href="#">Course 1</a>
-              <a href="#">Course 2</a>
-              <a href="#">Course 3</a>
-            </div>
-          </div>
+    <div class="head">
+      <p> Start your career</p>
+      <p>and learn with us</p> 
+    </div>
+    <div class="training_title">training</div>
+    <div class="training_container">
+      <mat-form-field class="choose" appearance="fill">
+        <mat-label>Choose a course</mat-label>
+        <mat-select matNativeControl>
+          <mat-option value="volvo">Course 1</mat-option>
+          <mat-option value="saab">Course 2</mat-option>
+          <mat-option value="mercedes">Course 3</mat-option>
+          <mat-option value="audi">Course 4</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="training_wrapper">
+        <div class="training_course_container">
+          <div class="training_course_info">Minsk | Belarus | Online</div>
+          <img src="assets/icons/html.svg" alt="" class="training_course_img"/>
+          <div class="training_course_name">backend Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quos?</div>
+          <div class="training_course_dateRegistration">25 april 2021 </div>
+          <button mat-raised-button color="primary" class="btn-training">show more</button>
         </div>
-        <div class="training_wrapper">
-          <div class="training_course_container">
-            <div class="training_course_info">Minsk | Belarus | Online</div>
-            <img src="assets/icons/html.svg" alt="" class="training_course_img"/>
-            <div class="training_course_name">backend Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quos?</div>
-            <div class="training_course_dateRegistration">25 april 2021 </div>
-            <button class="training_course__showMore">show more</button>
-          </div>
-          <div class="training_course_container">
-            <div class="training_course_info">Kiev | Ukraine | Online</div>
-            <img src="assets/icons/css.svg" alt="" class="training_course_img"/>
-            <div class="training_course_name">.NET, C#</div>
-            <div class="training_course_dateRegistration">15 april 2021</div>
-            <button class="training_course__showMore">show more</button>
-          </div>
-          <div class="training_course_container">
-            <div class="training_course_info">Moscow | Russia | Online</div>
-            <img src="assets/icons/JS.svg" alt="" class="training_course_img"/>
-            <div class="training_course_name">JS/Java</div>
-            <div class="training_course_dateRegistration">5 april 2021</div>
-            <button class="training_course__showMore">show more</button>
-          </div>
+        <div class="training_course_container">
+          <div class="training_course_info">Kiev | Ukraine | Online</div>
+          <img src="assets/icons/css.svg" alt="" class="training_course_img"/>
+          <div class="training_course_name">backend Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quos?</div>
+          <div class="training_course_dateRegistration">15 april 2021</div>
+          <button mat-raised-button color="primary" class="btn-training">show more</button>
+        </div>
+        <div class="training_course_container">
+          <div class="training_course_info">Moscow | Russia | Online</div>
+          <img src="assets/icons/JS.svg" alt="" class="training_course_img"/>
+          <div class="training_course_name">backend Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quos?</div>
+          <div class="training_course_dateRegistration">5 april 2021</div>
+          <button mat-raised-button color="primary" class="btn-training">show more</button>
         </div>
       </div>
     </div>
   </main>
 
   <section class="locations">
-    <div class="container">
-      <div class="contacts_wrapper">
-        <span class="uni_title"> our locations </span>
-        <div class="footer_container">
+        <p class="uni_title"> our locations </p>
+        <div class="loc-content">
           <div class="locations_bg"></div>
           <div class="locations_bg"></div>
           <div class="locations_bg"></div>
         </div>
-      </div>
-    </div>
   </section>
-  <footer class="contacts">
-    <div class="container">
-      <div class="contacts_wrapper">
-        <span class="uni_title"> contacts </span>
-        <div class="footer_container">
-          <div class="footer_title"> <span>© 2021 EXADEL <br> All Rights Reserved</span> </div>
-          <div class="footer_wrapper_icon">
-            <a href="" class="footer_icon" [ngStyle]="{backgroundImage: 'url(assets/icons/viber.svg)'}"></a>
-            <a href="" class="footer_icon" [ngStyle]="{backgroundImage: 'url(assets/icons/telegram.svg)'}"></a>
-            <a href="" class="footer_icon" [ngStyle]="{backgroundImage: 'url(assets/icons/insta.svg)'}"></a>
-            <a href="" class="footer_icon" [ngStyle]="{backgroundImage: 'url(assets/icons/linkedin.svg)'}"></a>
-          </div>
-          <div class="footer_title">
-            <p>Phone:<a href="tel:+375297535667"> +375299535267 </a> </p>
-            <p>Web: <a href="https://www.exadel.com">www.exadel.com</a> </p>
-            <p>E-mail:<a title="google" href="mailto:exadel@gmail.com"> exadel@gmail.com</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <ia-footer>
+  </ia-footer>
 </div>
