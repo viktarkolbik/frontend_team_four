@@ -1,0 +1,51 @@
+{ "Language" : "Русский",
+  "HomePage": {
+  "p1": "Начни свою карьеру",
+  "p2": "И обучайся с нами",
+  "Training": "Стажировка",
+  "choose": "Выберите фильтры",
+  "locations": "Наши Офисы"
+},
+  "Footer": {
+    "Contacts": "Контакты",
+    "Copyrights": "Все права защишены",
+    "Phone": "Телефон",
+    "Web": "Сайт",
+    "Email": "Эл.Почта"
+  },
+  "Regform": {
+    "H1": "Регистрация на стажировку",
+    "name":"Имя",
+    "surname": "Фамилия",
+    "patronymic": "Отчество",
+    "email": " Валидный",
+    "emailError": "Введите корректный email",
+    "phone": "Мобильный телефон",
+    "phoneError": "Минимальная длина 10 символов",
+    "englishlevel": "Уровень английского",
+    "country": "Страна",
+    "city": "Город",
+    "comforttime": "Выберите удобное время для связи",
+    "comforttimeFrom": "От",
+    "comforttimeTo": "До",
+    "experience": "Опыт",
+    "education": "Образование",
+    "resume":"Резюме",
+    "choosefile":"Выберите файл",
+    "agree":"Согласен на обработку и хранение персональных данных",
+    "submit": "Отправить"
+  },
+  "TrainingDescription": {
+    "title": "О стажировке",
+    "abouttraining": "Онлайн обучение",
+    "mentoring": "Менторинг",
+    "workexadel": "Работа в Exadel",
+    "howstart": "Как попасть на стажировку",
+    "conditions": "Требования",
+    "starttime": "Дата начала стажировки",
+    "location": "Место",
+    "endtime": "Дата окончания стажировки",
+    "formattraining": "Формат Стажировки",
+    "register": "Зарегистрироваться"
+  }
+}

@@ -12,6 +12,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatButtonModule } from "@angular/material/button";
 import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FooterModule } from '../footer/footer.module';
     ReactiveFormsModule,
     MatCheckboxModule,
     HeaderModule,
-    FooterModule
+    FooterModule,
+    TranslateModule
   ],
   providers: [],
   exports: [RegformComponent]

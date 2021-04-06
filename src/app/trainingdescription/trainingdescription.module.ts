@@ -6,6 +6,7 @@ import { TrainingdescriptionRoutingModule } from './trainingdescription-routing.
 import { TrainingdescriptionComponent } from './trainingdescription.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterModule } from '../footer/footer.module';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FooterModule } from '../footer/footer.module';
     TrainingdescriptionRoutingModule,
     HeaderModule,
     FooterModule,
-    MatButtonModule
+    MatButtonModule,
+    TranslateModule
   ],
   providers: [],
 

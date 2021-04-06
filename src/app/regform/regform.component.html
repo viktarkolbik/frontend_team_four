@@ -1,42 +1,42 @@
 <div class="container">
   <ia-header>
-    
+
   </ia-header>
   <div class="content">
-    <h1>Регистрация на стажировку</h1>
+    <h1>{{ 'Regform.H1' | translate}}</h1>
     <p style="text-indent: 20px">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit.
       Aperiam beatae doloremque dolorum magnam modi praesentium quas quo sed temporibus voluptatum.
     </p>
     <form class="reg-form" [formGroup]="form">
       <mat-form-field appearance="standard" class="form-control">
-        <label class="necessary">Имя</label>
-        <input matInput formControlName="userName" type="text" placeholder="Имя">
+        <label class="necessary">{{ 'Regform.name' | translate}}</label>
+        <input matInput formControlName="userName" type="text" placeholder="{{ 'Regform.name' | translate}}">
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label class="necessary">Фамилия</label>
-        <input matInput formControlName="userLastName" type="text" placeholder="Фамилия">
+        <label class="necessary">{{ 'Regform.surname' | translate}}</label>
+        <input matInput formControlName="userLastName" type="text" placeholder="{{ 'Regform.surname' | translate}}">
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label>Отчество</label>
-        <input matInput formControlName="userPatronymic" type="text" placeholder="Отчество">
+        <label>{{ 'Regform.patronymic' | translate}}</label>
+        <input matInput formControlName="userPatronymic" type="text" placeholder="{{ 'Regform.patronymic' | translate}}">
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">Email</label>
-        <input matInput formControlName="userEmail" type="email" placeholder="Валидный Email">
+        <input matInput formControlName="userEmail" type="email" placeholder="{{ 'Regform.email' | translate}} Email">
         <mat-error *ngIf="form.get('userEmail')?.hasError('email')">
-          Введите корректный email
+          {{ 'Regform.emailError' | translate}}
         </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label class="necessary">Мобильный телефон</label>
-        <input matInput formControlName="userPhoneNumber" type="tel" placeholder="Мобильный телефон">
+        <label class="necessary">{{ 'Regform.phone' | translate}}</label>
+        <input matInput formControlName="userPhoneNumber" type="tel" placeholder="{{ 'Regform.phone' | translate}}">
         <mat-error>
-          Минимальная длина 10 символов
+          {{ 'Regform.phoneError' | translate}}
         </mat-error>
       </mat-form-field>
 
@@ -46,7 +46,7 @@
       </mat-form-field>
 
       <div class="form-control" style="margin-top: 30px">
-        <label class="necessary">Уровень английского</label>
+        <label class="necessary">{{ 'Regform.englishlevel' | translate}}</label>
         <mat-radio-group
           aria-labelledby="radio-group-label"
           class="radio-group"
@@ -63,7 +63,7 @@
       </div>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label class="necessary">Страна</label>
+        <label class="necessary">{{ 'Regform.country' | translate}}</label>
         <mat-select class="select-group" formControlName="userCountry">
           <mat-option *ngFor="let country of countries" [value]="country">
             {{country}}
@@ -72,7 +72,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label class="necessary">Город</label>
+        <label class="necessary">{{ 'Regform.city' | translate}}</label>
         <mat-select class="select-group" formControlName="userCity">
           <mat-option *ngFor="let city of cities[form.get('userCountry')?.value]" [value]="city">
             {{city}}
@@ -81,10 +81,10 @@
       </mat-form-field>
 
       <form [formGroup]="formSelectorTime" class="form-control" style="margin-top: 30px">
-        <label>Удобное время</label>
+        <label>{{ 'Regform.comforttime' | translate}}</label>
         <div class="selector-time">
           <mat-form-field appearance="fill" class="selector-time-item">
-            <mat-label>От</mat-label>
+            <mat-label>{{ 'Regform.comforttimeFrom' | translate}}</mat-label>
             <mat-select formControlName="from">
               <mat-option
                 *ngFor="let time of convenientTimeArray"
@@ -96,7 +96,7 @@
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="fill" class="selector-time-item">
-            <mat-label>До</mat-label>
+            <mat-label>{{ 'Regform.comforttimeTo' | translate}}</mat-label>
             <mat-select formControlName="to">
               <mat-option
                 *ngFor="let time of convenientTimeArray"
@@ -111,43 +111,43 @@
       </form>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label>Опыт</label>
+        <label>{{ 'Regform.experience' | translate}}</label>
         <textarea matInput
           cdkTextareaAutosize
           formControlName="userExperience"
-          placeholder="Опыт"
+          placeholder="{{ 'Regform.experience' | translate}}"
           maxlength="1000"
         ></textarea>
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label>Образование</label>
+        <label>{{ 'Regform.education' | translate}}</label>
         <textarea matInput
           cdkTextareaAutosize
           formControlName="userExperience"
-          placeholder="Образование"
+          placeholder="{{ 'Regform.education' | translate}}"
           maxlength="1000"
         ></textarea>
       </mat-form-field>
 
       <div class="form-control" style="margin-top: 25px">
-        <label>Резюме</label>
+        <label>{{ 'Regform.resume' | translate}}</label>
       </div>
       <div class="input-wrapper">
-        <input id="select-file-button" type="file" placeholder="Выберите файл">
-        <label>Выберите файл</label>
+        <input id="select-file-button" type="file" placeholder="{{ 'Regform.choosefile' | translate}}">
+        <label>{{ 'Regform.choosefile' | translate}}</label>
       </div>
 
       <mat-checkbox
         style="margin-top: 20px"
         formControlName="isConfirm"
         color="primary"
-      >Согласие</mat-checkbox>
+      >{{ 'Regform.agree' | translate}}</mat-checkbox>
       <button id="submit-button"
         mat-flat-button color="primary"
         (click)="submit()"
         [disabled]="!(form.valid && this.form.get('isConfirm')?.value)"
-      >Отправить</button>
+      >{{ 'Regform.submit' | translate}}</button>
     </form>
   </div>
   <ia-footer>
