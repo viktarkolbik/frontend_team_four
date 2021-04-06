@@ -58,13 +58,13 @@ footer {
         text-transform: uppercase;
         p {
           transition: all 0.5s ease-in-out;
+          &:hover {
+              transform: scale(1.2);
+              transition: all 0.5s ease-in-out;
+            }
           a {
             text-decoration: none;
             color: black;
-            &:hover {
-              transform: scale(5.0);
-              transition: all 0.5s ease-in-out;
-            }
           }
         }
       
