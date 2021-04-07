@@ -6,6 +6,8 @@ import { TrainingdescriptionRoutingModule } from './trainingdescription-routing.
 import { TrainingdescriptionComponent } from './trainingdescription.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterModule } from '../footer/footer.module';
+import { DescriptionService } from '../core/description-service.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,10 @@ import { FooterModule } from '../footer/footer.module';
     TrainingdescriptionRoutingModule,
     HeaderModule,
     FooterModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DescriptionService],
 
   exports: [
     TrainingdescriptionComponent

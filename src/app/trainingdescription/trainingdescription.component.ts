@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DescriptionService } from '../core/description-service.service';
+import { Internship } from '../types';
+
 
 @Component({
   selector: 'ia-trainingdescription',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TrainingdescriptionComponent implements OnInit {
 
-  constructor() { }
+  internships!: Internship[]
+
+  constructor(private descriptionServ: DescriptionService) { }
 
   ngOnInit(): void {
+    this.descriptionServ.getInternshipList().subscribe(internships => {
+      this.internships = internships;
+      console.log('internships', this.internships)
+    });
   }
 
 }
