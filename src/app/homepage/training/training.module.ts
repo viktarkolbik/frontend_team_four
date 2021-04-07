@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TrainingComponent } from './training.component';
 import {MatButtonModule} from '@angular/material/button';
+import { TrainingComponent } from './training.component';
 
 
 
