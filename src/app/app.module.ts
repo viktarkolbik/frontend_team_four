@@ -8,8 +8,8 @@ import { RegformModule } from './regform/regform.module';
 import { TrainingdescriptionModule } from './trainingdescription/trainingdescription.module';
 import { HomepageModule } from './homepage/homepage.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {createTranslateLoader} from './app.i18n.config';
+import { TranslateModule } from '@ngx-translate/core';
+import { I18n } from './app.i18n.config';
 
 
 @NgModule({
@@ -24,13 +24,7 @@ import {createTranslateLoader} from './app.i18n.config';
     HomepageModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient]
-      }
-    })
+    TranslateModule.forRoot(I18n.config)
   ],
   providers: [],
   bootstrap: [AppComponent]
