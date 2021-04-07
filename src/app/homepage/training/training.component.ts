@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Training} from '../../core/trainings/trainings.service';
+import {Training} from '../../types';
 
 @Component({
   selector: 'ia-training',

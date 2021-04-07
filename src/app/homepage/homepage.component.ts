@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Training, TrainingsService} from '../core/trainings/trainings.service';
+import { Training } from '../types';
+import {DescriptionService} from '../core/description-service.service';
 
 
 @Component({
@@ -10,10 +11,10 @@ import {Training, TrainingsService} from '../core/trainings/trainings.service';
 export class HomepageComponent implements OnInit {
   trainings: Training[];
 
-  constructor(private trainingsService: TrainingsService) {
+  constructor(private trainingsService: DescriptionService) {
     this.trainings = this.trainingsService.getTrainingsLocal();
   }
   ngOnInit(): void {
-    this.trainingsService.getTrainings().subscribe((data) => console.log(data));
+    this.trainingsService.getInternshipList().subscribe((data) => console.log(data));
   }
 }
