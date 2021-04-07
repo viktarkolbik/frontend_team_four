@@ -19,27 +19,7 @@
       </mat-form-field>
 
       <div class="training_wrapper">
-        <div class="training_course_container">
-          <div class="training_course_info">Minsk | Belarus | Online</div>
-          <img src="assets/icons/html.svg" alt="" class="training_course_img"/>
-          <div class="training_course_name">backend Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quos?</div>
-          <div class="training_course_dateRegistration">25 april 2021 </div>
-          <button mat-raised-button color="primary" class="btn-training">show more</button>
-        </div>
-        <div class="training_course_container">
-          <div class="training_course_info">Kiev | Ukraine | Online</div>
-          <img src="assets/icons/css.svg" alt="" class="training_course_img"/>
-          <div class="training_course_name">backend Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quos?</div>
-          <div class="training_course_dateRegistration">15 april 2021</div>
-          <button mat-raised-button color="primary" class="btn-training">show more</button>
-        </div>
-        <div class="training_course_container">
-          <div class="training_course_info">Moscow | Russia | Online</div>
-          <img src="assets/icons/JS.svg" alt="" class="training_course_img"/>
-          <div class="training_course_name">backend Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, quos?</div>
-          <div class="training_course_dateRegistration">5 april 2021</div>
-          <button mat-raised-button color="primary" class="btn-training">show more</button>
-        </div>
+        <ia-training *ngFor="let training of trainings" [training]="training"></ia-training>
       </div>
     </div>
   </main>
@@ -47,9 +27,18 @@
   <section class="locations">
         <p class="uni_title">{{ 'homepage.locations' | translate}}</p>
         <div class="loc-content">
-          <div class="locations_bg"></div>
-          <div class="locations_bg"></div>
-          <div class="locations_bg"></div>
+          <div class="loc-group">
+            <p class="place">Minsk</p>
+            <div class="locations_bg minsk"></div>
+          </div>
+          <div class="loc-group">
+            <p class="place">Kiev</p>
+            <div class="locations_bg kiev"></div>
+          </div>
+          <div class="loc-group">
+            <p class="place">Warsawa</p>
+            <div class="locations_bg warsawa"></div>
+          </div>
         </div>
   </section>
   <ia-footer>

@@ -1,8 +1,8 @@
 .wrapper{
   width: 100%;
-  margin: 0 auto; 
+  margin: 0 auto;
   color: black;
-  font-family: "roboto", sans-serif; 
+  font-family: "roboto", sans-serif;
   .training {
     width: 80%;
     margin: 0 auto;
@@ -12,19 +12,19 @@
       align-items: center;
       justify-content: center;
       padding: 30px 0;
-      font-size: 3rem;
+      font-size: 2rem;
       letter-spacing: 1.1rem;
       p {
         font-weight: bold;
-        line-height: 3rem;
+        line-height: 2rem;
         text-transform: uppercase;
         color: #49BBED;
       }
     }
     .training_title {
-      padding: 30px 0 40px;
+      padding: 20px 0 30px;
       font-weight: bold;
-      font-size: 3rem;
+      font-size: 1.5rem;
       text-transform: uppercase;
       text-align: center;
     }
@@ -43,38 +43,8 @@
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
-        align-items: center;    
-        padding: 20px 0;    
-        .training_course_container {
-          width: 20rem;
-          display: flex;
-          justify-content: space-between;
-          flex-direction: column;
-          align-items: center;
-          margin: 1rem;
-          background-color: #c0c0c03d;
-          box-shadow: 4px 4px 8px 8px #49bced7a;
-          padding: 20px;
-          .training_course_info {
-            font-size: 1.3rem;
-            text-align: center;
-          }
-          .training_course_img{
-            width: 120px;
-            margin: 0 auto;
-          }
-          .training_course_name{
-            width: 90%;
-            font-size: 18px;
-            line-height: 24px;
-            text-align: center;
-            margin: 0.5rem auto;
-          }
-          .btn-training {
-            margin-top: 2rem;
-            text-transform: uppercase;
-          }
-        }
+        align-items: center;
+        padding: 20px 0;
       }
     }
   }
@@ -100,11 +70,30 @@
       align-items: center;
       justify-content: space-evenly;
       margin-top: 30px;
-      .locations_bg {
-        width: 300px;
-        height: 200px;
-        box-shadow: 0 0 13px #cccccc;
-        border-color: rgba(55, 55, 55, 0.78);
+      .loc-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        .locations_bg {
+          margin-top: 10px;
+          width: 300px;
+          height: 200px;
+          box-shadow: 4px 4px 8px 8px #c9cacaa8;
+        }
+        .minsk {
+          background: url("../../assets/img/минск.jpg") no-repeat;
+          background-size: cover;
+        }
+        .kiev {
+          background: url("../../assets/img/киев.jpg") no-repeat;
+          background-size: cover;
+        }
+        .warsawa {
+          background: url("../../assets/img/варшава.jpg") no-repeat;
+          background-size: cover;
+        }
       }
     }
   }
