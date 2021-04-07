@@ -1,3 +1,9 @@
 <div id="header">
-  <ng-content></ng-content>
+  <mat-form-field>
+    <mat-select [(value)]="selected" (selectionChange)="translate.use(selected)">
+      <!--      <mat-option *ngFor="let lang of translate.getLangs()" [value]="lang"></mat-option>-->
+      <mat-option value="en">English</mat-option>
+      <mat-option value="ru">Русский</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>

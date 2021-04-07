@@ -9,6 +9,7 @@ import { HomepageComponent } from './homepage.component';
 import { HomepageRoutingModule } from './homepage-routing.module';
 import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
+import { TranslateModule } from '@ngx-translate/core';
 import { TrainingModule } from './training/training.module';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { TrainingModule } from './training/training.module';
     MatSelectModule,
     MatFormFieldModule,
     MatButtonModule,
+    TranslateModule,
     TrainingModule,
     HttpClientModule
   ],

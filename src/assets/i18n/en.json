@@ -1,0 +1,51 @@
+{ "language" : "English",
+  "homepage": {
+    "p1": "Start your career",
+    "p2": "And learn with us",
+    "training": "Training",
+    "choose": "Choose Filter",
+    "locations": "Our locations"
+  },
+  "footer": {
+    "contacts": "Contacts",
+    "copyrights": "All Rights Reserved",
+    "phone": "Phone",
+    "web": "Web",
+    "email": "E-mail"
+  },
+  "regform": {
+    "h1": "Register to training",
+    "name":"Name",
+    "surname": "Surname",
+    "patronymic": "Patronymic",
+    "email": "Valid",
+    "emailError": "Please type correct email",
+    "phone": "Phone Number",
+    "phoneError": "Minimal length 10 symbols",
+    "englishlevel": "English Level",
+    "country": "Coutry",
+    "city": "City",
+    "comforttime": "Choose comfort time to contact",
+    "comforttimeFrom": "From",
+    "comforttimeTo": "To",
+    "experience": "Experience",
+    "education": "Ecucation",
+    "resume":"CV",
+    "choosefile":"Choose your CV file",
+    "agree":"I agree with processing of my personal data",
+    "submit": "Submit"
+  },
+  "trainingdescription": {
+    "title": "How is the Training going",
+    "abouttraining": "Online learning",
+    "mentoring": "Mentoring",
+    "workexadel": "Work in Exadel",
+    "howstart": "How to start training",
+    "conditions": "Training Conditions",
+    "starttime": "Training start time",
+    "location": "Location",
+    "endtime": "Training finish time",
+    "formattraining": "Training Format",
+    "register": "Register"
+  }
+}

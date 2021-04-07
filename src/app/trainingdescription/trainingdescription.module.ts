@@ -6,6 +6,7 @@ import { TrainingdescriptionRoutingModule } from './trainingdescription-routing.
 import { TrainingdescriptionComponent } from './trainingdescription.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterModule } from '../footer/footer.module';
+import { TranslateModule } from '@ngx-translate/core';
 import { InternshipsService } from '../core/internships.service';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderModule,
     FooterModule,
     MatButtonModule,
+    TranslateModule,
     HttpClientModule
   ],
   providers: [
