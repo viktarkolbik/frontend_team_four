@@ -6,7 +6,7 @@ import { TrainingdescriptionRoutingModule } from './trainingdescription-routing.
 import { TrainingdescriptionComponent } from './trainingdescription.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterModule } from '../footer/footer.module';
-import { DescriptionService } from '../core/description-service.service';
+import { InternshipsService } from '../core/internships.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -21,8 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     HttpClientModule
   ],
-  providers: [DescriptionService],
-
+  providers: [
+    InternshipsService
+  ],
   exports: [
     TrainingdescriptionComponent
   ]

@@ -9,7 +9,7 @@ const routes: Routes = [
     component: TrainingdescriptionComponent
   },
   {
-    path: "regform",
+    path: 'regform',
     component: RegformComponent
   }
 ];

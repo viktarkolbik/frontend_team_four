@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -9,7 +9,7 @@ import { HomepageComponent } from './homepage.component';
 import { HomepageRoutingModule } from './homepage-routing.module';
 import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
-import {TrainingModule} from './training/training.module';
+import { TrainingModule } from './training/training.module';
 
 @NgModule({
   declarations: [
