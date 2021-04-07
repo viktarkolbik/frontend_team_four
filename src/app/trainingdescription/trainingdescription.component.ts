@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DescriptionService } from '../core/description-service.service';
+import { InternshipsService } from '../core/internships.service';
 import { Internship } from '../types';
 
 
@@ -10,14 +10,14 @@ import { Internship } from '../types';
 })
 export class TrainingdescriptionComponent implements OnInit {
 
-  internships!: Internship[]
+  internships!: Internship[];
 
-  constructor(private descriptionServ: DescriptionService) { }
+  constructor(private internshipsService: InternshipsService) { }
 
   ngOnInit(): void {
-    this.descriptionServ.getInternshipList().subscribe(internships => {
+    this.internshipsService.getInternshipList().subscribe(internships => {
       this.internships = internships;
-      console.log('internships', this.internships)
+      console.log('internships', this.internships);
     });
   }
 

@@ -6,7 +6,7 @@ import {Internship, Training} from '../types';
   providedIn: 'root'
 })
 
-export class DescriptionService {
+export class InternshipsService {
   basePath = 'http://localhost:8080/api/internships';
   trainings: Training[] = [
     {
