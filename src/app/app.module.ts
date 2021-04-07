@@ -8,13 +8,9 @@ import { RegformModule } from './regform/regform.module';
 import { TrainingdescriptionModule } from './trainingdescription/trainingdescription.module';
 import { HomepageModule } from './homepage/homepage.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {createTranslateLoader} from './app.i18n.config';
 
-// tslint:disable-next-line:typedef
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
 
 @NgModule({
   declarations: [
