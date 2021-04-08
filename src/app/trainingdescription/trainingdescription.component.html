@@ -12,16 +12,8 @@
         {{ 'trainingdescription.title' | translate}}
       </h2>
       <div class="about-training">
-        <H3>{{ 'trainingdescription.abouttraining' | translate}}
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio quis sapiente, ullam provident voluptas,
-            similique hic earum fuga accusantium quibusdam in perspiciatis molestiae saepe quam unde ratione aliquid
-            quae doloribus voluptatum nemo officia harum? Voluptatem natus libero numquam nobis, molestias voluptatum
-            blanditiis quaerat reiciendis autem perspiciatis, velit distinctio. Sequi, vitae voluptates cum voluptatibus
-            architecto eos doloribus, laboriosam quos, officia rerum inventore commodi soluta dolores! Unde delectus veniam
-            inventore veritatis tempora beatae fugit rerum repudiandae? Molestiae amet accusantium facilis neque soluta.
-            Assumenda repellat quidem consectetur, impedit ullam excepturi quod placeat ut voluptas optio sunt? Repellat
-            suscipit magnam excepturi nostrum hic doloremque?
-          </p>
+        <H3>{{ 'trainingdescription.abouttraining' | translate}}: 
+          <p>{{internships[0].description}}</p>
         </H3>
         <h3>{{ 'trainingdescription.mentoring' | translate}}
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio quis sapiente, ullam provident voluptas,
@@ -42,13 +34,10 @@
             </p>
         </h3>
         <h3>{{ 'trainingdescription.howstart' | translate}}
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio quis sapiente, ullam provident voluptas,
-          similique hic earum fuga accusantium quibusdam in perspiciatis molestiae saepe quam unde ratione aliquid
-          quae doloribus voluptatum nemo officia harum? Voluptatem natus libero numquam nobis, molestias voluptatum
-          blanditiis quaerat reiciendis autem perspiciatis, velit distinctio. Sequi, vitae voluptates cum voluptatibus
-          architecto eos doloribus, laboriosam quos, officia rerum inventore commodi soluta dolores!
-          </p>
+          <p>{{internships[0].requirements}}</p>
+        </h3>
+        <h3>{{ 'trainingdescription.skills' | translate}}
+          <p>{{internships[0].requirements}}</p>
         </h3>
     </div>
     <div class="conditions">
@@ -57,6 +46,7 @@
         <div class="right-box">
           <div class="condition">{{ 'trainingdescription.starttime' | translate}}:{{internships[0].startDate}}</div>
           <div class="condition">{{ 'trainingdescription.location' | translate}}:{{internships[0].countryList}}</div>
+          <div class="condition">{{ 'trainingdescription.duration' | translate}}: {{duration}}</div>
         </div>
         <div class="left-box">
           <div class="condition">{{ 'trainingdescription.endtime' | translate}}:{{internships[0].endDate}}</div>
@@ -66,6 +56,7 @@
     </div>
     <div class="btn-container">
       <button class="reg-btn" routerLink="/regform"mat-raised-button color="primary">{{ 'trainingdescription.register' | translate}}</button>
+      <button class="main-btn" routerLink="/homepage"mat-raised-button color="primary">{{ 'trainingdescription.mainpagelink' | translate}}</button>
     </div>
   </div>
 </div>
