@@ -50,7 +50,10 @@
   },
   "loginpage": {
     "h1": "Login to authorisation",
+    "fieldlogin": "please, enter your e-mail",
+    "fieldpassword": "please, enter your password",
     "login": "Your login",
-    "password":"Your password"
+    "password":"Your password",
+    "submit": "Submit"
   }
 }

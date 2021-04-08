@@ -9,6 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {TranslateModule} from '@ngx-translate/core';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [LoginpageComponent],
@@ -21,7 +22,8 @@ import {TranslateModule} from '@ngx-translate/core';
     MatIconModule,
     ReactiveFormsModule,
     MatInputModule,
-    TranslateModule
+    TranslateModule,
+    MatButtonModule
   ],
   exports: [
     LoginpageComponent
