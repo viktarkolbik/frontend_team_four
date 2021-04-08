@@ -83,12 +83,14 @@
     }
     .btn-container {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       margin: 30px 0 40px 0; 
-      .reg-btn {
+      .reg-btn, .main-btn {
         width: 20rem;
         height: 6rem;
         font-size: 1.5rem;
+        margin-right: 20px;
         &:hover {
           cursor: pointer;
           color: rgba(255, 255, 255, 0.486);
@@ -104,6 +106,15 @@
     header {
       background-position: center;
     }
+    .content {
+      .btn-container {
+        .reg-btn, .main-btn {
+          margin-bottom: 20px;
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
   }
- 
 }

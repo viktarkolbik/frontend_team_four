@@ -37,15 +37,18 @@
   },
   "trainingdescription": {
     "title": "О стажировке",
-    "abouttraining": "Онлайн обучение",
+    "abouttraining": "Описание стажировки",
     "mentoring": "Менторинг",
     "workexadel": "Работа в Exadel",
-    "howstart": "Как попасть на стажировку",
+    "howstart": "Обязательные требования",
     "conditions": "Требования",
+    "skills": "Желательные навыки",
     "starttime": "Дата начала стажировки",
     "location": "Место",
     "endtime": "Дата окончания стажировки",
     "formattraining": "Формат Стажировки",
-    "register": "Зарегистрироваться"
+    "register": "Зарегистрироваться",
+    "mainpagelink": "На главную",
+    "duration": "Продолжительность в днях"
   }
 }
