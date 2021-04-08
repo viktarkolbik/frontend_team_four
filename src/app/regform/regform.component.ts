@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Event} from '@angular/router';
+import {EventData} from '@angular/cdk/testing';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {FormService} from '../core/form.service';
 
 @Component({
   selector: 'ia-regform',
@@ -9,49 +13,49 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class RegformComponent implements OnInit {
   form: FormGroup;
   formSelectorTime: FormGroup;
+  file: any;
 
-  constructor() {
+  constructor(private formService: FormService) {
     this.formSelectorTime = new FormGroup({
       from: new FormControl(''),
       to: new FormControl(''),
     });
     this.form = new FormGroup({
-      userName: new FormControl('', Validators.required),
-      userLastName: new FormControl('', Validators.required),
-      userPatronymic: new FormControl(''),
-      userEmail: new FormControl('', [
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      middleName: new FormControl(''),
+      email: new FormControl('', [
         Validators.required,
         Validators.email,
       ]),
-      userPhoneNumber: new FormControl('', [
+      phoneNumber: new FormControl('', [
         Validators.required,
         Validators.minLength(10)
       ]),
-      userSkype: new FormControl('', Validators.required),
-      userEnglishLevel : new FormControl('', Validators.required),
-      userCountry: new FormControl('', Validators.required),
-      userCity: new FormControl('', Validators.required),
-      userConvenientTime: this.formSelectorTime,
-      userExperience: new FormControl(''),
-      userEducation: new FormControl(''),
-      isConfirm: new FormControl('', Validators.required),
+      skype: new FormControl('', Validators.required),
+      englishLevel : new FormControl('', Validators.required),
+      country: new FormControl('', Validators.required),
+      city: new FormControl('', Validators.required),
+      convenientTime: this.formSelectorTime,
+      experience: new FormControl(''),
+      education: new FormControl(''),
     });
   }
 
   englishLevel: {[key: string]: string} = {
-    'A0': 'Beginner',
-    'A1': 'Elementary',
-    'A2': 'Pre-Intermediate',
-    'B1': 'Intermediate',
-    'B2': 'Upper-Intermediate',
-    'C1': 'Advanced',
+    A0: 'Beginner',
+    A1: 'Elementary',
+    A2: 'Pre-Intermediate',
+    B1: 'Intermediate',
+    B2: 'Upper-Intermediate',
+    C1: 'Advanced',
   };
-  countries: string[] = [
-    'Беларусь',
-    'Украина'
-  ];
+  countries: {[key: string]: string} = {
+    BL: 'Беларусь',
+    UA: 'Украина'
+  };
   cities: {[key: string]: string[]} = {
-    'Украина': [
+    UA: [
       'Винница',
       'Киев',
       'Харьков',
@@ -59,7 +63,7 @@ export class RegformComponent implements OnInit {
       'Одесса',
       'Мариуполь'
     ],
-    'Беларусь': [
+    BL: [
       'Минск',
       'Гродно',
       'Гомель',
@@ -71,16 +75,38 @@ export class RegformComponent implements OnInit {
     to: 20,
   };
   convenientTimeArray: number[] = [];
-  getKeys(obj: any){
+  exampleForm: {[key: string]: string} = {
+    city: 'string',
+    country: 'string',
+    education: 'string',
+    email: 'string',
+    englishLevel: 'A0',
+    experience: 'string',
+    filePath: 'string',
+    firstName: 'string',
+    lastName: 'string',
+    middleName: 'string',
+    phoneNumber: 'string',
+    primarySkill: 'string',
+    skype: 'string'
+  };
+  getKeys(obj: any): string[]{
     return Object.keys(obj);
   }
-
   ngOnInit(): void {
-    for(let i = this.convenientTime.from; i <= this.convenientTime.to; i++){
+    for (let i = this.convenientTime.from; i <= this.convenientTime.to; i++){
       this.convenientTimeArray.push(i);
     }
   }
-  submit() {
-    console.log(this.form.value);
+  addFile(event: any): void {
+    const target = event.target || event.srcElement;
+    this.file = target.files[0];
+  }
+  submit(): void {
+    const exampleFormJson = JSON.stringify(this.exampleForm);
+    const formData = new FormData();
+    //if (this.file){ formData.append('file', this.file); }
+    formData.append('form', exampleFormJson);
+    this.formService.postForm(formData).subscribe(res => console.log(res));
   }
 }
