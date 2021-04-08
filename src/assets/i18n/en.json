@@ -47,5 +47,10 @@
     "endtime": "Training finish time",
     "formattraining": "Training Format",
     "register": "Register"
+  },
+  "loginpage": {
+    "h1": "Login to authorisation",
+    "login": "Your login",
+    "password":"Your password"
   }
 }
