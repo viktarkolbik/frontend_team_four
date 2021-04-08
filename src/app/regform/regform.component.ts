@@ -104,9 +104,10 @@ export class RegformComponent implements OnInit {
   }
   submit(): void {
     const exampleFormJson = JSON.stringify(this.exampleForm);
+    const blob = new Blob([exampleFormJson], {type: 'application/json'});
     const formData = new FormData();
-    //if (this.file){ formData.append('file', this.file); }
-    formData.append('form', exampleFormJson);
+    if (this.file){ formData.append('file', this.file); }
+    formData.append('form', blob);
     this.formService.postForm(formData).subscribe(res => console.log(res));
   }
 }
