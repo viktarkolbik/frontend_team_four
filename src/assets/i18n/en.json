@@ -47,5 +47,20 @@
     "endtime": "Training finish time",
     "formattraining": "Training Format",
     "register": "Register"
+  },
+  "trainingform": {
+    "h1": "Create training",
+    "name": "Training name",
+    "description": "Training description",
+    "format": "Training format",
+    "language": "Training Language",
+    "requirements": "Requirements for a candidate",
+    "duration": "Training duration",
+    "start-date": "Start",
+    "end-date": "End",
+    "registry-duration": "Registry duration",
+    "skills": "Technical skills",
+    "publication": "Publication date",
+    "create-btn": "Create"
   }
 }
