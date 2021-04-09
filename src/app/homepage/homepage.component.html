@@ -10,16 +10,21 @@
     <div class="training_container">
       <mat-form-field class="choose" appearance="fill">
         <mat-label>{{ 'homepage.choose' | translate}}</mat-label>
-        <mat-select matNativeControl>
-          <mat-option value="volvo">Course 1</mat-option>
-          <mat-option value="saab">Course 2</mat-option>
-          <mat-option value="mercedes">Course 3</mat-option>
-          <mat-option value="audi">Course 4</mat-option>
+        <mat-select matNativeControl multiple>
+          <mat-optgroup label="Location">
+            <mat-option (onSelectionChange)="filterLocation($event)" value="ukraine kiev">Ukraine, Kiev</mat-option>
+            <mat-option (onSelectionChange)="filterLocation($event)" value="belarus minsk">Belarus, Minsk</mat-option>
+            <mat-option (onSelectionChange)="filterLocation($event)" value="russia moskow">Russia, Moskow</mat-option>
+          </mat-optgroup>
+          <mat-optgroup label="Technology">
+            <mat-option (onSelectionChange)="filterTech($event)" value="css">CSS</mat-option>
+            <mat-option (onSelectionChange)="filterTech($event)" value="html">HTML</mat-option>
+            <mat-option (onSelectionChange)="filterTech($event)" value="javascript">JavaScript</mat-option>
+          </mat-optgroup>
         </mat-select>
       </mat-form-field>
-
       <div class="training_wrapper">
-        <ia-training *ngFor="let training of trainings" [training]="training"></ia-training>
+        <ia-training *ngFor="let training of filtered || trainings" [training]="training"></ia-training>
       </div>
     </div>
   </main>
