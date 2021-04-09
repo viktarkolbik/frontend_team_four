@@ -5,7 +5,11 @@
     margin: 0 auto;
     background-color: #e0e0e0;
     .content{
+      h1 {
+        margin: 3rem;
+      }
       max-width: 700px;
+      min-height: 50vh;
       margin: 30px auto;
       padding: 30px;
       background-color: white;
@@ -32,39 +36,10 @@
             margin: 0px 5px;
           }
         }
-        .radio-group{
-          display: flex;
-          flex-direction: column;
-          margin: 10px 20px;
-        }
-        .radio-button{
-          margin: 5px 0;
-        }
-        .selector-time{
-          width: 180px;
-          display: flex;
-          justify-content: space-between;
-        }
-        .selector-time-item{
-          width: 80px;
-        }
-        .input-wrapper{
-          position: relative;
-          padding: 10px 15px;
-          border-radius: 4px;
-          background-color: rgba(0,0,0,.12);
-          font-family: Roboto, "Helvetica Neue", sans-serif;
-        }
-        #select-file-button{
-          display: inline-block;
-          position: absolute;
-          transform: translate(-5px, 0);
-          opacity: 0%;
-        }
-        #submit-button{
-          margin-top: 20px;
-        }
       }
     }
   }
+}
+button[mat-raised-button] {
+  margin: 2rem;
 }
