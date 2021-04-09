@@ -181,13 +181,24 @@
         <label>{{ 'regform.resume' | translate}}</label>
       </div>
       <div class="input-wrapper">
-        <input
+        <button
           id="select-file-button"
-          type="file" placeholder="{{ 'regform.choosefile' | translate}}"
+          mat-flat-button
+          color="primary"
+        >Выберите файл</button>
+        <input
+          id="select-file-input"
+          type="file"
           (change)="addFile($event)"
         >
-        <label>{{ 'regform.choosefile' | translate}}</label>
       </div>
+      <label>{{file?.name}}</label>
+      <mat-error *ngIf="fileSize">
+        Файл имеет размер больше {{maxSizeFile/1000}} кБайт
+      </mat-error>
+      <mat-error *ngIf="isNotSupportFormat">
+        Файл имеет не подходящий формат
+      </mat-error>
 
       <mat-checkbox
         style="margin-top: 20px"
@@ -200,7 +211,7 @@
         mat-flat-button
         color="primary"
         (click)="submit()"
-        [disabled]="!(form.valid && form.get('isConfirm')?.value)"
+        [disabled]="!(form.valid && form.get('isConfirm')?.value && !isNotSupportFormat && !fileSize)"
       >
         {{ 'regform.submit' | translate}}
       </button>
