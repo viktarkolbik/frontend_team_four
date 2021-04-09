@@ -9,19 +9,18 @@ import { Internship } from '../types';
 })
 export class TrainingdescriptionComponent implements OnInit {
 
-  internships: Internship[] = [];
+  internship!: Internship;
   duration: string = "";
-  difference: number = 0;
+  
 
   constructor(private internshipsService: InternshipsService) { }
 
   ngOnInit(): void {
     this.internshipsService.getInternshipList().subscribe(internships => {
-      this.internships = internships;
-      console.log('internships', this.internships);
+      this.internship = internships[0];
 
-      this.difference = Date.parse(this.internships[0].endDate) - Date.parse(this.internships[0].startDate);
-      this.duration = String(this.difference/86400000);
+      const difference = Date.parse(this.internship.endDate) - Date.parse(this.internship.startDate);
+      this.duration = String(difference/86400000);
     }); 
   }
 }
