@@ -12,60 +12,55 @@
         {{ 'trainingdescription.title' | translate}}
       </h2>
       <div class="about-training">
-        <H3>{{ 'trainingdescription.abouttraining' | translate}}
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio quis sapiente, ullam provident voluptas,
-            similique hic earum fuga accusantium quibusdam in perspiciatis molestiae saepe quam unde ratione aliquid
-            quae doloribus voluptatum nemo officia harum? Voluptatem natus libero numquam nobis, molestias voluptatum
-            blanditiis quaerat reiciendis autem perspiciatis, velit distinctio. Sequi, vitae voluptates cum voluptatibus
-            architecto eos doloribus, laboriosam quos, officia rerum inventore commodi soluta dolores! Unde delectus veniam
-            inventore veritatis tempora beatae fugit rerum repudiandae? Molestiae amet accusantium facilis neque soluta.
-            Assumenda repellat quidem consectetur, impedit ullam excepturi quod placeat ut voluptas optio sunt? Repellat
-            suscipit magnam excepturi nostrum hic doloremque?
-          </p>
+        <H3>{{ 'trainingdescription.abouttraining' | translate}}: 
+          <p>{{internship.description}}</p>
         </H3>
         <h3>{{ 'trainingdescription.mentoring' | translate}}
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio quis sapiente, ullam provident voluptas,
-          similique hic earum fuga accusantium quibusdam in perspiciatis molestiae saepe quam unde ratione aliquid
-          quae doloribus voluptatum nemo officia harum? Voluptatem natus libero numquam nobis, molestias voluptatum
-          blanditiis quaerat reiciendis autem perspiciatis, velit distinctio. Sequi, vitae voluptates cum voluptatibus
-          architecto eos doloribus, laboriosam quos, officia rerum inventore commodi soluta dolores! Unde delectus veniam
-          inventore veritatis tempora beatae fugit rerum repudiandae? Molestiae amet accusantium facilis neque soluta.
-          Assumenda repellat quidem consectetur, impedit ullam excepturi quod placeat ut voluptas optio sunt? Repellat
-          suscipit magnam excepturi nostrum hic doloremque?
-          </p>
+          <p> {{ 'trainingdescription.mentoring-text' | translate}} </p>
         </h3>
         <h3>{{ 'trainingdescription.workexadel' | translate}}
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio quis sapiente, ullam provident voluptas,
-            similique hic earum fuga accusantium quibusdam in perspiciatis molestiae saepe quam unde ratione aliquid
-            quae doloribus voluptatum nemo officia harum? Voluptatem natus libero numquam nobis, molestias voluptatum
-            blanditiis quaerat reiciendis autem perspiciatis, velit distinctio.
-            </p>
+          <p> {{ 'trainingdescription.aboutwork' | translate}}</p>
+          <ul> 
+            <li> {{ 'trainingdescription.ourconditions' | translate}}</li>
+            <Li> {{ 'trainingdescription.development' | translate}}</Li>
+            <Li>{{ 'trainingdescription.sport' | translate}}</Li>
+            <Li>{{ 'trainingdescription.lesson' | translate}}</Li>
+            <Li>{{ 'trainingdescription.world' | translate}}</Li>
+            <Li>{{ 'trainingdescription.goods' | translate}}</Li>
+          </ul>
         </h3>
         <h3>{{ 'trainingdescription.howstart' | translate}}
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Optio quis sapiente, ullam provident voluptas,
-          similique hic earum fuga accusantium quibusdam in perspiciatis molestiae saepe quam unde ratione aliquid
-          quae doloribus voluptatum nemo officia harum? Voluptatem natus libero numquam nobis, molestias voluptatum
-          blanditiis quaerat reiciendis autem perspiciatis, velit distinctio. Sequi, vitae voluptates cum voluptatibus
-          architecto eos doloribus, laboriosam quos, officia rerum inventore commodi soluta dolores!
-          </p>
+          <p>{{internship.requirements}}</p>
+        </h3>
+        <h3>{{ 'trainingdescription.skills' | translate}}
+          <p>{{internship.techSkills}}</p>
+        </h3>
+        <h3>{{ 'trainingdescription.toget' | translate}}
+          <ul> 
+            <li> {{ 'trainingdescription.resume' | translate}}</li>
+            <Li> {{ 'trainingdescription.reqinterview' | translate}}</Li>
+            <Li>{{ 'trainingdescription.tech' | translate}}</Li>
+            <Li>{{ 'trainingdescription.learn' | translate}}</Li>
+          </ul>
         </h3>
     </div>
     <div class="conditions">
       <h3>{{ 'trainingdescription.conditions' | translate}}</h3>
       <div class="info-internship">
         <div class="right-box">
-          <div class="condition">{{ 'trainingdescription.starttime' | translate}}:{{internships[0].startDate}}</div>
-          <div class="condition">{{ 'trainingdescription.location' | translate}}:{{internships[0].countryList}}</div>
+          <div class="condition">{{ 'trainingdescription.starttime' | translate}}:{{internship.startDate}}</div>
+          <div class="condition">{{ 'trainingdescription.location' | translate}}:{{internship.countryList}}</div>
+          <div class="condition">{{ 'trainingdescription.duration' | translate}}: {{duration}}</div>
         </div>
         <div class="left-box">
-          <div class="condition">{{ 'trainingdescription.endtime' | translate}}:{{internships[0].endDate}}</div>
-          <div class="condition">{{ 'trainingdescription.formattraining' | translate}}:{{internships[0].internshipFormat}}</div>
+          <div class="condition">{{ 'trainingdescription.endtime' | translate}}:{{internship.endDate}}</div>
+          <div class="condition">{{ 'trainingdescription.formattraining' | translate}}:{{internship.internshipFormat}}</div>
         </div>
       </div>
     </div>
     <div class="btn-container">
       <button class="reg-btn" routerLink="/regform"mat-raised-button color="primary">{{ 'trainingdescription.register' | translate}}</button>
+      <button class="main-btn" routerLink=""mat-raised-button color="primary">{{ 'trainingdescription.mainpagelink' | translate}}</button>
     </div>
   </div>
 </div>
