@@ -13,6 +13,7 @@ export class I18n {
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
       deps: [HttpClient]
-    }
+    },
+    defaultLanguage: 'en'
   };
 }
