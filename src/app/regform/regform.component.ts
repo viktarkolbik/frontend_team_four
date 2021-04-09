@@ -11,6 +11,8 @@ export class RegformComponent implements OnInit {
   form: FormGroup;
   formSelectorTime: FormGroup;
   file: any;
+  fileSize!: boolean;
+  isNotSupportFormat!: boolean;
   constructor(private formService: FormService) {
     this.formSelectorTime = new FormGroup({
       from: new FormControl(''),
@@ -73,17 +75,23 @@ export class RegformComponent implements OnInit {
     to: 20,
   };
   convenientTimeArray: number[] = [];
-  getKeys(obj: any): string[]{
-    return Object.keys(obj);
-  }
+  maxSizeFile = 300000;
+  fileFormat = ['pdf', 'doc', 'docx'];
   ngOnInit(): void {
     for (let i = this.convenientTime.from; i <= this.convenientTime.to; i++){
       this.convenientTimeArray.push(i);
     }
   }
+  getKeys(obj: any): string[]{
+    return Object.keys(obj);
+  }
   addFile(event: any): void {
     const target = event.target || event.srcElement;
     this.file = target.files[0];
+    const fileFormat = this.file?.name.split('.')[1];
+    this.fileSize = this.file?.size > this.maxSizeFile;
+    this.isNotSupportFormat = !this.fileFormat.includes(fileFormat);
+    console.log(this.file);
   }
   submit(): void {
     const formValueJson = JSON.stringify(this.form.value);
