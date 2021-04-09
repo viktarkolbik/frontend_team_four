@@ -8,7 +8,9 @@ import {Observable} from 'rxjs';
 export class FormService {
   basePath = 'http://localhost:8080/api/forms';
   constructor(private http: HttpClient) { }
-  postForm(formData: any): Observable<any> {
-    return this.http.post(this.basePath, formData);
+  sendFormData(formData: FormData): Observable<any> {
+    const headers = new HttpHeaders({
+    });
+    return this.http.post(this.basePath, formData, {headers});
   }
 }

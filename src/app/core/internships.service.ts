@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Internship, Training} from '../types';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -37,15 +38,15 @@ export class InternshipsService {
   constructor(private http: HttpClient) {
   }
 
-  getInternshipList(){
+  getInternshipList(): Observable<any>{
     return this.http.get<Internship[]>(this.basePath);
   }
 
-  getInternshipById(id: string){
+  getInternshipById(id: string): Observable<any>{
     return this.http.get<Internship>(`${this.basePath}/${id}`);
   }
 
-  getTrainingsLocal(){
+  getTrainingsLocal(): Training[]{
     return this.trainings;
   }
 }

@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Event} from '@angular/router';
-import {EventData} from '@angular/cdk/testing';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {FormService} from '../core/form.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormService } from '../core/form.service';
 
 @Component({
   selector: 'ia-regform',
@@ -14,7 +11,6 @@ export class RegformComponent implements OnInit {
   form: FormGroup;
   formSelectorTime: FormGroup;
   file: any;
-
   constructor(private formService: FormService) {
     this.formSelectorTime = new FormGroup({
       from: new FormControl(''),
@@ -37,8 +33,10 @@ export class RegformComponent implements OnInit {
       country: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
       convenientTime: this.formSelectorTime,
+      primarySkill: new FormControl(''),
       experience: new FormControl(''),
       education: new FormControl(''),
+      isConfirm: new FormControl(''),
     });
   }
 
@@ -75,21 +73,6 @@ export class RegformComponent implements OnInit {
     to: 20,
   };
   convenientTimeArray: number[] = [];
-  exampleForm: {[key: string]: string} = {
-    city: 'string',
-    country: 'string',
-    education: 'string',
-    email: 'string',
-    englishLevel: 'A0',
-    experience: 'string',
-    filePath: 'string',
-    firstName: 'string',
-    lastName: 'string',
-    middleName: 'string',
-    phoneNumber: 'string',
-    primarySkill: 'string',
-    skype: 'string'
-  };
   getKeys(obj: any): string[]{
     return Object.keys(obj);
   }
@@ -103,11 +86,13 @@ export class RegformComponent implements OnInit {
     this.file = target.files[0];
   }
   submit(): void {
-    const exampleFormJson = JSON.stringify(this.exampleForm);
-    const blob = new Blob([exampleFormJson], {type: 'application/json'});
+    const formValueJson = JSON.stringify(this.form.value);
+    const formValueBinary = new Blob([formValueJson], {type: 'application/json'});
     const formData = new FormData();
+    formData.append('form', formValueBinary);
     if (this.file){ formData.append('file', this.file); }
-    formData.append('form', blob);
-    this.formService.postForm(formData).subscribe(res => console.log(res));
+    this.formService.sendFormData(formData).subscribe(res => console.log(res));
+    this.form.reset();
+    this.formSelectorTime.reset();
   }
 }

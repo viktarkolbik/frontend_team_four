@@ -1,7 +1,5 @@
 <div class="container">
-  <ia-header>
-
-  </ia-header>
+  <ia-header></ia-header>
   <div class="content">
     <h1>{{ 'regform.h1' | translate}}</h1>
     <p style="text-indent: 20px">
@@ -11,22 +9,46 @@
     <form class="reg-form" [formGroup]="form" enctype="multipart/form-data">
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">{{ 'regform.name' | translate}}</label>
-        <input matInput formControlName="firstName" type="text" placeholder="{{ 'regform.name' | translate}}">
+        <input
+          matInput
+          formControlName="firstName"
+          type="text"
+          placeholder="{{ 'regform.name' | translate}}"
+          maxlength="50"
+        >
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">{{ 'regform.surname' | translate}}</label>
-        <input matInput formControlName="lastName" type="text" placeholder="{{ 'regform.surname' | translate}}">
+        <input
+          matInput
+          formControlName="lastName"
+          type="text"
+          placeholder="{{ 'regform.surname' | translate}}"
+          maxlength="50"
+        >
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
         <label>{{ 'regform.patronymic' | translate}}</label>
-        <input matInput formControlName="middleName" type="text" placeholder="{{ 'regform.patronymic' | translate}}">
+        <input
+          matInput
+          formControlName="middleName"
+          type="text"
+          placeholder="{{ 'regform.patronymic' | translate}}"
+          maxlength="50"
+        >
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">Email</label>
-        <input matInput formControlName="email" type="email" placeholder="{{ 'regform.email' | translate}} Email">
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+          placeholder="{{ 'regform.email' | translate}} Email"
+          maxlength="254"
+        >
         <mat-error *ngIf="form.get('email')?.hasError('email')">
           {{ 'regform.emailError' | translate}}
         </mat-error>
@@ -34,7 +56,13 @@
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">{{ 'regform.phone' | translate}}</label>
-        <input matInput formControlName="phoneNumber" type="tel" placeholder="{{ 'regform.phone' | translate}}">
+        <input
+          matInput
+          formControlName="phoneNumber"
+          type="tel"
+          placeholder="{{ 'regform.phone' | translate}}"
+          maxlength="15"
+        >
         <mat-error>
           {{ 'regform.phoneError' | translate}}
         </mat-error>
@@ -42,7 +70,13 @@
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">Skype</label>
-        <input matInput formControlName="skype" type="text" placeholder="Skype">
+        <input
+          matInput
+          formControlName="skype"
+          type="text"
+          placeholder="Skype"
+          maxlength="254"
+        >
       </mat-form-field>
 
       <div class="form-control" style="margin-top: 30px">
@@ -88,7 +122,10 @@
             <mat-select formControlName="from">
               <mat-option
                 *ngFor="let time of convenientTimeArray"
-                [disabled]="time>formSelectorTime.controls['to'].value-1 && !!formSelectorTime.controls['to'].value"
+                [disabled]="
+                  time > formSelectorTime.controls['to'].value - 1
+                  && !!formSelectorTime.controls['to'].value
+                "
                 [value]="time"
               >
                 {{time}}:00
@@ -100,7 +137,7 @@
             <mat-select formControlName="to">
               <mat-option
                 *ngFor="let time of convenientTimeArray"
-                [disabled]="time<formSelectorTime.controls['from'].value+1"
+                [disabled]="time < formSelectorTime.controls['from'].value + 1"
                 [value]="time"
               >
                 {{time}}:00
@@ -111,12 +148,22 @@
       </form>
 
       <mat-form-field appearance="standard" class="form-control">
+        <label>{{ 'regform.primarySkill' | translate}}</label>
+        <input matInput
+               type="text"
+               formControlName="primarySkill"
+               placeholder="{{ 'regform.primarySkill' | translate}}"
+               maxlength="50"
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" class="form-control">
         <label>{{ 'regform.experience' | translate}}</label>
         <textarea matInput
           cdkTextareaAutosize
           formControlName="experience"
           placeholder="{{ 'regform.experience' | translate}}"
-          maxlength="1000"
+          maxlength="500"
         ></textarea>
       </mat-form-field>
 
@@ -126,7 +173,7 @@
           cdkTextareaAutosize
           formControlName="education"
           placeholder="{{ 'regform.education' | translate}}"
-          maxlength="1000"
+          maxlength="500"
         ></textarea>
       </mat-form-field>
 
@@ -134,21 +181,30 @@
         <label>{{ 'regform.resume' | translate}}</label>
       </div>
       <div class="input-wrapper">
-        <input id="select-file-button" type="file" placeholder="{{ 'regform.choosefile' | translate}}" (change)="addFile($event)">
+        <input
+          id="select-file-button"
+          type="file" placeholder="{{ 'regform.choosefile' | translate}}"
+          (change)="addFile($event)"
+        >
         <label>{{ 'regform.choosefile' | translate}}</label>
       </div>
 
       <mat-checkbox
         style="margin-top: 20px"
         color="primary"
-      >{{ 'regform.agree' | translate}}</mat-checkbox>
+        formControlName="isConfirm"
+      >
+        {{ 'regform.agree' | translate}}
+      </mat-checkbox>
       <button id="submit-button"
-        mat-flat-button color="primary"
+        mat-flat-button
+        color="primary"
         (click)="submit()"
-        [disabled]="(form.valid)"
-      >{{ 'regform.submit' | translate}}</button>
+        [disabled]="!(form.valid && form.get('isConfirm')?.value)"
+      >
+        {{ 'regform.submit' | translate}}
+      </button>
     </form>
   </div>
-  <ia-footer>
-  </ia-footer>
+  <ia-footer></ia-footer>
 </div>
