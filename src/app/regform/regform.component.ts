@@ -51,7 +51,7 @@ export class RegformComponent implements OnInit {
     C1: 'Advanced',
   };
   countries: {[key: string]: string} = {
-    BL: 'Беларусь',
+    BY: 'Беларусь',
     UA: 'Украина'
   };
   cities: {[key: string]: string[]} = {
@@ -63,7 +63,7 @@ export class RegformComponent implements OnInit {
       'Одесса',
       'Мариуполь'
     ],
-    BL: [
+    BY: [
       'Минск',
       'Гродно',
       'Гомель',
