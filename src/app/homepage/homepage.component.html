@@ -11,15 +11,24 @@
       <mat-form-field class="choose" appearance="fill">
         <mat-label>{{ 'homepage.choose' | translate}}</mat-label>
         <mat-select matNativeControl multiple>
-          <mat-optgroup label="Location">
-            <mat-option (onSelectionChange)="filterLocation($event)" value="ukraine kiev">Ukraine, Kiev</mat-option>
-            <mat-option (onSelectionChange)="filterLocation($event)" value="belarus minsk">Belarus, Minsk</mat-option>
-            <mat-option (onSelectionChange)="filterLocation($event)" value="russia moskow">Russia, Moskow</mat-option>
+          <mat-optgroup label="Country">
+            <mat-option (onSelectionChange)="filtersState[1].ukraine = !filtersState[1].ukraine" (click)="triggerFilters()" value="ukraine">Ukraine</mat-option>
+            <mat-option (onSelectionChange)="filtersState[1].belarus = !filtersState[1].belarus" (click)="triggerFilters()" value="belarus">Belarus</mat-option>
+            <mat-option (onSelectionChange)="filtersState[1].russia = !filtersState[1].russia" (click)="triggerFilters()" value="russia">Russia</mat-option>
+          </mat-optgroup>
+          <mat-optgroup label="City">
+            <mat-option (onSelectionChange)="filtersState[2].minsk = !filtersState[2].minsk" (click)="triggerFilters()" value="minsk">Minsk</mat-option>
+            <mat-option (onSelectionChange)="filtersState[2].gomel = !filtersState[2].gomel" (click)="triggerFilters()" value="gomel">Gomel</mat-option>
+            <mat-option (onSelectionChange)="filtersState[2].kiev = !filtersState[2].kiev" (click)="triggerFilters()" value="kiev">Kiev</mat-option>
+            <mat-option (onSelectionChange)="filtersState[2].brest = !filtersState[2].brest" (click)="triggerFilters()" value="brest">Brest</mat-option>
+            <mat-option (onSelectionChange)="filtersState[2].chernigov = !filtersState[2].chernigov" (click)="triggerFilters()" value="chernigov">Chernigov</mat-option>
+            <mat-option (onSelectionChange)="filtersState[2].harkov = !filtersState[2].harkov" (click)="triggerFilters()" value="harkov">Harkov</mat-option>
+            <mat-option (onSelectionChange)="filtersState[2].moscow = !filtersState[2].moscow" (click)="triggerFilters()" value="moskow">Moskow</mat-option>
           </mat-optgroup>
           <mat-optgroup label="Technology">
-            <mat-option (onSelectionChange)="filterTech($event)" value="css">CSS</mat-option>
-            <mat-option (onSelectionChange)="filterTech($event)" value="html">HTML</mat-option>
-            <mat-option (onSelectionChange)="filterTech($event)" value="javascript">JavaScript</mat-option>
+            <mat-option (onSelectionChange)="filtersState[0].css = !filtersState[0].css" (click)="triggerFilters()" value="css">CSS</mat-option>
+            <mat-option (onSelectionChange)="filtersState[0].html = !filtersState[0].html" (click)="triggerFilters()" value="html">HTML</mat-option>
+            <mat-option (onSelectionChange)="filtersState[0].javascript = !filtersState[0].javascript" (click)="triggerFilters()" value="javascript">JavaScript</mat-option>
           </mat-optgroup>
         </mat-select>
       </mat-form-field>
