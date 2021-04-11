@@ -11,6 +11,7 @@ import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { TrainingModule } from './training/training.module';
+import {InternshipsResolver} from '../core/internships-resolve.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { TrainingModule } from './training/training.module';
     TrainingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    InternshipsResolver
+  ],
   exports: [
     HomepageComponent
   ]
