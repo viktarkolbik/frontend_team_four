@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormService } from '../core/form.service';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ia-regform',
@@ -13,7 +15,10 @@ export class RegformComponent implements OnInit {
   file: any;
   fileSize!: boolean;
   isNotSupportFormat!: boolean;
-  constructor(private formService: FormService) {
+  id!: string;
+  private subscription: Subscription;
+  constructor(private formService: FormService, private route: ActivatedRoute) {
+    this.subscription = route.params.subscribe(params => this.id = params.id);
     this.formSelectorTime = new FormGroup({
       from: new FormControl(''),
       to: new FormControl(''),
@@ -91,13 +96,13 @@ export class RegformComponent implements OnInit {
     const fileFormat = this.file?.name.split('.')[1];
     this.fileSize = this.file?.size > this.maxSizeFile;
     this.isNotSupportFormat = !this.fileFormat.includes(fileFormat);
-    console.log(this.file);
   }
   submit(): void {
     const formValueJson = JSON.stringify(this.form.value);
     const formValueBinary = new Blob([formValueJson], {type: 'application/json'});
     const formData = new FormData();
     formData.append('form', formValueBinary);
+    formData.append('idInternship', this.id);
     if (this.file){ formData.append('file', this.file); }
     this.formService.sendFormData(formData).subscribe(res => console.log(res));
     this.form.reset();
