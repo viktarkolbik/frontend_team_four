@@ -10,8 +10,7 @@ import { Internship } from '../types';
 export class TrainingdescriptionComponent implements OnInit {
 
   internship!: Internship;
-  duration: number = 0;
-  
+  duration = 0;
 
   constructor(private internshipsService: InternshipsService) { }
 
@@ -22,7 +21,6 @@ export class TrainingdescriptionComponent implements OnInit {
       const difference = Date.parse(this.internship.endDate) - Date.parse(this.internship.startDate);
       const msecondsInDay = 86400000;
       this.duration = difference/msecondsInDay;
-      console.log(this.duration)
-    }); 
+    });
   }
 }
