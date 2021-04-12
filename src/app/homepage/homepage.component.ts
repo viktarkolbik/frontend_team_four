@@ -8,8 +8,8 @@ import { InternshipsService } from '../core/internships.service';
   styleUrls: ['./homepage.component.scss'],
 })
 export class HomepageComponent implements OnInit {
-  trainings: Training[];
-  filtered!: Training[];
+  trainings: Training[] = [];
+  filtered: Training[] = [];
 
   activeFilters = {
     countryFilter: false,
