@@ -9,7 +9,7 @@ import { InternshipsService } from '../core/internships.service';
 })
 export class HomepageComponent implements OnInit {
   trainings: Training[] = [];
-  filtered: Training[] = [];
+  filtered: Training[] | undefined;
 
   activeFilters = {
     countryFilter: false,
