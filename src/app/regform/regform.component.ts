@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { FormService } from '../core/form.service';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormService} from '../core/form.service';
+import {ActivatedRoute} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'ia-regform',
@@ -12,13 +12,48 @@ import { Subscription } from 'rxjs';
 export class RegformComponent implements OnInit {
   form: FormGroup;
   formSelectorTime: FormGroup;
-  file: any;
   fileSize!: boolean;
   isNotSupportFormat!: boolean;
-  id!: string;
+  maxSizeFile = 300000;
+  englishLevel: {[key: string]: string} = {
+    A0: 'Beginner',
+    A1: 'Elementary',
+    A2: 'Pre-Intermediate',
+    B1: 'Intermediate',
+    B2: 'Upper-Intermediate',
+    C1: 'Advanced',
+  };
+  countries: {[key: string]: string} = {
+    by: 'Беларусь',
+    ua: 'Украина'
+  };
+  cities: {[key: string]: string[]} = {
+    ua: [
+      'Винница',
+      'Киев',
+      'Харьков',
+      'Львов',
+      'Одесса',
+      'Мариуполь'
+    ],
+    by: [
+      'Минск',
+      'Гродно',
+      'Гомель',
+      'Витебск'
+    ],
+  };
+  convenientTimeArray: number[] = [];
+  private convenientTime: {[key: string]: number} = {
+    from: 9,
+    to: 20,
+  };
+  private idInternship!: string;
   private subscription: Subscription;
+  private file: any;
+  private fileFormat = ['pdf', 'doc', 'docx'];
   constructor(private formService: FormService, private route: ActivatedRoute) {
-    this.subscription = route.params.subscribe(params => this.id = params.id);
+    this.subscription = route.params.subscribe(params => this.idInternship = params.id);
     this.formSelectorTime = new FormGroup({
       from: new FormControl(''),
       to: new FormControl(''),
@@ -46,42 +81,6 @@ export class RegformComponent implements OnInit {
       isConfirm: new FormControl(''),
     });
   }
-
-  englishLevel: {[key: string]: string} = {
-    A0: 'Beginner',
-    A1: 'Elementary',
-    A2: 'Pre-Intermediate',
-    B1: 'Intermediate',
-    B2: 'Upper-Intermediate',
-    C1: 'Advanced',
-  };
-  countries: {[key: string]: string} = {
-    BY: 'Беларусь',
-    UA: 'Украина'
-  };
-  cities: {[key: string]: string[]} = {
-    UA: [
-      'Винница',
-      'Киев',
-      'Харьков',
-      'Львов',
-      'Одесса',
-      'Мариуполь'
-    ],
-    BY: [
-      'Минск',
-      'Гродно',
-      'Гомель',
-      'Витебск'
-    ],
-  };
-  convenientTime: {[key: string]: number} = {
-    from: 9,
-    to: 20,
-  };
-  convenientTimeArray: number[] = [];
-  maxSizeFile = 300000;
-  fileFormat = ['pdf', 'doc', 'docx'];
   ngOnInit(): void {
     for (let i = this.convenientTime.from; i <= this.convenientTime.to; i++){
       this.convenientTimeArray.push(i);
@@ -102,7 +101,7 @@ export class RegformComponent implements OnInit {
     const formValueBinary = new Blob([formValueJson], {type: 'application/json'});
     const formData = new FormData();
     formData.append('form', formValueBinary);
-    formData.append('idInternship', this.id);
+    formData.append('idInternship', this.idInternship);
     if (this.file){ formData.append('file', this.file); }
     this.formService.sendFormData(formData).subscribe(res => console.log(res));
     this.form.reset();
