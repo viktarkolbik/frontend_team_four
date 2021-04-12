@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatDialog} from '@angular/material/dialog';
+import {DialogElementsExampleDialog} from './dialog-elements-example-dialog/dialog-elements-example-dialog.component';
 
 @Component({
   selector: 'ia-regform',
@@ -10,7 +12,7 @@ export class RegformComponent implements OnInit {
   form: FormGroup;
   formSelectorTime: FormGroup;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.formSelectorTime = new FormGroup({
       from: new FormControl(''),
       to: new FormControl(''),
@@ -83,4 +85,8 @@ export class RegformComponent implements OnInit {
   submit() {
     console.log(this.form.value);
   }
+  openDialog() {
+    this.dialog.open(DialogElementsExampleDialog);
+  }
 }
+
