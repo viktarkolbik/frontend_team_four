@@ -8,18 +8,51 @@
     </div>
     <div class="training_title">{{ 'homepage.training' | translate}}</div>
     <div class="training_container">
-      <mat-form-field class="choose" appearance="fill">
-        <mat-label>{{ 'homepage.choose' | translate}}</mat-label>
-        <mat-select matNativeControl>
-          <mat-option value="volvo">Course 1</mat-option>
-          <mat-option value="saab">Course 2</mat-option>
-          <mat-option value="mercedes">Course 3</mat-option>
-          <mat-option value="audi">Course 4</mat-option>
-        </mat-select>
-      </mat-form-field>
+      <mat-accordion id="filter-panel">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Filter
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Location
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <section class="example-section">
+              <mat-checkbox
+                *ngFor="let city of cities"
+                [(ngModel)]="filterParametrs.locations[city].isChecked"
+                (change)="updateTrainings()"
+                class="example-margin">
+                {{city}}
+              </mat-checkbox>
+            </section>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Technologies
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <section class="example-section">
+              <mat-checkbox
+                *ngFor="let technology of technologies"
+                [(ngModel)]="filterParametrs.technologies[technology].isChecked"
+                (change)="updateTrainings()"
+                class="example-margin">
+                {{technology}}
+              </mat-checkbox>
+            </section>
+          </mat-expansion-panel>
+
+        </mat-expansion-panel>
+      </mat-accordion>
 
       <div class="training_wrapper">
-        <ia-training *ngFor="let training of trainings" [training]="training"></ia-training>
+        <ia-training *ngFor="let training of filteredTechnologies" [training]="training"></ia-training>
       </div>
     </div>
   </main>

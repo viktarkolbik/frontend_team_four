@@ -11,6 +11,9 @@ import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { TrainingModule } from './training/training.module';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { TrainingModule } from './training/training.module';
     MatButtonModule,
     TranslateModule,
     TrainingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatExpansionModule,
+    MatCheckboxModule,
+    FormsModule
   ],
   providers: [],
   exports: [
