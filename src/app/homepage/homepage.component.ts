@@ -153,18 +153,36 @@ export class HomepageComponent implements OnInit {
 
   triggerFilters(){
     this.checkFilters();
-    if(this.activeFilters.countryFilter){
+    let country: Training[] = [];
+    let city: Training[] = [];
+    if(Object.values(this.activeFilters).every(item => item === true)){
+      country = this.filterCountry(this.trainings);
+      city = this.filterCity(country);
+      this.filtered = this.filterTech(city);
+    }
+    if(this.activeFilters.countryFilter && this.activeFilters.cityFilter && !this.activeFilters.techFilter){
+      country = this.filterCountry(this.trainings);
+      this.filtered = this.filterCity(country);
+    }
+    if(this.activeFilters.countryFilter && this.activeFilters.techFilter && !this.activeFilters.cityFilter){
+      country = this.filterCountry(this.trainings);
+      this.filtered = this.filterTech(country);
+    }
+    if(this.activeFilters.cityFilter && this.activeFilters.techFilter && !this.activeFilters.countryFilter){
+      city = this.filterCity(this.trainings);
+      this.filtered = this.filterTech(country);
+    }
+    if(this.activeFilters.countryFilter && !this.activeFilters.cityFilter && !this.activeFilters.techFilter){
       this.filtered = this.filterCountry(this.trainings);
     }
-    if(this.activeFilters.cityFilter){
+    if(this.activeFilters.cityFilter && !this.activeFilters.countryFilter && !this.activeFilters.techFilter){
       this.filtered = this.filterCity(this.trainings);
     }
-    if(this.activeFilters.techFilter){
+    if(this.activeFilters.techFilter && !this.activeFilters.cityFilter && !this.activeFilters.countryFilter){
       this.filtered = this.filterTech(this.trainings);
     }
     if(Object.values(this.activeFilters).every(item => item === false)){
       this.filtered = this.trainings;
     }
-    return this.filtered;
   }
 }
