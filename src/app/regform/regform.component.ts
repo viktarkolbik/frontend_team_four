@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogElementsExampleDialog} from './dialog-elements-example-dialog/dialog-elements-example-dialog.component';
 import {MatSnackBar} from "@angular/material/snack-bar";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ia-regform',
@@ -13,7 +14,7 @@ export class RegformComponent implements OnInit {
   form: FormGroup;
   formSelectorTime: FormGroup;
 
-  constructor(public dialog: MatDialog, private snackBar: MatSnackBar) {
+  constructor(public dialog: MatDialog, private snackBar: MatSnackBar, private _router: Router) {
     this.formSelectorTime = new FormGroup({
       from: new FormControl(''),
       to: new FormControl(''),
@@ -85,13 +86,14 @@ export class RegformComponent implements OnInit {
   }
   submit(): void {
     const result = true;
-    const message = result ? 'All is ok' : 'Error happened';
+    const message = result ? 'Your application sent' : 'Error happened';
     this.openSnackbar(message, 'ok');
   }
   openSnackbar(message: string, action: string): void{
     const snackBarRef = this.snackBar.open(message, action);
     snackBarRef.afterDismissed().subscribe(() => {
-      console.log('Перенаправить на главную');
+      // console.log('Перенаправить на главную');
+      this._router.navigate(['']);
     });
   }
   openDialog(): void {
