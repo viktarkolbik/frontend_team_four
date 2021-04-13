@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Training } from '../types';
 import { InternshipsService } from '../core/internships.service';
 
-interface Filter {
-  field: string;
+interface Criterion {
   value: string;
   isChecked: boolean;
 }
@@ -17,10 +16,17 @@ export class HomepageComponent implements OnInit {
   cities: string[];
   technologies: string[];
   filterParametrs = {
-    locations: {},
-    technologies: {},
+    locations: {
+      field: 'city',
+      isChecked: false,
+      criteria: {},
+    },
+    technologies: {
+      field: 'technology',
+      isChecked: false,
+      criteria: {},
+    },
   };
-  filterParameterList: Filter[];
   filteredTechnologies: Training[];
   constructor(private internshipsService: InternshipsService) {
     this.trainings = this.internshipsService.getTrainingsLocal();
@@ -31,24 +37,18 @@ export class HomepageComponent implements OnInit {
     this.technologies = Array.from(set);
     for(const city of this.cities){
       // @ts-ignore
-      this.filterParametrs.locations[city] = {
-        field: 'city',
+      this.filterParametrs.locations.criteria[city] = {
         value: city,
         isChecked: true,
       };
     }
     for(const technology of this.technologies){
       // @ts-ignore
-      this.filterParametrs.technologies[technology] = {
-        field: 'technology',
+      this.filterParametrs.technologies.criteria[technology] = {
         value: technology,
         isChecked: false,
       };
     }
-    this.filterParameterList = [].concat(
-      Object.values(this.filterParametrs.locations),
-      Object.values(this.filterParametrs.technologies)
-    );
   }
   ngOnInit(): void {
     this.internshipsService.getInternshipList().subscribe((data) => console.log(data));
@@ -56,12 +56,25 @@ export class HomepageComponent implements OnInit {
   updateTrainings(){
     this.filteredTechnologies = [];
     this.trainings.forEach((training) => {
-      for (const filter of this.filterParameterList){
-        // @ts-ignore
-        if(filter.isChecked && training[filter.field] === filter.value){
-          this.filteredTechnologies.push(training);
-          break;
+      let condition = false;
+      const filterParameters = Object.values(this.filterParametrs);
+      for(const filter of filterParameters){
+        const filterCriteria: Criterion[] = Object.values(filter.criteria);
+        filter.isChecked = filterCriteria.some(criterion => criterion.isChecked);
+        if(filter.isChecked){
+          condition = filterCriteria.some(criterion => {
+            // @ts-ignore
+            if(criterion.isChecked && training[filter.field] === criterion.value){
+              return true;
+            }
+            return false;
+          });
         }
+        else { condition = true; }
+        if(!condition){ break; }
+      }
+      if(condition){
+        this.filteredTechnologies.push(training);
       }
     });
   }
