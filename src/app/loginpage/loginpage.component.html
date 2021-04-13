@@ -1,0 +1,36 @@
+<div class="container">
+  <ia-header>
+  </ia-header>
+  <div class="content">
+    <h1>{{ 'loginpage.h1' | translate}}</h1>
+
+    <form class="reg-form" [formGroup]="form">
+
+      <mat-form-field appearance="outline" class="form-control">
+        <mat-label>{{'loginpage.fieldlogin' | translate}}</mat-label>
+        <input matInput placeholder="{{'loginpage.login' | translate}}" formControlName="loginEmail">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="form-control">
+        <mat-label>{{'loginpage.fieldpassword' | translate}}</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text' " formControlName="loginPassword">
+        <button mat-icon-button
+                matSuffix (click)="hide = !hide"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <div class="" example-button-row>
+        <button mat-raised-button color="primary" [disabled]="!form.valid">{{'loginpage.submit' | translate}}</button>
+      </div>
+
+    </form>
+  </div>
+  <ia-footer>
+  </ia-footer>
+</div>
+
+
+

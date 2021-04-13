@@ -14,13 +14,13 @@ import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
 import {TranslateModule} from '@ngx-translate/core';
 import {MatDialogModule} from '@angular/material/dialog';
-import { DialogElementsExampleDialog } from './dialog-elements-example-dialog/dialog-elements-example-dialog.component';
-import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {AcceptDialogComponent} from './accept-dialog/accept-dialog.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     RegformComponent,
-    DialogElementsExampleDialog
+    AcceptDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +42,6 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
   ],
   providers: [],
   exports: [RegformComponent],
-  entryComponents: [DialogElementsExampleDialog]
+  entryComponents: [AcceptDialogComponent]
 })
 export class RegformModule { }
