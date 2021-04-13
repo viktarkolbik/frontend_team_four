@@ -11,11 +11,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { I18n } from './app.i18n.config';
 import { TrainingformModule } from './trainingform/trainingform.module';
-
+import { ErrorpageModule } from './errorpage/errorpage.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,6 +24,7 @@ import { TrainingformModule } from './trainingform/trainingform.module';
     TrainingdescriptionModule,
     HomepageModule,
     TrainingformModule,
+    ErrorpageModule,
     BrowserAnimationsModule,
     HttpClientModule,
     TranslateModule.forRoot(I18n.config)

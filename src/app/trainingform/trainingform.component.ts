@@ -9,26 +9,22 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 export class TrainingformComponent implements OnInit {
   form: FormGroup;
-  formSelectorTime: FormGroup;
 
   constructor() {
-    this.formSelectorTime = new FormGroup({
-    from: new FormControl(''),
-    to: new FormControl(''),
-    });
     this.form = new FormGroup({
       userCountry: new FormControl('', Validators.required),
       userCity: new FormControl('', Validators.required),
       trainingformName: new FormControl('', Validators.required),
-      trainingDescription: new FormControl(''),
+      trainingDescription: new FormControl('', Validators.required),
       trainingFormat: new FormControl('', Validators.required),
       trainingLanguage: new FormControl('', Validators.required),
-      trainingRequirements: new FormControl(''),
+      trainingRequirements: new FormControl('', Validators.required),
       // trainingStart: new FormControl('', Validators.required),
       // trainingEnd: new FormControl('', Validators.required),
       trainingRegistryStart: new FormControl('', Validators.required),
       trainingRegistryEnd: new FormControl('', Validators.required),
-      trainingSkills: new FormControl('')
+      trainingSkills: new FormControl('', Validators.required),
+      trainingPublication: new FormControl('', Validators.required),
     })
   }
 
