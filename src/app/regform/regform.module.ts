@@ -15,6 +15,7 @@ import { FooterModule } from '../footer/footer.module';
 import {TranslateModule} from '@ngx-translate/core';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogElementsExampleDialog } from './dialog-elements-example-dialog/dialog-elements-example-dialog.component';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { DialogElementsExampleDialog } from './dialog-elements-example-dialog/di
     HeaderModule,
     FooterModule,
     TranslateModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   exports: [RegformComponent],

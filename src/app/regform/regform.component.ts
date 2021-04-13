@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {DialogElementsExampleDialog} from './dialog-elements-example-dialog/dialog-elements-example-dialog.component';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'ia-regform',
@@ -12,7 +13,7 @@ export class RegformComponent implements OnInit {
   form: FormGroup;
   formSelectorTime: FormGroup;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private snackBar: MatSnackBar) {
     this.formSelectorTime = new FormGroup({
       from: new FormControl(''),
       to: new FormControl(''),
@@ -73,24 +74,30 @@ export class RegformComponent implements OnInit {
     to: 20,
   };
   convenientTimeArray: number[] = [];
-  getKeys(obj: any){
+  getKeys (obj: any){
     return Object.keys(obj);
   }
 
   ngOnInit(): void {
-    for(let i = this.convenientTime.from; i <= this.convenientTime.to; i++){
+    for (let i = this.convenientTime.from; i <= this.convenientTime.to; i++){
       this.convenientTimeArray.push(i);
     }
   }
   submit(): void {
-    console.log('!!!!');
+    const result = true;
+    const message = result ? 'All is ok' : 'Error happened';
+    this.openSnackbar(message, 'ok');
+  }
+  openSnackbar(message: string, action: string): void{
+    const snackBarRef = this.snackBar.open(message, action);
+    snackBarRef.afterDismissed().subscribe(() => {
+      console.log('Перенаправить на главную');
+    });
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogElementsExampleDialog);
     dialogRef.afterClosed().subscribe(result => {
-      if (result){
-        this.submit();
-      }
+      if (result){ this.submit(); }
     });
   }
 }
