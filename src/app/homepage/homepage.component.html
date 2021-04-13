@@ -24,7 +24,7 @@
             <section class="example-section">
               <mat-checkbox
                 *ngFor="let city of cities"
-                [(ngModel)]="filterParametrs.locations.criteria[city].isChecked"
+                [(ngModel)]="filters.locations.criteria[city].isChecked"
                 (change)="updateTrainings()"
                 class="example-margin">
                 {{city}}
@@ -40,7 +40,7 @@
             <section class="example-section">
               <mat-checkbox
                 *ngFor="let technology of technologies"
-                [(ngModel)]="filterParametrs.technologies.criteria[technology].isChecked"
+                [(ngModel)]="filters.technologies.criteria[technology].isChecked"
                 (change)="updateTrainings()"
                 class="example-margin">
                 {{technology}}
@@ -52,7 +52,7 @@
       </mat-accordion>
 
       <div class="training_wrapper">
-        <ia-training *ngFor="let training of filteredTechnologies" [training]="training"></ia-training>
+        <ia-training *ngFor="let training of filteredTrainings" [training]="training"></ia-training>
       </div>
     </div>
   </main>

@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Training } from '../types';
+import {Criterion, Filter, Training} from '../types';
 import { InternshipsService } from '../core/internships.service';
 
-interface Criterion {
-  value: string;
-  isChecked: boolean;
-}
 @Component({
   selector: 'ia-homepage',
   templateUrl: './homepage.component.html',
@@ -15,67 +11,53 @@ export class HomepageComponent implements OnInit {
   trainings: Training[];
   cities: string[];
   technologies: string[];
-  filterParametrs = {
-    locations: {
-      field: 'city',
-      isChecked: false,
-      criteria: {},
-    },
-    technologies: {
-      field: 'technology',
-      isChecked: false,
-      criteria: {},
-    },
-  };
-  filteredTechnologies: Training[];
+  filters: {[key: string]: Filter} = {};
+  filteredTrainings: Training[];
   constructor(private internshipsService: InternshipsService) {
     this.trainings = this.internshipsService.getTrainingsLocal();
-    this.filteredTechnologies = this.trainings;
+    this.filteredTrainings = this.trainings;
     let set = new Set(this.trainings.map(training => training.city));
     this.cities = Array.from(set);
     set = new Set(this.trainings.map(training => training.technology));
     this.technologies = Array.from(set);
-    for(const city of this.cities){
+    this.filters.locations = this.getFilter('city', this.cities);
+    this.filters.technologies = this.getFilter('technology', this.technologies);
+  }
+  getFilter(field: string, criteria: string[]): Filter{
+    const filter: Filter = {
+      field,
+      isChecked: false,
+      criteria: {}
+    };
+    for(const criterion of criteria){
       // @ts-ignore
-      this.filterParametrs.locations.criteria[city] = {
-        value: city,
-        isChecked: true,
-      };
-    }
-    for(const technology of this.technologies){
-      // @ts-ignore
-      this.filterParametrs.technologies.criteria[technology] = {
-        value: technology,
+      filter.criteria[criterion] = {
+        value: criterion,
         isChecked: false,
       };
     }
+    return filter;
   }
   ngOnInit(): void {
     this.internshipsService.getInternshipList().subscribe((data) => console.log(data));
   }
   updateTrainings(){
-    this.filteredTechnologies = [];
-    this.trainings.forEach((training) => {
-      let condition = false;
-      const filterParameters = Object.values(this.filterParametrs);
-      for(const filter of filterParameters){
-        const filterCriteria: Criterion[] = Object.values(filter.criteria);
-        filter.isChecked = filterCriteria.some(criterion => criterion.isChecked);
-        if(filter.isChecked){
-          condition = filterCriteria.some(criterion => {
-            // @ts-ignore
-            if(criterion.isChecked && training[filter.field] === criterion.value){
-              return true;
-            }
-            return false;
-          });
+    this.filteredTrainings = this.trainings.filter(
+      (training) => {
+        let condition = false;
+        const filters = Object.values(this.filters);
+        for (const filter of filters) {
+          const filterCriteria: Criterion[] = Object.values(filter.criteria);
+          filter.isChecked = filterCriteria.some(criterion => criterion.isChecked);
+          condition = (filter.isChecked) ?
+            filterCriteria.some(criterion => (
+              // @ts-ignore
+              criterion.isChecked && training[filter.field] === criterion.value
+            )) : true;
+          if(!condition){ break; }
         }
-        else { condition = true; }
-        if(!condition){ break; }
+        return condition ? true : false;
       }
-      if(condition){
-        this.filteredTechnologies.push(training);
-      }
-    });
+    );
   }
 }
