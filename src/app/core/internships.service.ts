@@ -11,27 +11,19 @@ export class InternshipsService {
   trainings: Training[] = [
     {
       country: 'Belarus',
-      city: 'Minsk',
+      city: 'Mins',
       form: 'Online',
       technology: 'HTML',
       img: 'assets/icons/html.svg',
       date: '25 april 2021',
     },
     {
-      country: 'Ukraine',
-      city: 'Kiev',
+      country: 'Belarus',
+      city: 'Gomel',
       form: 'Online',
       technology: 'CSS',
-      img: 'assets/icons/css.svg',
-      date: '15 april 2021',
-    },
-    {
-      country: 'Russia',
-      city: 'Moscow',
-      form: 'Online',
-      technology: 'JavaScript',
-      img: 'assets/icons/JS.svg',
-      date: '3 april 2021',
+      img: 'assets/icons/html.svg',
+      date: '25 april 2021',
     }
   ];
   constructor(private http: HttpClient) {

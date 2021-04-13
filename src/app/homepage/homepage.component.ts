@@ -57,11 +57,8 @@ export class HomepageComponent implements OnInit {
     this.filteredTechnologies = [];
     this.trainings.forEach((training) => {
       for (const filter of this.filterParameterList){
-        if(!filter.isChecked){
-          continue;
-        }
         // @ts-ignore
-        if(training[filter.field] === filter.value){
+        if(filter.isChecked && training[filter.field] === filter.value){
           this.filteredTechnologies.push(training);
           break;
         }
