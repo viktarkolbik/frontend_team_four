@@ -10,13 +10,10 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  trainings: Training[];
+  trainings: Training[] | undefined;
 
   constructor(private internshipsService: InternshipsService, private route: ActivatedRoute) {
-    this.trainings = this.internshipsService.getTrainingsLocal();
-    console.log(this.internshipsService.getTrainingsLocal());
+    this.route.data.subscribe((data) => this.trainings = data.internships);
   }
-  ngOnInit(): void {
-    this.route.data.subscribe((data) => console.log(data.internships));
-  }
+  ngOnInit(): void {}
 }

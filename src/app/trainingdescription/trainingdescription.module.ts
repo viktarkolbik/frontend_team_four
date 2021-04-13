@@ -7,8 +7,8 @@ import { TrainingdescriptionComponent } from './trainingdescription.component';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterModule } from '../footer/footer.module';
 import { TranslateModule } from '@ngx-translate/core';
-import { InternshipsService } from '../core/internships.service';
 import { HttpClientModule } from '@angular/common/http';
+import { InternshipResolver } from '../core/internship-resolve.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    InternshipsService
+    InternshipResolver
   ],
   exports: [
     TrainingdescriptionComponent

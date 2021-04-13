@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { InternshipsService } from '../core/internships.service';
-import { Internship } from '../types';
+import {Component, OnInit} from '@angular/core';
+import {InternshipsService} from '../core/internships.service';
+import {Internship} from '../types';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'ia-trainingdescription',
@@ -10,19 +11,11 @@ import { Internship } from '../types';
 export class TrainingdescriptionComponent implements OnInit {
 
   internship!: Internship;
-  duration: number = 0;
-  
 
-  constructor(private internshipsService: InternshipsService) { }
+  constructor(private internshipsService: InternshipsService, private route: ActivatedRoute) {
+    this.route.data.subscribe((data) => this.internship = data.internship);
+  }
 
   ngOnInit(): void {
-    this.internshipsService.getInternshipList().subscribe(internships => {
-      this.internship = internships[0];
-
-      const difference = Date.parse(this.internship.endDate) - Date.parse(this.internship.startDate);
-      const msecondsInDay = 86400000;
-      this.duration = difference/msecondsInDay;
-      console.log(this.duration)
-    }); 
   }
 }
