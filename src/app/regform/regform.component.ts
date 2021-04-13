@@ -82,11 +82,16 @@ export class RegformComponent implements OnInit {
       this.convenientTimeArray.push(i);
     }
   }
-  submit() {
-    console.log(this.form.value);
+  submit(): void {
+    console.log('!!!!');
   }
-  openDialog() {
-    this.dialog.open(DialogElementsExampleDialog);
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogElementsExampleDialog);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        this.submit();
+      }
+    });
   }
 }
 

@@ -146,7 +146,7 @@
       <button id="submit-button"
         mat-flat-button color="primary"
         (click)="openDialog()"
-        [disabled]="!(form.valid && this.form.get('isConfirm')?.value)"
+        [disabled]="(form.valid && this.form.get('isConfirm')?.value)"
       >{{ 'regform.submit' | translate}}</button>
     </form>
   </div>
