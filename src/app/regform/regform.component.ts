@@ -12,6 +12,7 @@ import {Subscription} from 'rxjs';
 export class RegformComponent implements OnInit {
   form: FormGroup;
   formSelectorTime: FormGroup;
+  file: any;
   fileSize!: boolean;
   isNotSupportFormat!: boolean;
   maxSizeFile = 300000;
@@ -50,7 +51,6 @@ export class RegformComponent implements OnInit {
   };
   private idInternship!: string;
   private subscription: Subscription;
-  private file: any;
   private fileFormat = ['pdf', 'doc', 'docx'];
   constructor(private formService: FormService, private route: ActivatedRoute) {
     this.subscription = route.params.subscribe(params => this.idInternship = params.id);
