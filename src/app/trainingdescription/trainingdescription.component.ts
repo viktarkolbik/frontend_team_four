@@ -10,10 +10,10 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class TrainingdescriptionComponent implements OnInit {
 
-  internship!: Internship;
+  internship: Internship;
 
   constructor(private internshipsService: InternshipsService, private route: ActivatedRoute) {
-    this.route.data.subscribe((data) => this.internship = data.internship);
+    this.internship = route.snapshot.data.internship;
   }
 
   ngOnInit(): void {
