@@ -38,7 +38,7 @@ export class InternshipsService {
   constructor(private http: HttpClient) {
   }
 
-  getInternshipList(): Observable<any>{
+  getInternshipList(): Observable<Internship[]>{
     return this.http.get<Internship[]>(this.basePath);
   }
 
