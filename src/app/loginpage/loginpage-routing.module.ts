@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegformComponent } from './regform.component';
+import {LoginpageComponent} from './loginpage.component';
+
 
 const routes: Routes = [
   {
-    path: 'regform/:id',
-    component: RegformComponent
+    path: 'loginpage',
+    component: LoginpageComponent
   }
 ];
 
@@ -13,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RegformRoutingModule { }
+export class LoginpageRoutingModule { }

@@ -11,11 +11,15 @@ import {ActivatedRoute} from '@angular/router';
 export class TrainingdescriptionComponent implements OnInit {
 
   internship: Internship;
+  duration = 0;
 
   constructor(private internshipsService: InternshipsService, private route: ActivatedRoute) {
     this.internship = route.snapshot.data.internship;
   }
 
   ngOnInit(): void {
+      const difference = Date.parse(this.internship.endDate) - Date.parse(this.internship.startDate);
+      const msecondsInDay = 86400000;
+      this.duration = difference / msecondsInDay;
   }
 }
