@@ -23,7 +23,7 @@
       </mat-form-field>
 
       <div class="" example-button-row>
-        <button mat-raised-button color="primary" [disabled]="!form.valid">{{'loginpage.submit' | translate}}</button>
+        <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="submitLogin()">{{'loginpage.submit' | translate}}</button>
       </div>
 
     </form>
