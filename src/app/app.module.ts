@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { I18n } from './app.i18n.config';
 import { TrainingformModule } from './trainingform/trainingform.module';
+import {LoginpageModule} from './loginpage/loginpage.module';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { TrainingformModule } from './trainingform/trainingform.module';
     TrainingformModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    LoginpageModule,
     TranslateModule.forRoot(I18n.config)
   ],
   providers: [],

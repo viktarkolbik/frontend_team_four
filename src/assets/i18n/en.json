@@ -28,6 +28,7 @@
     "comforttime": "Choose comfort time to contact",
     "comforttimeFrom": "From",
     "comforttimeTo": "To",
+    "primarySkill": "Primary skill",
     "experience": "Experience",
     "education": "Ecucation",
     "resume":"CV",
@@ -37,8 +38,9 @@
   },
   "trainingdescription": {
     "title": "How is the Training going",
-    "abouttraining": "Online learning",
+    "abouttraining": "Training description",
     "mentoring": "Mentoring",
+    "mentoring-text": "Here, as part of our development team, students work closely with experienced engineers to quickly deepen their skills through real-world work in coding, development, design, and testing. A great advantage of the internship is an the ability to immerse yourself in teamwork. the internship will be supervised by an experienced mentor who will be able to help with the implementation of the project, as well as contribute to the accumulation of new knowledge.",
     "workexadel": "Work in Exadel",
     "howstart": "How to start training",
     "conditions": "Training Conditions",
@@ -46,7 +48,21 @@
     "location": "Location",
     "endtime": "Training finish time",
     "formattraining": "Training Format",
-    "register": "Register"
+    "register": "Register",
+    "mainpagelink": "To main page",
+    "duration": "Duration in days",
+    "aboutwork": "After compliting the internship students could have the opportunity to get the job offer. Advantages of working in EXADEL:",
+    "ourconditions": "Our offices are quite comfortable, and also you will be able to work remotely",
+    "development": "A possibility of continuous progress",
+    "sport": "Сompensation for sports activities",
+    "lesson": "English courses",
+    "world": "Our offices are located in all over the world",
+    "goods": "Coffee, cookies and relaxation area are all for you",
+    "toget": "To get an internship you should: ",
+    "resume": "Send your SV by the form on the website",
+    "reqinterview": "Take a phone interview with a recruiter",
+    "tech": "Take an interview with our technician specialist",
+    "learn": "Start learning according to  to the chosen program"
   },
   "trainingform": {
     "h1": "Create training",
@@ -62,6 +78,14 @@
     "skills": "Technical skills",
     "publication": "Publication date",
     "create-btn": "Create",
-    "publicationdate": "Publication date"
+    "publicationdate": "Publication date" 
+  },
+  "loginpage": {
+    "h1": "Login to authorisation",
+    "fieldlogin": "please, enter your e-mail",
+    "fieldpassword": "please, enter your password",
+    "login": "Your login",
+    "password":"Your password",
+    "submit": "Log in"
   }
 }

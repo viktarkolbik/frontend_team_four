@@ -26,7 +26,7 @@
           label {
             display: inline-block;
             margin-bottom: 15px;
-            font-size: 18px;
+            font-size: 1.2rem;
           }
           label.necessary::after{
             content: '*';
@@ -52,16 +52,18 @@
         }
         .input-wrapper{
           position: relative;
-          padding: 10px 15px;
-          border-radius: 4px;
-          background-color: rgba(0,0,0,.12);
-          font-family: Roboto, "Helvetica Neue", sans-serif;
         }
-        #select-file-button{
+        #select-file-input {
           display: inline-block;
           position: absolute;
-          transform: translate(-5px, 0);
-          opacity: 0%;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          opacity: 0;
+        }
+        #select-file-button{
+          position: relative;
+          background-color: #acacac;
         }
         #submit-button{
           margin-top: 20px;

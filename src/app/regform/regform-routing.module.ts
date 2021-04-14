@@ -4,7 +4,7 @@ import { RegformComponent } from './regform.component';
 
 const routes: Routes = [
   {
-    path: 'regform',
+    path: 'regform/:id',
     component: RegformComponent
   }
 ];
