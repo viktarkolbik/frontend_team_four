@@ -1,0 +1,96 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+  header {
+    margin: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    .search {
+      align-self: flex-end;
+      .filter {
+        width: 30rem;
+        height: 7rem;
+        font-size: 1.5rem;
+      }
+    }
+    button[mat-raised-button]  {
+      width: 10rem;
+      margin-top: 2rem; 
+    }
+  }
+  table {
+    width: 100%;
+    th {
+      font-size: 1.5rem;
+    }
+    td {
+      font-size: 1.2rem;
+    }
+
+    tr.example-detail-row {
+      height: 0;
+    }
+
+    tr.example-element-row:not(.example-expanded-row):hover {
+      background: whitesmoke;
+    }
+
+    tr.example-element-row:not(.example-expanded-row):active {
+      background: #efefef;
+    }
+
+    .example-element-row td {
+      border-bottom-width: 0;
+    }
+
+    .example-element-detail {
+      overflow: hidden;
+      display: flex;
+    }
+
+    .example-element-diagram {
+      min-width: 80px;
+      border: 2px solid black;
+      padding: 8px;
+      font-weight: lighter;
+      margin: 8px 0;
+      height: 104px;
+    }
+
+    .example-element-symbol {
+      font-weight: bold;
+      font-size: 40px;
+      line-height: normal;
+    }
+
+    .example-element-description {
+      width: 100%;
+      padding: 16px;
+      font-size: 1.2rem;
+      .forcontrol {
+        margin-top: 35px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        button[mat-raised-button] {
+          width: 10rem;
+          height: 3rem;
+          outline: none;
+          color: white;
+          text-transform: uppercase;
+          padding: 5px 0;
+        }
+        .Red {
+          background-color: rgb(156, 26, 26);
+        }
+        .Yellow {
+          background-color: rgb(201, 161, 31);
+        }
+        .Green {
+          background-color: rgb(19, 110, 34);
+        }
+      }
+    }
+  }
+}

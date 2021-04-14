@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { I18n } from './app.i18n.config';
 import {LoginpageModule} from './loginpage/loginpage.module';
+import { TableModule } from './secResource/table/table.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {LoginpageModule} from './loginpage/loginpage.module';
     BrowserAnimationsModule,
     HttpClientModule,
     LoginpageModule,
-    TranslateModule.forRoot(I18n.config)
+    TranslateModule.forRoot(I18n.config),
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
