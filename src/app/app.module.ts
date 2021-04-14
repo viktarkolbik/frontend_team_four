@@ -12,11 +12,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { I18n } from './app.i18n.config';
 import {LoginpageModule} from './loginpage/loginpage.module';
 import { TableModule } from './secResource/table/table.module';
+import { SuperAdminComponent } from './secResource/super-admin/super-admin.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    SuperAdminComponent,
   ],
   imports: [
     BrowserModule,
