@@ -61,6 +61,7 @@
     "registry-duration": "Длительость регистрации",
     "skills": "Технические требования",
     "publication": "Дата публикации",
-    "create-btn": "Создать"
+    "create-btn": "Создать",
+    "publicationdate": "Дата публикации"
   }
 }

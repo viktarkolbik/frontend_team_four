@@ -61,6 +61,7 @@
     "registry-duration": "Registry duration",
     "skills": "Technical skills",
     "publication": "Publication date",
-    "create-btn": "Create"
+    "create-btn": "Create",
+    "publicationdate": "Publication date"
   }
 }

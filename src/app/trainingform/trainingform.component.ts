@@ -60,6 +60,20 @@ export class TrainingformComponent implements OnInit {
     'C++',
     'C#'
   ];
+  today(): string {
+    let fullDay = new Date
+    let day = fullDay.getDate()
+    let month = fullDay.getMonth() + 1
+    let year = fullDay.getFullYear()
+
+    if ( month < 10 ) return (`${day}.0${month}.${year}`)
+
+    if ( day < 10 ) return (`0${day}.${month}.${year}`)
+
+    if ( day < 10 && month < 10 ) return (`0${day}.0${month}.${year}`)
+
+    return (`${day}.${month}.${year}`)
+  }
   ngOnInit(): void {
   }
 }
