@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatButtonModule} from '@angular/material/button';
 import { TrainingComponent } from './training.component';
+import {HomepageRoutingModule} from '../homepage-routing.module';
 
 
 
@@ -11,7 +12,8 @@ import { TrainingComponent } from './training.component';
   ],
   imports: [
     CommonModule,
-    MatButtonModule
+    MatButtonModule,
+    HomepageRoutingModule
   ],
   exports: [
     TrainingComponent

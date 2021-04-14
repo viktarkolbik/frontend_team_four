@@ -13,4 +13,13 @@ export class StorageService {
   setLang(value: string): void {
     this.storage.setItem('lang', value);
   }
+
+  getAuthToken(): string | null {
+    return this.storage.getItem('AuthToken');
+  }
+
+  setAuthToken(value: string): void {
+    this.storage.setItem('AuthToken', value);
+  }
+  constructor() { }
 }
