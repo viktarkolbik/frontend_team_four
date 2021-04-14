@@ -67,30 +67,18 @@
     .example-element-description {
       width: 100%;
       padding: 16px;
-      font-size: 1.2rem;
+      font-size: 1rem;
       .forcontrol {
-        margin-top: 35px;
+        margin-top: 15px;
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-evenly;
-        button[mat-raised-button] {
-          width: 10rem;
-          height: 3rem;
-          outline: none;
-          color: white;
-          text-transform: uppercase;
-          padding: 5px 0;
-        }
-        .Red {
-          background-color: rgb(156, 26, 26);
-        }
-        .Yellow {
-          background-color: rgb(201, 161, 31);
-        }
-        .Green {
-          background-color: rgb(19, 110, 34);
-        }
+        justify-content: space-around;
       }
     }
   }
+}
+
+
+@media (max-width:1200px) {
+
 }

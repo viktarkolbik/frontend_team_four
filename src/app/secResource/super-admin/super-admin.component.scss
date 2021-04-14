@@ -1,0 +1,26 @@
+.container {
+  button {
+      width: 10rem;
+      height: 3rem;
+      outline: none;
+      border: 1px solid #fff;
+      color: white;
+      text-transform: uppercase;
+      padding: 5px 0;
+      transition: all 0.5s ease-in-out;
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        transition: all 0.5s ease-in-out;
+      }
+    }
+    .Red {
+      background-color: rgb(156, 26, 26);
+    }
+    .Yellow {
+      background-color: rgb(201, 161, 31);
+    }
+    .Green {
+      background-color: rgb(19, 110, 34);
+    }
+}
