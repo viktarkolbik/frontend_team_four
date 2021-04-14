@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -34,7 +35,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatChipsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   exports: [TrainingformComponent]
 })

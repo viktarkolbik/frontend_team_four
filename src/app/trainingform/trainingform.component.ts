@@ -24,12 +24,13 @@ export class TrainingformComponent implements OnInit {
       trainingFormat: new FormControl('', Validators.required),
       trainingLanguage: new FormControl('', Validators.required),
       trainingRequirements: new FormControl(''),
-      // trainingStart: new FormControl('', Validators.required),
-      // trainingEnd: new FormControl('', Validators.required),
+      trainingStart: new FormControl('', Validators.required),
+      trainingEnd: new FormControl('', Validators.required),
       trainingRegistryStart: new FormControl('', Validators.required),
       trainingRegistryEnd: new FormControl('', Validators.required),
-      trainingSkills: new FormControl('')
-    })
+      trainingSkills: new FormControl(''),
+      publicationDate: new FormControl('current date'),
+    });
   }
 
   countries: string[] = [

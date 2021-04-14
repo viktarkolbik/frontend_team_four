@@ -95,14 +95,13 @@
         <mat-date-range-picker #picker1></mat-date-range-picker>
       </mat-form-field>
 
-      <mat-form-field appearance="standard" class="form-control">
-        <label class="star">{{ 'trainingform.publication' | translate}}</label>
-        <input matInput [matDatepicker]="picker2">
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker #picker2></mat-datepicker>
-      </mat-form-field>
-
-      <button mat-button disabled>{{ 'trainingform.create-btn' | translate}}</button>
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="form.invalid"
+      >
+        {{ 'trainingform.create-btn' | translate}}
+      </button>
     </form>
   </div>
   <ia-footer></ia-footer>
