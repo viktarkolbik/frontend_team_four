@@ -5,6 +5,11 @@ import { SuperadminRoutingModule } from './super-admin-routing.module';
 import { TableModule } from '../table/table.module';
 import { FooterModule } from 'src/app/footer/footer.module';
 import { HeaderModule } from 'src/app/header/header.module';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,7 +21,12 @@ import { HeaderModule } from 'src/app/header/header.module';
     TableModule,
     SuperadminRoutingModule,
     HeaderModule,
-    FooterModule
+    FooterModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
+    FormsModule
   ],
   exports: [
     SuperAdminComponent

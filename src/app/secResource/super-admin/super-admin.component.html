@@ -1,9 +1,35 @@
 <div class="container">  
   <ia-header></ia-header>
   <ia-table>
-    <button mat-raised-button class="Red">Decline intern</button>
-    <button mat-raised-button class="Yellow">Add to waiting list</button>
-    <button mat-raised-button class="Green">Approve intert</button>
+    <div class="table-container">
+      <div class="forcontrol">
+        <div class="reccont">
+          <mat-form-field appearance="fill">
+            <mat-label>Select recruiter</mat-label>
+            <mat-select [(ngModel)]="selectedRecruiter" name="recruiter">
+              <mat-option *ngFor="let el of test" [value]="el.recruiter">
+                {{el.recruiter}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <p> Selected recruiter: {{selectedRecruiter}}</p>
+        </div>
+        <div class="speccont">
+        <mat-form-field appearance="fill">
+          <mat-label>Select technical specialist</mat-label>
+          <mat-select [(ngModel)]="selectedTechspecialist" name="techspecialist">
+            <mat-option *ngFor="let el of test" [value]="el.techspecialist">
+              {{el.techspecialist}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <p> Selected technical specialis: {{selectedTechspecialist}}</p>
+        </div>
+      </div>
+      <button mat-raised-button class="Red">Decline intern</button>
+      <button mat-raised-button class="Yellow">Add to waiting list</button>
+      <button mat-raised-button class="Green">Approve intert</button>
+    </div>
   </ia-table>
   <ia-footer></ia-footer>
 </div>

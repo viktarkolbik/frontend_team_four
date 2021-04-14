@@ -27,12 +27,8 @@ export class TableComponent {
     ngAfterViewInit() {
       this.dataSource.sort = this.sort;
     }
-    selectedRecruiter: string = "";
-    selectedTechspecialist: string = "";
     // window.data = this.dataSource
-    test = ELEMENT_DATA
 }
-
 const ELEMENT_DATA: Internlist[] = [
   {
     email: 'admin@mail.ru',

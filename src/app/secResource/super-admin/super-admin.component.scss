@@ -1,5 +1,18 @@
 .container {
-  button {
+  .table-container {
+    display: flex;
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .forcontrol {
+      display: flex;
+      flex-wrap: wrap;
+      .reccont {
+        margin-right: 20px;
+      }
+    }
+    button {
       width: 10rem;
       height: 3rem;
       outline: none;
@@ -12,8 +25,8 @@
         cursor: pointer;
         transform: scale(1.1);
         transition: all 0.5s ease-in-out;
+        }
       }
-    }
     .Red {
       background-color: rgb(156, 26, 26);
     }
@@ -23,4 +36,5 @@
     .Green {
       background-color: rgb(19, 110, 34);
     }
+  }
 }

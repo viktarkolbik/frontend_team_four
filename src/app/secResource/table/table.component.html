@@ -20,31 +20,7 @@
           </div> -->
           <div class="example-element-description">
             <p>{{element.status}}</p>
-            <div class="forcontrol">
-              <div class="reccont">
-                <mat-form-field appearance="fill">
-                  <mat-label>Select recruiter</mat-label>
-                  <mat-select [(ngModel)]="selectedRecruiter" name="recruiter">
-                    <mat-option *ngFor="let el of test" [value]="el.recruiter">
-                      {{el.recruiter}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-                <p> Selected recruiter: {{selectedRecruiter}}</p>
-              </div>
-              <div class="speccont">
-              <mat-form-field appearance="fill">
-                <mat-label>Select technical specialist</mat-label>
-                <mat-select [(ngModel)]="selectedTechspecialist" name="techspecialist">
-                  <mat-option *ngFor="let el of test" [value]="el.techspecialist">
-                    {{el.techspecialist}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-              <p> Selected technical specialis: {{selectedTechspecialist}}</p>
-            </div>
             <ng-content></ng-content>
-            </div>
           </div>
         </div>
       </td>

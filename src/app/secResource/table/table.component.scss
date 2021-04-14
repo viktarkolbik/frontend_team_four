@@ -20,12 +20,13 @@
     }
   }
   table {
+    // min-height: 500px;
     width: 100%;
     th {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
     td {
-      font-size: 1.2rem;
+      font-size: 1.0rem;
     }
 
     tr.example-detail-row {
@@ -68,17 +69,10 @@
       width: 100%;
       padding: 16px;
       font-size: 1rem;
-      .forcontrol {
-        margin-top: 15px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-      }
     }
   }
 }
 
 
-@media (max-width:1200px) {
-
+@media (max-width:1900px) {
 }
