@@ -21,6 +21,10 @@ export class TableComponent {
     dataSource = new MatTableDataSource(ELEMENT_DATA);
     columnsToDisplay = ['email', "fullname", "phone", "skype", "englishlevel", "status", "recruiter", "techspecialist", "technology"];
     expandedElement!: Internlist | null;
+    applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
     @ViewChild(MatSort) sort!: MatSort;
     @Input() candidatesList : Internlist[] | undefined;
     @Output() selectedCandidates : Internlist[] | undefined;
