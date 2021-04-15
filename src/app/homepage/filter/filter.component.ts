@@ -54,7 +54,7 @@ export class FilterComponent implements OnChanges{
             )) : true;
           if(!condition){ break; }
         }
-        return condition ? true : false;
+        return condition;
       }
     ));
   }
