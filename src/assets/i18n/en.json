@@ -28,6 +28,7 @@
     "comforttime": "Choose comfort time to contact",
     "comforttimeFrom": "From",
     "comforttimeTo": "To",
+    "primarySkill": "Primary skill",
     "experience": "Experience",
     "education": "Ecucation",
     "resume":"CV",
@@ -62,6 +63,22 @@
     "reqinterview": "Take a phone interview with a recruiter",
     "tech": "Take an interview with our technician specialist",
     "learn": "Start learning according to  to the chosen program"
+  },
+  "trainingform": {
+    "h1": "Create training",
+    "name": "Training name",
+    "description": "Training description",
+    "format": "Training format",
+    "language": "Training Language",
+    "requirements": "Requirements for a candidate",
+    "duration": "Training duration",
+    "start-date": "Start",
+    "end-date": "End",
+    "registry-duration": "Registry duration",
+    "skills": "Technical skills",
+    "publication": "Publication date",
+    "create-btn": "Create",
+    "publicationdate": "Publication date" 
   },
   "loginpage": {
     "h1": "Login to authorisation",

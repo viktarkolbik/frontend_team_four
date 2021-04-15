@@ -1,40 +1,68 @@
 <div class="container">
-  <ia-header>
-
-  </ia-header>
+  <ia-header></ia-header>
   <div class="content">
     <h1>{{ 'regform.h1' | translate}}</h1>
     <p style="text-indent: 20px">
       Lorem ipsum dolor sit amet, consectetur adipisicing elit.
       Aperiam beatae doloremque dolorum magnam modi praesentium quas quo sed temporibus voluptatum.
     </p>
-    <form class="reg-form" [formGroup]="form">
+    <form class="reg-form" [formGroup]="form" enctype="multipart/form-data">
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">{{ 'regform.name' | translate}}</label>
-        <input matInput formControlName="userName" type="text" placeholder="{{ 'regform.name' | translate}}">
+        <input
+          matInput
+          formControlName="firstName"
+          type="text"
+          placeholder="{{ 'regform.name' | translate}}"
+          maxlength="50"
+        >
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">{{ 'regform.surname' | translate}}</label>
-        <input matInput formControlName="userLastName" type="text" placeholder="{{ 'regform.surname' | translate}}">
+        <input
+          matInput
+          formControlName="lastName"
+          type="text"
+          placeholder="{{ 'regform.surname' | translate}}"
+          maxlength="50"
+        >
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
         <label>{{ 'regform.patronymic' | translate}}</label>
-        <input matInput formControlName="userPatronymic" type="text" placeholder="{{ 'regform.patronymic' | translate}}">
+        <input
+          matInput
+          formControlName="middleName"
+          type="text"
+          placeholder="{{ 'regform.patronymic' | translate}}"
+          maxlength="50"
+        >
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">Email</label>
-        <input matInput formControlName="userEmail" type="email" placeholder="{{ 'regform.email' | translate}} Email">
-        <mat-error *ngIf="form.get('userEmail')?.hasError('email')">
+        <input
+          matInput
+          formControlName="email"
+          type="email"
+          placeholder="{{ 'regform.email' | translate}} Email"
+          maxlength="254"
+        >
+        <mat-error *ngIf="form.get('email')?.hasError('email')">
           {{ 'regform.emailError' | translate}}
         </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">{{ 'regform.phone' | translate}}</label>
-        <input matInput formControlName="userPhoneNumber" type="tel" placeholder="{{ 'regform.phone' | translate}}">
+        <input
+          matInput
+          formControlName="phoneNumber"
+          type="tel"
+          placeholder="{{ 'regform.phone' | translate}}"
+          maxlength="15"
+        >
         <mat-error>
           {{ 'regform.phoneError' | translate}}
         </mat-error>
@@ -42,7 +70,13 @@
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">Skype</label>
-        <input matInput formControlName="userSkype" type="text" placeholder="Skype">
+        <input
+          matInput
+          formControlName="skype"
+          type="text"
+          placeholder="Skype"
+          maxlength="254"
+        >
       </mat-form-field>
 
       <div class="form-control" style="margin-top: 30px">
@@ -50,7 +84,7 @@
         <mat-radio-group
           aria-labelledby="radio-group-label"
           class="radio-group"
-          formControlName="userEnglishLevel"
+          formControlName="englishLevel"
         >
           <mat-radio-button
             class="radio-button"
@@ -64,17 +98,17 @@
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">{{ 'regform.country' | translate}}</label>
-        <mat-select class="select-group" formControlName="userCountry">
-          <mat-option *ngFor="let country of countries" [value]="country">
-            {{country}}
+        <mat-select class="select-group" formControlName="country">
+          <mat-option *ngFor="let country of getKeys(countries)" [value]="country">
+            {{countries[country]}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">{{ 'regform.city' | translate}}</label>
-        <mat-select class="select-group" formControlName="userCity">
-          <mat-option *ngFor="let city of cities[form.get('userCountry')?.value]" [value]="city">
+        <mat-select class="select-group" formControlName="city">
+          <mat-option *ngFor="let city of cities[form.get('country')?.value]" [value]="city">
             {{city}}
           </mat-option>
         </mat-select>
@@ -88,7 +122,10 @@
             <mat-select formControlName="from">
               <mat-option
                 *ngFor="let time of convenientTimeArray"
-                [disabled]="time>formSelectorTime.controls['to'].value-1 && !!formSelectorTime.controls['to'].value"
+                [disabled]="
+                  time > formSelectorTime.controls['to'].value - 1
+                  && !!formSelectorTime.controls['to'].value
+                "
                 [value]="time"
               >
                 {{time}}:00
@@ -100,7 +137,7 @@
             <mat-select formControlName="to">
               <mat-option
                 *ngFor="let time of convenientTimeArray"
-                [disabled]="time<formSelectorTime.controls['from'].value+1"
+                [disabled]="time < formSelectorTime.controls['from'].value + 1"
                 [value]="time"
               >
                 {{time}}:00
@@ -111,12 +148,22 @@
       </form>
 
       <mat-form-field appearance="standard" class="form-control">
+        <label>{{ 'regform.primarySkill' | translate}}</label>
+        <input matInput
+               type="text"
+               formControlName="primarySkill"
+               placeholder="{{ 'regform.primarySkill' | translate}}"
+               maxlength="50"
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" class="form-control">
         <label>{{ 'regform.experience' | translate}}</label>
         <textarea matInput
           cdkTextareaAutosize
-          formControlName="userExperience"
+          formControlName="experience"
           placeholder="{{ 'regform.experience' | translate}}"
-          maxlength="1000"
+          maxlength="500"
         ></textarea>
       </mat-form-field>
 
@@ -124,9 +171,9 @@
         <label>{{ 'regform.education' | translate}}</label>
         <textarea matInput
           cdkTextareaAutosize
-          formControlName="userExperience"
+          formControlName="education"
           placeholder="{{ 'regform.education' | translate}}"
-          maxlength="1000"
+          maxlength="500"
         ></textarea>
       </mat-form-field>
 
@@ -134,22 +181,41 @@
         <label>{{ 'regform.resume' | translate}}</label>
       </div>
       <div class="input-wrapper">
-        <input id="select-file-button" type="file" placeholder="{{ 'regform.choosefile' | translate}}">
-        <label>{{ 'regform.choosefile' | translate}}</label>
+        <button
+          id="select-file-button"
+          mat-flat-button
+          color="primary"
+        >Выберите файл</button>
+        <input
+          id="select-file-input"
+          type="file"
+          (change)="addFile($event)"
+        >
       </div>
+      <label>{{file?.name}}</label>
+      <mat-error *ngIf="fileSize">
+        Файл имеет размер больше {{maxSizeFile/1000}} кБайт
+      </mat-error>
+      <mat-error *ngIf="isNotSupportFormat">
+        Файл имеет не подходящий формат
+      </mat-error>
 
       <mat-checkbox
         style="margin-top: 20px"
-        formControlName="isConfirm"
         color="primary"
-      >{{ 'regform.agree' | translate}}</mat-checkbox>
+        formControlName="isConfirm"
+      >
+        {{ 'regform.agree' | translate}}
+      </mat-checkbox>
       <button id="submit-button"
-        mat-flat-button color="primary"
+        mat-flat-button
+        color="primary"
         (click)="submit()"
-        [disabled]="!(form.valid && this.form.get('isConfirm')?.value)"
-      >{{ 'regform.submit' | translate}}</button>
+        [disabled]="!(form.valid && form.get('isConfirm')?.value && !isNotSupportFormat && !fileSize)"
+      >
+        {{ 'regform.submit' | translate}}
+      </button>
     </form>
   </div>
-  <ia-footer>
-  </ia-footer>
+  <ia-footer></ia-footer>
 </div>

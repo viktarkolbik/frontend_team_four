@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Training } from '../types';
 import { InternshipsService } from '../core/internships.service';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -9,12 +10,10 @@ import { InternshipsService } from '../core/internships.service';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  trainings: Training[];
+  trainings: Training[] | undefined;
 
-  constructor(private internshipsService: InternshipsService) {
-    this.trainings = this.internshipsService.getTrainingsLocal();
+  constructor(private internshipsService: InternshipsService, private route: ActivatedRoute) {
+    this.route.data.subscribe((data) => this.trainings = data.internships);
   }
-  ngOnInit(): void {
-    this.internshipsService.getInternshipList().subscribe((data) => console.log(data));
-  }
+  ngOnInit(): void {}
 }
