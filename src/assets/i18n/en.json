@@ -70,6 +70,22 @@
     "tech": "Take an interview with our technician specialist",
     "learn": "Start learning according to  to the chosen program"
   },
+  "trainingform": {
+    "h1": "Create training",
+    "name": "Training name",
+    "description": "Training description",
+    "format": "Training format",
+    "language": "Training Language",
+    "requirements": "Requirements for a candidate",
+    "duration": "Training duration",
+    "start-date": "Start",
+    "end-date": "End",
+    "registry-duration": "Registry duration",
+    "skills": "Technical skills",
+    "publication": "Publication date",
+    "create-btn": "Create",
+    "publicationdate": "Publication date" 
+  },
   "loginpage": {
     "h1": "Login to authorisation",
     "fieldlogin": "please, enter your e-mail",
