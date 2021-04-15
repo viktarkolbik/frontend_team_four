@@ -23,10 +23,9 @@
       </mat-form-field>
 
       <div class="" example-button-row>
-        <button mat-raised-button color="primary" [routerLink]=""
-                (click)="loginAuth()">{{'loginpage.submit' | translate}}</button>
+        <button mat-raised-button color="primary" [routerLink]="" [disabled]="form.valid" (click)="loginAuth()">{{'loginpage.submit' | translate}}</button>
       </div>
-<!--      [disabled]="!form.valid"-->
+
     </form>
   </div>
   <ia-footer>

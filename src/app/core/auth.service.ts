@@ -3,20 +3,8 @@ import {StorageService} from './storage.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {Login, Token} from '../types/authentication';
 
-export interface Login {
-  login: string;
-  password: string;
-}
-export interface Tokens {
-  email: string;
-  id: string;
-  login: string;
-  role: Array<string>;
-  token: string;
-  type: string;
-  // password: string;
-}
 @Injectable({
   providedIn: 'root'
 })
@@ -24,12 +12,13 @@ export interface Tokens {
 export class AuthService {
   private loginURL = 'http://192.168.99.100:8080/api/auth/signIn'
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private storage: StorageService) {
   }
 
-  login(userAuthData: Login): Observable<Tokens> {
-    return this.http.post<Tokens>(this.loginURL, userAuthData);
+  login(userAuthData: Login): Observable<Token> {
+    return this.http.post<Token>(this.loginURL, userAuthData);
   }
-  logout(authData: Login): void {
+  isAuth(): boolean {
+    return !!this.storage.getAuthToken()
   }
 }
