@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {FormService} from '../core/form.service';
+import {FormsService} from '../core/forms.service';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 
@@ -52,7 +52,7 @@ export class RegformComponent implements OnInit {
   private idInternship!: string;
   private subscription: Subscription;
   private fileFormat = ['pdf', 'doc', 'docx'];
-  constructor(private formService: FormService, private route: ActivatedRoute) {
+  constructor(private formService: FormsService, private route: ActivatedRoute) {
     this.subscription = route.params.subscribe(params => this.idInternship = params.id);
     this.formSelectorTime = new FormGroup({
       from: new FormControl(''),

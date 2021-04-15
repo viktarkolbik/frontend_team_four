@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Candidate } from '../types/candidate';
 import { Observable } from 'rxjs';
 
@@ -110,5 +110,11 @@ export class FormsService {
 
   getCandidatesListLocal(): Candidate[] {
     return this.candidatesList;
+  }
+
+  sendFormData(formData: FormData): Observable<any> {
+    const headers = new HttpHeaders({
+    });
+    return this.http.post(this.basePath, formData, {headers});
   }
 }
