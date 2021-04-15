@@ -210,7 +210,7 @@
       <button id="submit-button"
         mat-flat-button
         color="primary"
-        (click)="submit()"
+        (click)="openDialog()"
         [disabled]="!(form.valid && form.get('isConfirm')?.value && !isNotSupportFormat && !fileSize)"
       >
         {{ 'regform.submit' | translate}}

@@ -13,7 +13,6 @@ import { I18n } from './app.i18n.config';
 import { TrainingformModule } from './trainingform/trainingform.module';
 import {LoginpageModule} from './loginpage/loginpage.module';
 
-
 @NgModule({
   declarations: [
     AppComponent
