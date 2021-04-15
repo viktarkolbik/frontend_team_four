@@ -12,13 +12,17 @@ export class HomepageComponent implements OnInit {
   trainings: Training[];
   trainingsFromBack: Training[] | undefined;
   filteredTrainings!: Training[];
+
   constructor(private internshipsService: InternshipsService, private route: ActivatedRoute) {
     this.route.data.subscribe((data) => this.trainingsFromBack = data.internships);
     this.trainings = this.internshipsService.getTrainingsLocal();
   }
+
   ngOnInit(): void {
     this.internshipsService.getInternshipList().subscribe((data) => console.log(data));
   }
-  updateTrainings(trainings: Training[]){
+
+  updateTrainings(trainings: Training[]) {
     this.filteredTrainings = trainings;
   }
+}

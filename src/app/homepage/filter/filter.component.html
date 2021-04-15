@@ -13,6 +13,7 @@
       </mat-expansion-panel-header>
       <section class="example-section">
         <mat-checkbox
+          color="primary"
           *ngFor="let city of cities"
           [(ngModel)]="filters.locations.criteria[city].isChecked"
           (change)="updateTrainings()"
@@ -29,6 +30,7 @@
       </mat-expansion-panel-header>
       <section class="example-section">
         <mat-checkbox
+          color="primary"
           *ngFor="let technology of technologies"
           [(ngModel)]="filters.technologies.criteria[technology].isChecked"
           (change)="updateTrainings()"
