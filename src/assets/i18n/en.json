@@ -1,4 +1,5 @@
-{ "language" : "English",
+{
+  "language": "English",
   "homepage": {
     "p1": "Start your career",
     "p2": "And learn with us",
@@ -15,7 +16,7 @@
   },
   "regform": {
     "h1": "Register to training",
-    "name":"Name",
+    "name": "Name",
     "surname": "Surname",
     "patronymic": "Patronymic",
     "email": "Valid",
@@ -31,10 +32,15 @@
     "primarySkill": "Primary skill",
     "experience": "Experience",
     "education": "Ecucation",
-    "resume":"CV",
-    "choosefile":"Choose your CV file",
-    "agree":"I agree with processing of my personal data",
-    "submit": "Submit"
+    "resume": "CV",
+    "choosefile": "Choose your CV file",
+    "agree": "I agree with processing of my personal data",
+    "submit": "Submit",
+    "accept-dialog": {
+      "message": "Please, check the written data is correct.\nYou won't  have an opportunity to fix it.",
+      "buttonOk": "Submit",
+      "buttonCancel": "Cancel"
+    }
   },
   "trainingdescription": {
     "title": "How is the Training going",
@@ -69,7 +75,7 @@
     "fieldlogin": "please, enter your e-mail",
     "fieldpassword": "please, enter your password",
     "login": "Your login",
-    "password":"Your password",
+    "password": "Your password",
     "submit": "Log in"
   }
 }
