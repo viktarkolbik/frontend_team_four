@@ -1,0 +1,42 @@
+<mat-accordion id="filter-panel">
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Filter
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Location
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <section class="example-section">
+        <mat-checkbox
+          *ngFor="let city of cities"
+          [(ngModel)]="filters.locations.criteria[city].isChecked"
+          (change)="updateTrainings()"
+          class="example-margin">
+          {{city}}
+        </mat-checkbox>
+      </section>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Technologies
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <section class="example-section">
+        <mat-checkbox
+          *ngFor="let technology of technologies"
+          [(ngModel)]="filters.technologies.criteria[technology].isChecked"
+          (change)="updateTrainings()"
+          class="example-margin">
+          {{technology}}
+        </mat-checkbox>
+      </section>
+    </mat-expansion-panel>
+
+  </mat-expansion-panel>
+</mat-accordion>
