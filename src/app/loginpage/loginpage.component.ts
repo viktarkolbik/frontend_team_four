@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../core/auth.service';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'ia-login-page',
@@ -10,23 +11,25 @@ import {AuthService} from '../core/auth.service';
 export class LoginpageComponent implements OnInit {
   form: FormGroup;
   hide = true;
-  authData = {};
-  constructor( private authService: AuthService ) {
+  constructor( private authService: AuthService,
+               private routeService: Router) {
     this.form = new FormGroup({
       loginEmail: new FormControl('', [Validators.required, Validators.email]),
       loginPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
+
   }
-  ngOnInit(): void {
-  }
-  submitLogin() {
-      this.authService.sendAuthData({
+  ngOnInit(): void {}
+
+  loginAuth() {
+      this.authService.login({
         login: this.form.value.loginEmail,
         password: this.form.value.loginPassword
       }).subscribe(dataAuth => {
-        // this.authData.push(dataAuth);
-        this.form.value.loginEmail = '';
-          this.form.value.loginPassword = '';
+          console.log(dataAuth);
+        this.form.reset();
+        this.routeService.navigate(['/homepage'])
       });
   }
+
 }

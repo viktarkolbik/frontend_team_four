@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {catchError, delay, map} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {tap} from 'rxjs/operators';
 
 export interface Tokens {
   token: number;
@@ -18,23 +18,41 @@ export interface Login {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
-  private loginURL = 'http://localhost:8080//api/auth/signIn'
 
-  constructor(private http: HttpClient) { }
-
-  // getAuthData(): Observable<Tokens> {
-  //   return this.http.get<Tokens>(this.loginURL);
-  // }
-
-  sendAuthData(authData: Login): Observable<Login> {
-    const headers = new HttpHeaders({
-      customHeader: Math.random().toString()});
-    return this.http.post<Login>( 'http://localhost:8080//api/auth/signIn', authData, {
-      headers
-    });
+export class StorageService {
+  private storage: Storage = window.localStorage;
+  constructor() { }
+  getAuthToken(): string | null {
+    return this.storage.getItem('AuthToken');
   }
 
+  setAuthToken(value: string): void {
+    this.storage.setItem('AuthToken', value);
+  }
+}
+
+export class AuthService {
+  private loginURL = 'http://192.168.99.100:8080/api/auth/signIn'
+  get token(): string {
+    return ''
+  }
+  // 192.168.99.100
+  constructor(private http: HttpClient) { }
+
+  login(userAuthData: Login): Observable<Login> {
+    return this.http.post<Login>(this.loginURL, userAuthData)
+      .pipe(
+        tap(this.setToken)
+      );
+  }
+  logout(authData: Login): void {
+  }
+  submitLogin(): boolean {
+    return !!this.token
+  }
+  private setToken(response: any) {
+    console.log(response);
+  }
 }
 
 
