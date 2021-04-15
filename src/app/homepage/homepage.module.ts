@@ -10,6 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TrainingModule } from './training/training.module';
 import {FormsModule} from '@angular/forms';
 import {FilterModule} from './filter/filter.module';
+import {InternshipsResolver} from '../core/internships-resolve.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import {FilterModule} from './filter/filter.module';
     TrainingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    InternshipsResolver
+  ],
   exports: [
     HomepageComponent
   ]
