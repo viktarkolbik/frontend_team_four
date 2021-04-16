@@ -1,0 +1,19 @@
+.container {
+  background-color: #f9f9f9;
+  padding: 50px 40px;
+  width: 100%;
+  height: 600px;
+  box-sizing: border-box;
+  div {
+    background-image: url("/assets/img/errorpage.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+  }
+}
+@media (max-width: 1030px) {
+  .container {
+    height: 410px;
+  }
+}
