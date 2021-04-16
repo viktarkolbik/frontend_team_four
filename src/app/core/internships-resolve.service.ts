@@ -15,20 +15,7 @@ export class InternshipsResolver implements Resolve<Internship[]> {
     state: RouterStateSnapshot ): Observable<Internship[]> {
     return this.internshipservice.getInternshipList()
       .pipe(catchError(err => {
-          // console.log(err)
-          switch (err.status){
-            case '401':
-              console.log('Unauthorized');
-              break;
-            case '403':
-              console.log('Forbidden');
-              break;
-            case '404':
-              console.log('Page Not Found');
-              this.router.navigate(['']);
-              break;
-          }
-          return EMPTY;
+          return [err];
         }
       ));
   }

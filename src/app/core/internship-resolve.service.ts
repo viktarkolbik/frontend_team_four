@@ -15,11 +15,8 @@ export class InternshipResolver implements Resolve<Internship> {
     state: RouterStateSnapshot ): Observable<Internship> {
     return this.internshipservice.getInternshipById(route.params.id)
       .pipe(catchError(err => {
-          if (err.status === 404) {
-            console.log(`Internship with ${route.params.id} not found`);
-            this.router.navigate(['']); // Need change to 404 page or NotFoundComponent
-          }
-          return EMPTY;
+        // this.router.navigate(['404'])
+          return [err];
         }
       ));
   }

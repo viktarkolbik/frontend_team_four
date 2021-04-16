@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="content">
+  <div *ngIf = '!error; else Error' class="content">
     <div class="head">
       <img src="../../assets/img/Exadel_traindescr.svg">
       <h1>FRONTEND</h1>
@@ -62,4 +62,7 @@
     </div>
   </div>
 </div>
+  <ng-template #Error>
+    <div class="error">{{errorMessage}}</div>
+  </ng-template>
 </div>
