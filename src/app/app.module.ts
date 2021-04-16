@@ -10,14 +10,14 @@ import { HomepageModule } from './homepage/homepage.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { I18n } from './app.i18n.config';
+import { TrainingformModule } from './trainingform/trainingform.module';
 import {LoginpageModule} from './loginpage/loginpage.module';
 import { TableModule } from './secResource/table/table.module';
 import { SuperAdminModule } from './secResource/super-admin/super-admin.module';
 
-
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +25,7 @@ import { SuperAdminModule } from './secResource/super-admin/super-admin.module';
     RegformModule,
     TrainingdescriptionModule,
     HomepageModule,
+    TrainingformModule,
     BrowserAnimationsModule,
     HttpClientModule,
     LoginpageModule,

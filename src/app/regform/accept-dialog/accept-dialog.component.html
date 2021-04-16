@@ -1,0 +1,20 @@
+<div>
+  <div mat-dialog-content>
+    {{'regform.accept-dialog.message' | translate}}
+  </div>
+  <mat-dialog-actions class="button-wrapper">
+    <button
+      mat-button
+      [mat-dialog-close]="false"
+    >
+      {{'regform.accept-dialog.buttonCancel' | translate}}
+    </button>
+    <button
+      mat-button
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+    >
+      {{'regform.accept-dialog.buttonOk' | translate}}
+    </button>
+  </mat-dialog-actions>
+</div>

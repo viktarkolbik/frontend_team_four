@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {FormService} from '../core/form.service';
-import {ActivatedRoute} from '@angular/router';
+import {FormsService} from '../core/forms.service';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {AcceptDialogComponent} from './accept-dialog/accept-dialog.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'ia-regform',
@@ -52,7 +55,13 @@ export class RegformComponent implements OnInit {
   private idInternship!: string;
   private subscription: Subscription;
   private fileFormat = ['pdf', 'doc', 'docx'];
-  constructor(private formService: FormService, private route: ActivatedRoute) {
+  constructor(
+    private formService: FormsService,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
+    private router: Router,
+    public dialog: MatDialog
+  ) {
     this.subscription = route.params.subscribe(params => this.idInternship = params.id);
     this.formSelectorTime = new FormGroup({
       from: new FormControl(''),
@@ -81,6 +90,7 @@ export class RegformComponent implements OnInit {
       isConfirm: new FormControl(''),
     });
   }
+
   ngOnInit(): void {
     for (let i = this.convenientTime.from; i <= this.convenientTime.to; i++){
       this.convenientTimeArray.push(i);
@@ -96,6 +106,12 @@ export class RegformComponent implements OnInit {
     this.fileSize = this.file?.size > this.maxSizeFile;
     this.isNotSupportFormat = !this.fileFormat.includes(fileFormat);
   }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AcceptDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){ this.submit(); }
+    });
+  }
   submit(): void {
     const formValueJson = JSON.stringify(this.form.value);
     const formValueBinary = new Blob([formValueJson], {type: 'application/json'});
@@ -103,8 +119,28 @@ export class RegformComponent implements OnInit {
     formData.append('form', formValueBinary);
     formData.append('idInternship', this.idInternship);
     if (this.file){ formData.append('file', this.file); }
-    this.formService.sendFormData(formData).subscribe(res => console.log(res));
+    let message: string;
+    this.formService.sendFormData(formData).subscribe(
+      data => {
+        message = 'Your application sent successfully';
+        this.openSnackbar(message, 'Ok');
+      },
+      error => {
+        message = 'Error happened please try again later';
+        this.openSnackbar(message, 'Ok');
+        console.log(error);
+      }
+    );
+  }
+  resetForm(): void{
     this.form.reset();
     this.formSelectorTime.reset();
+  }
+  openSnackbar(message: string, action: string): void{
+    const snackBarRef = this.snackBar.open(message, action);
+    snackBarRef.afterDismissed().subscribe(() => {
+      this.resetForm();
+      this.router.navigate(['']);
+    });
   }
 }

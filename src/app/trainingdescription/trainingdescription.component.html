@@ -12,7 +12,7 @@
         {{ 'trainingdescription.title' | translate}}
       </h2>
       <div class="about-training">
-        <H3>{{ 'trainingdescription.abouttraining' | translate}}: 
+        <H3>{{ 'trainingdescription.abouttraining' | translate}}:
           <p>{{internship.description}}</p>
         </H3>
         <h3>{{ 'trainingdescription.mentoring' | translate}}
@@ -20,7 +20,7 @@
         </h3>
         <h3>{{ 'trainingdescription.workexadel' | translate}}
           <p> {{ 'trainingdescription.aboutwork' | translate}}</p>
-          <ul> 
+          <ul>
             <li> {{ 'trainingdescription.ourconditions' | translate}}</li>
             <Li> {{ 'trainingdescription.development' | translate}}</Li>
             <Li>{{ 'trainingdescription.sport' | translate}}</Li>
@@ -36,7 +36,7 @@
           <p>{{internship.techSkills}}</p>
         </h3>
         <h3>{{ 'trainingdescription.toget' | translate}}
-          <ul> 
+          <ul>
             <li> {{ 'trainingdescription.resume' | translate}}</li>
             <Li> {{ 'trainingdescription.reqinterview' | translate}}</Li>
             <Li>{{ 'trainingdescription.tech' | translate}}</Li>
@@ -50,7 +50,7 @@
         <div class="right-box">
           <div class="condition">{{ 'trainingdescription.starttime' | translate}}:{{internship.startDate}}</div>
           <div class="condition">{{ 'trainingdescription.location' | translate}}:{{internship.countryList}}</div>
-          <div class="condition">{{ 'trainingdescription.duration' | translate}}: {{duration}}</div>
+          <div class="condition">{{ 'trainingdescription.duration' | translate}}: </div>
         </div>
         <div class="left-box">
           <div class="condition">{{ 'trainingdescription.endtime' | translate}}:{{internship.endDate}}</div>
@@ -59,8 +59,8 @@
       </div>
     </div>
     <div class="btn-container">
-      <button class="reg-btn" routerLink="/regform"mat-raised-button color="primary">{{ 'trainingdescription.register' | translate}}</button>
-      <button class="main-btn" routerLink=""mat-raised-button color="primary">{{ 'trainingdescription.mainpagelink' | translate}}</button>
+      <button class="reg-btn" routerLink="/regform/{{internship.id}}" mat-raised-button color="primary">{{ 'trainingdescription.register' | translate}}</button>
+      <button class="main-btn" routerLink="" mat-raised-button color="primary">{{ 'trainingdescription.mainpagelink' | translate}}</button>
     </div>
   </div>
 </div>

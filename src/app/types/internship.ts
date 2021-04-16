@@ -30,3 +30,13 @@ export interface Training {
   img: string;
   date?: string;
 }
+
+export interface Filter {
+  field: string;
+  isChecked: boolean;
+  criteria: {[key: string]: Criterion};
+}
+export interface Criterion {
+  value: string;
+  isChecked: boolean;
+}
