@@ -1,46 +1,97 @@
 <div class="container">
-  <header>
-    <img src="assets/img/logo.png">
-    <div class="search">
-      <mat-form-field class="filter">
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-      </mat-form-field>
-    </div>
-    <button mat-raised-button color="primary">Log Out</button>
-  </header>
-  <table mat-table matSort
-        [dataSource]="dataSource" multiTemplateDataRows
-        class="mat-elevation-z8">
-    <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th>
-      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+  <mat-form-field class="filter">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+  <table
+    mat-table
+    matSort
+    [dataSource]="dataSource"
+    multiTemplateDataRows
+    class="mat-elevation-z8"
+  >
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Full name</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{
+        element.lastName + ' '
+        + element.firstName[0]+'. '
+        + (element.middleName ? element.middleName[0] + '.' : '')
+        }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.email}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone Number</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.phoneNumber}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="skype">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Skype</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.skype}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="englishLevel">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>English level</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.englishLevel}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="formStatus">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.formStatus}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="admin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Recruiter</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.interview?.admin}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="techSpecialist">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Tech specialist</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.interview?.techSpecialist}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="primarySkill">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Primary skill</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.primarySkill}}
+      </td>
     </ng-container>
 
-    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
     <ng-container matColumnDef="expandedDetail">
-      <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
-        <div class="example-element-detail"
-            [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-          <!-- <div class="example-element-diagram">  для квадратной формы
-            <div class="example-element-position"> {{element.email}} </div>
-            <div class="example-element-symbol"> {{element.skype}} </div>
-            <div class="example-element-name"> {{element.fullname}} </div>
-            <div class="example-element-weight"> {{element.phone}} </div>
-          </div> -->
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+        <div
+          class="example-element-detail"
+
+          [@detailExpand]="element == selectedCandidate ? 'expanded' : 'collapsed'"
+        >
           <div class="example-element-description">
-            <p>{{element.status}}</p>
-            <ng-content></ng-content>
+            <p>{{selectedCandidate | json}}</p>
+            <ng-template class="control-panel" [ngTemplateOutlet]="template" ></ng-template>
           </div>
         </div>
       </td>
     </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
-        class="example-element-row"
-        [class.example-expanded-row]="expandedElement === element"
-        (click)="expandedElement = expandedElement === element ? null : element">
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+        class="rows-element"
+        [class.rows-element]="selectedCandidate === element"
+        (click)="
+          selectedCandidate = selectedCandidate === element ? null : element;
+          onSelectedCandidate.emit(selectedCandidate);
+        "
+    >
     </tr>
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
   </table>

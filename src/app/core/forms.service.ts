@@ -37,8 +37,8 @@ export class FormsService {
         endHour: 17,
         formId: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
         id: 'kl985f64-5717-4562-b3fc-2c963f66af48',
-        startHour: 11 
-      }]
+        startHour: 11,
+      }],
     },
     {
       city: 'Kiev',
@@ -67,7 +67,7 @@ export class FormsService {
         endHour: 18,
         formId: '3fa85f64-5717-4562-a4io-2c963f66afa6',
         id: 'kl985f64-5717-4562-opu9-2c963f66af48',
-        startHour: 9 
+        startHour: 9,
       }]
     },
     {

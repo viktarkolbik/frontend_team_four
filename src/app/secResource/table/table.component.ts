@@ -1,9 +1,18 @@
-import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
-import { Internlist } from '../../types/internlist';
-
+import {
+  Component,
+  ContentChild, EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild
+} from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
+import {Candidate} from '../../types/candidate';
 
 @Component({
   selector: 'ia-table',
@@ -17,32 +26,37 @@ import { Internlist } from '../../types/internlist';
     ]),
   ],
 })
-export class TableComponent {
-    dataSource = new MatTableDataSource(ELEMENT_DATA);
-    columnsToDisplay = ['email', "fullname", "phone", "skype", "englishlevel", "status", "recruiter", "techspecialist", "technology"];
-    expandedElement!: Internlist | null;
-    applyFilter(event: Event) {
-      const filterValue = (event.target as HTMLInputElement).value;
-      this.dataSource.filter = filterValue.trim().toLowerCase();
-    }
-    @ViewChild(MatSort) sort!: MatSort;
-    @Input() candidatesList : Internlist[] | undefined;
-    @Output() selectedCandidates : Internlist[] | undefined;
-    ngAfterViewInit() {
-      this.dataSource.sort = this.sort;
-    }
-    // window.data = this.dataSource
-}
-const ELEMENT_DATA: Internlist[] = [
-  {
-    email: 'admin@mail.ru',
-    fullname: "Ivan Ivanovich",
-    phone: 80293333333,
-    skype: 'H',
-    englishlevel: "b1",
-    status: "registered",
-    recruiter: "Grey A.",
-    techspecialist: "Blue D.",
-    technology: "Js"
+export class TableComponent implements OnInit, OnChanges {
+  @ViewChild(MatSort) sort!: MatSort;
+  @ContentChild(TemplateRef) template?: TemplateRef<any>;
+  @Input() candidates: Candidate[] | undefined;
+  @Output() onSelectedCandidate: EventEmitter<Candidate> = new EventEmitter<Candidate>();
+  selectedCandidate?: Candidate | null;
+  dataSource!: MatTableDataSource<any>;
+  displayedColumns = [
+    'lastName',
+    'email',
+    'phoneNumber',
+    'skype',
+    'englishLevel',
+    'formStatus',
+    'admin',
+    'techSpecialist',
+    'primarySkill'
+  ];
+  test: any;
+  constructor() {
   }
-];
+  ngOnChanges(changes: SimpleChanges) {
+    this.dataSource = new MatTableDataSource(this.candidates);
+    this.dataSource.sort = this.sort;
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  ngOnInit() {
+
+  }
+}
+

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Internlist } from '../../types/internlist';
+import {FormsService} from '../../core/forms.service';
+import {Candidate} from '../../types/candidate';
 
 @Component({
   selector: 'ia-super-admin',
@@ -7,26 +9,28 @@ import { Internlist } from '../../types/internlist';
   styleUrls: ['./super-admin.component.scss']
 })
 export class SuperAdminComponent implements OnInit {
-  selectedRecruiter = "";
-  selectedTechspecialist = "";
-  test = ELEMENT_DATA;
+  candidates?: Candidate[];
+  selectedCandidate!: Candidate;
+  selectedRecruiter = '';
+  selectedTechspecialist = '';
+  recruitersList = [
+    'Maxim',
+    'Bogdan',
+    'Andrey',
+    'Viktor'
+  ];
 
-  constructor() { }
-
+  constructor(private formService: FormsService) {
+    this.formService.getCandidatesList().subscribe((data) => {
+      this.candidates = data;
+    });
+  }
+  updateSelectedCandidate(candidate: Candidate){
+    this.selectedCandidate = candidate;
+  }
   ngOnInit(): void {
   }
-
-}
-const ELEMENT_DATA: Internlist[] = [
-  {
-    email: 'admin@mail.ru',
-    fullname: "Ivan Ivanovich",
-    phone: 80293333333,
-    skype: 'H',
-    englishlevel: "b1",
-    status: "registered",
-    recruiter: "Grey A.",
-    techspecialist: "Blue D.",
-    technology: "Js"
+  approve(){
+    this.selectedCandidate.formStatus='APPROVE';
   }
-];
+}
