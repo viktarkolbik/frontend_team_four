@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import {StorageService} from './storage.service';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
+import {catchError, tap} from 'rxjs/operators';
 import {Login, Token} from '../types/authentication';
 
 @Injectable({
@@ -10,15 +10,28 @@ import {Login, Token} from '../types/authentication';
 })
 
 export class AuthService {
-  private loginURL = 'http://192.168.99.100:8080/api/auth/signIn'
+  private loginURL = 'http://192.168.99.100:8080/api/auth/signIn';
 
-  constructor(private http: HttpClient, private storage: StorageService) {
+  constructor( private http: HttpClient, private storage: StorageService ) {
   }
 
   login(userAuthData: Login): Observable<Token> {
-    return this.http.post<Token>(this.loginURL, userAuthData);
+    return this.http.post<Token>(this.loginURL, userAuthData)
+      .pipe(
+        catchError(err => {
+          console.log(err.error.message);
+          return throwError(err);
+        })
+      );
   }
+
+//   private handleError(error: HttpErrorResponse) {
+//     const {message} = error.error.error;
+//     if (+message.error > 400) {}
+// console.log(message);
+//   }
+
   isAuth(): boolean {
-    return !!this.storage.getAuthToken()
+    return !!this.storage.getAuthToken();
   }
 }

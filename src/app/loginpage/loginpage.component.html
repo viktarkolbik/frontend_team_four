@@ -28,6 +28,10 @@
 
     </form>
   </div>
+
+  <p *ngIf="errorLogin" class="error" >{{errorLogin}}</p>
+  <p *ngIf="errorServer" class="error" > {{errorServer}} </p>
+
   <ia-footer>
   </ia-footer>
 </div>

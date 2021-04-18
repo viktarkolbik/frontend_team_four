@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {StorageService} from './storage.service';
@@ -15,20 +15,26 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     if (this.auth.isAuth()) {
-      console.log('InterceptRequest', req.body);
-      console.log('InterceptRequest', this.storage.getAuthToken());
+      console.log('InterceptRequest', req);
+      // console.log('InterceptRequest', this.storage.getAuthToken());
       const cloned = req.clone({
         headers: req.headers.append('Auth', `${this.storage.getAuthToken()}`)
       });
-      return next.handle(cloned);
+      return next.handle(req).pipe(
+          tap(event => {
+            if (event.type === HttpEventType.Response) {
+              // console.log('InterceptResp', event);
+              console.log('InterceptResp', req.body);
+            }
+          })
+        );
+      }
+    else return next.handle(req).pipe(
+      tap(event => {
+        if (event.type === HttpEventType.Response) {
+          // console.log('InterceptERR', event.statusText);
+        }
+      })
+    );
     }
-    else return next.handle(req);
-
-    //   .pipe(
-    //   tap(event => {
-    //    return event;
-    //   })
-    // );
-
-  }
 }

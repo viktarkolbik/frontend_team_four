@@ -12,13 +12,15 @@ import {StorageService} from '../core/storage.service';
 export class LoginpageComponent implements OnInit {
   form: FormGroup;
   hide = true;
+  errorServer = '';
+  errorLogin: any;
 
   constructor(private authService: AuthService,
               private routeService: Router,
               private storage: StorageService) {
     this.form = new FormGroup({
       loginEmail: new FormControl('', [Validators.required, Validators.email]),
-      loginPassword: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      loginPassword: new FormControl('', [Validators.required, Validators.minLength(5)]),
     });
 
   }
@@ -35,8 +37,15 @@ export class LoginpageComponent implements OnInit {
       this.storage.setAuthToken(dataAuth.token);
       this.form.reset();
       this.routeService.navigate(['/regform/1']);
+    }, error => {
+      console.log(error);
+        this.errorLogin = error.error.message;
+        this.errorServer = error.message;
+    }, () => {
+
     });
   }
+
   logOut() {
     this.storage.setAuthToken('');
   }
