@@ -19,7 +19,6 @@ export class HomepageComponent implements OnInit {
     if (this.trainings.error) {
       this.error = this.trainings.status;
       this.errorMessage = "Что то пошло не так попробуйте обновить страницу";
-      console.log (this.error, this.errorMessage);
     }
   }
 

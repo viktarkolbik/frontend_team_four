@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {InternshipsService} from '../core/internships.service';
 import {Internship} from '../types';
-import {ActivatedRoute} from '@angular/router';
-import {Observable} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'ia-trainingdescription',
@@ -16,7 +16,11 @@ export class TrainingdescriptionComponent implements OnInit {
   error: number | undefined;
   errorMessage: string | undefined;
 
-  constructor(private internshipsService: InternshipsService, private route: ActivatedRoute) {
+  constructor(
+    private internshipsService: InternshipsService,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
+    private router: Router) {
     const answer = route.snapshot.data.internship;
     if (!answer.error) {
       this.internship = answer;
@@ -24,7 +28,10 @@ export class TrainingdescriptionComponent implements OnInit {
     else {
       this.error = answer.status;
       this.errorMessage = answer.error.message;
-      console.log (this.error, this.errorMessage);
+      this.router.navigate(['']);
+      if (this.errorMessage != null) {
+        this.snackBar.open(`Ошибка ${this.error} - Стажировка с таким ID не найдена`, 'Ok');
+      }
     }
   }
 

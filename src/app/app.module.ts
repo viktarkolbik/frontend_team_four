@@ -14,6 +14,7 @@ import { TrainingformModule } from './trainingform/trainingform.module';
 import {LoginpageModule} from './loginpage/loginpage.module';
 import {HeaderModule} from './header/header.module';
 import {FooterModule} from './footer/footer.module';
+import {SpinnerModule} from './homepage/spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {FooterModule} from './footer/footer.module';
     LoginpageModule,
     TranslateModule.forRoot(I18n.config),
     HeaderModule,
-    FooterModule
+    FooterModule,
+    SpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
