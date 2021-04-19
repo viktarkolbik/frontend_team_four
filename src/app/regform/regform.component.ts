@@ -50,7 +50,12 @@ export class RegformComponent implements OnInit {
   convenientTimeArray: number[] = [];
   private convenientTime: {[key: string]: number} = {
     from: 9,
-    to: 20,
+    to: 13,
+  };
+  convenientTimeArray2: number[] = [];
+  private convenientTime2: {[key: string]: number} = {
+    from2: 13,
+    to2: 18,
   };
   private idInternship!: string;
   private subscription: Subscription;
@@ -66,6 +71,8 @@ export class RegformComponent implements OnInit {
     this.formSelectorTime = new FormGroup({
       from: new FormControl(''),
       to: new FormControl(''),
+      from2: new FormControl(''),
+      to2: new FormControl(''),
     });
     this.form = new FormGroup({
       firstName: new FormControl('', Validators.required),
@@ -84,6 +91,7 @@ export class RegformComponent implements OnInit {
       country: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
       convenientTime: this.formSelectorTime,
+      convenientTime2: this.formSelectorTime,
       primarySkill: new FormControl(''),
       experience: new FormControl(''),
       education: new FormControl(''),
@@ -94,6 +102,9 @@ export class RegformComponent implements OnInit {
   ngOnInit(): void {
     for (let i = this.convenientTime.from; i <= this.convenientTime.to; i++){
       this.convenientTimeArray.push(i);
+    }
+    for (let i = this.convenientTime2.from2; i <= this.convenientTime2.to2; i++){
+      this.convenientTimeArray2.push(i);
     }
   }
   getKeys(obj: any): string[]{
