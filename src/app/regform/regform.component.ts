@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {FormService} from '../core/form.service';
+import {FormsService} from '../core/forms.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {AcceptDialogComponent} from './accept-dialog/accept-dialog.component';
@@ -56,7 +56,7 @@ export class RegformComponent implements OnInit {
   private subscription: Subscription;
   private fileFormat = ['pdf', 'doc', 'docx'];
   constructor(
-    private formService: FormService,
+    private formService: FormsService,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private router: Router,
