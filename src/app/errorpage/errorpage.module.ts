@@ -5,6 +5,7 @@ import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { ErrorpageComponent } from './errorpage.component';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ErrorpageComponent } from './errorpage.component';
     ErrorpageRoutingModule,
     HeaderModule,
     FooterModule,
-    TranslateModule
+    TranslateModule,
+    MatButtonModule
   ],
   exports: [ErrorpageComponent]
 })

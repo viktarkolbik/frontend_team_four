@@ -15,22 +15,11 @@
     height: 100%;
   }
 }
-a {
+button {
   display: block;
-  text-decoration: none;
-  color: white;
-  max-width: 150px;
-  height: 50px;
-  background-color: grey;
-  font-size: 20px;
-  text-align: center;
   margin: 0 auto;
-  border-radius: 5px;
-  box-sizing: border-box;
-  padding-top: 15px;
-  &:hover {
-    background-color: lightgray;
-  }
+  font-size: 20px;
+  padding: 7px 10px;
 }
 @media (max-width: 1030px) {
   .container {
