@@ -11,10 +11,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { I18n } from './app.i18n.config';
 import { TrainingformModule } from './trainingform/trainingform.module';
-import {LoginpageModule} from './loginpage/loginpage.module';
-import {AuthService} from './core/auth.service';
-import {AuthInterceptor} from './core/auth.interceptor';
-
+import { LoginpageModule} from './loginpage/loginpage.module';
+import { AuthService } from './core/auth.service';
+import { AuthInterceptor } from './core/auth.interceptor';
+import { TableModule } from './secResource/table/table.module';
+import { SuperAdminModule } from './secResource/super-admin/super-admin.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import {AuthInterceptor} from './core/auth.interceptor';
     BrowserAnimationsModule,
     HttpClientModule,
     LoginpageModule,
-    TranslateModule.forRoot(I18n.config)
+    TranslateModule.forRoot(I18n.config),
+    TableModule,
+    SuperAdminModule
   ],
   providers: [
     AuthService, {

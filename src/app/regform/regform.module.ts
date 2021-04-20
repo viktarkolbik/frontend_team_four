@@ -13,10 +13,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { HeaderModule } from '../header/header.module';
 import { FooterModule } from '../footer/footer.module';
 import {TranslateModule} from '@ngx-translate/core';
+import {MatDialogModule} from '@angular/material/dialog';
+import {AcceptDialogComponent} from './accept-dialog/accept-dialog.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
-    RegformComponent
+    RegformComponent,
+    AcceptDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +36,12 @@ import {TranslateModule} from '@ngx-translate/core';
     MatCheckboxModule,
     HeaderModule,
     FooterModule,
-    TranslateModule
+    TranslateModule,
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
-  exports: [RegformComponent]
+  exports: [RegformComponent],
+  entryComponents: [AcceptDialogComponent]
 })
 export class RegformModule { }

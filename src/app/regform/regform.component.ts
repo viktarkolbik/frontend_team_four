@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {FormService} from '../core/form.service';
-import {ActivatedRoute} from '@angular/router';
+import {FormsService} from '../core/forms.service';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {AcceptDialogComponent} from './accept-dialog/accept-dialog.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'ia-regform',
@@ -11,7 +14,7 @@ import {Subscription} from 'rxjs';
 })
 export class RegformComponent implements OnInit {
   form: FormGroup;
-  formSelectorTime: FormGroup;
+  timeForCallList: FormGroup[];
   file: any;
   fileSize!: boolean;
   isNotSupportFormat!: boolean;
@@ -45,19 +48,42 @@ export class RegformComponent implements OnInit {
     ],
   };
   convenientTimeArray: number[] = [];
-  private convenientTime: {[key: string]: number} = {
+  convenientTimeArray2: number[] = [];
+  private convenientTime: {[key: string]: number}[] = [
+    {
     from: 9,
-    to: 20,
-  };
+    to: 13,
+    },
+    {
+      from: 13,
+      to: 18,
+    }
+  ];
   private idInternship!: string;
   private subscription: Subscription;
   private fileFormat = ['pdf', 'doc', 'docx'];
-  constructor(private formService: FormService, private route: ActivatedRoute) {
+  constructor(
+    private formService: FormsService,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
+    private router: Router,
+    public dialog: MatDialog
+  ) {
     this.subscription = route.params.subscribe(params => this.idInternship = params.id);
-    this.formSelectorTime = new FormGroup({
-      from: new FormControl(''),
-      to: new FormControl(''),
-    });
+    this.timeForCallList = [
+      new FormGroup(
+        {
+          startHour: new FormControl(''),
+          endHour: new FormControl('')
+        }
+      ),
+      new FormGroup(
+        {
+          startHour: new FormControl(''),
+          endHour: new FormControl('')
+        }
+      )
+    ];
     this.form = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -74,16 +100,19 @@ export class RegformComponent implements OnInit {
       englishLevel : new FormControl('', Validators.required),
       country: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
-      convenientTime: this.formSelectorTime,
       primarySkill: new FormControl(''),
       experience: new FormControl(''),
       education: new FormControl(''),
       isConfirm: new FormControl(''),
     });
   }
+
   ngOnInit(): void {
-    for (let i = this.convenientTime.from; i <= this.convenientTime.to; i++){
+    for (let i = this.convenientTime[0].from; i <= this.convenientTime[0].to; i++){
       this.convenientTimeArray.push(i);
+    }
+    for (let i = this.convenientTime[1].from; i <= this.convenientTime[1].to; i++){
+      this.convenientTimeArray2.push(i);
     }
   }
   getKeys(obj: any): string[]{
@@ -96,15 +125,44 @@ export class RegformComponent implements OnInit {
     this.fileSize = this.file?.size > this.maxSizeFile;
     this.isNotSupportFormat = !this.fileFormat.includes(fileFormat);
   }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AcceptDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){ this.submit(); }
+    });
+  }
   submit(): void {
-    const formValueJson = JSON.stringify(this.form.value);
+    const formValue = this.form.value;
+    formValue.timeForCallList = this.timeForCallList.map(group => group.value);
+    const formValueJson = JSON.stringify(formValue);
     const formValueBinary = new Blob([formValueJson], {type: 'application/json'});
     const formData = new FormData();
     formData.append('form', formValueBinary);
     formData.append('idInternship', this.idInternship);
     if (this.file){ formData.append('file', this.file); }
-    this.formService.sendFormData(formData).subscribe(res => console.log(res));
+    let message: string;
+    this.formService.sendFormData(formData).subscribe(
+      data => {
+        message = 'Your application sent successfully';
+        this.openSnackbar(message, 'Ok');
+      },
+      error => {
+        message = 'Error happened please try again later';
+        this.openSnackbar(message, 'Ok');
+        console.log(error);
+      }
+    );
+  }
+  resetForm(): void{
     this.form.reset();
-    this.formSelectorTime.reset();
+    this.timeForCallList[0].reset();
+    this.timeForCallList[1].reset();
+  }
+  openSnackbar(message: string, action: string): void{
+    const snackBarRef = this.snackBar.open(message, action);
+    snackBarRef.afterDismissed().subscribe(() => {
+      this.resetForm();
+      this.router.navigate(['']);
+    });
   }
 }
