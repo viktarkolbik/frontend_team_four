@@ -4,6 +4,10 @@
     min-width: 300px;
     margin: 0 auto;
     background-color: #e0e0e0;
+    & p.error {
+      color:red;
+      text-align: center;
+    }
     .content{
       h1 {
         margin: 3rem;
@@ -43,3 +47,4 @@
 button[mat-raised-button] {
   margin: 2rem;
 }
+
