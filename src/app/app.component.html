@@ -1,6 +1,6 @@
 <ia-header>
 </ia-header>
-<ia-spinner *ngIf=this.loadingService.getLoadingState()></ia-spinner>
+<ia-spinner *ngIf="loadingService.isLoading$ | async"></ia-spinner>
 <router-outlet>
 </router-outlet>
 <ia-footer>
