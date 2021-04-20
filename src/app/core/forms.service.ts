@@ -15,7 +15,6 @@ export class FormsService {
   getCandidatesList(): Observable<Candidate[]>{
     return this.http.get<Candidate[]>(this.basePath);
   }
-
   sendFormData(formData: FormData): Observable<any> {
     const headers = new HttpHeaders({
     });

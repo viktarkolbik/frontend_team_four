@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +11,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { I18n } from './app.i18n.config';
 import { TrainingformModule } from './trainingform/trainingform.module';
-import {LoginpageModule} from './loginpage/loginpage.module';
+import { ErrorpageModule } from './errorpage/errorpage.module';
+import { LoginpageModule} from './loginpage/loginpage.module';
+import { AuthService } from './core/auth.service';
+import { AuthInterceptor } from './core/auth.interceptor';
 import { TableModule } from './secResource/table/table.module';
 import { SuperAdminModule } from './secResource/super-admin/super-admin.module';
 
@@ -30,10 +33,17 @@ import { SuperAdminModule } from './secResource/super-admin/super-admin.module';
     HttpClientModule,
     LoginpageModule,
     TranslateModule.forRoot(I18n.config),
+    ErrorpageModule,
     TableModule,
     SuperAdminModule
   ],
-  providers: [],
+  providers: [
+    AuthService, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

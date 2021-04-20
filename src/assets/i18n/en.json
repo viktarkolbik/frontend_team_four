@@ -84,7 +84,7 @@
     "skills": "Technical skills",
     "publication": "Publication date",
     "create-btn": "Create",
-    "publicationdate": "Publication date" 
+    "publicationdate": "Publication date"
   },
   "loginpage": {
     "h1": "Login to authorisation",
@@ -93,5 +93,8 @@
     "login": "Your login",
     "password": "Your password",
     "submit": "Log in"
+  },
+  "errorpage": {
+    "on-main": "On main page"
   }
 }

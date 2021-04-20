@@ -114,17 +114,17 @@
         </mat-select>
       </mat-form-field>
 
-      <form [formGroup]="formSelectorTime" class="form-control" style="margin-top: 30px">
+      <form [formGroup]="timeForCallList[0]" class="form-control" style="margin-top: 30px">
         <label>{{ 'regform.comforttime' | translate}}</label>
         <div class="selector-time">
           <mat-form-field appearance="fill" class="selector-time-item">
             <mat-label>{{ 'regform.comforttimeFrom' | translate}}</mat-label>
-            <mat-select formControlName="from">
+            <mat-select formControlName="startHour">
               <mat-option
                 *ngFor="let time of convenientTimeArray"
                 [disabled]="
-                  time > formSelectorTime.controls['to'].value - 1
-                  && !!formSelectorTime.controls['to'].value
+                  time > timeForCallList[0].controls['startHour'].value - 1
+                  && !!timeForCallList[0].controls['endHour'].value
                 "
                 [value]="time"
               >
@@ -134,10 +134,41 @@
           </mat-form-field>
           <mat-form-field appearance="fill" class="selector-time-item">
             <mat-label>{{ 'regform.comforttimeTo' | translate}}</mat-label>
-            <mat-select formControlName="to">
+            <mat-select formControlName="endHour">
               <mat-option
                 *ngFor="let time of convenientTimeArray"
-                [disabled]="time < formSelectorTime.controls['from'].value + 1"
+                [disabled]="time < timeForCallList[0].controls['startHour'].value + 1"
+                [value]="time"
+              >
+                {{time}}:00
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </form>
+      <form action="" [formGroup]="timeForCallList[1]" class="form-control">
+        <div class="selector-time">
+          <mat-form-field appearance="fill" class="selector-time-item">
+            <mat-label>{{ 'regform.comforttimeFrom' | translate}}</mat-label>
+            <mat-select formControlName="startHour">
+              <mat-option
+                *ngFor="let time of convenientTimeArray2"
+                [disabled]="
+                  time > timeForCallList[1].controls['endHour'].value - 1
+                  && !!timeForCallList[1].controls['endHour'].value
+                "
+                [value]="time"
+              >
+                {{time}}:00
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="selector-time-item">
+            <mat-label>{{ 'regform.comforttimeTo' | translate}}</mat-label>
+            <mat-select formControlName="endHour">
+              <mat-option
+                *ngFor="let time of convenientTimeArray2"
+                [disabled]="time < timeForCallList[1].controls['startHour'].value + 1"
                 [value]="time"
               >
                 {{time}}:00

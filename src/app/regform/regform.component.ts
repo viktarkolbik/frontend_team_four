@@ -14,7 +14,7 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class RegformComponent implements OnInit {
   form: FormGroup;
-  formSelectorTime: FormGroup;
+  timeForCallList: FormGroup[];
   file: any;
   fileSize!: boolean;
   isNotSupportFormat!: boolean;
@@ -48,10 +48,17 @@ export class RegformComponent implements OnInit {
     ],
   };
   convenientTimeArray: number[] = [];
-  private convenientTime: {[key: string]: number} = {
+  convenientTimeArray2: number[] = [];
+  private convenientTime: {[key: string]: number}[] = [
+    {
     from: 9,
-    to: 20,
-  };
+    to: 13,
+    },
+    {
+      from: 13,
+      to: 18,
+    }
+  ];
   private idInternship!: string;
   private subscription: Subscription;
   private fileFormat = ['pdf', 'doc', 'docx'];
@@ -63,10 +70,20 @@ export class RegformComponent implements OnInit {
     public dialog: MatDialog
   ) {
     this.subscription = route.params.subscribe(params => this.idInternship = params.id);
-    this.formSelectorTime = new FormGroup({
-      from: new FormControl(''),
-      to: new FormControl(''),
-    });
+    this.timeForCallList = [
+      new FormGroup(
+        {
+          startHour: new FormControl(''),
+          endHour: new FormControl('')
+        }
+      ),
+      new FormGroup(
+        {
+          startHour: new FormControl(''),
+          endHour: new FormControl('')
+        }
+      )
+    ];
     this.form = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -83,7 +100,6 @@ export class RegformComponent implements OnInit {
       englishLevel : new FormControl('', Validators.required),
       country: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
-      convenientTime: this.formSelectorTime,
       primarySkill: new FormControl(''),
       experience: new FormControl(''),
       education: new FormControl(''),
@@ -92,8 +108,11 @@ export class RegformComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    for (let i = this.convenientTime.from; i <= this.convenientTime.to; i++){
+    for (let i = this.convenientTime[0].from; i <= this.convenientTime[0].to; i++){
       this.convenientTimeArray.push(i);
+    }
+    for (let i = this.convenientTime[1].from; i <= this.convenientTime[1].to; i++){
+      this.convenientTimeArray2.push(i);
     }
   }
   getKeys(obj: any): string[]{
@@ -113,7 +132,9 @@ export class RegformComponent implements OnInit {
     });
   }
   submit(): void {
-    const formValueJson = JSON.stringify(this.form.value);
+    const formValue = this.form.value;
+    formValue.timeForCallList = this.timeForCallList.map(group => group.value);
+    const formValueJson = JSON.stringify(formValue);
     const formValueBinary = new Blob([formValueJson], {type: 'application/json'});
     const formData = new FormData();
     formData.append('form', formValueBinary);
@@ -134,7 +155,8 @@ export class RegformComponent implements OnInit {
   }
   resetForm(): void{
     this.form.reset();
-    this.formSelectorTime.reset();
+    this.timeForCallList[0].reset();
+    this.timeForCallList[1].reset();
   }
   openSnackbar(message: string, action: string): void{
     const snackBarRef = this.snackBar.open(message, action);
