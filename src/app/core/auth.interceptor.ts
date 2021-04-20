@@ -15,26 +15,18 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     if (this.auth.isAuth()) {
-      console.log('InterceptRequest', req);
-      // console.log('InterceptRequest', this.storage.getAuthToken());
+      // console.log('InterceptRequest', req);
       const cloned = req.clone({
         headers: req.headers.append('Auth', `${this.storage.getAuthToken()}`)
       });
-      return next.handle(req).pipe(
-          tap(event => {
-            if (event.type === HttpEventType.Response) {
-              // console.log('InterceptResp', event);
-              console.log('InterceptResp', req.body);
-            }
-          })
-        );
-      }
-    else return next.handle(req).pipe(
-      tap(event => {
-        if (event.type === HttpEventType.Response) {
-          // console.log('InterceptERR', event.statusText);
-        }
-      })
-    );
-    }
+      return next.handle(cloned)
+      //   .pipe( //show and inspect response at server
+      //   tap(event => {
+      //     if (event.type === HttpEventType.Response) {
+      //       console.log('InterceptResp', req.body);
+      //     }
+      //   })
+      // );
+    } else return next.handle(req);
+  }
 }

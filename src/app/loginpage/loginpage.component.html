@@ -13,7 +13,8 @@
 
       <mat-form-field appearance="outline" class="form-control">
         <mat-label>{{'loginpage.fieldpassword' | translate}}</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text' " formControlName="loginPassword" placeholder="{{'loginpage.password' | translate }}">
+        <input matInput [type]="hide ? 'password' : 'text' " formControlName="loginPassword"
+               placeholder="{{'loginpage.password' | translate }}">
         <button mat-icon-button
                 matSuffix (click)="hide = !hide"
                 [attr.aria-label]="'Hide password'"
@@ -23,14 +24,15 @@
       </mat-form-field>
 
       <div class="" example-button-row>
-        <button mat-raised-button color="primary" [routerLink]="" [disabled]="form.valid" (click)="loginAuth()">{{'loginpage.submit' | translate}}</button>
+        <button mat-raised-button color="primary" [disabled]="!form.valid"
+                (click)="loginAuth()">{{'loginpage.submit' | translate}}</button>
       </div>
 
     </form>
   </div>
 
-  <p *ngIf="errorLogin" class="error" >{{errorLogin}}</p>
-  <p *ngIf="errorServer" class="error" > {{errorServer}} </p>
+  <p *ngIf="errorLogin" class="error">{{errorLogin}}</p>
+  <p *ngIf="errorServer" class="error"> {{errorServer}} </p>
 
   <ia-footer>
   </ia-footer>

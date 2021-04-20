@@ -13,14 +13,14 @@ export class LoginpageComponent implements OnInit {
   form: FormGroup;
   hide = true;
   errorServer = '';
-  errorLogin: any;
+  errorLogin: '' | undefined;
 
   constructor(private authService: AuthService,
               private routeService: Router,
               private storage: StorageService) {
     this.form = new FormGroup({
-      loginEmail: new FormControl('', [Validators.required, Validators.email]),
-      loginPassword: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      loginEmail: new FormControl(''), //   [Validators.required, Validators.email]
+      loginPassword: new FormControl('')
     });
 
   }
@@ -33,16 +33,12 @@ export class LoginpageComponent implements OnInit {
       login: this.form.value.loginEmail,
       password: this.form.value.loginPassword
     }).subscribe(dataAuth => {
-      // console.log(dataAuth.token);
       this.storage.setAuthToken(dataAuth.token);
       this.form.reset();
       this.routeService.navigate(['/regform/1']);
     }, error => {
-      console.log(error);
-        this.errorLogin = error.error.message;
-        this.errorServer = error.message;
-    }, () => {
-
+      this.errorLogin = error.error.message;
+      this.errorServer = error.message;
     });
   }
 
