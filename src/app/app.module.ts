@@ -11,6 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { I18n } from './app.i18n.config';
 import { TrainingformModule } from './trainingform/trainingform.module';
+import {HeaderModule} from './header/header.module';
+import {FooterModule} from './footer/footer.module';
+import {SpinnerModule} from './homepage/spinner/spinner.module';
 import { ErrorpageModule } from './errorpage/errorpage.module';
 import { LoginpageModule} from './loginpage/loginpage.module';
 import { AuthService } from './core/auth.service';
@@ -33,6 +36,9 @@ import { SuperAdminModule } from './secResource/super-admin/super-admin.module';
     HttpClientModule,
     LoginpageModule,
     TranslateModule.forRoot(I18n.config),
+    HeaderModule,
+    FooterModule,
+    SpinnerModule,
     ErrorpageModule,
     TableModule,
     SuperAdminModule

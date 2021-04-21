@@ -1,14 +1,12 @@
 <div class="wrapper">
-  <ia-header>
-  </ia-header>
   <main class="training">
     <div class="head">
       <p>{{ 'homepage.p1' | translate}}</p>
       <p>{{ 'homepage.p2' | translate}}</p>
     </div>
     <div class="training_title">{{ 'homepage.training' | translate}}</div>
-    <div class="training_container">
-      <ia-filter
+    <div *ngIf = '!error; else Error' class="training_container">
+      <ia-filter *ngIf = '!error'
         id="filter-panel"
         [trainings]="trainings"
         (onFilterTrainings)="updateTrainings($event)"
@@ -22,6 +20,9 @@
         </ia-training>
       </div>
     </div>
+    <ng-template #Error>
+      <div class="error">{{errorMessage}}</div>
+    </ng-template>
   </main>
 
   <section class="locations">
@@ -41,6 +42,4 @@
           </div>
         </div>
   </section>
-  <ia-footer>
-  </ia-footer>
 </div>

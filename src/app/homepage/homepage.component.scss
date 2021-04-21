@@ -28,6 +28,17 @@
       text-transform: uppercase;
       text-align: center;
     }
+    .error {
+      background: url("../../assets/img/error.png") no-repeat;
+      background-size: contain;
+      height: 20rem;
+      color: #49BBED;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      font:bold 1.2rem "roboto", sans-serif;
+      padding-bottom: 1rem;
+    }
     .training_container{
       max-width: 100%;
       display: flex;
