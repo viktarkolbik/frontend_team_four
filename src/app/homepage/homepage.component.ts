@@ -9,17 +9,20 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  trainings: Training[];
-  trainingsFromBack: Training[] | undefined;
+  trainings: Training[] | any;
   filteredTrainings!: Training[];
+  error: number | undefined;
+  errorMessage: string | undefined;
 
   constructor(private internshipsService: InternshipsService, private route: ActivatedRoute) {
-    this.route.data.subscribe((data) => this.trainingsFromBack = data.internships);
-    this.trainings = this.internshipsService.getTrainingsLocal();
+    this.route.data.subscribe((data) => this.trainings = data.internships);
+    if (this.trainings.error) {
+      this.error = this.trainings.status;
+      this.errorMessage = "Что то пошло не так попробуйте обновить страницу";
+    }
   }
 
   ngOnInit(): void {
-    this.internshipsService.getInternshipList().subscribe((data) => console.log(data));
   }
 
   updateTrainings(trainings: Training[]) {

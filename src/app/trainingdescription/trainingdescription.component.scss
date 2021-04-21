@@ -1,8 +1,8 @@
 .container {
   max-width: 100%;
-  margin: 0 auto; 
+  margin: 0 auto;
   color: black;
-  font-family: "roboto", sans-serif; 
+  font-family: "roboto", sans-serif;
   .head {
     display: flex;
     flex-direction: column;
@@ -85,7 +85,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      margin: 30px 0 40px 0; 
+      margin: 30px 0 40px 0;
       .reg-btn, .main-btn {
         width: 20rem;
         height: 6rem;
@@ -95,7 +95,7 @@
           cursor: pointer;
           color: rgba(255, 255, 255, 0.486);
           box-shadow:-7px -9px 12px 7px rgba(34, 60, 80, 0.2);
-        }  
+        }
       }
     }
   }
