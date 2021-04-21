@@ -1,7 +1,7 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {AuthService} from "../../core/auth.service";
-import {User} from "../../types/user";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../core/auth.service';
+import {User} from '../../types/user';
 
 @Component({
   selector: 'ia-adminpage',

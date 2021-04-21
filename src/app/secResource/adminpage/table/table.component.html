@@ -77,7 +77,14 @@
           [@detailExpand]="element == selectedCandidate ? 'expanded' : 'collapsed'"
         >
           <div class="example-element-description">
-            <p>{{selectedCandidate | json}}</p>
+            <div *ngIf="selectedCandidate">
+              <!--<p>{{selectedCandidate | json}}</p>-->
+              <p>First name: {{selectedCandidate.firstName}}</p>
+              <p>Last name: {{selectedCandidate.lastName}}</p>
+              <p>Country: {{selectedCandidate.country}}</p>
+              <p>City: {{selectedCandidate.city}}</p>
+              <p>Primary skill: {{selectedCandidate.primarySkill}}</p>
+            </div>
             <ng-template class="control-panel" [ngTemplateOutlet]="template" ></ng-template>
           </div>
         </div>

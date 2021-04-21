@@ -18,8 +18,6 @@ import { ErrorpageModule } from './errorpage/errorpage.module';
 import { LoginpageModule} from './loginpage/loginpage.module';
 import { AuthService } from './core/auth.service';
 import { AuthInterceptor } from './core/auth.interceptor';
-import { TableModule } from './secResource/table/table.module';
-import { SuperAdminModule } from './secResource/super-admin/super-admin.module';
 import {AdminpageModule} from "./secResource/adminpage/adminpage.module";
 
 @NgModule({
@@ -40,8 +38,6 @@ import {AdminpageModule} from "./secResource/adminpage/adminpage.module";
     HeaderModule,
     FooterModule,
     SpinnerModule,
-    TableModule,
-    SuperAdminModule,
     AdminpageModule
   ],
   providers: [

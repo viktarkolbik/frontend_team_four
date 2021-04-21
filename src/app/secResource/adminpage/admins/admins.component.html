@@ -1,7 +1,14 @@
 <div *ngIf = '!error; else Error' class="training_container">
-
-  <p>{{userInfo | json}}</p>
-
+  <ia-table [candidates]="candidates" (onSelectedCandidate)="updateSelectedCandidate($event)">
+    <ng-template>
+      <div class="control-button">
+        <p>Control buttons in the table</p>
+        <button mat-raised-button class="Red">Decline intern</button>
+        <button mat-raised-button class="Yellow">Add to waiting list</button>
+        <button mat-raised-button class="Green">Approve intert</button>
+      </div>
+    </ng-template>
+  </ia-table>
 </div>
 <ng-template #Error>
   <div class="error">{{errorMessage}}</div>

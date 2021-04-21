@@ -12,7 +12,7 @@ import {
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
-import {Candidate} from '../../types/candidate';
+import {Candidate} from '../../../types/candidate';
 
 @Component({
   selector: 'ia-table',

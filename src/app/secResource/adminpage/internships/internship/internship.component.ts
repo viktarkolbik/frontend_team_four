@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Internship, Training} from "../../../../types";
+import {Internship} from '../../../../types';
 
 @Component({
   selector: 'ia-internship',
