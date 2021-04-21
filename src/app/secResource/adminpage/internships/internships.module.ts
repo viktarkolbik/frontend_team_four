@@ -4,8 +4,6 @@ import {InternshipsComponent} from "./internships.component";
 import {RouterModule} from "@angular/router";
 import {InternshipModule} from "./internship/internship.module";
 
-
-
 @NgModule({
   declarations: [InternshipsComponent],
   imports: [

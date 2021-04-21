@@ -8,6 +8,7 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {InternshipsModule} from "./internships/internships.module";
 import {AdminsModule} from "./admins/admins.module";
+import {TechexpertModule} from "./techexpert/techexpert.module";
 
 
 
@@ -21,7 +22,8 @@ import {AdminsModule} from "./admins/admins.module";
     MatToolbarModule,
     MatButtonModule,
     InternshipsModule,
-    AdminsModule
+    AdminsModule,
+    TechexpertModule
   ],
   exports: [AdminpageComponent]
 })

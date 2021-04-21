@@ -29,7 +29,6 @@ export class UserResolveService implements Resolve<User> {
       .pipe(
         tap(data => {
             this.auth.setUserInfo(data);
-            //console.log(data);
           }
         ),
         catchError(err => {

@@ -1,19 +1,35 @@
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { Candidate } from '../types/candidate';
-import { FormsService } from './forms.service';
+import {ActivatedRoute, ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
+import {Observable, of, Subscription} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Candidate} from '../types/candidate';
+import {FormsService} from './forms.service';
+import {LoadingService} from './loading.service';
+import {catchError, tap} from 'rxjs/operators';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 
-export class FormsResolver implements Resolve <Candidate[]> {
-    constructor(private formsService: FormsService){}
-    
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Candidate[]>{
-        return this.formsService.getCandidatesList();
-    }
+export class FormsResolveService implements Resolve <Candidate[]> {
+  constructor(
+    private formsService: FormsService,
+    private loadingService: LoadingService,
+    ) {}
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Candidate[]> {
+    this.loadingService.setLoadingState(true);
+    return this.formsService.getCandidatesList(route.params.id)
+      .pipe(
+        tap(() => {
+          this.loadingService.setLoadingState(false);
+        }),
+        catchError(err => {
+            this.loadingService.setLoadingState(false);
+            return of (err);
+          }
+        )
+      );
+  }
 }
 
 

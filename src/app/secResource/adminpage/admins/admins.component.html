@@ -1,1 +1,8 @@
-<p>{{userInfo | json}}</p>
+<div *ngIf = '!error; else Error' class="training_container">
+
+  <p>{{userInfo | json}}</p>
+
+</div>
+<ng-template #Error>
+  <div class="error">{{errorMessage}}</div>
+</ng-template>

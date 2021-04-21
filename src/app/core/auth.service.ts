@@ -12,7 +12,7 @@ import {User} from '../types/user';
 
 export class AuthService {
   private loginURL = 'http://localhost:8080/api/auth/login';
-  private userInfo$ = new BehaviorSubject({});
+  private userInfo$ = new BehaviorSubject({} as User);
   constructor(private http: HttpClient, private storage: StorageService) {
   }
   setUserInfo(userInfo: User){

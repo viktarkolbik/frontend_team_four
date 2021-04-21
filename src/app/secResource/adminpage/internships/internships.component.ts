@@ -8,15 +8,21 @@ import {Internship, Training} from "../../../types";
   styleUrls: ['./internships.component.scss']
 })
 export class InternshipsComponent implements OnInit {
-  internships: Internship[] | any;
+  internships = [] as Internship[];
   error: number | undefined;
   errorMessage: string | undefined;
+
   constructor(private route: ActivatedRoute) {
-    this.route.data.subscribe((data) => this.internships = data.internships);
-    if (this.internships.error) {
-      this.error = this.internships.status;
-      this.errorMessage = "Что то пошло не так попробуйте обновить страницу";
-    }
+    this.route.data.subscribe(
+      (data) => {
+        if (data.internships.error) {
+          this.error = data.internships.status;
+          this.errorMessage = "Что то пошло не так попробуйте обновить страницу";
+        } else {
+          this.internships = data.internships;
+        }
+      }
+    );
   }
 
   ngOnInit(): void {

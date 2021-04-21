@@ -5,6 +5,8 @@ import {UserResolveService} from "../../core/user-resolve.service";
 import {InternshipsComponent} from "./internships/internships.component";
 import {AdminsComponent} from "./admins/admins.component";
 import {InternshipsResolver} from "../../core/internships-resolve.service";
+import {TechexpertComponent} from "./techexpert/techexpert.component";
+import {FormsResolveService} from "../../core/forms-resolve.service";
 
 const routes: Routes = [
   {
@@ -13,13 +15,18 @@ const routes: Routes = [
     resolve: {userInfo: UserResolveService},
     children: [
       {
-        path: '',
+        path: 'internships',
         component: InternshipsComponent,
         resolve: {internships: InternshipsResolver}
       },
       {
         path: 'admins/:id',
-        component: AdminsComponent
+        component: AdminsComponent,
+        resolve: {candidates: FormsResolveService}
+      },
+      {
+        path: 'techexpert',
+        component: TechexpertComponent
       }
     ]
   }

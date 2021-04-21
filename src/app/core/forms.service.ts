@@ -12,7 +12,8 @@ export class FormsService {
 
   constructor(private http: HttpClient) {}
 
-  getCandidatesList(): Observable<Candidate[]>{
+  getCandidatesList(id?: string): Observable<Candidate[]>{
+    //will change to a list by id
     return this.http.get<Candidate[]>(this.basePath);
   }
   sendFormData(formData: FormData): Observable<any> {
