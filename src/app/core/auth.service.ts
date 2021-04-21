@@ -10,7 +10,7 @@ import {Login, Token} from '../types/authentication';
 })
 
 export class AuthService {
-  private loginURL = 'http://192.168.99.100:8080/api/auth/signIn';
+  private loginURL = 'http://localhost:8080/api/auth/login';
   constructor(private http: HttpClient, private storage: StorageService) {
   }
 
