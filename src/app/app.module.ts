@@ -20,6 +20,7 @@ import { AuthService } from './core/auth.service';
 import { AuthInterceptor } from './core/auth.interceptor';
 import { TableModule } from './secResource/table/table.module';
 import { SuperAdminModule } from './secResource/super-admin/super-admin.module';
+import {AdminpageModule} from "./secResource/adminpage/adminpage.module";
 
 @NgModule({
   declarations: [
@@ -39,9 +40,9 @@ import { SuperAdminModule } from './secResource/super-admin/super-admin.module';
     HeaderModule,
     FooterModule,
     SpinnerModule,
-    ErrorpageModule,
     TableModule,
-    SuperAdminModule
+    SuperAdminModule,
+    AdminpageModule
   ],
   providers: [
     AuthService, {

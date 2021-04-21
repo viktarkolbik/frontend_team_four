@@ -1,0 +1,13 @@
+<div *ngIf = '!error; else Error' class="training_container">
+  <div class="internship_wrapper">
+    <ia-internship
+      *ngFor="let internship of internships"
+      [internship] = "internship"
+      class="internship"
+    >
+    </ia-internship>
+  </div>
+</div>
+<ng-template #Error>
+  <div class="error">{{errorMessage}}</div>
+</ng-template>

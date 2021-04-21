@@ -17,7 +17,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (this.auth.isAuth()) {
       // console.log('InterceptRequest', req);
       const cloned = req.clone({
-        headers: req.headers.append('Auth', `${this.storage.getAuthToken()}`)
+        headers: req.headers.append('Authorization', `Bearer ${this.storage.getAuthToken()}`)
       });
       return next.handle(cloned)
       //   .pipe( //show and inspect response at server

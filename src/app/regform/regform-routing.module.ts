@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegformComponent } from './regform.component';
+import {InternshipResolver} from "../core/internship-resolve.service";
 
 const routes: Routes = [
   {
     path: 'regform/:id',
-    component: RegformComponent
+    component: RegformComponent,
+    resolve: {internship: InternshipResolver}
   }
 ];
 

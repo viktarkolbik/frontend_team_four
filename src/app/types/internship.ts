@@ -11,7 +11,7 @@ export interface Internship {
   registrationStartDate: string;
   requirements: string;
   startDate: string;
-  techSkills: string;
+  skills: string;
   technologyList: string[];
 }
 

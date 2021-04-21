@@ -1,0 +1,9 @@
+<div class="internship">
+  <div>{{internship.name}}</div>
+  <div>{{internship.startDate}}</div>
+  <div>{{internship.internshipFormat}}</div>
+  <div>{{internship.skills | json}}</div>
+  <button mat-flat-button color="primary" routerLink="admins/{{internship.id}}">
+    Show candidates
+  </button>
+</div>

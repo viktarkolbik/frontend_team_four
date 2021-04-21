@@ -20,5 +20,11 @@ export class StorageService {
   setAuthToken(value: string): void {
     this.storage.setItem('AuthToken', value);
   }
+  getUserId() {
+    return this.storage.getItem('UserId');
+  }
+  setUserId(id: string) {
+    this.storage.setItem('UserId', id);
+  }
   constructor() { }
 }

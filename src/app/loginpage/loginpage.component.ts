@@ -34,8 +34,9 @@ export class LoginpageComponent implements OnInit {
       password: this.form.value.loginPassword
     }).subscribe(dataAuth => {
       this.storage.setAuthToken(dataAuth.token);
+      this.storage.setUserId(dataAuth.id);
       this.form.reset();
-      this.routeService.navigate(['/regform/1']);
+      this.routeService.navigate(['/adminpage']);
     }, error => {
       this.errorLogin = error.error.message;
       this.errorServer = error.message;
@@ -44,5 +45,6 @@ export class LoginpageComponent implements OnInit {
 
   logOut() {
     this.storage.setAuthToken('');
+    this.storage.setUserId('');
   }
 }
