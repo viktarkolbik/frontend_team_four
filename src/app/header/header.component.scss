@@ -1,10 +1,10 @@
-#header{
+.header{
   width: 100%;
   min-height: 13rem;
   background: url("/assets/img/head.jpg") repeat-x;
   background-position: center;
   background-size: auto 100%;
-  #subheader{
+  .subheader{
     display: flex;
     justify-content: space-between;
     padding: 0 3rem;
