@@ -55,13 +55,11 @@
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="necessary">{{ 'regform.phone' | translate}}</label>
-        <input
-          matInput
+        <example-tel-input
           formControlName="phoneNumber"
-          type="tel"
           placeholder="{{ 'regform.phone' | translate}}"
-          maxlength="15"
-        >
+        ></example-tel-input>
+        <mat-hint>Include area code</mat-hint>
         <mat-error>
           {{ 'regform.phoneError' | translate}}
         </mat-error>
