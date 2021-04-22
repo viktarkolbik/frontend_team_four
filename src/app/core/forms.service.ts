@@ -12,9 +12,8 @@ export class FormsService {
 
   constructor(private http: HttpClient) {}
 
-  getCandidatesList(id?: string): Observable<Candidate[]>{
-    //will change to a list by id
-    return this.http.get<Candidate[]>(this.basePath);
+  getCandidatesList(id: string): Observable<Candidate[]>{
+    return this.http.get<Candidate[]>(this.basePath + '?internshipId=' + id);
   }
   sendFormData(formData: FormData): Observable<any> {
     const headers = new HttpHeaders({
