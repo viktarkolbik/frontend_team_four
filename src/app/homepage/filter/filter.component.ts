@@ -1,3 +1,4 @@
+import { KeyValue } from '@angular/common';
 import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import {Criterion, Filter, Training} from '../../types';
 
@@ -22,6 +23,7 @@ export class FilterComponent implements OnChanges{
     this.technologies = Array.from(setTechnologies);
     this.filters.locations = this.getFilter('city', this.cities);
     this.filters.technologies = this.getFilter('technology', this.technologies);
+    console.dir(this.filters);
   }
   getFilter(field: string, criteria: string[]): Filter{
     const filter: Filter = {
