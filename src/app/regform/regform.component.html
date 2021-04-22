@@ -2,8 +2,7 @@
   <div class="content">
     <h1>{{ 'regform.h1' | translate}}</h1>
     <p style="text-indent: 20px">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      Aperiam beatae doloremque dolorum magnam modi praesentium quas quo sed temporibus voluptatum.
+      {{'regform.warning' | translate}}
     </p>
     <form class="reg-form" [formGroup]="form" enctype="multipart/form-data">
       <mat-form-field appearance="standard" class="form-control">
@@ -215,7 +214,7 @@
           id="select-file-button"
           mat-flat-button
           color="primary"
-        >Выберите файл</button>
+        >{{ 'regform.chooseFile' | translate}}</button>
         <input
           id="select-file-input"
           type="file"

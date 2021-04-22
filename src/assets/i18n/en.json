@@ -26,7 +26,8 @@
     "email": "E-mail"
   },
   "regform": {
-    "h1": "Register to training",
+    "h1": "Student Registration Form",
+    "warning": "Areas marked by asterisks are obligatory",
     "name": "Name",
     "surname": "Surname",
     "patronymic": "Patronymic",
@@ -42,7 +43,7 @@
     "comforttimeTo": "To",
     "primarySkill": "Primary skill",
     "experience": "Experience",
-    "education": "Ecucation",
+    "education": "Education",
     "resume": "CV",
     "choosefile": "Choose your CV file",
     "agree": "I agree with processing of my personal data",
@@ -51,7 +52,8 @@
       "message": "Please, check the written data is correct.\nYou won't  have an opportunity to fix it.",
       "buttonOk": "Submit",
       "buttonCancel": "Cancel"
-    }
+    },
+    "chooseFile": "Choose file"
   },
   "trainingdescription": {
     "title": "How is the Training going",
