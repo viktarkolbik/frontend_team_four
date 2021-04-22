@@ -16,14 +16,14 @@ import {TranslateModule} from '@ngx-translate/core';
 import {MatDialogModule} from '@angular/material/dialog';
 import {AcceptDialogComponent} from './accept-dialog/accept-dialog.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {FormFieldCustomControlExample, MyTelInput} from './phone-input/phone-input.component';
+import {FormFieldCustomControl, MyTelInput} from './phone-input/phone-input.component';
 import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     RegformComponent,
     AcceptDialogComponent,
-    FormFieldCustomControlExample,
+    FormFieldCustomControl,
     MyTelInput
   ],
   imports: [

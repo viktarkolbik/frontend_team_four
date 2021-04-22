@@ -23,10 +23,10 @@ import {MAT_FORM_FIELD, MatFormField, MatFormFieldControl} from '@angular/materi
 import {Subject} from 'rxjs';
 
 @Component({
-  selector: 'ia-phone-input',
+  selector: 'phone-input',
   templateUrl: 'phone-input.component.html',
 })
-export class FormFieldCustomControlExample {
+export class FormFieldCustomControl {
   form: FormGroup = new FormGroup({
     tel: new FormControl(new MyTel('', '', ''))
   });
@@ -34,60 +34,60 @@ export class FormFieldCustomControlExample {
 
 export class MyTel {
   constructor(
-    public area: string,
-    public exchange: string,
-    public subscriber: string
+    public country: string,
+    public cellular: string,
+    public mobile: string
   ) {}
 }
 
 @Component({
-  selector: 'example-tel-input',
-  templateUrl: 'example-tel-input-example.html',
-  styleUrls: ['example-tel-input-example.css'],
+  selector: 'tel-input',
+  templateUrl: 'tel-input.html',
+  styleUrls: ['tel-input.css'],
   providers: [{ provide: MatFormFieldControl, useExisting: MyTelInput }],
   host: {
-    '[class.example-floating]': 'shouldLabelFloat',
+    '[class.floating]': 'shouldLabelFloat',
     '[id]': 'id',
   }
 })
 export class MyTelInput
   implements ControlValueAccessor, MatFormFieldControl<MyTel>, OnDestroy {
   static nextId = 0;
-  @ViewChild('area') areaInput: HTMLInputElement;
-  @ViewChild('exchange') exchangeInput: HTMLInputElement;
-  @ViewChild('subscriber') subscriberInput: HTMLInputElement;
+  @ViewChild('country') countryInput!: HTMLInputElement;
+  @ViewChild('cellular') cellularInput!: HTMLInputElement;
+  @ViewChild('mobile') mobileInput!: HTMLInputElement;
 
   parts: FormGroup;
   stateChanges = new Subject<void>();
   focused = false;
-  controlType = 'example-tel-input';
-  id = `example-tel-input-${MyTelInput.nextId++}`;
+  controlType = 'tel-input';
+  id = `tel-input-${MyTelInput.nextId++}`;
   onChange = (_: any) => {};
   onTouched = () => {};
 
   get empty() {
     const {
-      value: { area, exchange, subscriber }
+      value: { country, cellular, mobile }
     } = this.parts;
 
-    return !area && !exchange && !subscriber;
+    return !country && !cellular && !mobile;
   }
 
   get shouldLabelFloat() {
     return this.focused || !this.empty;
   }
 
-  @Input('aria-describedby') userAriaDescribedBy?: string;
+  @Input('aria-describedby') userAriaDescribedBy: string = "";
 
   @Input()
   get placeholder(): string {
-    return <string> this._placeholder;
+    return this._placeholder;
   }
   set placeholder(value: string) {
     this._placeholder = value;
     this.stateChanges.next();
   }
-  private _placeholder?: string ;
+  private _placeholder: string = "";
 
   @Input()
   get required(): boolean {
@@ -114,11 +114,16 @@ export class MyTelInput
   get value(): any {
     if (this.parts.valid) {
       const {
-        value: { area, exchange, subscriber }
+        value: { country, cellular, mobile }
       } = this.parts;
-      return `${area}${exchange}${subscriber}`;
+      return `${country}${cellular}${mobile}`;
     }
     return null;
+  }
+  set value(tel: any) {
+    const { country, cellular, mobile } = tel || new MyTel('', '', '');
+    this.parts.setValue({ country, cellular, mobile });
+    this.stateChanges.next();
   }
 
   get errorState(): boolean {
@@ -133,17 +138,17 @@ export class MyTelInput
     @Optional() @Self() public ngControl: NgControl) {
 
     this.parts = formBuilder.group({
-      area: [
+      country: [
         null,
         [Validators.required, Validators.minLength(3), Validators.maxLength(3)]
       ],
-      exchange: [
+      cellular: [
         null,
         [Validators.required, Validators.minLength(2), Validators.maxLength(2)]
       ],
-      subscriber: [
+      mobile: [
         null,
-        [Validators.required, Validators.minLength(4), Validators.maxLength(7)]
+        [Validators.required, Validators.minLength(7), Validators.maxLength(10)]
       ]
     });
 
@@ -179,19 +184,19 @@ export class MyTelInput
 
   setDescribedByIds(ids: string[]) {
     const controlElement = this._elementRef.nativeElement
-      .querySelector('.example-tel-input-container')!;
+      .querySelector('.tel-input-container')!;
     controlElement.setAttribute('aria-describedby', ids.join(' '));
   }
 
   onContainerClick() {
-    if (this.parts.controls.subscriber.valid) {
-      this._focusMonitor.focusVia(this.subscriberInput, 'program');
-    } else if (this.parts.controls.exchange.valid) {
-      this._focusMonitor.focusVia(this.subscriberInput, 'program');
-    } else if (this.parts.controls.area.valid) {
-      this._focusMonitor.focusVia(this.exchangeInput, 'program');
+    if (this.parts.controls.mobile.valid) {
+      this._focusMonitor.focusVia(this.mobileInput, 'program');
+    } else if (this.parts.controls.cellular.valid) {
+      this._focusMonitor.focusVia(this.mobileInput, 'program');
+    } else if (this.parts.controls.country.valid) {
+      this._focusMonitor.focusVia(this.cellularInput, 'program');
     } else {
-      this._focusMonitor.focusVia(this.areaInput, 'program');
+      this._focusMonitor.focusVia(this.countryInput, 'program');
     }
   }
 

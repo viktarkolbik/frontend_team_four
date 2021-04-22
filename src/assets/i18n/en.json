@@ -15,6 +15,8 @@
     "email": "E-mail"
   },
   "regform": {
+    "annotation1": "Field marked by",
+    "annotation2": "is required",
     "h1": "Register to training",
     "name": "Name",
     "surname": "Surname",
@@ -22,7 +24,7 @@
     "email": "Valid",
     "emailError": "Please type correct email",
     "phone": "Phone Number",
-    "phoneError": "Minimal length 10 symbols",
+    "phoneError": "Minimal length 12 symbols, ex. 375-99-1234567",
     "englishlevel": "English Level",
     "country": "Coutry",
     "city": "City",

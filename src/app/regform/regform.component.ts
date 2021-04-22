@@ -134,7 +134,6 @@ export class RegformComponent implements OnInit {
     const formValueJson = JSON.stringify(formValue);
     const formValueBinary = new Blob([formValueJson], {type: 'application/json'});
     const formData = new FormData();
-    console.log(formValueJson);
     formData.append('form', formValueBinary);
     formData.append('idInternship', this.idInternship);
     if (this.file){ formData.append('file', this.file); }
