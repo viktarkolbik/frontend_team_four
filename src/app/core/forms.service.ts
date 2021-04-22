@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 
 export class FormsService {
-  basePath = 'http://localhost:8080/api/forms';
+  basePath = 'http://192.168.99.100:8080/api/forms';
 
   constructor(private http: HttpClient) {}
 

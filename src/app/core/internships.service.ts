@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class InternshipsService {
-  basePath = 'http://localhost:8080/api/internships';
+  basePath = 'http://192.168.99.100:8080/api/internships';
   trainings: Training[] = [
     {
       country: 'Belarus',
