@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {InternshipsComponent} from './internships.component';
 import {RouterModule} from '@angular/router';
 import {InternshipModule} from './internship/internship.module';
+import {IsAdminsGuard} from '../../../core/guards/is-admins.guard';
 
 @NgModule({
   declarations: [InternshipsComponent],
@@ -11,6 +12,7 @@ import {InternshipModule} from './internship/internship.module';
     RouterModule,
     InternshipModule
   ],
+  providers: [IsAdminsGuard],
   exports: [InternshipsComponent]
 })
 export class InternshipsModule { }

@@ -21,8 +21,7 @@ export class UserResolveService implements Resolve<User> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<User> {
     const id = this.storage.getUserId();
-    if (!this.auth.isAuth() || id === null) {
-      this.router.navigate(['/loginpage']);
+    if (id === null) {
       return EMPTY;
     }
     return this.userService.getUserId(id)

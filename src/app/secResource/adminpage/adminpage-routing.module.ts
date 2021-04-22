@@ -7,26 +7,33 @@ import {AdminsComponent} from './admins/admins.component';
 import {InternshipsResolver} from '../../core/internships-resolve.service';
 import {TechexpertComponent} from './techexpert/techexpert.component';
 import {FormsResolveService} from '../../core/forms-resolve.service';
+import {IsAdminsGuard} from '../../core/guards/is-admins.guard';
+import {IsTechExpertGuard} from '../../core/guards/is-tech-expert.guard';
+import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
 
 const routes: Routes = [
   {
     path: 'adminpage',
     component: AdminpageComponent,
     resolve: {userInfo: UserResolveService},
+    canActivate: [IsAuthorizedGuard],
     children: [
       {
         path: 'internships',
         component: InternshipsComponent,
-        resolve: {internships: InternshipsResolver}
+        resolve: {internships: InternshipsResolver},
+        canActivate: [IsAdminsGuard]
       },
       {
         path: 'admins/:id',
         component: AdminsComponent,
-        resolve: {candidates: FormsResolveService}
+        resolve: {candidates: FormsResolveService},
+        canActivate: [IsAdminsGuard]
       },
       {
         path: 'techexpert',
-        component: TechexpertComponent
+        component: TechexpertComponent,
+        canActivate: [IsTechExpertGuard]
       }
     ]
   }
