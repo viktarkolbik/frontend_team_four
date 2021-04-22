@@ -19,7 +19,6 @@ export class AdminsComponent implements OnInit {
     auth.getUserInfo().subscribe(data => this.userInfo = data);
     this.route.data.subscribe(
       (data) => {
-        console.log(data);
         if (data.candidates.error) {
           this.error = data.candidates.status;
           this.errorMessage = 'Что то пошло не так попробуйте обновить страницу';

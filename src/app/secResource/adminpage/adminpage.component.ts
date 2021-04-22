@@ -16,11 +16,13 @@ export class AdminpageComponent implements OnInit {
     });
   }
   ngOnInit(): void {
-    if(this.userInfo.userRole === 'ADMIN' || this.userInfo.userRole === 'SUPER_ADMIN'){
-      this.router.navigate(['/adminpage/internships']);
-    }
-    else if(this.userInfo.userRole === 'TECH_EXPERT'){
-      this.router.navigate(['/adminpage/techexpert']);
+    if(this.router.url === '/adminpage'){
+      if(this.userInfo.userRole === 'ADMIN' || this.userInfo.userRole === 'SUPER_ADMIN'){
+        this.router.navigate(['/adminpage/internships']);
+      }
+      else if(this.userInfo.userRole === 'TECH_EXPERT'){
+        this.router.navigate(['/adminpage/techexpert']);
+      }
     }
   }
 
