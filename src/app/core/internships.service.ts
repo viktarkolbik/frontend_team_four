@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Internship, Training} from '../types';
 import {Observable} from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InternshipsService {
-  basePath = 'http://192.168.99.100:8080/api/internships';
+  basePath = `${environment.backendURL}/api/internships`;
   trainings: Training[] = [
     {
       country: 'Belarus',
-      city: 'Mins',
+      city: 'Minsk',
       form: 'Online',
       technology: 'HTML',
       img: 'assets/icons/html.svg',

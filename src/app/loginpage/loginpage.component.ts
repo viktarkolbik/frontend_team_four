@@ -35,7 +35,7 @@ export class LoginpageComponent implements OnInit {
     }).subscribe(dataAuth => {
       this.storage.setAuthToken(dataAuth.token);
       this.form.reset();
-      this.routeService.navigate(['/regform/1']);
+      this.routeService.navigate(['']);
     }, error => {
       this.errorLogin = error.error.message;
       this.errorServer = error.message;
