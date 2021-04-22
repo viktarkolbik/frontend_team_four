@@ -1,11 +1,11 @@
-import {Injectable} from "@angular/core";
-import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from "@angular/router";
-import {User} from "../types/user";
-import {UserService} from "./user.service";
-import {EMPTY, Observable} from "rxjs";
-import {catchError, tap} from "rxjs/operators";
-import {StorageService} from "./storage.service";
-import {AuthService} from "./auth.service";
+import {Injectable} from '@angular/core';
+import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from '@angular/router';
+import {User} from '../types/user';
+import {UserService} from './user.service';
+import {EMPTY, Observable} from 'rxjs';
+import {catchError, tap} from 'rxjs/operators';
+import {StorageService} from './storage.service';
+import {AuthService} from './auth.service';
 
 @Injectable({providedIn: 'root'})
 export class UserResolveService implements Resolve<User> {
