@@ -29,10 +29,10 @@ import {Candidate} from '../../../types/candidate';
 export class TableComponent implements OnInit, OnChanges {
   @ViewChild(MatSort) sort!: MatSort;
   @ContentChild(TemplateRef) template?: TemplateRef<any>;
-  @Input() candidates: Candidate[] | undefined;
+  @Input() candidates = [] as Candidate[];
   @Output() onSelectedCandidate: EventEmitter<Candidate> = new EventEmitter<Candidate>();
-  selectedCandidate?: Candidate | null;
-  dataSource!: MatTableDataSource<any>;
+  selectedCandidate: Candidate | null = null;
+  dataSource!: MatTableDataSource<Candidate>;
   displayedColumns = [
     'lastName',
     'email',
@@ -44,7 +44,6 @@ export class TableComponent implements OnInit, OnChanges {
     'techSpecialist',
     'primarySkill'
   ];
-  test: any;
   constructor() {
   }
   ngOnChanges(changes: SimpleChanges) {
