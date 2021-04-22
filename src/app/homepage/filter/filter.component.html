@@ -5,40 +5,33 @@
         {{ 'filter.filter' | translate}}
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-        {{ 'filter.location' | translate}}
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <section class="example-section">
-        <mat-checkbox
-          color="primary"
-          *ngFor="let city of cities"
-          [(ngModel)]="filters.locations.criteria[city].isChecked"
-          (change)="updateTrainings()"
-          class="example-margin">
-          {{city}}
-        </mat-checkbox>
-      </section>
-    </mat-expansion-panel>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{ 'filter.technologies' | translate}}
-        </mat-panel-title>
-      </mat-expansion-panel-header>
-      <section class="example-section">
-        <mat-checkbox
-          color="primary"
-          *ngFor="let technology of technologies"
-          [(ngModel)]="filters.technologies.criteria[technology].isChecked"
-          (change)="updateTrainings()"
-          class="example-margin">
-          {{technology}}
-        </mat-checkbox>
-      </section>
-    </mat-expansion-panel>
-
+    <div class="filtration">
+      <div class="left">
+        <h3>{{ 'filter.location' | translate}}</h3>
+        <section class="example-section">
+          <mat-checkbox
+            color="primary"
+            *ngFor="let city of cities"
+            [(ngModel)]="filters.locations.criteria[city].isChecked"
+            (change)="updateTrainings()"
+            class="example-margin">
+            {{city}}
+          </mat-checkbox>
+        </section>
+      </div>
+      <div class="right">
+        <h3>  {{ 'filter.technologies' | translate}}</h3>
+        <section class="example-section">
+          <mat-checkbox
+            color="primary"
+            *ngFor="let technology of technologies"
+            [(ngModel)]="filters.technologies.criteria[technology].isChecked"
+            (change)="updateTrainings()"
+            class="example-margin">
+            {{technology}}
+          </mat-checkbox>
+        </section>
+      </div>
+    </div>
   </mat-expansion-panel>
 </mat-accordion>
