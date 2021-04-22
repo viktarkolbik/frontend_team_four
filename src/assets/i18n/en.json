@@ -9,7 +9,7 @@
     "minsk": "Minsk",
     "kiev": "Kiev",
     "warsawa": "Warsawa"
-  }, 
+  },
   "filter": {
     "filter": "Filter",
     "location": "Location",
@@ -100,7 +100,7 @@
     "publicationdate": "Publication date"
   },
   "loginpage": {
-    "h1": "Login to authorisation",
+    "h1": "Login",
     "fieldlogin": "please, enter your e-mail",
     "fieldpassword": "please, enter your password",
     "login": "Your login",
