@@ -5,7 +5,18 @@
     "p2": "And learn with us",
     "training": "Training",
     "choose": "Choose Filter",
-    "locations": "Our locations"
+    "locations": "Our locations",
+    "minsk": "Minsk",
+    "kiev": "Kiev",
+    "warsawa": "Warsawa"
+  }, 
+  "filter": {
+    "filter": "Filter",
+    "location": "Location",
+    "technologies": "Technologies"
+  },
+  "training": {
+    "showMore": "show more"
   },
   "footer": {
     "contacts": "Contacts",
@@ -15,7 +26,8 @@
     "email": "E-mail"
   },
   "regform": {
-    "h1": "Register to training",
+    "h1": "Student Registration Form",
+    "warning": "Areas marked by asterisks are obligatory",
     "name": "Name",
     "surname": "Surname",
     "patronymic": "Patronymic",
@@ -31,7 +43,7 @@
     "comforttimeTo": "To",
     "primarySkill": "Primary skill",
     "experience": "Experience",
-    "education": "Ecucation",
+    "education": "Education",
     "resume": "CV",
     "choosefile": "Choose your CV file",
     "agree": "I agree with processing of my personal data",
@@ -40,7 +52,8 @@
       "message": "Please, check the written data is correct.\nYou won't  have an opportunity to fix it.",
       "buttonOk": "Submit",
       "buttonCancel": "Cancel"
-    }
+    },
+    "chooseFile": "Choose file"
   },
   "trainingdescription": {
     "title": "How is the Training going",
@@ -65,7 +78,7 @@
     "world": "Our offices are located in all over the world",
     "goods": "Coffee, cookies and relaxation area are all for you",
     "toget": "To get an internship you should: ",
-    "resume": "Send your SV by the form on the website",
+    "resume": "Send your CV by the form on the website",
     "reqinterview": "Take a phone interview with a recruiter",
     "tech": "Take an interview with our technician specialist",
     "learn": "Start learning according to  to the chosen program"
