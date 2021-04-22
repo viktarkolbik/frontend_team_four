@@ -4,11 +4,23 @@
   background: url("/assets/img/head.jpg") repeat-x;
   background-position: center;
   background-size: auto 100%;
-
-  mat-form-field{
+  #subheader{
     display: flex;
-    justify-content: flex-end;
-    margin-right: 40px;
+    justify-content: space-between;
+    padding: 0 3rem;
+    position: fixed;
+    width: 100vw;
+    background:rgba(0,0,0,0.2);
+    z-index: 999;
+    button {
+      margin: 0.5rem 0;
+      margin-left: 8rem;
+    }
+    mat-form-field{
+      display: flex;
+      justify-content: flex-end;
+      margin-right: 6rem;
+    }
   }
 }
 
