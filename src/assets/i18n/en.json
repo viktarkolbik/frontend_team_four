@@ -5,7 +5,18 @@
     "p2": "And learn with us",
     "training": "Training",
     "choose": "Choose Filter",
-    "locations": "Our locations"
+    "locations": "Our locations",
+    "minsk": "Minsk",
+    "kiev": "Kiev",
+    "warsawa": "Warsawa"
+  }, 
+  "filter": {
+    "filter": "Filter",
+    "location": "Location",
+    "technologies": "Technologies"
+  },
+  "training": {
+    "showMore": "show more"
   },
   "footer": {
     "contacts": "Contacts",
