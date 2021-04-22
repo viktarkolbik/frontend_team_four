@@ -9,6 +9,11 @@
     display: flex;
     justify-content: flex-end;
     margin-right: 40px;
+    mat-select {
+      background-color: #f5f5f571;
+      line-height: 1.5rem;
+      text-align: center;
+    }
   }
 }
 
