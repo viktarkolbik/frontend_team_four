@@ -56,8 +56,7 @@ export class TrainingformComponent implements OnInit {
       trainingEnd: new FormControl('', Validators.required),
       trainingRegistryStart: new FormControl('', Validators.required),
       trainingRegistryEnd: new FormControl('', Validators.required),
-      trainingSkills: new FormControl(''),
-      publicationDate: new FormControl('current date'),
+      trainingSkills: new FormControl('')
     });
   }
 
