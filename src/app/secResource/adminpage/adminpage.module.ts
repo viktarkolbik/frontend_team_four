@@ -11,8 +11,6 @@ import {AdminsModule} from './admins/admins.module';
 import {TechexpertModule} from './techexpert/techexpert.module';
 import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
 
-
-
 @NgModule({
   declarations: [AdminpageComponent],
   imports: [

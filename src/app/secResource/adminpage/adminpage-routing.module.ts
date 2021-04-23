@@ -17,6 +17,7 @@ const routes: Routes = [
     component: AdminpageComponent,
     resolve: {userInfo: UserResolveService},
     canActivate: [IsAuthorizedGuard],
+    canActivateChild: [IsAuthorizedGuard],
     children: [
       {
         path: 'internships',

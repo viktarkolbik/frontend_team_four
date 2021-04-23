@@ -38,7 +38,7 @@ export class UserResolveService implements Resolve<User> {
             }
             console.log(err.error);
             return EMPTY;
-          }
-        ));
+        })
+      );
   }
 }
