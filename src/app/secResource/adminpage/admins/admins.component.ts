@@ -14,7 +14,9 @@ export class AdminsComponent implements OnInit {
   candidates = [] as Candidate[];
   selectedCandidate!: Candidate;
   admins = [] as User[];
+  selectedAdminId?: string;
   techExperts = [] as User [];
+  selectedTechExpertId?: string;
   error?: number;
   constructor(auth: AuthService, private route: ActivatedRoute) {
     auth.getUserInfo().subscribe(data => this.userInfo = data);
@@ -25,7 +27,7 @@ export class AdminsComponent implements OnInit {
         } else {
           this.candidates = data.candidates;
           this.admins = data.admins;
-          this.techExperts = data.techEperts;
+          this.techExperts = data.techExperts;
         }
       }
     );

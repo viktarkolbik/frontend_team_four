@@ -1,11 +1,40 @@
 <div *ngIf = '!error; else Error' class="training_container">
   <ia-table [candidates]="candidates" (onSelectedCandidate)="updateSelectedCandidate($event)">
     <ng-template>
-      <div class="control-button">
-        <p>Control buttons in the table</p>
-        <button mat-raised-button class="Red">Decline intern</button>
-        <button mat-raised-button class="Yellow">Add to waiting list</button>
-        <button mat-raised-button class="Green">Approve intert</button>
+      <ng-container *ngIf="userInfo.userRole === 'SUPER_ADMIN'">
+        <div class="control-button">
+          <button mat-raised-button class="Red">Decline intern</button>
+          <button mat-raised-button class="Yellow">Add to waiting list</button>
+          <button mat-raised-button class="Green">Approve intert</button>
+        </div>
+        <div>
+          <ng-container *ngIf="admins.length === 0">
+            <p>no admins</p>
+          </ng-container>
+          <mat-form-field appearance="fill">
+            <mat-label>Select admin</mat-label>
+            <mat-select [disabled]="admins.length === 0" [(ngModel)]="selectedAdminId">
+              <mat-option *ngFor="let admin of admins" [value]="admin.id">
+                {{admin.lastName + admin.firstName[0] + '.'}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-raised-button [disabled]="!selectedAdminId">Appoint</button>
+        </div>
+      </ng-container>
+      <div>
+        <ng-container *ngIf="techExperts.length === 0">
+          <p>no technical experts</p>
+        </ng-container>
+        <mat-form-field appearance="fill">
+          <mat-label>Select technical expert</mat-label>
+          <mat-select [disabled]="techExperts.length === 0" [(ngModel)]="selectedTechExpertId">
+            <mat-option *ngFor="let techExpert of techExperts" [value]="techExpert.id">
+              {{techExpert.lastName + techExpert.firstName[0] + '.'}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button [disabled]="!selectedTechExpertId">Appoint</button>
       </div>
     </ng-template>
   </ia-table>
