@@ -35,11 +35,23 @@
     </div>
   </mat-expansion-panel>
   <div class="chips">
-    <mat-chip-list *ngIf="filters.locations.isChecked" aria-label="city selection">
-      <ng-container  *ngFor="let city of filters.locations.criteria | keyvalue" class="chip-containr">
-        <mat-chip *ngIf="city.value.isChecked">
-          {{city.key | json}}
-          {{city.value.isChecked | json}}
+    <mat-chip-list *ngIf="filters.locations.isChecked || filters.technologies.isChecked " aria-label="city selection">
+      <ng-container *ngFor="let city of filters.locations.criteria | keyvalue" class="chip-container">
+        <mat-chip [selectable]="selectable"
+                  [removable]="removable"
+                  (removed)="removeCityFilter(city.key)" 
+                  *ngIf="city.value.isChecked">
+          {{city.key}}
+          <mat-icon *ngIf="removable" matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </ng-container>
+      <ng-container *ngFor="let tech of filters.technologies.criteria | keyvalue" class="chip-container">
+        <mat-chip *ngIf="tech.value.isChecked"
+                  [selectable]="selectable"
+                  [removable]="removable"
+                  (removed)="removeTechFilter(tech.key)">
+          {{tech.key}}
+          <mat-icon *ngIf="removable" matChipRemove>cancel</mat-icon>
         </mat-chip>
       </ng-container>
     </mat-chip-list>

@@ -1,5 +1,6 @@
 import { KeyValue } from '@angular/common';
-import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
+import { ContentChild } from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import {Criterion, Filter, Training} from '../../types';
 
 @Component({
@@ -13,6 +14,8 @@ export class FilterComponent implements OnChanges{
   filters: {[key: string]: Filter} = {};
   cities?: string[];
   technologies?: string[];
+  removable = true;
+  selectable = true;
   constructor() {
   }
   ngOnChanges(){
@@ -59,5 +62,13 @@ export class FilterComponent implements OnChanges{
         return condition;
       }
     ));
+  }
+
+  removeCityFilter(city: string){
+    return this.filters.locations.criteria[city].isChecked = !this.filters.locations.criteria[city].isChecked;
+  }
+
+  removeTechFilter(tech: string){
+    return this.filters.technologies.criteria[tech].isChecked = !this.filters.technologies.criteria[tech].isChecked;
   }
 }

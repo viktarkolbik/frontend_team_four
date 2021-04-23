@@ -6,6 +6,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatCheckboxModule,
     TranslateModule,
     FormsModule,
-    MatChipsModule
+    MatChipsModule,
+    MatIconModule
   ],
   exports: [
     FilterComponent
