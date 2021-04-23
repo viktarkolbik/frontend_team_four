@@ -1,34 +1,19 @@
 import { Injectable } from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
+import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 import {User} from '../../types/user';
-import {AuthService} from '../auth.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {Observable} from 'rxjs';
+import {RoleService} from './role.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IsAdminsGuard implements CanActivate {
   userInfo = {} as User;
-  constructor(auth: AuthService, private snackBar: MatSnackBar, private router: Router) {
-    auth.getUserInfo().subscribe(data => this.userInfo = data);
-  }
+  constructor(private role: RoleService) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): boolean {
-    if (
-      this.userInfo.userRole
-      && this.userInfo.userRole === 'SUPER_ADMIN'
-      || this.userInfo.userRole === 'ADMIN'
-    ) {return true;}
-    const message = 'You are not authorized to access this page.';
-    this.openSnackbar(message, 'Ok');
-    return false;
-  }
-  openSnackbar(message: string, action: string): void{
-    const snackBarRef = this.snackBar.open(message, action);
-    snackBarRef.afterDismissed().subscribe(() => {
-      this.router.navigate(['/adminpage']);
-    });
+  ): Observable<boolean> {
+    return this.role.canActivate('ADMIN', 'SUPER_ADMIN');
   }
 }
