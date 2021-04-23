@@ -15,8 +15,7 @@ export class HomepageComponent implements OnInit {
   errorMessage: string | undefined;
 
   constructor(private internshipsService: InternshipsService, private route: ActivatedRoute) {
-    // this.route.data.subscribe((data) => this.trainings = data.internships);
-    this.trainings = this.internshipsService.getTrainingsLocal();
+    this.route.data.subscribe((data) => this.trainings = data.internships);
     if (this.trainings.error) {
       this.error = this.trainings.status;
       this.errorMessage = "Что то пошло не так попробуйте обновить страницу";
