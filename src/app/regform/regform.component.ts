@@ -92,10 +92,7 @@ export class RegformComponent implements OnInit {
         Validators.required,
         Validators.email,
       ]),
-      phoneNumber: new FormControl('', [
-        Validators.required,
-        Validators.minLength(10)
-      ]),
+      phoneNumber: new FormControl(),
       skype: new FormControl('', Validators.required),
       englishLevel : new FormControl('', Validators.required),
       country: new FormControl('', Validators.required),

@@ -1,34 +1,38 @@
 <div class="container">
   <div class="content">
     <h1>{{ 'regform.h1' | translate}}</h1>
-    <p style="text-indent: 20px">
-      {{'regform.warning' | translate}}
+    <p>
+      {{ 'regform.annotation1' | translate}}
+      <span style="color: red"> * </span>
+      {{ 'regform.annotation2' | translate}}
     </p>
     <form class="reg-form" [formGroup]="form" enctype="multipart/form-data">
       <mat-form-field appearance="standard" class="form-control">
-        <label class="necessary">{{ 'regform.name' | translate}}</label>
+        <mat-label>{{ 'regform.name' | translate}}</mat-label>
         <input
           matInput
           formControlName="firstName"
           type="text"
           placeholder="{{ 'regform.name' | translate}}"
           maxlength="50"
+          required
         >
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label class="necessary">{{ 'regform.surname' | translate}}</label>
+        <mat-label>{{ 'regform.surname' | translate}}</mat-label>
         <input
           matInput
           formControlName="lastName"
           type="text"
           placeholder="{{ 'regform.surname' | translate}}"
           maxlength="50"
+          required
         >
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label>{{ 'regform.patronymic' | translate}}</label>
+        <mat-label>{{ 'regform.patronymic' | translate}}</mat-label>
         <input
           matInput
           formControlName="middleName"
@@ -39,13 +43,14 @@
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label class="necessary">Email</label>
+        <mat-label>Email</mat-label>
         <input
           matInput
           formControlName="email"
           type="email"
           placeholder="{{ 'regform.email' | translate}} Email"
           maxlength="254"
+          required
         >
         <mat-error *ngIf="form.get('email')?.hasError('email')">
           {{ 'regform.emailError' | translate}}
@@ -53,36 +58,37 @@
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label class="necessary">{{ 'regform.phone' | translate}}</label>
-        <input
-          matInput
+        <mat-label>{{ 'regform.phone' | translate}}</mat-label>
+        <tel-input
           formControlName="phoneNumber"
-          type="tel"
-          placeholder="{{ 'regform.phone' | translate}}"
-          maxlength="15"
-        >
+          required
+        ></tel-input>
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-hint>ex. 375-99-1234567</mat-hint>
         <mat-error>
           {{ 'regform.phoneError' | translate}}
         </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label class="necessary">Skype</label>
+        <mat-label>Skype</mat-label>
         <input
           matInput
           formControlName="skype"
           type="text"
           placeholder="Skype"
           maxlength="254"
+          required
         >
       </mat-form-field>
 
       <div class="form-control" style="margin-top: 30px">
-        <label class="necessary">{{ 'regform.englishlevel' | translate}}</label>
+        <mat-label class="necessary">{{ 'regform.englishlevel' | translate}}</mat-label>
         <mat-radio-group
           aria-labelledby="radio-group-label"
           class="radio-group"
           formControlName="englishLevel"
+          required
         >
           <mat-radio-button
             class="radio-button"
@@ -95,8 +101,8 @@
       </div>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label class="necessary">{{ 'regform.country' | translate}}</label>
-        <mat-select class="select-group" formControlName="country">
+        <mat-label>{{ 'regform.country' | translate}}</mat-label>
+        <mat-select class="select-group" formControlName="country" required>
           <mat-option *ngFor="let country of getKeys(countries)" [value]="country">
             {{countries[country]}}
           </mat-option>
@@ -104,8 +110,8 @@
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label class="necessary">{{ 'regform.city' | translate}}</label>
-        <mat-select class="select-group" formControlName="city">
+        <mat-label>{{ 'regform.city' | translate}}</mat-label>
+        <mat-select class="select-group" required formControlName="city">
           <mat-option *ngFor="let city of cities[form.get('country')?.value]" [value]="city">
             {{city}}
           </mat-option>
@@ -113,7 +119,7 @@
       </mat-form-field>
 
       <form [formGroup]="timeForCallList[0]" class="form-control" style="margin-top: 30px">
-        <label>{{ 'regform.comforttime' | translate}}</label>
+        <mat-label>{{ 'regform.comforttime' | translate}}</mat-label>
         <div class="selector-time">
           <mat-form-field appearance="fill" class="selector-time-item">
             <mat-label>{{ 'regform.comforttimeFrom' | translate}}</mat-label>
@@ -177,7 +183,7 @@
       </form>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label>{{ 'regform.primarySkill' | translate}}</label>
+        <mat-label>{{ 'regform.primarySkill' | translate}}</mat-label>
         <input matInput
                type="text"
                formControlName="primarySkill"
@@ -187,7 +193,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label>{{ 'regform.experience' | translate}}</label>
+        <mat-label>{{ 'regform.experience' | translate}}</mat-label>
         <textarea matInput
           cdkTextareaAutosize
           formControlName="experience"
@@ -197,7 +203,7 @@
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <label>{{ 'regform.education' | translate}}</label>
+        <mat-label>{{ 'regform.education' | translate}}</mat-label>
         <textarea matInput
           cdkTextareaAutosize
           formControlName="education"
@@ -207,7 +213,7 @@
       </mat-form-field>
 
       <div class="form-control" style="margin-top: 25px">
-        <label>{{ 'regform.resume' | translate}}</label>
+        <mat-label>{{ 'regform.resume' | translate}}</mat-label>
       </div>
       <div class="input-wrapper">
         <button

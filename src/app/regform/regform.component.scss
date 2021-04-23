@@ -4,9 +4,10 @@
     min-width: 300px;
     margin: 0 auto;
     background-color: #e0e0e0;
+    padding: 30px;
     .content{
       max-width: 700px;
-      margin: 30px auto;
+      margin: 0 auto;
       padding: 30px;
       background-color: white;
       border-radius: 10px;
@@ -23,15 +24,10 @@
         .form-control{
           align-self: stretch;
           max-width: 380px;
-          label {
-            display: inline-block;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-          }
-          label.necessary::after{
+          mat-label.necessary::after{
             content: '*';
             color: red;
-            margin: 0px 5px;
+            margin: 0 5px;
           }
         }
         .radio-group{
@@ -46,12 +42,14 @@
           width: 180px;
           display: flex;
           justify-content: space-between;
+          margin-top: 0.5rem;
         }
         .selector-time-item{
           width: 80px;
         }
         .input-wrapper{
           position: relative;
+          margin-top: 0.5rem;
         }
         #select-file-input {
           display: inline-block;
@@ -60,9 +58,13 @@
           height: 100%;
           left: 0;
           opacity: 0;
+          cursor: pointer;
         }
         #select-file-button{
           position: relative;
+        }
+        ::ng-deep .mat-checkbox-layout {
+          white-space: normal;
         }
         #submit-button{
           margin-top: 20px;
