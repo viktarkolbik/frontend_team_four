@@ -26,7 +26,6 @@ export class FilterComponent implements OnChanges{
     this.technologies = Array.from(setTechnologies);
     this.filters.locations = this.getFilter('city', this.cities);
     this.filters.technologies = this.getFilter('technology', this.technologies);
-    console.dir(this.filters);
   }
   getFilter(field: string, criteria: string[]): Filter{
     const filter: Filter = {
@@ -65,6 +64,7 @@ export class FilterComponent implements OnChanges{
   }
 
   removeFilter(data: any, condition: string){
-    return this.filters[data].criteria[condition].isChecked = !this.filters[data].criteria[condition].isChecked;
+    this.filters[data].criteria[condition].isChecked = !this.filters[data].criteria[condition].isChecked;
+    this.updateTrainings();
   }
 }
