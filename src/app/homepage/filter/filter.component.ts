@@ -64,11 +64,7 @@ export class FilterComponent implements OnChanges{
     ));
   }
 
-  removeCityFilter(city: string){
-    return this.filters.locations.criteria[city].isChecked = !this.filters.locations.criteria[city].isChecked;
-  }
-
-  removeTechFilter(tech: string){
-    return this.filters.technologies.criteria[tech].isChecked = !this.filters.technologies.criteria[tech].isChecked;
+  removeFilter(data: any, condition: string){
+    return this.filters[data].criteria[condition].isChecked = !this.filters[data].criteria[condition].isChecked;
   }
 }

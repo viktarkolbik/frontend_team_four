@@ -39,7 +39,7 @@
       <ng-container *ngFor="let city of filters.locations.criteria | keyvalue" class="chip-container">
         <mat-chip [selectable]="selectable"
                   [removable]="removable"
-                  (removed)="removeCityFilter(city.key)" 
+                  (removed)="removeFilter('locations', city.key)" 
                   *ngIf="city.value.isChecked">
           {{city.key}}
           <mat-icon *ngIf="removable" matChipRemove>cancel</mat-icon>
@@ -49,7 +49,7 @@
         <mat-chip *ngIf="tech.value.isChecked"
                   [selectable]="selectable"
                   [removable]="removable"
-                  (removed)="removeTechFilter(tech.key)">
+                  (removed)="removeFilter('technologies', tech.key)">
           {{tech.key}}
           <mat-icon *ngIf="removable" matChipRemove>cancel</mat-icon>
         </mat-chip>
