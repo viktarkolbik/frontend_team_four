@@ -95,10 +95,9 @@
       </mat-form-field>
 
       <div class="publication-date">
-        <label formControlName="publicationDate" >{{'trainingform.publicationdate' | translate }}: {{today()}}</label>
+        <label>{{'trainingform.publicationdate' | translate }}: {{today()}}</label>
       </div>
       <button
-
         mat-flat-button
         color="primary"
         [disabled]="form.invalid"
