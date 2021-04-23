@@ -13,17 +13,19 @@ export class AdminsComponent implements OnInit {
   userInfo = {} as User;
   candidates = [] as Candidate[];
   selectedCandidate!: Candidate;
-  error: number | undefined;
-  errorMessage: string | undefined;
+  admins = [] as User[];
+  techExperts = [] as User [];
+  error?: number;
   constructor(auth: AuthService, private route: ActivatedRoute) {
     auth.getUserInfo().subscribe(data => this.userInfo = data);
     this.route.data.subscribe(
       (data) => {
-        if (data.candidates.error) {
-          this.error = data.candidates.status;
-          this.errorMessage = 'Что то пошло не так попробуйте обновить страницу';
+        if (data.candidates.error || data.admins.error || data.techExperts.error) {
+          this.error = data.candidates.error || data.admins.error || data.techExperts.error;
         } else {
           this.candidates = data.candidates;
+          this.admins = data.admins;
+          this.techExperts = data.techEperts;
         }
       }
     );

@@ -9,15 +9,13 @@ import {Internship, Training} from '../../../types';
 })
 export class InternshipsComponent implements OnInit {
   internships = [] as Internship[];
-  error: number | undefined;
-  errorMessage: string | undefined;
+  error?: number;
 
   constructor(private route: ActivatedRoute) {
     this.route.data.subscribe(
       (data) => {
         if (data.internships.error) {
           this.error = data.internships.status;
-          this.errorMessage = 'Что то пошло не так попробуйте обновить страницу';
         } else {
           this.internships = data.internships;
         }

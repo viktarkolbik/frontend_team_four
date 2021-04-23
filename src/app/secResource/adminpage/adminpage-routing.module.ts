@@ -10,6 +10,8 @@ import {FormsResolveService} from '../../core/forms-resolve.service';
 import {IsAdminsGuard} from '../../core/guards/is-admins.guard';
 import {IsTechExpertGuard} from '../../core/guards/is-tech-expert.guard';
 import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
+import {AdminsResolveService} from '../../core/admins-resolve.service';
+import {TechExpertResolveService} from '../../core/tech-expert-resolve.service';
 
 const routes: Routes = [
   {
@@ -28,7 +30,11 @@ const routes: Routes = [
       {
         path: 'admins/:id',
         component: AdminsComponent,
-        resolve: {candidates: FormsResolveService},
+        resolve: {
+          candidates: FormsResolveService,
+          admins: AdminsResolveService,
+          techExperts: TechExpertResolveService,
+        },
         canActivate: [IsAdminsGuard]
       },
       {

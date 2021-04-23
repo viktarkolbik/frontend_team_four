@@ -35,7 +35,6 @@ export class TableComponent implements OnInit, OnChanges {
   dataSource!: MatTableDataSource<Candidate>;
   displayedColumns = [
     'lastName',
-    'email',
     'phoneNumber',
     'skype',
     'englishLevel',
