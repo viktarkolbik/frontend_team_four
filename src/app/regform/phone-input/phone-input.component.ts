@@ -24,7 +24,7 @@ import {Subject} from 'rxjs';
 
 @Component({
   selector: 'phone-input',
-  templateUrl: 'phone-input.component.html',
+  template: '',
 })
 export class FormFieldCustomControl {
   form: FormGroup = new FormGroup({

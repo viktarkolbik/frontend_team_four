@@ -27,7 +27,7 @@
           mat-label.necessary::after{
             content: '*';
             color: red;
-            margin: 0px 5px;
+            margin: 0 5px;
           }
         }
         .radio-group{
@@ -42,12 +42,14 @@
           width: 180px;
           display: flex;
           justify-content: space-between;
+          margin-top: 0.5rem;
         }
         .selector-time-item{
           width: 80px;
         }
         .input-wrapper{
           position: relative;
+          margin-top: 0.5rem;
         }
         #select-file-input {
           display: inline-block;
@@ -60,6 +62,9 @@
         }
         #select-file-button{
           position: relative;
+        }
+        ::ng-deep .mat-checkbox-layout {
+          white-space: normal;
         }
         #submit-button{
           margin-top: 20px;
