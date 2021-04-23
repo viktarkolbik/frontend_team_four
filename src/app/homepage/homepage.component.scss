@@ -46,8 +46,8 @@
       justify-content: space-around;
       align-items: center;
       padding: 20px 0;
-      .choose {
-        width: 30%;
+      #filter-panel{
+        width: 50%;
       }
       .training_wrapper {
         width: 100%;
@@ -108,9 +108,6 @@
       }
     }
   }
-}
-#filter-panel{
-  width: 95%;
 }
 
 @media (max-width:1200px) {

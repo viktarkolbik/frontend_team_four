@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Criterion, Filter, Training} from '../types';
+import { Training } from '../types';
 import { InternshipsService } from '../core/internships.service';
-import {ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ia-homepage',
