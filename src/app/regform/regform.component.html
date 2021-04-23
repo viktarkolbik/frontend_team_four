@@ -220,7 +220,7 @@
           id="select-file-button"
           mat-flat-button
           color="primary"
-        >{{ 'regform.chooseFile' | translate}}</button>
+        >{{ 'regform.choosefile' | translate}}</button>
         <input
           id="select-file-input"
           type="file"
@@ -229,10 +229,10 @@
       </div>
       <label>{{file?.name}}</label>
       <mat-error *ngIf="fileSize">
-        Файл имеет размер больше {{maxSizeFile/1000}} кБайт
+        {{ 'regform.errorfilesize' | translate}} {{maxSizeFile/1000}} kB
       </mat-error>
       <mat-error *ngIf="isNotSupportFormat">
-        Файл имеет не подходящий формат
+        {{ 'regform.errorfileformat' | translate}}
       </mat-error>
 
       <mat-checkbox

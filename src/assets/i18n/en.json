@@ -47,14 +47,15 @@
     "education": "Education",
     "resume": "CV",
     "choosefile": "Choose your CV file",
+    "errorfilesize": "File size is more than",
+    "errorfileformat": "File has wrong format",
     "agree": "I agree with processing of my personal data",
     "submit": "Submit",
     "accept-dialog": {
       "message": "Please, check the written data is correct.\nYou won't  have an opportunity to fix it.",
       "buttonOk": "Submit",
       "buttonCancel": "Cancel"
-    },
-    "chooseFile": "Choose file"
+    }
   },
   "trainingdescription": {
     "title": "How is the Training going",
