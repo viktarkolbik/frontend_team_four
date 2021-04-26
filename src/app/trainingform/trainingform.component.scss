@@ -6,12 +6,12 @@
 
 .container {
   max-width: 100%;
-  min-width: 300px;
   background-color: #e0e0e0;
+  padding: 30px;
 }
 .content {
-  width: 700px;
-  margin: 30px auto;
+  width: 55%;
+  margin: 0 auto;
   padding: 30px;
   background-color: white;
   border-radius: 10px;
@@ -20,6 +20,7 @@
   align-items: center;
 }
 .create-form {
+  width: 90%;
   align-self: stretch;
   display: flex;
   flex-direction: column;
@@ -29,7 +30,7 @@
 }
 .form-control{
   align-self: stretch;
-  max-width: 380px;
+  max-width: 80%;
 }
 label {
   display: inline-block;
@@ -51,4 +52,10 @@ button {
 }
 .publication-date {
   margin-top: 10px;
+}
+
+@media (max-width: 1200px) {
+  .content {
+    width: 70%;
+  }
 }

@@ -1,11 +1,23 @@
 {
   "language": "English",
   "homepage": {
+    "errorMessage": "Something is going wrong, try reload page",
     "p1": "Start your career",
     "p2": "And learn with us",
     "training": "Training",
     "choose": "Choose Filter",
-    "locations": "Our locations"
+    "locations": "Our locations",
+    "minsk": "Minsk",
+    "kiev": "Kiev",
+    "warsawa": "Warsawa"
+  },
+  "filter": {
+    "filter": "Filter",
+    "location": "Location",
+    "technologies": "Technologies"
+  },
+  "training": {
+    "showMore": "show more"
   },
   "footer": {
     "contacts": "Contacts",
@@ -15,6 +27,8 @@
     "email": "E-mail"
   },
   "regform": {
+    "annotation1": "Fields marked by",
+    "annotation2": "is required",
     "h1": "Register to training",
     "name": "Name",
     "surname": "Surname",
@@ -22,7 +36,7 @@
     "email": "Valid",
     "emailError": "Please type correct email",
     "phone": "Phone Number",
-    "phoneError": "Minimal length 10 symbols",
+    "phoneError": "Minimal length 12 symbols, ex. 375-99-1234567",
     "englishlevel": "English Level",
     "country": "Coutry",
     "city": "City",
@@ -31,9 +45,11 @@
     "comforttimeTo": "To",
     "primarySkill": "Primary skill",
     "experience": "Experience",
-    "education": "Ecucation",
+    "education": "Education",
     "resume": "CV",
     "choosefile": "Choose your CV file",
+    "errorfilesize": "File size is more than",
+    "errorfileformat": "File has wrong format",
     "agree": "I agree with processing of my personal data",
     "submit": "Submit",
     "accept-dialog": {
@@ -65,7 +81,7 @@
     "world": "Our offices are located in all over the world",
     "goods": "Coffee, cookies and relaxation area are all for you",
     "toget": "To get an internship you should: ",
-    "resume": "Send your SV by the form on the website",
+    "resume": "Send your CV by the form on the website",
     "reqinterview": "Take a phone interview with a recruiter",
     "tech": "Take an interview with our technician specialist",
     "learn": "Start learning according to  to the chosen program"
@@ -87,7 +103,7 @@
     "publicationdate": "Publication date"
   },
   "loginpage": {
-    "h1": "Login to authorisation",
+    "h1": "Login",
     "fieldlogin": "please, enter your e-mail",
     "fieldpassword": "please, enter your password",
     "login": "Your login",

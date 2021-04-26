@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Candidate } from '../types/candidate';
 import { Observable } from 'rxjs';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class FormsService {
-  basePath = 'http://localhost:8080/api/forms';
-
+  basePath = `${environment.backendURL}/api/forms`;
   constructor(private http: HttpClient) {}
 
   getCandidatesList(id: string): Observable<Candidate[]>{

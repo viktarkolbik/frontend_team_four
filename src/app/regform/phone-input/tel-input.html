@@ -1,0 +1,28 @@
+<div role="group" class="tel-input-container"
+     [formGroup]="parts"
+     [attr.aria-labelledby]="_formField?.getLabelId()">
+  <input class="tel-input-element"
+         formControlName="country" size="3"
+         maxLength="3"
+         aria-label="Country code"
+         (input)="_handleInput(parts.controls.country, cellular)"
+         #country>
+  <span class="tel-input-spacer">&ndash;</span>
+  <input class="tel-input-element"
+         formControlName="cellular"
+         maxLength="2"
+         size="2"
+         aria-label="Cellular code"
+         (input)="_handleInput(parts.controls.cellular, mobile)"
+         (keyup.backspace)="autoFocusPrev(parts.controls.cellular, country)"
+         #cellular>
+  <span class="tel-input-spacer">&ndash;</span>
+  <input class="tel-input-element"
+         formControlName="mobile"
+         maxLength="10"
+         size="10"
+         aria-label="Mobile number"
+         (input)="_handleInput(parts.controls.mobile)"
+         (keyup.backspace)="autoFocusPrev(parts.controls.mobile, cellular)"
+         #mobile>
+</div>

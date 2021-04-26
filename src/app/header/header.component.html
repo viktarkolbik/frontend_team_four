@@ -1,8 +1,13 @@
-<div id="header">
-  <mat-form-field>
-    <mat-select [(value)]=selectedLang (selectionChange)="changeLang()">
-      <mat-option value="en">English</mat-option>
-      <mat-option value="ru">Русский</mat-option>
-    </mat-select>
+<div class="header">
+  <div class="subheader">
+    <button mat-icon-button aria-label="home icon" routerLink="">
+      <mat-icon>home</mat-icon>
+    </button>
+    <mat-form-field>
+      <mat-select [(value)]=selectedLang (selectionChange)="changeLang()">
+        <mat-option value="en">English</mat-option>
+        <mat-option value="ru">Русский</mat-option>
+      </mat-select>
   </mat-form-field>
+  </div>
 </div>

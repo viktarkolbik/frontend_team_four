@@ -4,6 +4,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject, Observable, Subject, throwError} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {Login, Token} from '../types/authentication';
+import {environment} from '../../environments/environment';
 import {User} from '../types/user';
 
 @Injectable({
@@ -11,7 +12,7 @@ import {User} from '../types/user';
 })
 
 export class AuthService {
-  private loginURL = 'http://localhost:8080/api/auth/login';
+  private loginURL = `${environment.backendURL}/api/auth/login`;
   private userInfo$ = new BehaviorSubject({} as User);
   constructor(private http: HttpClient, private storage: StorageService) {
   }
