@@ -1,7 +1,12 @@
-.internship_wrapper{
-  display: flex;
-  flex-wrap: wrap;
-  .internship{
-    margin: 10px 15px;
+.training_container {
+  width: 90%;
+  margin: 0 auto;
+  .internship_wrapper{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+    .internship{
+      margin: 20px auto;
+    }
   }
 }

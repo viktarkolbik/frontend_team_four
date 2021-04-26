@@ -1,7 +1,30 @@
 .internship{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 150px;
-  border: #000000 1px solid;
+  padding: 20px;
+  box-shadow: 4px 4px 8px 8px #c9cacaa8;
+  transition: 0.5s ease-in-out;
+  &:hover {
+    box-shadow: 4px 4px 8px 8px #49bced8e;
+    transition: 0.5s ease-in-out;
+  }
+  div {
+    margin-bottom: 10px;
+  }
+  .internship__name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 2rem;
+    text-transform: uppercase;
+    color: #49BBED;
+  }
+  button {
+    transition: 0.5s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+      transition: 0.5s ease-in-out;
+    }
+  }
 }
