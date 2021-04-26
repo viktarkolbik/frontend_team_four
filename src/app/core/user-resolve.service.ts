@@ -8,7 +8,7 @@ import {StorageService} from './storage.service';
 import {AuthService} from './auth.service';
 
 @Injectable({providedIn: 'root'})
-export class UserResolveService implements Resolve<User> {
+export class UserResolveService implements Resolve<boolean> {
   userInfo = {} as User;
   constructor(
     private userService: UserService,
@@ -21,24 +21,15 @@ export class UserResolveService implements Resolve<User> {
 
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<User> {
-    const id = this.storage.getUserId();
-    if (id === null) { return EMPTY;}
-    if(this.userInfo.id === id){return of(this.userInfo);}
-    return this.userService.getUserId(id)
-      .pipe(
-        tap(data => {
-          this.auth.setUserInfo(data);
-        }),
-        catchError(err => {
-            if (err.error.status === 401) {
-              console.log(err.error.error);
-              this.router.navigate(['/loginpage']);
-              return EMPTY;
-            }
-            console.log(err.error);
-            return EMPTY;
-        })
-      );
+    state: RouterStateSnapshot): boolean {
+    if(state.url === '/adminpage'){
+      if(this.userInfo.userRole === 'ADMIN' || this.userInfo.userRole === 'SUPER_ADMIN'){
+        this.router.navigate(['/adminpage/internships']);
+      }
+      else if(this.userInfo.userRole === 'TECH_EXPERT'){
+        this.router.navigate(['/adminpage/techexpert']);
+      }
+    }
+    return true;
   }
 }

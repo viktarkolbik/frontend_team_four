@@ -12,14 +12,14 @@ import {IsTechExpertGuard} from '../../core/guards/is-tech-expert.guard';
 import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
 import {AdminsResolveService} from '../../core/admins-resolve.service';
 import {TechExpertResolveService} from '../../core/tech-expert-resolve.service';
+import {UserInfoGuard} from '../../core/guards/user-info.guard';
 
 const routes: Routes = [
   {
     path: 'adminpage',
     component: AdminpageComponent,
     resolve: {userInfo: UserResolveService},
-    canActivate: [IsAuthorizedGuard],
-    canActivateChild: [IsAuthorizedGuard],
+    canActivate: [IsAuthorizedGuard, UserInfoGuard],
     children: [
       {
         path: 'internships',

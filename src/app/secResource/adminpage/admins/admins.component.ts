@@ -14,7 +14,7 @@ export class AdminsComponent implements OnInit {
   candidates = [] as Candidate[];
   selectedCandidate!: Candidate;
   admins = [] as User[];
-  selectedAdminId?: string;
+  selectedAdminId = '';
   techExperts = [] as User [];
   selectedTechExpertId?: string;
   error?: number;
