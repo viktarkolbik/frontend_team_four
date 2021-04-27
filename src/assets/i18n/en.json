@@ -28,8 +28,8 @@
   },
   "regform": {
     "annotation1": "Fields marked by",
-    "annotation2": "is required",
-    "h1": "Register to training",
+    "annotation2": "are required",
+    "h1": "Apply to internship",
     "name": "Name",
     "surname": "Surname",
     "patronymic": "Patronymic",
