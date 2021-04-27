@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Training } from '../types';
+import { Internship } from '../types';
 import { InternshipsService } from '../core/internships.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -9,8 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  trainings: Training[] | any;
-  filteredTrainings!: Training[];
+  trainings: Internship[] | any;
+  filteredTrainings!: Internship[];
   error: number | undefined;
 
   constructor(private internshipsService: InternshipsService, private route: ActivatedRoute) {
@@ -23,7 +23,7 @@ export class HomepageComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  updateTrainings(trainings: Training[]) {
+  updateTrainings(trainings: Internship[]) {
     this.filteredTrainings = trainings;
   }
 }
