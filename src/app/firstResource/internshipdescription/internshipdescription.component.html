@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="content">
+    <div class="head">
+      <img src="../../../assets/img/Exadel_traindescr.svg">
+      <h1>FRONTEND</h1>
+      <h3>INTERNSHIP</h3>
+    </div>
+    <div class="info">
+      <h2 class="title">
+        {{ 'internshipdescription.title' | translate}}
+      </h2>
+      <div class="about-training">
+        <H3>{{ 'internshipdescription.aboutinternship' | translate}}:
+          <p>{{internship.description}}</p>
+        </H3>
+        <h3>{{ 'internshipdescription.mentoring' | translate}}
+          <p> {{ 'internshipdescription.mentoring-text' | translate}} </p>
+        </h3>
+        <h3>{{ 'internshipdescription.workexadel' | translate}}
+          <p> {{ 'internshipdescription.aboutwork' | translate}}</p>
+          <ul>
+            <li> {{ 'internshipdescription.ourconditions' | translate}}</li>
+            <Li> {{ 'internshipdescription.development' | translate}}</Li>
+            <Li>{{ 'internshipdescription.sport' | translate}}</Li>
+            <Li>{{ 'internshipdescription.lesson' | translate}}</Li>
+            <Li>{{ 'internshipdescription.world' | translate}}</Li>
+            <Li>{{ 'internshipdescription.goods' | translate}}</Li>
+          </ul>
+        </h3>
+        <h3>{{ 'internshipdescription.howstart' | translate}}
+          <p>{{internship.requirements}}</p>
+        </h3>
+        <h3>{{ 'internshipdescription.skills' | translate}}
+          <p>{{internship.techSkills}}</p>
+        </h3>
+        <h3>{{ 'internshipdescription.toget' | translate}}
+          <ul>
+            <li> {{ 'internshipdescription.resume' | translate}}</li>
+            <Li> {{ 'internshipdescription.reqinterview' | translate}}</Li>
+            <Li>{{ 'internshipdescription.tech' | translate}}</Li>
+            <Li>{{ 'internshipdescription.learn' | translate}}</Li>
+          </ul>
+        </h3>
+    </div>
+    <div class="conditions">
+      <h3>{{ 'internshipdescription.conditions' | translate}}</h3>
+      <div class="info-internship">
+        <div class="right-box">
+          <div class="condition">{{ 'internshipdescription.starttime' | translate}}:{{internship.startDate}}</div>
+          <div class="condition">{{ 'internshipdescription.location' | translate}}:{{internship.countryList}}</div>
+          <div class="condition">{{ 'internshipdescription.duration' | translate}}: </div>
+        </div>
+        <div class="left-box">
+          <div class="condition">{{ 'internshipdescription.endtime' | translate}}:{{internship.endDate}}</div>
+          <div class="condition">{{ 'internshipdescription.formatinternship' | translate}}:{{internship.internshipFormat}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="btn-container">
+      <button class="reg-btn" routerLink="/regform/{{internship.id}}" mat-raised-button color="primary">{{ 'internshipdescription.register' | translate}}</button>
+    </div>
+  </div>
+</div>
+</div>

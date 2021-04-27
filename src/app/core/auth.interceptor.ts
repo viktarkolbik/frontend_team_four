@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpEvent, HttpEventType, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
-import {StorageService} from './storage.service';
-import {AuthService} from './auth.service';
+import {StorageService} from './services/storage.service';
+import {AuthService} from './services/auth.service';
 import {Router} from '@angular/router';
 
 @Injectable({providedIn: 'root'})
