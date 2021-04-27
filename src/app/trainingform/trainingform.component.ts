@@ -11,23 +11,26 @@ export class TrainingformComponent implements OnInit {
   form: FormGroup;
   formSelectorTime: FormGroup;
 
-  countries: string[] = [
-    'Беларусь',
-    'Украина'
-  ];
-
-  cities: string[] = [
-    'Винница',
-    'Киев',
-    'Харьков',
-    'Львов',
-    'Одесса',
-    'Мариуполь',
-    'Минск',
-    'Гродно',
-    'Гомель',
-    'Витебск'
-  ];
+  countries: {[key: string]: string} = {
+    by: 'Беларусь',
+    ua: 'Украина'
+  };
+  cities: {[key: string]: string[]} = {
+    ua: [
+      'Винница',
+      'Киев',
+      'Харьков',
+      'Львов',
+      'Одесса',
+      'Мариуполь'
+    ],
+    by: [
+      'Минск',
+      'Гродно',
+      'Гомель',
+      'Витебск'
+    ],
+  };
 
   formats: string[] = [
     'ONLINE',
@@ -45,8 +48,8 @@ export class TrainingformComponent implements OnInit {
     to: new FormControl(''),
     });
     this.form = new FormGroup({
-      userCountry: new FormControl('', Validators.required),
-      userCity: new FormControl('', Validators.required),
+      country: new FormControl('', Validators.required),
+      city: new FormControl('', Validators.required),
       trainingformName: new FormControl('', Validators.required),
       trainingDescription: new FormControl(''),
       trainingFormat: new FormControl('', Validators.required),
@@ -83,6 +86,10 @@ export class TrainingformComponent implements OnInit {
     }
 
     return (`${day}.${month}.${year}`);
+  }
+
+  getKeys(obj: any): string[]{
+    return Object.keys(obj);
   }
   ngOnInit(): void {
   }
