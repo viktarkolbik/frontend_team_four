@@ -11,7 +11,7 @@ export class FilterComponent implements OnChanges{
   @Output() onFilterTrainings: EventEmitter<Internship[]> = new EventEmitter<Internship[]>();
   filters: {[key: string]: Filter} = {};
   cities?: Location[];
-  technologies?: string[] | undefined;
+  technologies?: string[];
   removable = true;
   selectable = true;
   constructor() {
@@ -19,7 +19,7 @@ export class FilterComponent implements OnChanges{
   ngOnChanges(){
     this.onFilterTrainings.emit(this.trainings);
     const setCities = new Set(this.trainings.map(training => training.countryList));
-    this.cities = Array.from(setCities);
+    this.cities = Array.from(setCities).flat();
     const setTechnologiesArray = this.trainings.map(training => training.skills);
     const setTechnologies = new Set(setTechnologiesArray.flat());
     this.technologies = Array.from(setTechnologies);

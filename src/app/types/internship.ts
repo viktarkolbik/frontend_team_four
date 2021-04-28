@@ -1,6 +1,6 @@
 export interface Internship {
   capacity: number;
-  countryList: Location[] | undefined;
+  countryList: Location[];
   description: string;
   endDate: string;
   id: string;
@@ -11,7 +11,7 @@ export interface Internship {
   registrationStartDate: string;
   requirements: string;
   startDate: string;
-  skills: string[] | undefined;
+  skills: string[];
   techSkills: string;
 }
 
