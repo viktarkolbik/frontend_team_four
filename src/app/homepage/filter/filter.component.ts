@@ -26,7 +26,6 @@ export class FilterComponent implements OnChanges{
     // @ts-ignore
     this.filters.locations = this.getFilter('countryList', this.cities);
     this.filters.technologies = this.getFilter('skills', this.technologies);
-    console.log(this.technologies);
   }
   getFilter(field: string, criteria: string[]): Filter{
     const filter: Filter = {

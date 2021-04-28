@@ -7,7 +7,8 @@ import { Internship } from '../../types';
   styleUrls: ['./training.component.scss']
 })
 export class TrainingComponent {
-  @Input() training: Internship | undefined;
+  // @ts-ignore 
+  @Input() training: Internship = {};
   constructor() {
   }
 }
