@@ -1,7 +1,5 @@
-import { KeyValue } from '@angular/common';
-import { ContentChild } from '@angular/core';
-import {Component, ElementRef, EventEmitter, Input, OnChanges, Output} from '@angular/core';
-import {Criterion, Filter, Training} from '../../types';
+import {Component,  EventEmitter, Input, OnChanges, Output} from '@angular/core';
+import {Criterion, Filter, Internship, Location} from '../../types';
 
 @Component({
   selector: 'ia-filter',
@@ -9,10 +7,10 @@ import {Criterion, Filter, Training} from '../../types';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnChanges{
-  @Input() trainings!: Training[];
-  @Output() onFilterTrainings: EventEmitter<Training[]> = new EventEmitter<Training[]>();
+  @Input() trainings!: Internship[];
+  @Output() onFilterTrainings: EventEmitter<Internship[]> = new EventEmitter<Internship[]>();
   filters: {[key: string]: Filter} = {};
-  cities?: string[];
+  cities?: Location[];
   technologies?: string[];
   removable = true;
   selectable = true;
@@ -20,12 +18,14 @@ export class FilterComponent implements OnChanges{
   }
   ngOnChanges(){
     this.onFilterTrainings.emit(this.trainings);
-    const setCities = new Set(this.trainings.map(training => training.city));
-    this.cities = Array.from(setCities);
-    const setTechnologies = new Set(this.trainings.map(training => training.technology));
+    const setCities = new Set(this.trainings.map(training => training.countryList));
+    this.cities = Array.from(setCities).flat();
+    const setTechnologiesArray = this.trainings.map(training => training.skills);
+    const setTechnologies = new Set(setTechnologiesArray.flat());
     this.technologies = Array.from(setTechnologies);
-    this.filters.locations = this.getFilter('city', this.cities);
-    this.filters.technologies = this.getFilter('technology', this.technologies);
+    // @ts-ignore
+    this.filters.locations = this.getFilter('countryList', this.cities);
+    this.filters.technologies = this.getFilter('skills', this.technologies);
   }
   getFilter(field: string, criteria: string[]): Filter{
     const filter: Filter = {
@@ -54,7 +54,7 @@ export class FilterComponent implements OnChanges{
           condition = (filter.isChecked) ?
             filterCriteria.some(criterion => (
               // @ts-ignore
-              criterion.isChecked && training[filter.field] === criterion.value
+              criterion.isChecked && training[filter.field].includes(criterion.value)
             )) : true;
           if(!condition){ break; }
         }

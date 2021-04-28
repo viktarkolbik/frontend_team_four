@@ -11,8 +11,8 @@ export interface Internship {
   registrationStartDate: string;
   requirements: string;
   startDate: string;
-  skills: string;
-  technologyList: string[];
+  skills: string[];
+  techSkills: string;
 }
 
 export interface Location {

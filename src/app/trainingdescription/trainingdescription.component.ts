@@ -22,6 +22,7 @@ export class TrainingdescriptionComponent implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router) {
     const answer = route.snapshot.data.internship;
+
     if (!answer.error) {
       this.internship = answer;
     }
@@ -36,7 +37,7 @@ export class TrainingdescriptionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.error) {
+    if (!this.error){ 
       const difference = Date.parse(this.internship.endDate) - Date.parse(this.internship.startDate);
       const msecondsInDay = 86400000;
       this.duration = difference / msecondsInDay;

@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Training} from '../../types';
+import { Component, Input } from '@angular/core';
+import { Internship } from '../../types';
 
 @Component({
   selector: 'ia-training',
@@ -7,7 +7,8 @@ import {Training} from '../../types';
   styleUrls: ['./training.component.scss']
 })
 export class TrainingComponent {
-  @Input() training!: Training;
+  // @ts-ignore 
+  @Input() training: Internship = {};
   constructor() {
   }
 }
