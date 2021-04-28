@@ -4,8 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { HomepageComponent } from './homepage.component';
 import { HomepageRoutingModule } from './homepage-routing.module';
-import { HeaderModule } from '../../header/header.module';
-import { FooterModule } from '../../footer/footer.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { InternshipModule } from './internship/internship.module';
 import {FormsModule} from '@angular/forms';
@@ -19,8 +17,6 @@ import {InternshipsResolver} from '../../core/resolvers/internships-resolve.serv
   imports: [
     BrowserModule,
     HomepageRoutingModule,
-    HeaderModule,
-    FooterModule,
     FormsModule,
     FilterModule,
     TranslateModule,

@@ -1,6 +1,6 @@
 export interface Internlist {
   email: string;
-  fullname: string
+  fullname: string;
   phone: number;
   skype: string;
   englishlevel: string;

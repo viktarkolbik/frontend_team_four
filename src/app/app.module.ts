@@ -4,21 +4,17 @@ import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegformModule } from './firstResource/regform/regform.module';
-import { InternshipdescriptionModule } from './firstResource/internshipdescription/internshipdescription.module';
-import { HomepageModule } from './firstResource/homepage/homepage.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { I18n } from './app.i18n.config';
-import { InternshipformModule } from './secondResource/internshipform/internshipform.module';
 import { HeaderModule } from './header/header.module';
 import { FooterModule } from './footer/footer.module';
 import { SpinnerModule } from './firstResource/homepage/spinner/spinner.module';
 import { ErrorpageModule } from './errorpage/errorpage.module';
-import { LoginpageModule } from './secondResource/loginpage/loginpage.module';
 import { AuthService } from './core/services/auth.service';
 import { AuthInterceptor } from './core/auth.interceptor';
-import { AdminpageModule } from "./secondResource/adminpage/adminpage.module";
+import {FirstResourceModule} from './firstResource/firstResource.module';
+import {SecondResourceModule} from './secondResource/secondResource.module';
 
 @NgModule({
   declarations: [
@@ -26,19 +22,16 @@ import { AdminpageModule } from "./secondResource/adminpage/adminpage.module";
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    RegformModule,
-    InternshipdescriptionModule,
-    HomepageModule,
-    InternshipformModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    LoginpageModule,
+    AppRoutingModule,
+    FirstResourceModule,
+    SecondResourceModule,
     TranslateModule.forRoot(I18n.config),
     HeaderModule,
     FooterModule,
     SpinnerModule,
-    AdminpageModule
+    ErrorpageModule
   ],
   providers: [
     AuthService, {

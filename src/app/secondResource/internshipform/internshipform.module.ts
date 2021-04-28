@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { InternshipformRoutingModule } from './internshipform-routing.module';
-import { HeaderModule } from '../../header/header.module';
-import { FooterModule } from '../../footer/footer.module';
 import { InternshipformComponent } from './internshipform.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -25,8 +23,6 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     BrowserModule,
     InternshipformRoutingModule,
-    HeaderModule,
-    FooterModule,
     MatFormFieldModule,
     TranslateModule,
     MatSelectModule,

@@ -10,8 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { HeaderModule } from '../../header/header.module';
-import { FooterModule } from '../../footer/footer.module';
 import {TranslateModule} from '@ngx-translate/core';
 import {MatDialogModule} from '@angular/material/dialog';
 import {AcceptDialogComponent} from './accept-dialog/accept-dialog.component';
@@ -38,8 +36,6 @@ import {MatIconModule} from '@angular/material/icon';
     FormsModule,
     ReactiveFormsModule,
     MatCheckboxModule,
-    HeaderModule,
-    FooterModule,
     TranslateModule,
     MatDialogModule,
     MatSnackBarModule,

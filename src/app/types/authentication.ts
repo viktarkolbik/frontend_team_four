@@ -1,7 +1,7 @@
 export interface Login {
   login: string;
   password: string;
-  returnToken?: boolean
+  returnToken?: boolean;
 }
 
 export interface Token {
