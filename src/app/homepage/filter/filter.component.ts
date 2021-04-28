@@ -23,6 +23,7 @@ export class FilterComponent implements OnChanges{
     const setTechnologiesArray = this.trainings.map(training => training.skills);
     const setTechnologies = new Set(setTechnologiesArray.flat());
     this.technologies = Array.from(setTechnologies);
+    // @ts-ignore
     this.filters.locations = this.getFilter('countryList', this.cities);
     this.filters.technologies = this.getFilter('skills', this.technologies);
     console.log(this.technologies);
