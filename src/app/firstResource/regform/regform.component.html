@@ -107,17 +107,17 @@
           formControlName="country"
           required
         >
-          <mat-option *ngFor="let country of getKeys(countriesBackEnd)" [value]="countriesBackEnd[country]">
-            {{countriesBackEnd[country].name}}
+          <mat-option *ngFor="let country of getKeys(countries)" [value]="countries[country]">
+            {{countries[country].name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field appearance="standard" class="form-control" *ngIf="citiesBackEnd">
+      <mat-form-field appearance="standard" class="form-control" *ngIf="cities">
         <mat-label>{{ 'regform.city' | translate}}</mat-label>
         <mat-select class="select-group" required formControlName="city">
-          <mat-option *ngFor="let city of getKeys(citiesBackEnd)" [value]="citiesBackEnd[city]">
-            {{citiesBackEnd[city].name}}
+          <mat-option *ngFor="let city of getKeys(cities)" [value]="cities[city]">
+            {{cities[city].name}}
           </mat-option>
         </mat-select>
       </mat-form-field>

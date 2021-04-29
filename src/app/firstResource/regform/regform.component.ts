@@ -28,30 +28,10 @@ export class RegformComponent implements OnInit {
     B2: 'Upper-Intermediate',
     C1: 'Advanced',
   };
-  countries: {[key: string]: string} = {
-    by: 'Беларусь',
-    ua: 'Украина'
-  };
-  cities: {[key: string]: string[]} = {
-    ua: [
-      'Винница',
-      'Киев',
-      'Харьков',
-      'Львов',
-      'Одесса',
-      'Мариуполь'
-    ],
-    by: [
-      'Минск',
-      'Гродно',
-      'Гомель',
-      'Витебск'
-    ],
-  };
   convenientTimeArray: number[] = [];
   convenientTimeArray2: number[] = [];
-  countriesBackEnd:any;
-  citiesBackEnd:any;
+  countries:any;
+  cities:any;
   private convenientTime: {[key: string]: number}[] = [
     {
     from: 9,
@@ -108,9 +88,18 @@ export class RegformComponent implements OnInit {
     });
     this.form.get("country")?.valueChanges.subscribe(data => {
       this.locationService.getCities(data.id).subscribe(data => {
-        this.citiesBackEnd = data;
+        this.cities = data;
       });
     })
+    const data = route.snapshot.data.location;
+    if (!data.error) {
+      this.countries = data;
+    }
+    else {
+      if (data.error.message != null) {
+        this.snackBar.open(`Ошибка ${data.status} - Не удалось получить список стран, обновите страницу`, 'Ok');
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -120,9 +109,6 @@ export class RegformComponent implements OnInit {
     for (let i = this.convenientTime[1].from; i <= this.convenientTime[1].to; i++){
       this.convenientTimeArray2.push(i);
     }
-    this.locationService.getCountries().subscribe(data => {
-      this.countriesBackEnd = data;
-    });
   }
   getKeys(obj: any): string[]{
     return Object.keys(obj);
@@ -148,7 +134,6 @@ export class RegformComponent implements OnInit {
     const formValueBinary = new Blob([formValueJson], {type: 'application/json'});
     const formData = new FormData();
     formData.append('form', formValueBinary);
-    formData.append('idInternship', this.idInternship);
     if (this.file){ formData.append('file', this.file); }
     let message: string;
     this.formService.sendFormData(formData).subscribe(
