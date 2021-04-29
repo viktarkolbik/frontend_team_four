@@ -13,7 +13,8 @@
   },
   "filter": {
     "filter": "Фильтрация",
-    "location": "Локации",
+    "country": "Старны",
+    "city": "City",
     "technologies": "Технологии"
   },
   "training": {

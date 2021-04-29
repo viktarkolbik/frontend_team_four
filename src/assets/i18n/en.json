@@ -13,7 +13,8 @@
   },
   "filter": {
     "filter": "Filter",
-    "location": "Location",
+    "country": "Country",
+    "city": "City",
     "technologies": "Technologies"
   },
   "training": {
