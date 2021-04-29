@@ -107,10 +107,8 @@ export class RegformComponent implements OnInit {
       isConfirm: new FormControl(''),
     });
     this.form.get("country")?.valueChanges.subscribe(data => {
-      console.log(data);
       this.locationService.getCities(data.id).subscribe(data => {
         this.citiesBackEnd = data;
-        console.log(this.citiesBackEnd);
       });
     })
   }
@@ -124,7 +122,6 @@ export class RegformComponent implements OnInit {
     }
     this.locationService.getCountries().subscribe(data => {
       this.countriesBackEnd = data;
-      //console.log(this.countriesBackEnd);
     });
   }
   getKeys(obj: any): string[]{
@@ -145,8 +142,8 @@ export class RegformComponent implements OnInit {
   }
   submit(): void {
     const formValue = this.form.value;
-    console.log(formValue);
     formValue.timeForCallList = this.timeForCallList.map(group => group.value);
+    formValue.internshipId = this.idInternship;
     const formValueJson = JSON.stringify(formValue);
     const formValueBinary = new Blob([formValueJson], {type: 'application/json'});
     const formData = new FormData();
