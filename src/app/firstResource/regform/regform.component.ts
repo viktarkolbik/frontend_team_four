@@ -6,6 +6,7 @@ import {Subscription} from 'rxjs';
 import {AcceptDialogComponent} from './accept-dialog/accept-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
+import {LocationService} from '../../core/services/location.service';
 
 @Component({
   selector: 'ia-regform',
@@ -49,6 +50,8 @@ export class RegformComponent implements OnInit {
   };
   convenientTimeArray: number[] = [];
   convenientTimeArray2: number[] = [];
+  countriesBackEnd:any;
+  citiesBackEnd:any;
   private convenientTime: {[key: string]: number}[] = [
     {
     from: 9,
@@ -67,6 +70,7 @@ export class RegformComponent implements OnInit {
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private router: Router,
+    private locationService: LocationService,
     public dialog: MatDialog
   ) {
     this.subscription = route.params.subscribe(params => this.idInternship = params.id);
@@ -102,6 +106,13 @@ export class RegformComponent implements OnInit {
       education: new FormControl(''),
       isConfirm: new FormControl(''),
     });
+    this.form.get("country")?.valueChanges.subscribe(data => {
+      console.log(data);
+      this.locationService.getCities(data.id).subscribe(data => {
+        this.citiesBackEnd = data;
+        console.log(this.citiesBackEnd);
+      });
+    })
   }
 
   ngOnInit(): void {
@@ -111,6 +122,10 @@ export class RegformComponent implements OnInit {
     for (let i = this.convenientTime[1].from; i <= this.convenientTime[1].to; i++){
       this.convenientTimeArray2.push(i);
     }
+    this.locationService.getCountries().subscribe(data => {
+      this.countriesBackEnd = data;
+      //console.log(this.countriesBackEnd);
+    });
   }
   getKeys(obj: any): string[]{
     return Object.keys(obj);
@@ -130,6 +145,7 @@ export class RegformComponent implements OnInit {
   }
   submit(): void {
     const formValue = this.form.value;
+    console.log(formValue);
     formValue.timeForCallList = this.timeForCallList.map(group => group.value);
     const formValueJson = JSON.stringify(formValue);
     const formValueBinary = new Blob([formValueJson], {type: 'application/json'});
