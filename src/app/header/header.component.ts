@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {StorageService} from '../core/storage.service';
+import {StorageService} from '../core/services/storage.service';
 
 @Component({
   selector: 'ia-header',

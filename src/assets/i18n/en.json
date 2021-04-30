@@ -4,7 +4,7 @@
     "errorMessage": "Something is going wrong, try reload page",
     "p1": "Start your career",
     "p2": "And learn with us",
-    "training": "Training",
+    "internship": "Internship",
     "choose": "Choose Filter",
     "locations": "Our locations",
     "minsk": "Minsk",
@@ -17,7 +17,7 @@
     "city": "City",
     "technologies": "Technologies"
   },
-  "training": {
+  "internship": {
     "showMore": "show more"
   },
   "footer": {
@@ -29,8 +29,8 @@
   },
   "regform": {
     "annotation1": "Fields marked by",
-    "annotation2": "are required",
-    "h1": "Apply to internship",
+    "annotation2": "is required",
+    "h1": "Register to training",
     "name": "Name",
     "surname": "Surname",
     "patronymic": "Patronymic",
@@ -39,7 +39,7 @@
     "phone": "Phone Number",
     "phoneError": "Minimal length 12 symbols, ex. 375-99-1234567",
     "englishlevel": "English Level",
-    "country": "Coutry",
+    "country": "Country",
     "city": "City",
     "comforttime": "Choose comfort time to contact",
     "comforttimeFrom": "From",
@@ -59,18 +59,18 @@
       "buttonCancel": "Cancel"
     }
   },
-  "trainingdescription": {
-    "title": "How is the Training going",
-    "abouttraining": "Training description",
+  "internshipdescription": {
+    "title": "How is the Internship going",
+    "aboutinternship": "Internship description",
     "mentoring": "Mentoring",
     "mentoring-text": "Here, as part of our development team, students work closely with experienced engineers to quickly deepen their skills through real-world work in coding, development, design, and testing. A great advantage of the internship is an the ability to immerse yourself in teamwork. the internship will be supervised by an experienced mentor who will be able to help with the implementation of the project, as well as contribute to the accumulation of new knowledge.",
     "workexadel": "Work in Exadel",
-    "howstart": "How to start training",
-    "conditions": "Training Conditions",
-    "starttime": "Training start time",
+    "howstart": "How to start internship",
+    "conditions": "Internship Conditions",
+    "starttime": "Internship start time",
     "location": "Location",
-    "endtime": "Training finish time",
-    "formattraining": "Training Format",
+    "endtime": "Internship finish time",
+    "formatinternship": "Internship Format",
     "register": "Register",
     "mainpagelink": "To main page",
     "duration": "Duration in days",
@@ -87,14 +87,14 @@
     "tech": "Take an interview with our technician specialist",
     "learn": "Start learning according to  to the chosen program"
   },
-  "trainingform": {
-    "h1": "Create inernship",
-    "name": "Inernship name",
-    "description": "Inernship description",
-    "format": "Inernship format",
-    "language": "Inernship language",
+  "internshipform": {
+    "h1": "Create internship",
+    "name": "Internship name",
+    "description": "Internship description",
+    "format": "Internship format",
+    "language": "Internship Language",
     "requirements": "Requirements for a candidate",
-    "duration": "Inernship duration",
+    "duration": "Internship duration",
     "start-date": "Start",
     "end-date": "End",
     "registry-duration": "Registry duration",
