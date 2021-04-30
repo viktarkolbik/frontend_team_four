@@ -7,6 +7,19 @@
     </mat-expansion-panel-header>
     <div class="filtration">
       <div class="left">
+        <h3>{{ 'Country' | translate}}</h3>
+        <section class="example-section">
+          <mat-checkbox
+            color="primary"
+            *ngFor="let country of countries"
+            [(ngModel)]="filters.countries.criteria[country].isChecked"
+            (change)="updateTrainings()"
+            class="example-margin">
+            {{country}}
+          </mat-checkbox>
+        </section>
+      </div>
+      <div class="center">
         <h3>{{ 'City' | translate}}</h3>
         <section class="example-section">
           <mat-checkbox
