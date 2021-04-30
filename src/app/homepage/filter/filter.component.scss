@@ -5,9 +5,20 @@
 .filtration {
   display: flex;
   justify-content: space-evenly;
-  flex-wrap: wrap;
   padding: 10px;
 }
 .chips {
   margin-top: 20px;
+}
+
+@media (max-width: 870px) {
+  .filtration {
+    flex-direction: column;
+    .left, .center, .right {
+      margin: 10px;
+      h3 {
+        margin: 0;
+      }
+    }
+  }
 }
