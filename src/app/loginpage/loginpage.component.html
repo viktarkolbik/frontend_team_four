@@ -12,9 +12,10 @@
       <mat-form-field appearance="outline" class="form-control">
         <mat-label>{{'loginpage.fieldpassword' | translate}}</mat-label>
         <input matInput [type]="hide ? 'password' : 'text' " formControlName="loginPassword"
-               placeholder="{{'loginpage.password' | translate }}">
+               placeholder="{{'loginpage.password' | translate }}"
+               (keydown.enter)="loginAuth()">
         <button mat-icon-button
-                matSuffix (click)="hide = !hide"
+                matSuffix (focus)="hide = !hide"
                 [attr.aria-label]="'Hide password'"
                 [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
