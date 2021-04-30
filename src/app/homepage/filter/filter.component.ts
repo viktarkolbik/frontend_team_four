@@ -21,12 +21,11 @@ export class FilterComponent implements OnChanges{
     const setCities = (this.trainings.map(training => training.locations).flat());
     const setCitiesArray = new Set(setCities.map(location => location.city.name))
     this.cities = Array.from(setCitiesArray);
-    console.log(this.cities)
     const setTechnologiesArray = this.trainings.map(training => training.skills);
     const setTechnologies = new Set(setTechnologiesArray.flat());
     this.technologies = Array.from(setTechnologies);
     // @ts-ignore
-    this.filters.locations = this.getFilter('countryList', this.cities);
+    this.filters.cities = this.getFilter('city', this.cities);
     this.filters.technologies = this.getFilter('skills', this.technologies);
   }
   getFilter(field: string, criteria: string[]): Filter{
@@ -56,7 +55,10 @@ export class FilterComponent implements OnChanges{
           condition = (filter.isChecked) ?
             filterCriteria.some(criterion => (
               // @ts-ignore
-              criterion.isChecked && training[filter.field].includes(criterion.value)
+              // criterion.isChecked && training[filter.field].includes(criterion.value)
+              criterion.isChecked && training.locations.map(location => location[filter.field].name.includes(criterion.value)).every(location => location === true)
+              // console.log(training.locations.map(location => location[filter.field].name.includes(criterion.value)).some(location => location === true))
+              // console.log(filter.field)
             )) : true;
           if(!condition){ break; }
         }
