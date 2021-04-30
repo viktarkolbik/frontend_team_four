@@ -59,7 +59,7 @@ export class FilterComponent implements OnChanges{
           condition = (filter.isChecked) ?
             filterCriteria.some(criterion => (
               // @ts-ignore
-              // criterion.isChecked && training[filter.field].includes(criterion.value) 
+              // criterion.isChecked && training[filter.field].includes(criterion.value)
               criterion.isChecked && training.locations.map(location => location[filter.field].name.includes(criterion.value)).some(location => location === true)
             )) : true;
           if(!condition){ break; }
