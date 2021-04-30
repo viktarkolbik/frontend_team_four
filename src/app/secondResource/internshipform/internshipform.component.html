@@ -5,17 +5,17 @@
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="star">{{ 'regform.country' | translate}}</label>
-        <mat-select class="select-group" formControlName="userCountry">
-          <mat-option *ngFor="let country of countries" [value]="country">
-            {{country}}
+        <mat-select class="select-group" formControlName="country" required>
+          <mat-option *ngFor="let country of getKeys(countries)" [value]="country">
+            {{countries[country]}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
         <label class="star">{{ 'regform.city' | translate}}</label>
-        <mat-select class="select-group" formControlName="userCity">
-          <mat-option *ngFor="let city of cities" [value]="city">
+        <mat-select class="select-group" required formControlName="city">
+          <mat-option *ngFor="let city of cities[form.get('country')?.value]" [value]="city">
             {{city}}
           </mat-option>
         </mat-select>
