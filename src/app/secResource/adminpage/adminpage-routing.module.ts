@@ -23,6 +23,7 @@ const routes: Routes = [
     children: [
       {
         path: 'internships',
+        loadChildren: () => import('../../trainingform/trainingform.module').then(m => m.TrainingformModule),
         component: InternshipsComponent,
         resolve: {internships: InternshipsResolver},
         canActivate: [IsAdminsGuard]
