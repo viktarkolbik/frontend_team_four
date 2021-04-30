@@ -57,11 +57,18 @@ export class FilterComponent implements OnChanges{
           const filterCriteria: Criterion[] = Object.values(filter.criteria);
           filter.isChecked = filterCriteria.some(criterion => criterion.isChecked);
           condition = (filter.isChecked) ?
-            filterCriteria.some(criterion => (
+            filterCriteria.some(criterion => {
               // @ts-ignore
-              // criterion.isChecked && training[filter.field].includes(criterion.value)
-              criterion.isChecked && training.locations.map(location => location[filter.field].name.includes(criterion.value)).some(location => location === true)
-            )) : true;
+              if(Array.isArray(training[filter.field])){
+                // @ts-ignore
+                return criterion.isChecked && training[filter.field].includes(criterion.value);
+              }
+              else{
+                // @ts-ignore
+                return (criterion.isChecked && training.locations.map(location => location[filter.field].name.includes(criterion.value))
+                  .some(location => location === true));
+              }
+        }) : true;
           if(!condition){ break; }
         }
         return condition;
