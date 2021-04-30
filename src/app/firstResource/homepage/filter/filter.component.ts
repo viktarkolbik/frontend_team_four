@@ -1,5 +1,5 @@
 import {Component,  EventEmitter, Input, OnChanges, Output} from '@angular/core';
-import {Criterion, Filter, Internship, Location} from '../../types';
+import {Criterion, Filter, Internship, Location} from '../../../types';
 
 @Component({
   selector: 'ia-filter',
@@ -10,21 +10,25 @@ export class FilterComponent implements OnChanges{
   @Input() trainings!: Internship[];
   @Output() onFilterTrainings: EventEmitter<Internship[]> = new EventEmitter<Internship[]>();
   filters: {[key: string]: Filter} = {};
-  cities?: Location[];
+  cities?: string[];
   technologies?: string[];
+  countries?: string[];
   removable = true;
   selectable = true;
   constructor() {
   }
   ngOnChanges(){
     this.onFilterTrainings.emit(this.trainings);
-    const setCities = new Set(this.trainings.map(training => training.countryList));
-    this.cities = Array.from(setCities).flat();
+    const setCities = (this.trainings.map(training => training.locations).flat());
+    const setCitiesArray = new Set(setCities.map(location => location.city.name))
+    this.cities = Array.from(setCitiesArray);
     const setTechnologiesArray = this.trainings.map(training => training.skills);
     const setTechnologies = new Set(setTechnologiesArray.flat());
     this.technologies = Array.from(setTechnologies);
+    this.countries = Array.from(new Set(setCities.map(location => location.country.name)));
     // @ts-ignore
-    this.filters.locations = this.getFilter('countryList', this.cities);
+    this.filters.countries = this.getFilter('country', this.countries);
+    this.filters.cities = this.getFilter('city', this.cities);
     this.filters.technologies = this.getFilter('skills', this.technologies);
   }
   getFilter(field: string, criteria: string[]): Filter{
@@ -52,10 +56,18 @@ export class FilterComponent implements OnChanges{
           const filterCriteria: Criterion[] = Object.values(filter.criteria);
           filter.isChecked = filterCriteria.some(criterion => criterion.isChecked);
           condition = (filter.isChecked) ?
-            filterCriteria.some(criterion => (
+            filterCriteria.some(criterion => {
               // @ts-ignore
-              criterion.isChecked && training[filter.field].includes(criterion.value)
-            )) : true;
+              if(Array.isArray(training[filter.field])){
+                // @ts-ignore
+                return criterion.isChecked && training[filter.field].includes(criterion.value);
+              }
+              else{
+                // @ts-ignore
+                return (criterion.isChecked && training.locations.map(location => location[filter.field].name.includes(criterion.value))
+                  .some(location => location === true));
+              }
+        }) : true;
           if(!condition){ break; }
         }
         return condition;

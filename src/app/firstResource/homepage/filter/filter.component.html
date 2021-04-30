@@ -7,12 +7,25 @@
     </mat-expansion-panel-header>
     <div class="filtration">
       <div class="left">
-        <h3>{{ 'filter.location' | translate}}</h3>
+        <h3>{{ 'Country' | translate}}</h3>
+        <section class="example-section">
+          <mat-checkbox
+            color="primary"
+            *ngFor="let country of countries"
+            [(ngModel)]="filters.countries.criteria[country].isChecked"
+            (change)="updateTrainings()"
+            class="example-margin">
+            {{country}}
+          </mat-checkbox>
+        </section>
+      </div>
+      <div class="center">
+        <h3>{{ 'City' | translate}}</h3>
         <section class="example-section">
           <mat-checkbox
             color="primary"
             *ngFor="let city of cities"
-            [(ngModel)]="filters.locations.criteria[city].isChecked"
+            [(ngModel)]="filters.cities.criteria[city].isChecked"
             (change)="updateTrainings()"
             class="example-margin">
             {{city}}
@@ -35,11 +48,20 @@
     </div>
   </mat-expansion-panel>
   <div class="chips">
-    <mat-chip-list *ngIf="filters.locations.isChecked || filters.technologies.isChecked " aria-label="city selection">
-      <ng-container *ngFor="let city of filters.locations.criteria | keyvalue" class="chip-container">
+    <mat-chip-list *ngIf="filters.cities.isChecked || filters.technologies.isChecked || filters.countries.isChecked" aria-label="city selection">
+      <ng-container *ngFor="let country of filters.countries.criteria | keyvalue" class="chip-container">
         <mat-chip [selectable]="selectable"
                   [removable]="removable"
-                  (removed)="removeFilter('locations', city.key)" 
+                  (removed)="removeFilter('countries', country.key)" 
+                  *ngIf="country.value.isChecked">
+          {{country.key}}
+          <mat-icon *ngIf="removable" matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </ng-container>
+      <ng-container *ngFor="let city of filters.cities.criteria | keyvalue" class="chip-container">
+        <mat-chip [selectable]="selectable"
+                  [removable]="removable"
+                  (removed)="removeFilter('cities', city.key)" 
                   *ngIf="city.value.isChecked">
           {{city.key}}
           <mat-icon *ngIf="removable" matChipRemove>cancel</mat-icon>
