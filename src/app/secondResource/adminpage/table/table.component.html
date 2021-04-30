@@ -1,0 +1,100 @@
+<div class="container">
+  <mat-form-field class="filter">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+  <table
+    mat-table
+    matSort
+    [dataSource]="dataSource"
+    multiTemplateDataRows
+    class="mat-elevation-z8"
+  >
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Full name</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{
+        element.lastName + ' '
+        + element.firstName[0]+'. '
+        + (element.middleName ? element.middleName[0] + '.' : '')
+        }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone Number</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.phoneNumber}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="skype">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Skype</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.skype}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="englishLevel">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>English level</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.englishLevel}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="formStatus">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.formStatus}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="admin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Recruiter</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.interview?.admin}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="techSpecialist">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Tech specialist</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.interview?.techSpecialist}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="primarySkill">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Primary skill</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        {{element.primarySkill}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+        <div
+          class="example-element-detail"
+
+          [@detailExpand]="element == selectedCandidate ? 'expanded' : 'collapsed'"
+        >
+          <div class="example-element-description">
+            <div>
+              <p>First name: {{element.firstName}}</p>
+              <p>Last name: {{element.lastName}}</p>
+              <p>Email {{element.email}}</p>
+              <p>Country: {{element.country.name}}</p>
+              <p>City: {{element.city.name}}</p>
+              <p>Primary skill: {{element.primarySkill}}</p>
+              <p>Experience: {{element.experience}}</p>
+            </div>
+            <ng-template class="control-panel" [ngTemplateOutlet]="template" ></ng-template>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+        class="rows-element"
+        [class.rows-element]="selectedCandidate === element"
+        (click)="
+          selectedCandidate = selectedCandidate === element ? null : element;
+          onSelectedCandidate.emit(selectedCandidate);
+        "
+    >
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  </table>
+</div>

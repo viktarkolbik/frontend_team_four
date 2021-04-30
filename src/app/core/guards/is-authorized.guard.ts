@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router} from '@angular/router';
-import {AuthService} from '../auth.service';
-import {StorageService} from '../storage.service';
-import {UserService} from '../user.service';
+import {AuthService} from '../services/auth.service';
+import {StorageService} from '../services/storage.service';
+import {UserService} from '../services/user.service';
 import {User} from '../../types/user';
 
 @Injectable({

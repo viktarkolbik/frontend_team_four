@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  backendURL: 'https://intern-app-exadel-team4-be.herokuapp.com',
+  production: false
 };
