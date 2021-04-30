@@ -18,7 +18,6 @@ export class HomepageComponent implements OnInit {
     if (this.trainings.error) {
       this.error = this.trainings.status;
     }
-    console.log(this.trainings)
   }
 
   ngOnInit(): void {

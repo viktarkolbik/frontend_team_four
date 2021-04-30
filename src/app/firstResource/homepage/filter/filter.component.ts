@@ -1,5 +1,5 @@
 import {Component,  EventEmitter, Input, OnChanges, Output} from '@angular/core';
-import {Criterion, Filter, Internship, Location} from '../../types';
+import {Criterion, Filter, Internship, Location} from '../../../types';
 
 @Component({
   selector: 'ia-filter',
@@ -30,7 +30,6 @@ export class FilterComponent implements OnChanges{
     this.filters.countries = this.getFilter('country', this.countries);
     this.filters.cities = this.getFilter('city', this.cities);
     this.filters.technologies = this.getFilter('skills', this.technologies);
-    console.log(this.filters)
   }
   getFilter(field: string, criteria: string[]): Filter{
     const filter: Filter = {
