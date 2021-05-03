@@ -12,6 +12,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class InternshipdescriptionComponent implements OnInit {
 
   internship: Internship | any;
+  techSkills?: string;
+  requirements?: string;
   duration = 0;
   error: number | undefined;
   errorMessage: string | undefined;
@@ -41,6 +43,10 @@ export class InternshipdescriptionComponent implements OnInit {
       const difference = Date.parse(this.internship.endDate) - Date.parse(this.internship.startDate);
       const msecondsInDay = 86400000;
       this.duration = difference / msecondsInDay;
+
+      this.techSkills = this.internship.techSkills.split(";")
+      this.requirements = this.internship.requirements.split(";")
+      console.log(this.requirements);
     }
   }
 }

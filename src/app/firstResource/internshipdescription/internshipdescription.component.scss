@@ -21,11 +21,13 @@
     }
     h1, h3 {
       font-weight: bold;
-      letter-spacing: 1.3rem;
+      letter-spacing: 1.2rem;
       background-color: rgba(255, 255, 255, 0.541);
     }
     h1 {
-      font-size: 2.5rem;
+      width: 60%;
+      font-size: 2.2rem;
+      text-align: center;
     }
     h3 {
       font-size: 1.4rem;
@@ -46,7 +48,7 @@
       .about-training {
         margin: 0 auto;
         width: 70%;
-        h3 {
+        h3, ul {
           font-weight: bold;
           color: #49BBED;
           p, ul {
