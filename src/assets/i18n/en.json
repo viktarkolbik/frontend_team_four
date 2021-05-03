@@ -60,13 +60,14 @@
     }
   },
   "internshipdescription": {
-    "title": "How is the Internship going",
+    "title": "About the internship",
     "aboutinternship": "Internship description",
     "mentoring": "Mentoring",
     "mentoring-text": "Here, as part of our development team, students work closely with experienced engineers to quickly deepen their skills through real-world work in coding, development, design, and testing. A great advantage of the internship is an the ability to immerse yourself in teamwork. the internship will be supervised by an experienced mentor who will be able to help with the implementation of the project, as well as contribute to the accumulation of new knowledge.",
     "workexadel": "Work in Exadel",
-    "howstart": "How to start internship",
-    "conditions": "Internship Conditions",
+    "howstart": "Necessary skills",
+    "skills": "The technologies you will learn on our internship",
+    "conditions": "Сonditions of the internship",
     "starttime": "Internship start time",
     "location": "Location",
     "endtime": "Internship finish time",
