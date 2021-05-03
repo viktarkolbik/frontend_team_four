@@ -3,9 +3,9 @@ import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Route
 import {EMPTY, Observable, of} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import {User} from '../../types/user';
-import {AuthService} from '../auth.service';
-import {StorageService} from '../storage.service';
-import {UserService} from '../user.service';
+import {AuthService} from '../services/auth.service';
+import {StorageService} from '../services/storage.service';
+import {UserService} from '../services/user.service';
 
 @Injectable({
   providedIn: 'root'

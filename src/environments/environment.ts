@@ -4,7 +4,8 @@
 
 export const environment = {
   // backendURL: 'http://localhost:8080',
-  backendURL: 'http://192.168.99.100:8080',
+  // backendURL: 'http://192.168.99.100:8080',
+  backendURL: 'https://intern-app-exadel-team4-be.herokuapp.com',
   production: false
 };
 
