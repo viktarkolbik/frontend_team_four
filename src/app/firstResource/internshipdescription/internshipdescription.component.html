@@ -47,7 +47,7 @@
       <div class="info-internship">
         <div class="right-box">
           <div class="condition">{{ 'internshipdescription.starttime' | translate}}:{{internship.startDate}}</div>
-          <div class="condition">{{ 'internshipdescription.location' | translate}}:{{internship.countryList}}</div>
+          <div class="condition" *ngFor="let location of internship.locations">{{ 'internshipdescription.location' | translate}}: {{location.country.name}} | {{location.city.name}}</div>
           <div class="condition">{{ 'internshipdescription.duration' | translate}}:{{duration}} </div>
         </div>
         <div class="left-box">
