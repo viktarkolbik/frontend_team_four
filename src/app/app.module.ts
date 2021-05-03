@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,19 +15,15 @@ import { AuthService } from './core/services/auth.service';
 import { AuthInterceptor } from './core/auth.interceptor';
 import {FirstResourceModule} from './firstResource/firstResource.module';
 import {SecondResourceModule} from './secondResource/secondResource.module';
+import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    // BrowserModule,
-    CommonModule,
+    BrowserModule,
     AppRoutingModule,
-    RegformModule,
-    TrainingdescriptionModule,
-    TrainingformModule,
-    HomepageModule,
     BrowserAnimationsModule,
     HttpClientModule,
     // LoginpageModule,

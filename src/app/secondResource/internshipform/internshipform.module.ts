@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { InternshipformRoutingModule } from './internshipform-routing.module';
 import { InternshipformComponent } from './internshipform.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,16 +11,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-
-
-
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
     InternshipformComponent,
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     InternshipformRoutingModule,
     MatFormFieldModule,
     TranslateModule,

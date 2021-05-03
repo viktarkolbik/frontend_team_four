@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
-import {HomepageComponent} from './homepage/homepage.component';
-import {InternshipsResolver} from './core/internships-resolve.service';
+import {HomepageComponent} from './firstResource/homepage/homepage.component';
+import {InternshipsResolver} from './core/resolvers/internships-resolve.service';
 
 const routes: Routes = [
   {path: '', component: HomepageComponent, resolve: {internships: InternshipsResolver}},
-  {path: 'adminpage', loadChildren: () => import('./secResource/adminpage/adminpage.module').then(m => m.AdminpageModule)},
-  {path: 'loginpage', loadChildren: () => import('./loginpage/loginpage.module').then(m => m.LoginpageModule)},
-  // {path: 'trainingform', loadChildren: () => import('../trainingform/trainingform.module').then(m => m.TrainingformModule)},
+  {path: 'adminpage', loadChildren: () => import('./secondResource/adminpage/adminpage.module').then(m => m.AdminpageModule)},
+  {path: 'loginpage', loadChildren: () => import('./secondResource/loginpage/loginpage.module').then(m => m.LoginpageModule)},
+  {path: 'trainingform', loadChildren: () => import('./secondResource/internshipform/internshipform.module').then(m => m.InternshipformModule)},
 ];
 
 @NgModule({
