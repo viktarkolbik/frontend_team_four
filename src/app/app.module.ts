@@ -13,29 +13,33 @@ import { I18n } from './app.i18n.config';
 import {HeaderModule} from './header/header.module';
 import {FooterModule} from './footer/footer.module';
 import {SpinnerModule} from './homepage/spinner/spinner.module';
-import { LoginpageModule} from './loginpage/loginpage.module';
+// import { LoginpageModule} from './loginpage/loginpage.module';
 import { AuthService } from './core/auth.service';
 import { AuthInterceptor } from './core/auth.interceptor';
-import {AdminpageModule} from "./secResource/adminpage/adminpage.module";
+import {TrainingformModule} from './trainingform/trainingform.module';
+import {CommonModule} from '@angular/common';
+// import {AdminpageModule} from './secResource/adminpage/adminpage.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    // BrowserModule,
+    CommonModule,
     AppRoutingModule,
     RegformModule,
     TrainingdescriptionModule,
+    TrainingformModule,
     HomepageModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    LoginpageModule,
+    // LoginpageModule,
     TranslateModule.forRoot(I18n.config),
     HeaderModule,
     FooterModule,
     SpinnerModule,
-    AdminpageModule
+    // AdminpageModule
   ],
   providers: [
     AuthService, {

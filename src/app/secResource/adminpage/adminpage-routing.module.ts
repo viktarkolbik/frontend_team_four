@@ -16,14 +16,13 @@ import {UserInfoGuard} from '../../core/guards/user-info.guard';
 
 const routes: Routes = [
   {
-    path: 'adminpage',
+    path: '',
     component: AdminpageComponent,
     resolve: {userInfo: UserResolveService},
     canActivate: [IsAuthorizedGuard, UserInfoGuard],
     children: [
       {
         path: 'internships',
-        loadChildren: () => import('../../trainingform/trainingform.module').then(m => m.TrainingformModule),
         component: InternshipsComponent,
         resolve: {internships: InternshipsResolver},
         canActivate: [IsAdminsGuard]

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { HomepageComponent } from './homepage.component';
@@ -11,13 +10,14 @@ import { TrainingModule } from './training/training.module';
 import {FormsModule} from '@angular/forms';
 import {FilterModule} from './filter/filter.module';
 import {InternshipsResolver} from '../core/internships-resolve.service';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
     HomepageComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     HomepageRoutingModule,
     HeaderModule,
     FooterModule,
