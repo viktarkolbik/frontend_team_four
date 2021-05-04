@@ -4,6 +4,7 @@ import {User} from '../../../types/user';
 import {ActivatedRoute} from '@angular/router';
 import {Candidate} from '../../../types/candidate';
 import {FormsService} from '../../../core/services/forms.service';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'ia-admins',
@@ -43,11 +44,9 @@ export class AdminsComponent implements OnInit {
 
   updateStatus(id: string, status: string): void {
     this.formsService.updateStatusCandidate(id, status)
-      .subscribe(() => {this.route.params
-        .subscribe(data => {this.formsService.getCandidatesList(data.id)
-          .subscribe(data => this.candidates = data);
-        })
-      }
-    );
-  }
+      .pipe(switchMap(() => this.route.params))
+      .pipe(switchMap((data) => this.formsService.getCandidatesList(data.id)))
+      .subscribe(data => this.candidates = data);
+    }
+
 }
