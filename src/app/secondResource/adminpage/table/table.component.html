@@ -11,7 +11,7 @@
     class="mat-elevation-z8"
   >
     <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Full name</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.fullname" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
         {{
         element.lastName + ' '
@@ -21,7 +21,7 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="phoneNumber">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone Number</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.phoneNumber" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
         {{element.phoneNumber}}
       </td>
@@ -33,31 +33,31 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="englishLevel">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>English level</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.englishLevel" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
         {{element.englishLevel}}
       </td>
     </ng-container>
     <ng-container matColumnDef="formStatus">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.status" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
         {{element.formStatus}}
       </td>
     </ng-container>
     <ng-container matColumnDef="admin">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Recruiter</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.recruiter" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
         {{element.interview?.admin}}
       </td>
     </ng-container>
     <ng-container matColumnDef="techSpecialist">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Tech specialist</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.techSpec" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
         {{element.interview?.techSpecialist}}
       </td>
     </ng-container>
     <ng-container matColumnDef="primarySkill">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Primary skill</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.skill" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
         {{element.primarySkill}}
       </td>
@@ -68,17 +68,17 @@
         <div
           class="example-element-detail"
 
-          [@detailExpand]="element == selectedCandidate ? 'expanded' : 'collapsed'"
+          [@detailExpand]="element.id === selectedCandidateID ? 'expanded' : 'collapsed'"
         >
           <div class="example-element-description">
             <div>
-              <p>First name: {{element.firstName}}</p>
-              <p>Last name: {{element.lastName}}</p>
+              <p>{{"adminTable.name" | translate}}: {{element.firstName}}</p>
+              <p>{{"adminTable.lastname" | translate}}: {{element.lastName}}</p>
               <p>Email {{element.email}}</p>
-              <p>Country: {{element.country.name}}</p>
-              <p>City: {{element.city.name}}</p>
-              <p>Primary skill: {{element.primarySkill}}</p>
-              <p>Experience: {{element.experience}}</p>
+              <p>{{"adminTable.country" | translate}}: {{element.country.name}}</p>
+              <p>{{"adminTable.city" | translate}}: {{element.city.name}}</p>
+              <p>{{"adminTable.skill" | translate}}: {{element.primarySkill}}</p>
+              <p>{{"adminTable.experience" | translate}}: {{element.experience}}</p>
             </div>
             <ng-template class="control-panel" [ngTemplateOutlet]="template" ></ng-template>
           </div>

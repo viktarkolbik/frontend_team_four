@@ -8,7 +8,7 @@ export interface Candidate {
   filePath?: string;
   firstName: string;
   formStatus?: string;
-  id?: string;
+  id: string;
   interview?: Interview;
   lastName: string;
   middleName: string;

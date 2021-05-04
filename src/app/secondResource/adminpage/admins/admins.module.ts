@@ -7,17 +7,19 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {FormsModule} from '@angular/forms';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [AdminsComponent],
-  imports: [
-    CommonModule,
-    TableModule,
-    MatFormFieldModule,
-    MatButtonModule,
-    MatSelectModule,
-    FormsModule
-  ],
+    imports: [
+        CommonModule,
+        TableModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatSelectModule,
+        FormsModule,
+        TranslateModule
+    ],
   providers: [IsAdminsGuard],
   exports: [AdminsComponent]
 })
