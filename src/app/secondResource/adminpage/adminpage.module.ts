@@ -8,10 +8,10 @@ import {InternshipsModule} from './internships/internships.module';
 import {AdminsModule} from './admins/admins.module';
 import {TechexpertModule} from './techexpert/techexpert.module';
 import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
-import { InternlistComponent } from './internlist/internlist.component';
+import { InternlistModule } from './internlist/internlist.module';
 
 @NgModule({
-  declarations: [AdminpageComponent, InternlistComponent],
+  declarations: [AdminpageComponent],
   imports: [
     CommonModule,
     AdminpageRoutingModule,
@@ -19,7 +19,8 @@ import { InternlistComponent } from './internlist/internlist.component';
     MatButtonModule,
     InternshipsModule,
     AdminsModule,
-    TechexpertModule
+    TechexpertModule,
+    InternlistModule
   ],
   providers: [IsAuthorizedGuard],
   exports: [AdminpageComponent]
