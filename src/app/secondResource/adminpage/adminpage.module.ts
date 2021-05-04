@@ -8,9 +8,10 @@ import {InternshipsModule} from './internships/internships.module';
 import {AdminsModule} from './admins/admins.module';
 import {TechexpertModule} from './techexpert/techexpert.module';
 import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
+import { InternlistComponent } from './internlist/internlist.component';
 
 @NgModule({
-  declarations: [AdminpageComponent],
+  declarations: [AdminpageComponent, InternlistComponent],
   imports: [
     CommonModule,
     AdminpageRoutingModule,
