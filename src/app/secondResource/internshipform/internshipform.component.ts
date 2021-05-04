@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { InternshipsService } from 'src/app/core/services/internships.service';
 
 @Component({
   selector: 'ia-trainingform',
@@ -42,7 +43,10 @@ export class InternshipformComponent implements OnInit {
     'C#'
   ];
 
-  constructor() {
+  constructor(
+    private internshipService: InternshipsService
+  )
+  {
     this.formSelectorTime = new FormGroup({
     from: new FormControl(''),
     to: new FormControl(''),
@@ -90,6 +94,19 @@ export class InternshipformComponent implements OnInit {
 
   getKeys(obj: any): string[]{
     return Object.keys(obj);
+  }
+
+  submit(): void {
+    const formValue = this.form.value;
+    const formValueJson = JSON.stringify(formValue);
+    const formValueBinary = new Blob([formValueJson], {type: 'application.json'});
+    const formData = new FormData();
+    formData.append('form', formValueBinary);
+    this.internshipService.sendFormData(formData).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
   }
   ngOnInit(): void {
   }

@@ -20,4 +20,9 @@ export class InternshipsService {
     return this.http.get<Internship>(`${this.basePath}/${id}`);
   }
 
+  sendFormData(formData: FormData): Observable<any> {
+
+    return this.http.post(this.basePath, formData);
+  }
+
 }
