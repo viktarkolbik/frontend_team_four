@@ -2,6 +2,7 @@
   <ng-container *ngIf="userInfo.userRole === 'SUPER_ADMIN' || userInfo.userRole === 'ADMIN'">
     <button mat-button routerLink="internships">Internships</button>
     <button mat-button routerLink="/internshipform" *ngIf="userInfo.userRole === 'SUPER_ADMIN'">Create internship</button>
+    <button mat-button *ngIf="userInfo.userRole === 'ADMIN'">My interns</button>
   </ng-container>
   <button id="log-out-button" mat-button routerLink="/loginpage" (click)="auth.logOut()">Log out</button>
 </mat-toolbar>
