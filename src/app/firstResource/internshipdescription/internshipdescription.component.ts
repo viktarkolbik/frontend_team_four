@@ -46,7 +46,6 @@ export class InternshipdescriptionComponent implements OnInit {
 
       this.techSkills = this.internship.techSkills.split(";")
       this.requirements = this.internship.requirements.split(";")
-      console.log(this.requirements);
     }
   }
 }
