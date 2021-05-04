@@ -7,4 +7,12 @@ export interface User {
   password: string;
   skills: string[];
   userRole: string;
+  timeForCall: Time[];
+}
+
+export interface Time {
+  startHour: string;
+  endHour: string;
+  id?: string;
+  userId?: string;
 }

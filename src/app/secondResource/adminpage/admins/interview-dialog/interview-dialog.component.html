@@ -1,0 +1,39 @@
+<div>
+  <p>Schedule an interview</p>
+  <div>
+    <ng-container *ngIf="data.users.length === 0">
+      <p *ngIf="data.role === 'ADMIN'">no admins</p>
+      <p *ngIf="data.role === 'TECH_EXPERT'">no technical experts</p>
+    </ng-container>
+    <mat-form-field appearance="fill">
+      <mat-label *ngIf="data.role === 'ADMIN'">Select admin</mat-label>
+      <mat-label *ngIf="data.role === 'TECH_EXPERT'">Select technical expert</mat-label>
+      <mat-select [disabled]="data.users.length === 0" [(ngModel)]="selectedUser">
+        <mat-option *ngFor="let user of data.users" [value]="user">
+          {{user.lastName + user.firstName[0] + '.'}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Time</mat-label>
+      <mat-select [disabled]="!selectedUser.id">
+        <mat-option *ngFor="let time of selectedUser.timeForCall">
+          {{time.startHour}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions class="button-wrapper">
+    <button
+      mat-button
+      [mat-dialog-close]="false"
+    >
+    </button>
+    <button
+      mat-button
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+    >
+    </button>
+  </mat-dialog-actions>
+</div>

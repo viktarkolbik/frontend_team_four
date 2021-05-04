@@ -23,6 +23,11 @@
         </div>
       </ng-container>
       <div>
+        <p>Schedule an interview with:</p>
+        <button mat-raised-button (click)="openInterviewDialog(admins, 'ADMIN')">HR</button>
+        <button mat-raised-button (click)="openInterviewDialog(techExperts, 'TECH_EXPERT')">technical expert</button>
+      </div>
+      <div>
         <ng-container *ngIf="techExperts.length === 0">
           <p>no technical experts</p>
         </ng-container>
