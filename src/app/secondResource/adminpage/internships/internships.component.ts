@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Internship, Training} from '../../../types';
+import {Internship} from '../../../types';
 
 @Component({
   selector: 'ia-internships',
