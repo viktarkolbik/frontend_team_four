@@ -8,20 +8,20 @@ import {InternshipsModule} from './internships/internships.module';
 import {AdminsModule} from './admins/admins.module';
 import {TechexpertModule} from './techexpert/techexpert.module';
 import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
-import { InternlistModule } from './internlist/internlist.module';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [AdminpageComponent],
-  imports: [
-    CommonModule,
-    AdminpageRoutingModule,
-    MatToolbarModule,
-    MatButtonModule,
-    InternshipsModule,
-    AdminsModule,
-    TechexpertModule,
-    InternlistModule
-  ],
+    imports: [
+        CommonModule,
+        AdminpageRoutingModule,
+        MatToolbarModule,
+        MatButtonModule,
+        InternshipsModule,
+        AdminsModule,
+        TechexpertModule,
+        TranslateModule
+    ],
   providers: [IsAuthorizedGuard],
   exports: [AdminpageComponent]
 })

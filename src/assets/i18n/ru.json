@@ -114,5 +114,31 @@
   },
   "errorpage": {
     "on-main": "На главную"
+  },
+  "adminpage": {
+    "internship": "Список стажировок",
+    "createInternship": "Создать стажировку",
+    "logOut": "Выйти",
+    "showCandidates": "Показать кандидатов"
+  },
+  "admins": {
+    "candidateRefused": "Кандидат отказался",
+    "decline": "Отклонить кандидата",
+    "waiting": "Добавить в лист ожидания",
+    "approve": "Принять кандидата"
+  },
+  "adminTable": {
+    "fullname": "Полное Имя",
+    "phoneNumber": "Номер телефона",
+    "englishLevel": "Уровень английского",
+    "status": "Статус",
+    "recruiter": "Рекрутер",
+    "techSpec": "Технический специалист",
+    "skill": "Основной навык",
+    "name": "Имя",
+    "lastname": "Фамилия",
+    "country": "Страна",
+    "city": "Город",
+    "experience": "Опыт"
   }
 }

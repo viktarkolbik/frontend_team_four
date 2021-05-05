@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { HeaderComponent } from './header.component';
 import {MatSelectModule} from '@angular/material/select';
@@ -8,13 +7,14 @@ import {TranslateModule} from '@ngx-translate/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {AppRoutingModule} from '../app-routing.module';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
     HeaderComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     MatSelectModule,
     MatFormFieldModule,
     TranslateModule,

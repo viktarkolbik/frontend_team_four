@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { RegformRoutingModule } from './regform-routing.module';
 import { RegformComponent } from './regform.component';
 import { MatFormFieldModule} from '@angular/material/form-field';
@@ -16,6 +15,7 @@ import {AcceptDialogComponent} from './accept-dialog/accept-dialog.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {FormFieldCustomControl, MyTelInput} from './phone-input/phone-input.component';
 import {MatIconModule} from '@angular/material/icon';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import {MatIconModule} from '@angular/material/icon';
     MyTelInput
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     RegformRoutingModule,
     MatFormFieldModule,
     MatInputModule,

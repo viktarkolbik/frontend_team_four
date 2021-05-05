@@ -113,5 +113,31 @@
   },
   "errorpage": {
     "on-main": "On main page"
+  },
+  "adminpage": {
+    "internship": "Internships list",
+    "createInternship": "Create internship",
+    "logOut": "Log Out",
+    "showCandidates": "Show Candidates"
+  },
+  "admins": {
+    "candidateRefused": "Candidate Refused",
+    "decline": "Decline intern",
+    "waiting": "Add to waiting list",
+    "approve": "Approve intern"
+  },
+  "adminTable": {
+    "fullname": "Full Name",
+    "phoneNumber": "Phone Number",
+    "englishLevel": "English Level",
+    "status": "Status",
+    "recruiter": "Recruiter",
+    "techSpec": "Technical Specialist",
+    "skill": "Primary Skill",
+    "name": "Name",
+    "lastname": "Surname",
+    "country": "Country",
+    "city": "City",
+    "experience": "Experience"
   }
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {CommonModule} from '@angular/common';
 
 import { InternshipdescriptionRoutingModule } from './internshipdescription-routing.module';
 import { InternshipdescriptionComponent } from './internshipdescription.component';
@@ -9,12 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { InternshipResolver } from '../../core/resolvers/internship-resolve.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+
 @NgModule({
   declarations: [
     InternshipdescriptionComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     InternshipdescriptionRoutingModule,
     MatButtonModule,
     TranslateModule,

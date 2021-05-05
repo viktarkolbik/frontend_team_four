@@ -20,4 +20,11 @@ export class FormsService {
     });
     return this.http.post(this.basePath, formData, {headers});
   }
+  updateStatusCandidate(id: string, status: string): Observable<any> {
+    return this.http.put(
+      `${this.basePath}/updateStatus`,
+      "",
+      {params: {formId:id, status}}
+    );
+  }
 }

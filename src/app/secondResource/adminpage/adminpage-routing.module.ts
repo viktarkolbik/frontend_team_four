@@ -16,7 +16,7 @@ import {UserInfoGuard} from '../../core/guards/user-info.guard';
 
 const routes: Routes = [
   {
-    path: 'adminpage',
+    path: '',
     component: AdminpageComponent,
     resolve: {userInfo: UserResolveService},
     canActivate: [IsAuthorizedGuard, UserInfoGuard],
