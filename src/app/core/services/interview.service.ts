@@ -13,12 +13,7 @@ export class InterviewService {
   constructor(private http: HttpClient) {
   }
 
-  getInterviewList(): Observable<Interview[]>{
-    return this.http.get<Interview[]>(this.basePath);
+  getInterviewList(userId: string, userRole: string): Observable<Interview[]>{
+    return this.http.get<Interview[]>(`${this.basePath}?userId=${userId}&userRole=${userRole}`);
   }
-
-  getInterviewById(id: string): Observable<Interview>{
-    return this.http.get<Interview>(`${this.basePath}/${id}`);
-  }
-
 }

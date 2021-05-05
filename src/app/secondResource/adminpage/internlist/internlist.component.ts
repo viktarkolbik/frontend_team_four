@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { InterviewService } from 'src/app/core/services/interview.service';
+import { Interview } from 'src/app/types/candidate';
 
 @Component({
   selector: 'ia-internlist',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InternlistComponent implements OnInit {
 
-  constructor() { }
+  interviewList = [] as Interview[];
+  constructor(interviewService: InterviewService) { 
+  }
 
   ngOnInit(): void {
   }
