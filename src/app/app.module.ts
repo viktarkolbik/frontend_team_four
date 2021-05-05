@@ -13,6 +13,7 @@ import { ErrorpageModule } from './errorpage/errorpage.module';
 import { AuthService } from './core/services/auth.service';
 import { AuthInterceptor } from './core/auth.interceptor';
 import {BrowserModule} from '@angular/platform-browser';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {BrowserModule} from '@angular/platform-browser';
     HeaderModule,
     FooterModule,
     SpinnerModule,
-    ErrorpageModule
+    ErrorpageModule,
+    MatSnackBarModule
   ],
   providers: [
     AuthService, {

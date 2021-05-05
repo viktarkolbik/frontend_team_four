@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {HomepageComponent} from './firstResource/homepage/homepage.component';
-import {InternshipsResolver} from './core/resolvers/internships-resolve.service';
 
 const routes: Routes = [
-  {path: '', component: HomepageComponent, resolve: {internships: InternshipsResolver}},
   {path: '', loadChildren: () => import('./firstResource/firstResource.module')
       .then(m => m.FirstResourceModule)},
   {path: 'adminpage', loadChildren: () => import('./secondResource/adminpage/adminpage.module')
