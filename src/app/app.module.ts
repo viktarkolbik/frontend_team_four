@@ -12,7 +12,6 @@ import { SpinnerModule } from './firstResource/homepage/spinner/spinner.module';
 import { ErrorpageModule } from './errorpage/errorpage.module';
 import { AuthService } from './core/services/auth.service';
 import { AuthInterceptor } from './core/auth.interceptor';
-// import {FirstResourceModule} from './firstResource/firstResource.module';
 import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
@@ -25,7 +24,6 @@ import {BrowserModule} from '@angular/platform-browser';
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    // FirstResourceModule,
     TranslateModule.forRoot(I18n.config),
     HeaderModule,
     FooterModule,
