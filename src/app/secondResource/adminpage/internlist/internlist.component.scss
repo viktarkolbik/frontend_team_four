@@ -1,12 +1,59 @@
-table {
-    width: 100%;
-  }
+.container {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
   
-  .mat-form-field {
-    font-size: 14px;
+  table {
+    // min-height: 500px;
     width: 100%;
+    th {
+      font-size: 1.0rem;
+    }
+    td {
+      font-size: 0.85rem;
+      margin: 0 auto;
+    }
+
+    tr.example-detail-row {
+      height: 0;
+    }
+
+    tr.rows-element:not(.example-expanded-row):hover {
+      background: whitesmoke;
+    }
+
+    tr.rows-element:not(.example-expanded-row):active {
+      background: #efefef;
+    }
+
+    .rows-element td {
+      border-bottom-width: 0;
+    }
+
+    .example-element-detail {
+      overflow: hidden;
+
+    }
+
+    .example-element-diagram {
+      min-width: 80px;
+      border: 2px solid black;
+      padding: 8px;
+      font-weight: lighter;
+      margin: 8px 0;
+      height: 104px;
+    }
+
+    .example-element-symbol {
+      font-weight: bold;
+      font-size: 40px;
+      line-height: normal;
+    }
+
+    .example-element-description {
+      width: 100%;
+      padding: 16px;
+      font-size: 1rem;
+    }
   }
-  
-  td, th {
-    width: 25%;
-  }
+}

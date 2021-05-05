@@ -13,6 +13,7 @@ import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
 import {AdminsResolveService} from '../../core/resolvers/admins-resolve.service';
 import {TechExpertResolveService} from '../../core/resolvers/tech-expert-resolve.service';
 import {UserInfoGuard} from '../../core/guards/user-info.guard';
+import { InternlistComponent } from './internlist/internlist.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
         path: 'techexpert',
         component: TechexpertComponent,
         canActivate: [IsTechExpertGuard]
+      },
+      {
+        path: 'internlist',
+        component: InternlistComponent
       }
     ]
   }
