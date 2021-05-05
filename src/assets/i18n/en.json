@@ -88,11 +88,13 @@
     "learn": "Start learning according to  to the chosen program"
   },
   "internshipform": {
+    "locationList": "Location list",
     "h1": "Create internship",
     "name": "Internship name",
     "description": "Internship description",
     "format": "Internship format",
     "skills": "Skills",
+    "newSkill": "newSkill",
     "requirements": "Requirements for a candidate",
     "duration": "Internship duration",
     "start-date": "Start",
