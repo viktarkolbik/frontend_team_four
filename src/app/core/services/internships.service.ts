@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Internship} from '../../types';
 import {Observable} from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -20,9 +20,12 @@ export class InternshipsService {
     return this.http.get<Internship>(`${this.basePath}/${id}`);
   }
 
-  sendFormData(formData: FormData): Observable<any> {
-
-    return this.http.post(this.basePath, formData);
+  sendFormData(formData: any): Observable<any> {
+    console.log(formData);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.post(this.basePath, formData, {headers});
   }
 
 }

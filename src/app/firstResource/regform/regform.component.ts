@@ -128,6 +128,7 @@ export class RegformComponent implements OnInit {
   }
   submit(): void {
     const formValue = this.form.value;
+    console.log(formValue);
     formValue.timeForCallList = this.timeForCallList.map(group => group.value);
     formValue.internshipId = this.idInternship;
     const formValueJson = JSON.stringify(formValue);

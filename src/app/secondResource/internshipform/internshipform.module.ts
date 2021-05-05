@@ -12,6 +12,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 
 
@@ -20,21 +22,23 @@ import { MatButtonModule } from '@angular/material/button';
   declarations: [
     InternshipformComponent,
   ],
-  imports: [
-    BrowserModule,
-    InternshipformRoutingModule,
-    MatFormFieldModule,
-    TranslateModule,
-    MatSelectModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatChipsModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatIconModule,
-    MatButtonModule,
-  ],
+    imports: [
+        BrowserModule,
+        InternshipformRoutingModule,
+        MatFormFieldModule,
+        TranslateModule,
+        MatSelectModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatChipsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatIconModule,
+        MatButtonModule,
+        MatExpansionModule,
+        MatAutocompleteModule,
+    ],
   exports: [InternshipformComponent]
 })
 export class InternshipformModule { }
