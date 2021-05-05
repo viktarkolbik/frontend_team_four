@@ -7,9 +7,7 @@ const routes: Routes = [
   {path: 'adminpage', loadChildren: () => import('./secondResource/adminpage/adminpage.module')
       .then(m => m.AdminpageModule)},
   {path: 'loginpage', loadChildren: () => import('./secondResource/loginpage/loginpage.module')
-      .then(m => m.LoginpageModule)},
-  {path: 'internshipform', loadChildren: () => import('./secondResource/internshipform/internshipform.module')
-      .then(m => m.InternshipformModule)}
+      .then(m => m.LoginpageModule)}
 ];
 
 @NgModule({

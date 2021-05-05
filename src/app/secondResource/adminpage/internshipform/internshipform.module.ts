@@ -11,6 +11,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import {CommonModule} from '@angular/common';
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
   declarations: [

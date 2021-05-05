@@ -2,7 +2,38 @@
   <div class="content">
     <h1>{{ 'internshipform.h1' | translate}}</h1>
     <form [formGroup]="formLocation" class="create-form">
-      <mat-accordion class="form-control">
+      <div class="form-control">
+        <label class="star">{{'internshipform.locationList' | translate}}</label>
+        <div class="location-list-wrapper">
+          <mat-chip-list>
+            <mat-chip *ngFor="let location of locations">
+              {{location.city.name}}
+            </mat-chip>
+          </mat-chip-list>
+          <div class="selector-location-list-wrapper">
+            <mat-form-field appearance="standard" class="form-control">
+              <label class="star">{{ 'regform.country' | translate}}</label>
+              <mat-select class="select-group" formControlName="country" required (selectionChange)="loadCities()">
+                <mat-option *ngFor="let country of countries" [value]="country">
+                  {{country.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="standard" class="form-control">
+              <label class="star">{{ 'regform.city' | translate}}</label>
+              <mat-select class="select-group" formControlName="city" required >
+                <mat-option *ngFor="let city of cities" [value]="city">
+                  {{city.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <button mat-flat-button color="primary" (click)="addLocation()">Add</button>
+        </div>
+      </div>
+
+      <!--<mat-accordion class="form-control">
         <label class="star">{{'internshipform.locationList' | translate}}</label>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -35,7 +66,7 @@
             <button mat-flat-button color="primary" (click)="addLocation()">Add</button>
           </div>
         </mat-expansion-panel>
-      </mat-accordion>
+      </mat-accordion>-->
     </form>
     <form [formGroup]="form" class="create-form">
       <mat-form-field appearance="standard" class="form-control">
