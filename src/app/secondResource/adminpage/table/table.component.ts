@@ -32,6 +32,7 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() candidates = [] as Candidate[];
   @Output() onSelectedCandidate: EventEmitter<Candidate> = new EventEmitter<Candidate>();
   selectedCandidate: Candidate | null = null;
+  @Input() selectedCandidateID?: string;
   dataSource!: MatTableDataSource<Candidate>;
   displayedColumns = [
     'lastName',

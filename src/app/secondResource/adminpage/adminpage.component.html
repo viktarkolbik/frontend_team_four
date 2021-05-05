@@ -1,8 +1,8 @@
 <mat-toolbar class="mat-toolbar">
   <ng-container *ngIf="userInfo.userRole === 'SUPER_ADMIN' || userInfo.userRole === 'ADMIN'">
-    <button mat-button routerLink="internships">Internships</button>
-    <button mat-button routerLink="/internshipform" *ngIf="userInfo.userRole === 'SUPER_ADMIN'">Create internship</button>
+    <button mat-button routerLink="internships">{{"adminpage.internship" | translate}}</button>
+    <button mat-button routerLink="/internshipform" *ngIf="userInfo.userRole === 'SUPER_ADMIN'">{{"adminpage.createInternship" | translate}}</button>
   </ng-container>
-  <button id="log-out-button" mat-button routerLink="/loginpage" (click)="auth.logOut()">Log out</button>
+  <button id="log-out-button" mat-button routerLink="/loginpage" (click)="auth.logOut()">{{"adminpage.logOut" | translate}}</button>
 </mat-toolbar>
 <router-outlet></router-outlet>
