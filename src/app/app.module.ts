@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import {CommonModule} from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,8 +12,7 @@ import { SpinnerModule } from './firstResource/homepage/spinner/spinner.module';
 import { ErrorpageModule } from './errorpage/errorpage.module';
 import { AuthService } from './core/services/auth.service';
 import { AuthInterceptor } from './core/auth.interceptor';
-import {FirstResourceModule} from './firstResource/firstResource.module';
-import {SecondResourceModule} from './secondResource/secondResource.module';
+// import {FirstResourceModule} from './firstResource/firstResource.module';
 import {BrowserModule} from '@angular/platform-browser';
 
 @NgModule({
@@ -26,15 +24,12 @@ import {BrowserModule} from '@angular/platform-browser';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    // LoginpageModule,
     AppRoutingModule,
-    FirstResourceModule,
-    SecondResourceModule,
+    // FirstResourceModule,
     TranslateModule.forRoot(I18n.config),
     HeaderModule,
     FooterModule,
     SpinnerModule,
-    // AdminpageModule
     ErrorpageModule
   ],
   providers: [
