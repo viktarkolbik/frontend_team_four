@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { InternshipformComponent } from './internshipform.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -11,18 +10,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-import {MatExpansionModule} from "@angular/material/expansion";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
-
-
-
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [
     InternshipformComponent,
   ],
     imports: [
-        BrowserModule,
+      CommonModule,
         MatFormFieldModule,
         TranslateModule,
         MatSelectModule,

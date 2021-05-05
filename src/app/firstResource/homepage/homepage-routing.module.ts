@@ -4,11 +4,7 @@ import { HomepageComponent } from './homepage.component';
 import {InternshipsResolver} from '../../core/resolvers/internships-resolve.service';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomepageComponent,
-    resolve: {internships: InternshipsResolver}
-  }
+  {path: '', component: HomepageComponent, resolve: {internships: InternshipsResolver}}
 ];
 
 @NgModule({

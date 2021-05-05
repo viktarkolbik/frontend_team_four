@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import {AdminpageModule} from './adminpage/adminpage.module';
 import {LoginpageModule} from './loginpage/loginpage.module';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [],
   imports: [
-    BrowserModule,
+    CommonModule,
     AdminpageModule,
     LoginpageModule,
   ],

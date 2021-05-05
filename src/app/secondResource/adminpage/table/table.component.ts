@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ContentChild, EventEmitter,
   Input,
@@ -26,7 +27,7 @@ import {Candidate} from '../../../types/candidate';
     ]),
   ],
 })
-export class TableComponent implements OnInit, OnChanges {
+export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ContentChild(TemplateRef) template?: TemplateRef<any>;
   @Input() candidates = [] as Candidate[];
@@ -48,14 +49,15 @@ export class TableComponent implements OnInit, OnChanges {
   }
   ngOnChanges(changes: SimpleChanges) {
     this.dataSource = new MatTableDataSource(this.candidates);
-    this.dataSource.sort = this.sort;
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   ngOnInit() {
-
+  }
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 }
 

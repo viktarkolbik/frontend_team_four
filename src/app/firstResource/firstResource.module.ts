@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import {HomepageModule} from './homepage/homepage.module';
 import {InternshipdescriptionModule} from './internshipdescription/internshipdescription.module';
 import {RegformModule} from './regform/regform.module';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
   declarations: [],
   imports: [
-    BrowserModule,
+    CommonModule,
     HomepageModule,
     InternshipdescriptionModule,
     RegformModule,

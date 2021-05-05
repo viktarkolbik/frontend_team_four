@@ -18,7 +18,7 @@ import {LocationResolver} from "../../core/resolvers/location-resolve.service";
 
 const routes: Routes = [
   {
-    path: 'adminpage',
+    path: '',
     component: AdminpageComponent,
     resolve: {userInfo: UserResolveService},
     canActivate: [IsAuthorizedGuard, UserInfoGuard],

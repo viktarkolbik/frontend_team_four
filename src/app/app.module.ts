@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,8 +12,8 @@ import { SpinnerModule } from './firstResource/homepage/spinner/spinner.module';
 import { ErrorpageModule } from './errorpage/errorpage.module';
 import { AuthService } from './core/services/auth.service';
 import { AuthInterceptor } from './core/auth.interceptor';
-import {FirstResourceModule} from './firstResource/firstResource.module';
-import {SecondResourceModule} from './secondResource/secondResource.module';
+import {BrowserModule} from '@angular/platform-browser';
+import { MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -22,16 +21,16 @@ import {SecondResourceModule} from './secondResource/secondResource.module';
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    FirstResourceModule,
-    SecondResourceModule,
     TranslateModule.forRoot(I18n.config),
     HeaderModule,
     FooterModule,
     SpinnerModule,
-    ErrorpageModule
+    ErrorpageModule,
+    MatSnackBarModule
   ],
   providers: [
     AuthService, {

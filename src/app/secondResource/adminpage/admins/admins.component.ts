@@ -21,7 +21,7 @@ export class AdminsComponent implements OnInit {
   techExperts = [] as User [];
   selectedTechExpertId?: string;
   error?: number;
-  constructor(auth: AuthService, private formsService:FormsService, private route: ActivatedRoute) {
+  constructor(auth: AuthService, private formsService: FormsService, private route: ActivatedRoute) {
     auth.getUserInfo().subscribe(data => this.userInfo = data);
     this.route.data.subscribe(
       (data) => {
