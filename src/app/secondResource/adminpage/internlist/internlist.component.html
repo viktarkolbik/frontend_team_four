@@ -1,1 +1,91 @@
-<p>internlist works!</p>
+<div class="container">
+    <mat-form-field class="filter">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+    <table
+      mat-table
+      matSort
+      [dataSource]="dataSource"
+      multiTemplateDataRows
+      class="mat-elevation-z8"
+    >
+      <ng-container matColumnDef="admin">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>admin</th>
+        <td class="rows-element" mat-cell *matCellDef="let element">
+          {{element.admin}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="adminFeedback">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>adminFeedback</th>
+        <td class="rows-element" mat-cell *matCellDef="let element">
+          {{element.adminFeedback}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="adminInterviewDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>adminInterviewDate</th>
+        <td class="rows-element" mat-cell *matCellDef="let element">
+          {{element.adminInterviewDate}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>id</th>
+        <td class="rows-element" mat-cell *matCellDef="let element">
+          {{element.id}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="techFeedback">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>techFeedback</th>
+        <td class="rows-element" mat-cell *matCellDef="let element">
+          {{element.techFeedback}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="techInterviewDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>techInterviewDate</th>
+        <td class="rows-element" mat-cell *matCellDef="let element">
+          {{element.techInterviewDate}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="techSpecialist">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>techSpecialist</th>
+        <td class="rows-element" mat-cell *matCellDef="let element">
+          {{element.techSpecialist}}
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+          <div
+            class="example-element-detail"
+  
+            [@detailExpand]="element.id === selectedCandidateID ? 'expanded' : 'collapsed'"
+          >
+            <div class="example-element-description">
+              <div>
+                <p> admin: {{element.admin}}</p>
+                <p> adminFeedback: {{element.adminFeedback}}</p>
+                <p> id: {{element.id}}</p>
+                <p> techFeedback: {{element.techFeedback}}</p>
+                <p> techInterviewDate: {{element.techInterviewDate}}</p>
+                <p> techSpecialist: {{element.techSpecialist}}</p>
+                
+              </div>
+              <ng-template class="control-panel" [ngTemplateOutlet]="template" ></ng-template>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+          class="rows-element"
+          [class.rows-element]="selectedCandidate === element"
+          (click)="
+            selectedCandidate = selectedCandidate === element ? null : element;
+            onSelectedCandidate.emit(selectedCandidate);
+          "
+      >
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+  </div>
+  
