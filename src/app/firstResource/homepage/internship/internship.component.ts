@@ -8,12 +8,12 @@ import {Internship} from '../../../types';
 })
 export class InternshipComponent implements OnChanges{
   @Input() training!: Internship;
-  imgUrl = "";
+  imgUrles: string[] = [];
   constructor() {    
   }
 
-  images: any = {
-    JS: "../../../../assets/icons/JS.svg",
+  images: { [key: string]: string } = {
+    JS: "../../../../assets/icons/js.png",
     JAVA: "../../../../assets/icons/java.png",
     GO: "../../../../assets/icons/go.png",
     QA: "../../../../assets/icons/qa.jpg",
@@ -22,11 +22,6 @@ export class InternshipComponent implements OnChanges{
     C_SHARP: "../../../../assets/icons/s-sharp.jpg"
   }
   ngOnChanges() {
-    this.imgUrl = this.pushImgUrl(this.training.skills[0]);
-  }
-  pushImgUrl(condition: string) {
-    if (this.training.skills.includes(condition)) {
-      return this.images[condition]
-      } 
+    this.imgUrles = this.training.skills.map(skill => this.images[skill]).filter(Boolean);
   }
 }

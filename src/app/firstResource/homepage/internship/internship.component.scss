@@ -13,10 +13,17 @@
     font-size: 1rem;
     text-align: center;
   }
-  .training_course_img{
-    width: 55px;
-    height: 55px;
-    margin: 0 auto;
+  .forImages{
+    display: flex;
+    margin: 10px auto 0;
+    .training_course_img {
+      width: 55px;
+      height: 55px;
+      margin-right: 10px;
+      &:last-child {
+      margin-right: 0px;
+      }
+    }
   }
   .training_course_name{
     width: 90%;
