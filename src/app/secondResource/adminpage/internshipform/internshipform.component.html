@@ -44,6 +44,11 @@
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
+        <label class="star">{{ 'internshipform.capacity' | translate}}</label>
+        <input matInput formControlName="capacity" type="number" placeholder="{{ 'internshipform.capacity' | translate}}">
+      </mat-form-field>
+
+      <mat-form-field appearance="standard" class="form-control">
         <label class="star">{{ 'internshipform.description' | translate}}</label>
         <textarea matInput
           cdkTextareaAutosize

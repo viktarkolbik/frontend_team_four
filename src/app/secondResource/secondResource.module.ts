@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {AdminpageModule} from './adminpage/adminpage.module';
-import {InternshipformModule} from './internshipform/internshipform.module';
 import {LoginpageModule} from './loginpage/loginpage.module';
 
 @NgModule({
@@ -9,7 +8,6 @@ import {LoginpageModule} from './loginpage/loginpage.module';
   imports: [
     BrowserModule,
     AdminpageModule,
-    InternshipformModule,
     LoginpageModule,
   ],
   providers: [],

@@ -3,8 +3,8 @@ import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import { InternshipsService } from 'src/app/core/services/internships.service';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {FullLocation, Location} from '../../types/location';
-import {LocationService} from "../../core/services/location.service";
+import {FullLocation, Location} from '../../../types/location';
+import {LocationService} from "../../../core/services/location.service";
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
@@ -54,6 +54,7 @@ export class InternshipformComponent implements OnInit {
   )
   {
     this.form = new FormGroup({
+      capacity: new FormControl('', Validators.required),
       name: new FormControl('', Validators.required),
       description: new FormControl(''),
       internshipFormat: new FormControl('', Validators.required),
@@ -65,6 +66,7 @@ export class InternshipformComponent implements OnInit {
       registrationEndDate: new FormControl('', Validators.required),
       techSkills: new FormControl(''),
       locationList: new FormControl(this.locations),
+      publicationDate: new FormControl(this.today()),
     });
     this.formLocation = new FormGroup({
       country: new FormControl(),
@@ -133,7 +135,13 @@ export class InternshipformComponent implements OnInit {
     const formValueJson = JSON.stringify(this.form.value);
     this.internshipService.sendFormData(formValueJson).subscribe(
       data => {
-        console.log(data);
+        const message = 'Your application sent successfully';
+        this.openSnackbar(message, 'Ok');
+      },
+      error => {
+        const message = 'Error happened please try again later';
+        this.openSnackbar(message, 'Ok');
+        console.log(error);
       }
     );
   }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { InternshipformRoutingModule } from './internshipform-routing.module';
 import { InternshipformComponent } from './internshipform.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -24,7 +23,6 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
   ],
     imports: [
         BrowserModule,
-        InternshipformRoutingModule,
         MatFormFieldModule,
         TranslateModule,
         MatSelectModule,

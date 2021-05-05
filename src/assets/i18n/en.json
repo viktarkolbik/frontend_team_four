@@ -88,6 +88,7 @@
     "learn": "Start learning according to  to the chosen program"
   },
   "internshipform": {
+    "capacity": "Capacity",
     "locationList": "Location list",
     "h1": "Create internship",
     "name": "Internship name",
