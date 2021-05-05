@@ -8,7 +8,7 @@ const routes: Routes = [
       .then(m => m.AdminpageModule)},
   {path: 'loginpage', loadChildren: () => import('./secondResource/loginpage/loginpage.module')
       .then(m => m.LoginpageModule)},
-  {path: 'trainingform', loadChildren: () => import('./secondResource/internshipform/internshipform.module')
+  {path: 'internshipform', loadChildren: () => import('./secondResource/internshipform/internshipform.module')
       .then(m => m.InternshipformModule)}
 ];
 
