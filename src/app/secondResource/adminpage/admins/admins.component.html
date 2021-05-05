@@ -1,11 +1,25 @@
 <div *ngIf = '!error; else Error' class="training_container">
-  <ia-table [candidates]="candidates" (onSelectedCandidate)="updateSelectedCandidate($event)">
+  <ia-table [selectedCandidateID]="selectedCandidateID" [candidates]="candidates" (onSelectedCandidate)="updateSelectedCandidate($event)">
     <ng-template>
       <ng-container *ngIf="userInfo.userRole === 'SUPER_ADMIN'">
         <div class="control-button">
-          <button mat-raised-button class="Red">Decline intern</button>
-          <button mat-raised-button class="Yellow">Add to waiting list</button>
-          <button mat-raised-button class="Green">Approve intert</button>
+          <button
+            mat-raised-button
+            (click)="updateStatus(selectedCandidate.id , 'CANDIDATE_REFUSED')"
+          >{{"admins.candidateRefused" | translate}}</button>
+          <button
+            mat-raised-button
+            class="Red"
+            (click)="updateStatus(selectedCandidate.id , 'REJECTED')"
+          >{{"admins.decline" | translate}}</button>
+          <button mat-raised-button
+                  class="Yellow"
+                  (click)="updateStatus(selectedCandidate.id , 'NOT_MATCHED')"
+          >{{"admins.waiting" | translate}}</button>
+          <button mat-raised-button
+                  class="Green"
+                  (click)="updateStatus(selectedCandidate.id , 'ACCEPTED')"
+          >{{"admins.approve" | translate}}</button>
         </div>
         <div>
           <ng-container *ngIf="admins.length === 0">
@@ -20,6 +34,12 @@
             </mat-select>
           </mat-form-field>
           <button mat-raised-button [disabled]="!selectedAdminId">Appoint</button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="userInfo.userRole === 'ADMIN'">
+        <div class="control-button">
+          <button mat-raised-button class="Red" (click)="updateStatus(selectedCandidate.id , 'REJECTED')">Decline intern</button>
+          <button mat-raised-button (click)="updateStatus(selectedCandidate.id , 'CANDIDATE_REFUSED')">Candidate Refused</button>
         </div>
       </ng-container>
       <div>
