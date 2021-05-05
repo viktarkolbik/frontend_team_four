@@ -4,7 +4,9 @@
 
 export const environment = {
   // backendURL: 'https://intern-app-exadel-team4-be.herokuapp.com',
-  backendURL: 'http://localhost:8080',
+  // backendURL: 'http://localhost:8080',
+  backendURL: 'https://exadel-docker.herokuapp.com',
+
 
   production: false
 };
