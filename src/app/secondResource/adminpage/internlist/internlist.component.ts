@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { InterviewService } from 'src/app/core/services/interview.service';
-import { Interview } from 'src/app/types/candidate';
+import { InterviewService } from '../../../core/services/interview.service';
+import { Interview } from '../../../types/interview';
 
 @Component({
   selector: 'ia-internlist',

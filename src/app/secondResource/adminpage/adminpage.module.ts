@@ -9,6 +9,7 @@ import {AdminsModule} from './admins/admins.module';
 import {TechexpertModule} from './techexpert/techexpert.module';
 import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
 import {TranslateModule} from '@ngx-translate/core';
+import {InternlistModule} from './internlist/internlist.module';
 
 @NgModule({
   declarations: [AdminpageComponent],
@@ -20,7 +21,8 @@ import {TranslateModule} from '@ngx-translate/core';
         InternshipsModule,
         AdminsModule,
         TechexpertModule,
-        TranslateModule
+        TranslateModule, 
+        InternlistModule
     ],
   providers: [IsAuthorizedGuard],
   exports: [AdminpageComponent]
