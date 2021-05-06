@@ -20,6 +20,10 @@ export class InternshipsService {
     return this.http.get<Internship>(`${this.basePath}/${id}`);
   }
 
+  deleteInternshipById(id: string): Observable<void>{
+    return this.http.delete<void>(`${this.basePath}/${id}`);
+  }
+
   sendFormData(formData: any): Observable<any> {
     console.log(formData);
     const headers = new HttpHeaders({

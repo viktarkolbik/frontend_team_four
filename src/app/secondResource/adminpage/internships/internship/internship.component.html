@@ -3,7 +3,13 @@
   <div>{{internship.startDate}}</div>
   <div>{{internship.internshipFormat}}</div>
   <div>{{internship.skills | json}}</div>
-  <button mat-flat-button color="primary" routerLink="/adminpage/admins/{{internship.id}}">
-    {{"adminpage.showCandidates" | translate}}
-  </button>
-</div>
+  <div class="example-button-container">
+    <button mat-flat-button color="primary" routerLink="/adminpage/admins/{{internship.id}}">
+      {{"adminpage.showCandidates" | translate}}
+    </button>
+      <button mat-mini-fab color="warn" >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    </div>
+

@@ -16,15 +16,22 @@
   .internship__name {
     font-size: 1.1rem;
     font-weight: bold;
-    line-height: 2rem;
+    line-height: 1.1rem;
     text-transform: uppercase;
     color: #49BBED;
+    text-align: center;
   }
   button {
     transition: 0.5s ease-in-out;
+    margin: 0.25rem;
     &:hover {
       transform: scale(1.1);
       transition: 0.5s ease-in-out;
+      margin: 0.25rem;
     }
   }
+}
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
 }
