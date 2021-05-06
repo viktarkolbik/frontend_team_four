@@ -88,17 +88,20 @@
     "learn": "Start learning according to  to the chosen program"
   },
   "internshipform": {
+    "capacity": "Capacity",
+    "locationList": "Location list",
     "h1": "Create internship",
     "name": "Internship name",
     "description": "Internship description",
     "format": "Internship format",
-    "language": "Internship Language",
+    "skills": "Skills",
+    "newSkill": "newSkill",
     "requirements": "Requirements for a candidate",
     "duration": "Internship duration",
     "start-date": "Start",
     "end-date": "End",
     "registry-duration": "Registry duration",
-    "skills": "Technical skills",
+    "techSkills": "Technical skills",
     "publication": "Publication date",
     "create-btn": "Create",
     "publicationdate": "Publication date"
