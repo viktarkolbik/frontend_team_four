@@ -4,7 +4,7 @@
     <img *ngFor="let imgUrl of imgUrles" [src]="imgUrl" alt="logo" class="training_course_img">
   </div>
   <div class="training_course_name">{{training.name}}</div>
-  <div class="training_course_technology">Technology: {{training.skills}}</div>
+  <div class="training_course_technology">Technology: {{skills}}</div>
   <div class="training_course_dateRegistration">{{training.endDate}}</div>
   <button routerLink="/internshipdescription/{{training.id}}" mat-raised-button color="primary" class="btn-training">{{ 'internship.showMore' | translate}}</button>
 </div>
