@@ -3,6 +3,11 @@
     <button mat-button routerLink="/adminpage/internships">{{"adminpage.internship" | translate}}</button>
     <button mat-button routerLink="/adminpage/internshipform" *ngIf="userInfo.userRole === 'SUPER_ADMIN'">{{"adminpage.createInternship" | translate}}</button>
   </ng-container>
+  <ng-container *ngIf="userInfo.userRole === 'ADMIN' || userInfo.userRole === 'TECH_EXPERT'">
+    <button mat-button routerLink="/adminpage/timesettings">{{"adminpage.timeSettings" | translate}}</button>
+  </ng-container>
+  <div class = "userName">{{userInfo.firstName}} {{userInfo.lastName}}
   <button id="log-out-button" mat-button routerLink="/loginpage" (click)="auth.logOut()">{{"adminpage.logOut" | translate}}</button>
+  </div>
 </mat-toolbar>
 <router-outlet></router-outlet>

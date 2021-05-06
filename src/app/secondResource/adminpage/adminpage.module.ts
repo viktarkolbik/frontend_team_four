@@ -10,6 +10,7 @@ import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
 import {TranslateModule} from '@ngx-translate/core';
 import {InternshipformModule} from './internshipform/internshipform.module';
 import {CommonModule} from '@angular/common';
+import {TimesettingsModule} from './timesettings/timesettings.module';
 
 @NgModule({
   declarations: [AdminpageComponent],
@@ -22,7 +23,8 @@ import {CommonModule} from '@angular/common';
     AdminsModule,
     TechexpertModule,
     InternshipformModule,
-    TranslateModule
+    TranslateModule,
+    TimesettingsModule
   ],
   providers: [IsAuthorizedGuard],
   exports: [AdminpageComponent]

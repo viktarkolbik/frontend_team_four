@@ -15,6 +15,7 @@ import {TechExpertResolveService} from '../../core/resolvers/tech-expert-resolve
 import {UserInfoGuard} from '../../core/guards/user-info.guard';
 import {InternshipformComponent} from "./internshipform/internshipform.component";
 import {LocationResolver} from "../../core/resolvers/location-resolve.service";
+import {TimesettingsComponent} from './timesettings/timesettings.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,10 @@ const routes: Routes = [
         path: 'internshipform',
         component: InternshipformComponent,
         resolve: {location: LocationResolver}
+      },
+      {
+        path: 'timesettings',
+        component: TimesettingsComponent
       }
     ]
   }

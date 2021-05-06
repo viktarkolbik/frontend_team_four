@@ -121,7 +121,18 @@
     "internship": "Internships list",
     "createInternship": "Create internship",
     "logOut": "Log Out",
-    "showCandidates": "Show Candidates"
+    "showCandidates": "Show Candidates",
+    "timeSettings": "Time Setting"
+  },
+  "timesetting": {
+    "freeSlots": "Available dates for interview",
+    "addSlot": "Add slots for Interview",
+    "chooseDate": "Choose day",
+    "slot": {
+      "date": "Date",
+      "from": "from",
+      "to": "to"
+    }
   },
   "admins": {
     "candidateRefused": "Candidate Refused",

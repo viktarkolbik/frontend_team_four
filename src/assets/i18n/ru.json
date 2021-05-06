@@ -122,7 +122,18 @@
     "internship": "Список стажировок",
     "createInternship": "Создать стажировку",
     "logOut": "Выйти",
-    "showCandidates": "Показать кандидатов"
+    "showCandidates": "Показать кандидатов",
+    "timeSettings": "Настройки времени"
+  },
+  "timesetting": {
+    "freeSlots": "Свободные даты для собеседований",
+    "addSlot": "Добавление новых слотов для собеседований",
+    "chooseDate": "Выберите день",
+    "slot": {
+      "date": "Дата",
+      "from": "с",
+      "to": "по"
+    }
   },
   "admins": {
     "candidateRefused": "Кандидат отказался",
