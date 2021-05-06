@@ -7,7 +7,7 @@
     <button mat-flat-button color="primary" routerLink="/adminpage/admins/{{internship.id}}">
       {{"adminpage.showCandidates" | translate}}
     </button>
-      <button mat-mini-fab color="warn" >
+      <button mat-mini-fab color="warn" (click)="remove(internship.id)">
         <mat-icon>delete</mat-icon>
       </button>
     </div>

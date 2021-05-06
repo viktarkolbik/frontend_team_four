@@ -26,7 +26,7 @@ export class InternshipsComponent implements OnInit {
   }
   remove(id: string) {
     this.internshipservice.deleteInternshipById(id).subscribe(()=>{
-      this.internships = this.internships.filter( internShip => internShip.id === id);
+      this.internships = this.internships.filter( internShip => internShip.id !== id);
     });
   }
   ngOnInit(): void {
