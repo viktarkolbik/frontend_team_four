@@ -10,7 +10,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./internshipdescription.component.scss']
 })
 export class InternshipdescriptionComponent implements OnInit {
-
+  imgUrles: string[] = [];
   internship: Internship | any;
   techSkills?: string;
   requirements?: string;
@@ -19,12 +19,11 @@ export class InternshipdescriptionComponent implements OnInit {
   errorMessage: string | undefined;
 
   constructor(
-    private internshipsService: InternshipsService,
+    private internshipService: InternshipsService,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private router: Router) {
     const answer = route.snapshot.data.internship;
-
     if (!answer.error) {
       this.internship = answer;
     }
@@ -46,6 +45,9 @@ export class InternshipdescriptionComponent implements OnInit {
 
       this.techSkills = this.internship.techSkills.split(";")
       this.requirements = this.internship.requirements.split(";")
+          // @ts-ignore
+      this.imgUrles = this.internship.skills.map(skill => this.internshipService.getImagesUrl(skill)).filter(Boolean);
+      console.log(this.imgUrles)
     }
   }
 }

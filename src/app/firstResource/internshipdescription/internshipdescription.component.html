@@ -1,7 +1,9 @@
 <div class="container">
   <div class="content">
     <div class="head">
-      <img src="../../../assets/img/Exadel_traindescr.svg" alt="Logo">
+      <div class="for-img">
+        <img *ngFor="let imgUrl of imgUrles" [src]="imgUrl" alt="Logo">
+      </div>
       <h1>{{internship.name}}</h1>
     </div>
     <div class="info">
