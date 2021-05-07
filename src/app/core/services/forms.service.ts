@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Candidate } from '../../types/candidate';
+import {Candidate, Interview} from '../../types/candidate';
 import { Observable } from 'rxjs';
 import {environment} from '../../../environments/environment';
 
@@ -19,5 +19,15 @@ export class FormsService {
     const headers = new HttpHeaders({
     });
     return this.http.post(this.basePath, formData, {headers});
+  }
+  updateStatusCandidate(id: string, status: string): Observable<any> {
+    return this.http.put(
+      `${this.basePath}/updateStatus`,
+      "",
+      {params: {formId:id, status}}
+    );
+  }
+  setInterviewTime(formId: string, interview: Interview){
+    return this.http.post(this.basePath + '/' + formId + '/interviews', interview);
   }
 }

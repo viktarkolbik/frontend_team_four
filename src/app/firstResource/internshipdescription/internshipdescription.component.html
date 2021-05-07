@@ -1,9 +1,8 @@
 <div class="container">
   <div class="content">
     <div class="head">
-      <img src="../../../assets/img/Exadel_traindescr.svg">
-      <h1>FRONTEND</h1>
-      <h3>INTERNSHIP</h3>
+      <img src="../../../assets/img/Exadel_traindescr.svg" alt="Logo">
+      <h1>{{internship.name}}</h1>
     </div>
     <div class="info">
       <h2 class="title">
@@ -28,10 +27,18 @@
           </ul>
         </h3>
         <h3>{{ 'internshipdescription.howstart' | translate}}
-          <p>{{internship.requirements}}</p>
+          <ul>
+            <li *ngFor="let requirement of requirements">
+                {{requirement}}
+            </li>
+          </ul>
         </h3>
         <h3>{{ 'internshipdescription.skills' | translate}}
-          <p>{{internship.techSkills}}</p>
+          <ul>
+            <li *ngFor="let techSkill of techSkills">
+                {{techSkill}}
+            </li>
+          </ul>
         </h3>
         <h3>{{ 'internshipdescription.toget' | translate}}
           <ul>
@@ -47,7 +54,7 @@
       <div class="info-internship">
         <div class="right-box">
           <div class="condition">{{ 'internshipdescription.starttime' | translate}}:{{internship.startDate}}</div>
-          <div class="condition">{{ 'internshipdescription.location' | translate}}:{{internship.countryList}}</div>
+          <div class="condition" *ngFor="let location of internship.locations">{{ 'internshipdescription.location' | translate}}: {{location.country.name}} | {{location.city.name}}</div>
           <div class="condition">{{ 'internshipdescription.duration' | translate}}:{{duration}} </div>
         </div>
         <div class="left-box">

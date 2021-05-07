@@ -8,7 +8,7 @@ export interface Candidate {
   filePath?: string;
   firstName: string;
   formStatus?: string;
-  id?: string;
+  id: string;
   interview?: Interview;
   lastName: string;
   middleName: string;
@@ -27,6 +27,12 @@ export interface Interview {
   techFeedback: string;
   techSpecialist: string;
   techInterviewDate?: string;
+}
+
+export interface Interviews {
+  id: string;
+  userId: string;
+  userInterviewDate: string;
 }
 
 export interface ConvenientTime {

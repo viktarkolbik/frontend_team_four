@@ -7,12 +7,33 @@ export interface User {
   password: string;
   skills: string[];
   userRole: string;
-  timeForCall: Time[];
+  userTimeSlots: Time[];
 }
 
 export interface Time {
-  startHour: string;
-  endHour: string;
+  startDate: string | Date;
+  endDate: string | Date;
+  roundUp?: boolean;
   id?: string;
+  userId?: string;
+}
+
+export interface UserParseDate {
+  email: string;
+  firstName: string;
+  id: string;
+  lastName: string;
+  login: string;
+  password: string;
+  skills: string[];
+  userRole: string;
+  userTimeSlots: ParseTime[];
+}
+
+export interface ParseTime {
+  startDate: Date;
+  endDate: Date;
+  roundUp?: boolean;
+  id: string;
   userId?: string;
 }

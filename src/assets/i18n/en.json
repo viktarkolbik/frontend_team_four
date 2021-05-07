@@ -60,19 +60,19 @@
     }
   },
   "internshipdescription": {
-    "title": "How is the Internship going",
+    "title": "About the internship",
     "aboutinternship": "Internship description",
-    "mentoring": "Mentoring",
+    "mentoring": "Mentoring: ",
     "mentoring-text": "Here, as part of our development team, students work closely with experienced engineers to quickly deepen their skills through real-world work in coding, development, design, and testing. A great advantage of the internship is an the ability to immerse yourself in teamwork. the internship will be supervised by an experienced mentor who will be able to help with the implementation of the project, as well as contribute to the accumulation of new knowledge.",
-    "workexadel": "Work in Exadel",
-    "howstart": "How to start internship",
-    "conditions": "Internship Conditions",
+    "workexadel": "Work in Exadel: ",
+    "howstart": "Necessary skills: ",
+    "skills": "The technologies you will learn on our internship: ",
+    "conditions": "Сonditions of the internship: ",
     "starttime": "Internship start time",
     "location": "Location",
     "endtime": "Internship finish time",
     "formatinternship": "Internship Format",
     "register": "Register",
-    "mainpagelink": "To main page",
     "duration": "Duration in days",
     "aboutwork": "After compliting the internship students could have the opportunity to get the job offer. Advantages of working in EXADEL:",
     "ourconditions": "Our offices are quite comfortable, and also you will be able to work remotely",
@@ -81,24 +81,27 @@
     "lesson": "English courses",
     "world": "Our offices are located in all over the world",
     "goods": "Coffee, cookies and relaxation area are all for you",
-    "toget": "To get an internship you should: ",
+    "toget": "To get the internship you should: ",
     "resume": "Send your CV by the form on the website",
     "reqinterview": "Take a phone interview with a recruiter",
     "tech": "Take an interview with our technician specialist",
     "learn": "Start learning according to  to the chosen program"
   },
   "internshipform": {
+    "capacity": "Capacity",
+    "locationList": "Location list",
     "h1": "Create internship",
     "name": "Internship name",
     "description": "Internship description",
     "format": "Internship format",
-    "language": "Internship Language",
+    "skills": "Skills",
+    "newSkill": "newSkill",
     "requirements": "Requirements for a candidate",
     "duration": "Internship duration",
     "start-date": "Start",
     "end-date": "End",
     "registry-duration": "Registry duration",
-    "skills": "Technical skills",
+    "techSkills": "Technical skills",
     "publication": "Publication date",
     "create-btn": "Create",
     "publicationdate": "Publication date"
@@ -113,5 +116,31 @@
   },
   "errorpage": {
     "on-main": "On main page"
+  },
+  "adminpage": {
+    "internship": "Internships list",
+    "createInternship": "Create internship",
+    "logOut": "Log Out",
+    "showCandidates": "Show Candidates"
+  },
+  "admins": {
+    "candidateRefused": "Candidate Refused",
+    "decline": "Decline intern",
+    "waiting": "Add to waiting list",
+    "approve": "Approve intern"
+  },
+  "adminTable": {
+    "fullname": "Full Name",
+    "phoneNumber": "Phone Number",
+    "englishLevel": "English Level",
+    "status": "Status",
+    "recruiter": "Recruiter",
+    "techSpec": "Technical Specialist",
+    "skill": "Primary Skill",
+    "name": "Name",
+    "lastname": "Surname",
+    "country": "Country",
+    "city": "City",
+    "experience": "Experience"
   }
 }

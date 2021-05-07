@@ -13,10 +13,12 @@ import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
 import {AdminsResolveService} from '../../core/resolvers/admins-resolve.service';
 import {TechExpertResolveService} from '../../core/resolvers/tech-expert-resolve.service';
 import {UserInfoGuard} from '../../core/guards/user-info.guard';
+import {InternshipformComponent} from "./internshipform/internshipform.component";
+import {LocationResolver} from "../../core/resolvers/location-resolve.service";
 
 const routes: Routes = [
   {
-    path: 'adminpage',
+    path: '',
     component: AdminpageComponent,
     resolve: {userInfo: UserResolveService},
     canActivate: [IsAuthorizedGuard, UserInfoGuard],
@@ -41,6 +43,11 @@ const routes: Routes = [
         path: 'techexpert',
         component: TechexpertComponent,
         canActivate: [IsTechExpertGuard]
+      },
+      {
+        path: 'internshipform',
+        component: InternshipformComponent,
+        resolve: {location: LocationResolver}
       }
     ]
   }
