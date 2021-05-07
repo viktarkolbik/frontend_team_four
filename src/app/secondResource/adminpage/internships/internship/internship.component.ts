@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Internship} from '../../../../types';
+import {InternshipsService} from '../../../../core/services/internships.service';
+
 
 @Component({
   selector: 'ia-internship',
@@ -8,9 +10,12 @@ import {Internship} from '../../../../types';
 })
 export class InternshipComponent implements OnInit {
   @Input() internship!: Internship;
-  constructor() { }
+  skills: string[] = [];
+  constructor(private internshipService: InternshipsService) { }
 
   ngOnInit(): void {
+    this.skills = this.internship.skills.map(skill => this.internshipService.getChangedSkills(skill));
+    console.log(this.skills)
   }
 
 }

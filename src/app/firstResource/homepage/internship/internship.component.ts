@@ -14,18 +14,8 @@ export class InternshipComponent implements OnChanges{
   constructor(private internshipService: InternshipsService) {  
   }
 
-  changedSkills: { [key: string]: string } = {
-    DEV_OPS: " DevOps",
-    C_PLUS_PLUS: " C++",
-    C_SHARP: " C#",
-    JS: " JavaScript",
-    JAVA: " Java",
-    GO: " Golang",
-    QA: " QA"
-  }
   ngOnChanges() {
     this.imgUrles = this.training.skills.map(skill => this.internshipService.getImagesUrl(skill)).filter(Boolean);
-    
-    this.skills = this.training.skills.map(skill => this.changedSkills[skill]);
+    this.skills = this.training.skills.map(skill => this.internshipService.getChangedSkills(skill));
   }
 }

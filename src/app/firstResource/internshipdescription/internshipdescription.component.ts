@@ -47,7 +47,7 @@ export class InternshipdescriptionComponent implements OnInit {
       this.requirements = this.internship.requirements.split(";")
           // @ts-ignore
       this.imgUrles = this.internship.skills.map(skill => this.internshipService.getImagesUrl(skill)).filter(Boolean);
-      console.log(this.imgUrles)
+      
     }
   }
 }
