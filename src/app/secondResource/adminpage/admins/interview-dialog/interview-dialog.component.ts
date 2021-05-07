@@ -25,10 +25,7 @@ export class InterviewDialogComponent {
     this.userDaysSet.clear();
     users.forEach(user =>
       user.userTimeSlots.forEach(timeSlot => {
-        const year = timeSlot.startDate.getFullYear();
-        const month = timeSlot.startDate.getMonth();
-        const day = timeSlot.startDate.getDate();
-        const date = `${year}-${month}-${day}`;
+        const date = this.getDateStr(timeSlot.startDate);
         this.userDaysSet.add(date);
       })
     );
@@ -37,10 +34,7 @@ export class InterviewDialogComponent {
     if(d == null){
       return false;
     }
-    const year = d.getFullYear();
-    const month = d.getMonth();
-    const day = d.getDate();
-    const date = `${year}-${month}-${day}`;
+    const date = this.getDateStr(d);
     return this.userDaysSet.has(date);
   };
   filterUsers(): void {
@@ -68,6 +62,13 @@ export class InterviewDialogComponent {
       && timeSlot.startDate.getMonth() === date.getMonth()
       && timeSlot.startDate.getDate() === date.getDate()
     );
+  }
+  getDateStr(d: Date): string {
+    const year = d.getFullYear();
+    const month = d.getMonth();
+    const day = d.getDate();
+    const date = `${year}-${month}-${day}`;
+    return date;
   }
   onTimeSelect(event: any){
     this.setInterview(event.value, this.selectedUser);

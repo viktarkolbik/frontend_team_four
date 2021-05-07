@@ -1,6 +1,29 @@
 <div *ngIf = '!error; else Error' class="training_container">
   <ia-table [selectedCandidateID]="selectedCandidateID" [candidates]="candidates" (onSelectedCandidate)="updateSelectedCandidate($event)">
     <ng-template>
+      <div class="interview">
+        <p>Schedule an interview with:</p>
+        <button
+          mat-raised-button
+          [disabled]="admins.length === 0"
+          (click)="openInterviewDialog(admins, 'ADMIN')"
+        >
+          HR
+        </button>
+        <button
+          mat-raised-button
+          [disabled]="techExperts.length === 0"
+          (click)="openInterviewDialog(techExperts, 'TECH_EXPERT')"
+        >
+          technical expert
+        </button>
+        <ng-container *ngIf="techExperts.length === 0">
+          <p>no technical experts</p>
+        </ng-container>
+        <ng-container *ngIf="admins.length === 0">
+          <p>no admins</p>
+        </ng-container>
+      </div>
       <ng-container *ngIf="userInfo.userRole === 'SUPER_ADMIN'">
         <div class="control-button">
           <button
@@ -28,29 +51,6 @@
           <button mat-raised-button (click)="updateStatus(selectedCandidate.id , 'CANDIDATE_REFUSED')">Candidate Refused</button>
         </div>
       </ng-container>
-      <div>
-        <p>Schedule an interview with:</p>
-        <ng-container *ngIf="techExperts.length === 0">
-          <p>no technical experts</p>
-        </ng-container>
-        <ng-container *ngIf="admins.length === 0">
-          <p>no admins</p>
-        </ng-container>
-        <button
-          mat-raised-button
-          [disabled]="admins.length === 0"
-          (click)="openInterviewDialog(admins, 'ADMIN')"
-        >
-          HR
-        </button>
-        <button
-          mat-raised-button
-          [disabled]="techExperts.length === 0"
-          (click)="openInterviewDialog(techExperts, 'TECH_EXPERT')"
-        >
-          technical expert
-        </button>
-      </div>
     </ng-template>
   </ia-table>
 </div>
