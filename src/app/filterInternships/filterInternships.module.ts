@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FilterComponent } from './filter.component';
+import { FilterInternshipsComponent } from './filterInternships.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
-    FilterComponent
+    FilterInternshipsComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule
   ],
   exports: [
-    FilterComponent
+    FilterInternshipsComponent
   ]
 })
-export class FilterModule { }
+export class FilterInternshipsModule { }
