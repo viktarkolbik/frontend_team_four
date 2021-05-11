@@ -12,8 +12,7 @@ export class InternshipsComponent implements OnInit {
   internships = [] as Internship[];
   error?: number;
 
-  constructor(private route: ActivatedRoute,
-              private internshipservice: InternshipsService) {
+  constructor(private route: ActivatedRoute) {
     this.route.data.subscribe(
       (data) => {
         if (data.internships.error) {
@@ -23,11 +22,6 @@ export class InternshipsComponent implements OnInit {
         }
       }
     );
-  }
-  remove(id: string) {
-    this.internshipservice.deleteInternshipById(id).subscribe(()=>{
-      this.internships = this.internships.filter( internShip => internShip.id !== id);
-    });
   }
   ngOnInit(): void {
   }
