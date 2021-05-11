@@ -13,69 +13,104 @@ export class InterviewDialogComponent {
   users: UserParseDate[];
   usersForSelect: UserParseDate[];
   userDaysSet: Set<string> = new Set();
+  usersTime: string[] = [];
   datePicker: FormControl = new FormControl('');
+  timezone: string;
   selectedUser = {} as UserParseDate;
+  selectedTime = '';
   interview = {} as Interviews;
   constructor(@Inject(MAT_DIALOG_DATA) public data: {users: UserParseDate[]; role: string}) {
     this.users = data.users;
     this.usersForSelect = data.users;
+    this.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     this.updateUserDayList(this.usersForSelect);
+    this.updateUsersTimeList(this.usersForSelect);
   }
   updateUserDayList(users: UserParseDate[]){
     this.userDaysSet.clear();
     users.forEach(user =>
       user.userTimeSlots.forEach(timeSlot => {
-        const date = this.getDateStr(timeSlot.startDate);
+        const date = timeSlot.startDate.toLocaleDateString();
         this.userDaysSet.add(date);
       })
     );
+  }
+  updateUsersTimeList(users: UserParseDate[]){
+    const usersTimeSet: Set<string> = new Set();
+    usersTimeSet.clear();
+    users.forEach(user => user.userTimeSlots.forEach(timeSlot => {
+      if(this.datePicker.value){
+        if(
+          this.equalDate(timeSlot.startDate, this.datePicker.value)
+        ) {
+          const time = this.getDateTimeStr(timeSlot.startDate);
+          usersTimeSet.add(time);
+        }
+      }
+      else {
+        const time = this.getDateTimeStr(timeSlot.startDate);
+        usersTimeSet.add(time);
+      }
+    }));
+    this.usersTime = Array.from(usersTimeSet).sort();
   }
   dateFilter = (d: Date | null): boolean => {
     if(d == null){
       return false;
     }
-    const date = this.getDateStr(d);
+    const date = d.toLocaleDateString();
     return this.userDaysSet.has(date);
   };
   filterUsers(): void {
+    this.users = this.data.users;
+    if(this.datePicker.value){
+      this.users = this.users.filter(user =>
+        this.userHaveDate(this.datePicker.value, user)
+      );
+      this.usersForSelect = this.users;
+    }
+    if(this.selectedTime){
+      this.users = this.users.filter(user =>
+        user.userTimeSlots.some(timeSlot =>
+          (
+            ((this.datePicker.value) ? this.equalDate(this.datePicker.value, timeSlot.startDate) : true)
+            && this.getDateTimeStr(timeSlot.startDate) === this.selectedTime
+          )
+        )
+      );
+      this.updateUserDayList(this.users);
+      this.usersForSelect = this.users;
+    }
     if(this.selectedUser.id){
       this.users = [this.selectedUser];
       this.updateUserDayList(this.users);
     }
-    if(this.datePicker.value){
-      this.users = this.data.users.filter(user =>
-        this.usersHaveDate(this.datePicker.value, user)
-      );
-      this.usersForSelect = this.users;
-    }
+    this.updateUsersTimeList(this.users);
   }
-  usersHaveDate(date: Date, user: UserParseDate): boolean {
+  userHaveDate(date: Date, user: UserParseDate): boolean {
     if(!date){return false;}
     return user.userTimeSlots.some(timeSlot =>
-      this.userHaveTimeSlot(date, timeSlot)
+      this.equalDate(date, timeSlot.startDate)
     );
   }
-  userHaveTimeSlot(date: Date, timeSlot: ParseTime): boolean {
-    if(!date){return false;}
-    return (
-      timeSlot.startDate.getFullYear() === date.getFullYear()
-      && timeSlot.startDate.getMonth() === date.getMonth()
-      && timeSlot.startDate.getDate() === date.getDate()
-    );
+  getDateTimeStr(date: Date): string {
+    return date.toLocaleTimeString().slice(0, 5);
   }
-  getDateStr(d: Date): string {
-    const year = d.getFullYear();
-    const month = d.getMonth();
-    const day = d.getDate();
-    const date = `${year}-${month}-${day}`;
-    return date;
-  }
-  onTimeSelect(event: any){
-    this.setInterview(event.value, this.selectedUser);
+  equalDate(dateOne: Date, dateTwo: Date){
+    return dateOne.toDateString() === dateTwo.toDateString();
   }
   setInterview(timeSlot: ParseTime, user: UserParseDate){
-    this.interview.id = timeSlot.id;
     this.interview.userId = user.id;
-    this.interview.userInterviewDate = timeSlot.startDate.toJSON();
+    this.interview.userInterviewDate = timeSlot.startDate.toISOString();
+  }
+  submit(){
+    this.selectedUser.userTimeSlots.forEach(timeSlot => {
+      if(
+        this.equalDate(timeSlot.startDate, this.datePicker.value)
+        && this.getDateTimeStr(timeSlot.startDate) === this.selectedTime
+      ) {
+        this.setInterview(timeSlot, this.selectedUser);
+      }
+    });
   }
 }

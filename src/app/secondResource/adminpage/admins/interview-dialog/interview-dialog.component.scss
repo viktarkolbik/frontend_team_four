@@ -12,6 +12,12 @@
 
 .content{
   min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  p.schedule{
+    display: inline-block;
+    margin: 0 auto 10px;
+  }
   .mat-form-field-wrapper{
     display: flex;
     flex-direction: column;

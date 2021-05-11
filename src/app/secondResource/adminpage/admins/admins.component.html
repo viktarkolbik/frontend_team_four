@@ -1,5 +1,9 @@
 <div *ngIf = '!error; else Error' class="training_container">
-  <ia-table [selectedCandidateID]="selectedCandidateID" [candidates]="candidates" (onSelectedCandidate)="updateSelectedCandidate($event)">
+  <ia-table
+    [selectedCandidateID]="selectedCandidateID"
+    [candidates]="candidates"
+    (onSelectedCandidate)="updateSelectedCandidate($event)"
+  >
     <ng-template>
       <div class="interview">
         <p>Schedule an interview with:</p>
@@ -15,7 +19,7 @@
           [disabled]="techExperts.length === 0"
           (click)="openInterviewDialog(techExperts, 'TECH_EXPERT')"
         >
-          technical expert
+          Technical expert
         </button>
         <ng-container *ngIf="techExperts.length === 0">
           <p>no technical experts</p>

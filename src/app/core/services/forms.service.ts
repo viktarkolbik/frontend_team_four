@@ -30,4 +30,7 @@ export class FormsService {
   setInterviewTime(formId: string, interview: Interview){
     return this.http.post(this.basePath + '/' + formId + '/interviews', interview);
   }
+  putInterviewTime(formId: string, interview: Interview, interviewId: string){
+    return this.http.put(this.basePath + '/' + formId + '/interviews/' + interviewId, interview);
+  }
 }

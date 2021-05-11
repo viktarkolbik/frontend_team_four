@@ -30,7 +30,7 @@ export interface Interview {
 }
 
 export interface Interviews {
-  id: string;
+  id?: string;
   userId: string;
   userInterviewDate: string;
 }

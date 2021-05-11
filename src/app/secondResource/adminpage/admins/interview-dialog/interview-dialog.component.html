@@ -1,5 +1,6 @@
 <div class="content">
-  <p>Schedule an interview</p>
+  <p class="schedule">Schedule an interview</p>
+  <p>Timezone: {{timezone}}</p>
   <div class="mat-form-field-wrapper">
     <mat-form-field color="accent" appearance="fill" class="mat-form-field">
       <mat-label>Pick date</mat-label>
@@ -12,6 +13,17 @@
       >
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker color="primary"></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="mat-form-field">
+      <mat-label>Time</mat-label>
+      <mat-select
+        [(ngModel)]="selectedTime"
+        (selectionChange)="filterUsers()"
+      >
+        <mat-option *ngFor="let time of usersTime" [value]="time">
+          {{time}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill" class="mat-form-field">
       <mat-label *ngIf="data.role === 'ADMIN'">
@@ -30,22 +42,6 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field class="mat-form-field">
-      <mat-label>Time</mat-label>
-      <mat-select
-        [disabled]="!(selectedUser.userTimeSlots && datePicker.value)"
-        (selectionChange)="onTimeSelect($event)"
-      >
-        <ng-container *ngFor="let timeSlot of selectedUser.userTimeSlots">
-          <mat-option
-            *ngIf="userHaveTimeSlot(datePicker.value, timeSlot)"
-            [value]="timeSlot"
-          >
-            {{timeSlot.startDate | date: "HH:mm"}}
-          </mat-option>
-        </ng-container>
-      </mat-select>
-    </mat-form-field>
   </div>
   <mat-dialog-actions class="button-wrapper">
     <button
@@ -56,7 +52,8 @@
     </button>
     <button
       mat-button
-      [disabled]="!interview.id"
+      [disabled]="!(selectedTime && selectedUser.id && datePicker.value)"
+      (click)="submit()"
       [mat-dialog-close]="interview"
     >
       Appoint
