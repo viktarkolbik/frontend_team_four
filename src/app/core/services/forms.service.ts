@@ -12,7 +12,7 @@ export class FormsService {
   basePath = `${environment.backendURL}/api/forms`;
   constructor(private http: HttpClient) {}
 
-  getCandidatesListByUserId(id: string): Observable<Candidate[]>{
+  getCandidatesListByUserId(id: string | null): Observable<Candidate[]>{
     return this.http.get<Candidate[]>(this.basePath + '?userId=' + id);
   }
   getCandidatesList(id: string): Observable<Candidate[]>{

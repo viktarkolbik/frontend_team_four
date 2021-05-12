@@ -6,7 +6,6 @@ import {InternshipsComponent} from './internships/internships.component';
 import {AdminsComponent} from './admins/admins.component';
 import {InternshipsResolver} from '../../core/resolvers/internships-resolve.service';
 import {TechexpertComponent} from './techexpert/techexpert.component';
-import {FormsResolveService} from '../../core/resolvers/forms-resolve.service';
 import {IsAdminsGuard} from '../../core/guards/is-admins.guard';
 import {IsTechExpertGuard} from '../../core/guards/is-tech-expert.guard';
 import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
@@ -14,6 +13,8 @@ import {AdminsResolveService} from '../../core/resolvers/admins-resolve.service'
 import {TechExpertResolveService} from '../../core/resolvers/tech-expert-resolve.service';
 import {UserInfoGuard} from '../../core/guards/user-info.guard';
 import { InternlistComponent } from './internlist/internlist.component';
+import { FormsAdminResolveService } from 'src/app/core/resolvers/forms-admin-resolve.service';
+import { FormsResolveService } from 'src/app/core/resolvers/forms-resolve.service';
 
 const routes: Routes = [
   {
@@ -45,7 +46,9 @@ const routes: Routes = [
       },
       {
         path: 'internlist',
-        component: InternlistComponent
+        component: InternlistComponent,
+        resolve: {interns: FormsAdminResolveService},
+        canActivate: [IsAdminsGuard]
       }
     ]
   }
