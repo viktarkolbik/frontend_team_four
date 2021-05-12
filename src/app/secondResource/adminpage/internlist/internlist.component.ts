@@ -1,89 +1,88 @@
-import { AfterViewInit,
-  Component,
-  ContentChild, EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-  SimpleChanges,
-  TemplateRef,
-  ViewChild } from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
-import { InterviewService } from '../../../core/services/interview.service';
-import { Interview } from '../../../types/interview';
-
+import { Component,OnInit } from '@angular/core';
+import { FormsService } from 'src/app/core/services/forms.service';
+import { StorageService } from 'src/app/core/services/storage.service';
+import { Candidate } from 'src/app/types/candidate';
 
 @Component({
   selector: 'ia-internlist',
   templateUrl: './internlist.component.html',
-  styleUrls: ['./internlist.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+  styleUrls: ['./internlist.component.scss']
 })
 
-export class InternlistComponent implements AfterViewInit, OnInit, OnChanges {
-  displayedColumns: string[] = ['admin', 'adminFeedback', 'adminInterviewDate', 'id', 'techFeedback', 'techInterviewDate', 'techSpecialist'];
-  @ViewChild(MatSort) sort!: MatSort;
-  @ContentChild(TemplateRef) template?: TemplateRef<any>;
-  @Input() Interview = [] as Interview[];
-  @Output() onSelectedCandidate: EventEmitter<Interview> = new EventEmitter<Interview>();
-  selectedCandidate: Interview | null = null;
-  @Input() selectedCandidateID?: string;
-  mockInterviewList: Interview[] = [
+export class InternlistComponent implements  OnInit {
+  mockInterns: Candidate[] = [
     {
-      admin: '20981ffb-2aa8-41fe-a631-2c6f225bb1e1',
-      adminFeedback: 'There is no feedback yet',
-      adminInterviewDate: '2021-05-05T10:11:42.438Z',
+      city: 'Vitebsk',
+      country: 'Belarus',
+      education: 'Higher',
+      email: 'backmail@gmail.com',
+      englishLevel: 'C1',
+      experience: 'none',
+      filePath: 'none',
+      firstName: 'Misha',
+      formStatus: 'REGISTERED',
       id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-      techFeedback: 'There is no feedback yet',
-      techInterviewDate: '2021-05-05T10:11:42.438Z',
-      techSpecialist: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+      interview: {
+        admin: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        adminFeedback: '',
+        adminInterviewDate: '',
+        id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        techFeedback: '',
+        techSpecialist: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        techInterviewDate: ''
+      },
+      lastName: 'Yakovlev',
+      middleName: 'Valerievich',
+      phoneNumber: '+375449726680',
+      primarySkill: 'JAVA',
+      skype: 'mihanya44',
+      timeForCallList: [{
+        endHour: 15,
+        startHour: 10
+      }]
     },
     {
-      admin: '20981ffb-2aa8-41fe-a631-2c6f225bb1e1',
-      adminFeedback: 'There is no feedback yet',
-      adminInterviewDate: '2021-05-05T10:11:42.438Z',
+      city: 'Minsk',
+      country: 'Belarus',
+      education: 'Higher',
+      email: 'easyman@gmail.com',
+      englishLevel: 'B2',
+      experience: 'none',
+      filePath: 'none',
+      firstName: 'Pasha',
+      formStatus: 'REGISTERED',
       id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-      techFeedback: 'There is no feedback yet',
-      techInterviewDate: '2021-05-05T10:11:42.438Z',
-      techSpecialist: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-    },{
-      admin: '20981ffb-2aa8-41fe-a631-2c6f225bb1e1',
-      adminFeedback: 'There is no feedback yet',
-      adminInterviewDate: '2021-05-05T10:11:42.438Z',
-      id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
-      techFeedback: 'There is no feedback yet',
-      techInterviewDate: '2021-05-05T10:11:42.438Z',
-      techSpecialist: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+      interview: {
+        admin: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        adminFeedback: '',
+        adminInterviewDate: '',
+        id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        techFeedback: '',
+        techSpecialist: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        techInterviewDate: ''
+      },
+      lastName: 'Borisov',
+      middleName: 'Victorovich',
+      phoneNumber: '+375445432217',
+      primarySkill: 'JavaScript',
+      skype: 'pavel21',
+      timeForCallList: [{
+        endHour: 15,
+        startHour: 10
+      }]
     }
-  ];
-  dataSource!: MatTableDataSource<Interview>;
+  ]
+  userId = '';
+  interns = [] as Candidate[];
 
-  interviewList = [] as Interview[];
-
-  constructor(interviewService: InterviewService) {
-    this.dataSource = new MatTableDataSource(this.mockInterviewList);
+  constructor(private FormsService: FormsService, private storageService: StorageService) {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.dataSource = new MatTableDataSource(this.mockInterviewList);
-  }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
   ngOnInit() {
+    this.userId = this.storageService.getUserId() || '';
+    this.FormsService.getCandidatesListByUserId(this.userId).subscribe(candidates => this.interns = candidates)
   }
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-  }
+
 }
  
 
