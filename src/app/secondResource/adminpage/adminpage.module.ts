@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import {AdminpageComponent} from './adminpage.component';
 import {AdminpageRoutingModule} from './adminpage-routing.module';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -9,21 +8,24 @@ import {AdminsModule} from './admins/admins.module';
 import {TechexpertModule} from './techexpert/techexpert.module';
 import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
 import {TranslateModule} from '@ngx-translate/core';
-import {InternlistModule} from './internlist/internlist.module';
+import {InternshipformModule} from './internshipform/internshipform.module';
+import {CommonModule} from '@angular/common';
+import { InternlistModule } from './internlist/internlist.module';
 
 @NgModule({
   declarations: [AdminpageComponent],
-    imports: [
-        CommonModule,
-        AdminpageRoutingModule,
-        MatToolbarModule,
-        MatButtonModule,
-        InternshipsModule,
-        AdminsModule,
-        TechexpertModule,
-        TranslateModule, 
-        InternlistModule
-    ],
+  imports: [
+    CommonModule,
+    AdminpageRoutingModule,
+    MatToolbarModule,
+    MatButtonModule,
+    InternshipsModule,
+    AdminsModule,
+    TechexpertModule,
+    InternshipformModule,
+    TranslateModule, 
+    InternlistModule
+  ],
   providers: [IsAuthorizedGuard],
   exports: [AdminpageComponent]
 })

@@ -15,6 +15,8 @@ import {UserInfoGuard} from '../../core/guards/user-info.guard';
 import { InternlistComponent } from './internlist/internlist.component';
 import { FormsAdminResolveService } from 'src/app/core/resolvers/forms-admin-resolve.service';
 import { FormsResolveService } from 'src/app/core/resolvers/forms-resolve.service';
+import { InternshipformComponent } from './internshipform/internshipform.component';
+import { LocationResolver } from 'src/app/core/resolvers/location-resolve.service';
 
 const routes: Routes = [
   {
@@ -45,10 +47,14 @@ const routes: Routes = [
         canActivate: [IsTechExpertGuard]
       },
       {
+        path: 'internshipform',
+        component: InternshipformComponent,
+        resolve: {location: LocationResolver}
+      },
+      {
         path: 'internlist',
         component: InternlistComponent,
-        resolve: {interns: FormsAdminResolveService},
-        canActivate: [IsAdminsGuard]
+        resolve: {interns: FormsAdminResolveService}
       }
     ]
   }
