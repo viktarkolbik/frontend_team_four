@@ -119,6 +119,7 @@
   },
   "adminpage": {
     "internship": "Internships list",
+    "internlist": "Interns list",
     "createInternship": "Create internship",
     "logOut": "Log Out",
     "showCandidates": "Show Candidates"

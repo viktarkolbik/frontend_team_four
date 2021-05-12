@@ -120,6 +120,7 @@
   },
   "adminpage": {
     "internship": "Список стажировок",
+    "internlist": "Список кандидатов",
     "createInternship": "Создать стажировку",
     "logOut": "Выйти",
     "showCandidates": "Показать кандидатов"
