@@ -6,11 +6,55 @@
 <div class="addTime">
   <div class="addSlot">{{"timesetting.addSlot" | translate}}</div>
   <form class="create-form">
-  <mat-form-field appearance="fill">
-    <mat-label>{{"timesetting.chooseDate" | translate}}</mat-label>
-    <input matInput [matDatepicker]="picker">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+    <form [formGroup]="form" class="form-control" style="margin-top: 30px">
+      <mat-label>Выберите время для интервью</mat-label>
+      <mat-form-field appearance="fill">
+        <mat-label>{{"timesetting.chooseDate" | translate}}</mat-label>
+        <input class="form-control"
+               formControlName="selectedDate"
+               matInput
+               [min]='minDate'
+               [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div class="selector-time">
+        <mat-form-field appearance="fill" class="selector-time-item">
+          <mat-label>{{ 'regform.comforttimeFrom' | translate}}</mat-label>
+          <mat-select formControlName="startHour">
+            <mat-option
+              *ngFor="let time of convenientTimeArray"
+              [disabled]="
+                  time > form.controls['endHour'].value - 1
+                  && !!form.controls['endHour'].value
+                "
+              [value]="time"
+            >
+              {{time}}:00
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="selector-time-item">
+          <mat-label>{{ 'regform.comforttimeTo' | translate}}</mat-label>
+          <mat-select formControlName="endHour">
+            <mat-option
+              *ngFor="let time of convenientTimeArray"
+              [disabled]="time < form.controls['startHour'].value + 1"
+              [value]="time"
+            >
+              {{time}}:00
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
   </form>
+  <button id="submit-button"
+          mat-flat-button
+          color="primary"
+          (click)="submit()"
+          [disabled]="!true"
+  >
+    Добавить свободное время
+  </button>
 </div>
