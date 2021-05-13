@@ -9,21 +9,24 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent implements OnInit {
-  trainings: Internship[] | any;
-  filteredTrainings!: Internship[];
+  internships: Internship[] | any;
+  filteredInternships!: Internship[];
   error: number | undefined;
 
   constructor(private internshipsService: InternshipsService, private route: ActivatedRoute) {
-    this.route.data.subscribe((data) => this.trainings = data.internships);
-    if (this.trainings.error) {
-      this.error = this.trainings.status;
+    this.route.data.subscribe((data) => {
+      this.internships = data.internships;
+      this.filteredInternships = data.internships;
+    });
+    if (this.internships.error) {
+      this.error = this.internships.status;
     }
   }
 
   ngOnInit(): void {
   }
 
-  updateTrainings(trainings: Internship[]) {
-    this.filteredTrainings = trainings;
+  updateTrainings(internships: Internship[]) {
+    this.filteredInternships = internships;
   }
 }

@@ -29,6 +29,12 @@ export interface Interview {
   techInterviewDate?: string;
 }
 
+export interface Interviews {
+  id?: string;
+  userId: string;
+  userInterviewDate: string;
+}
+
 export interface ConvenientTime {
   endHour: number;
   startHour: number;

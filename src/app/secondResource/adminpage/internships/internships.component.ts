@@ -10,6 +10,7 @@ import {InternshipsService} from '../../../core/services/internships.service';
 })
 export class InternshipsComponent implements OnInit {
   internships = [] as Internship[];
+  filteredInternships = [] as Internship[];
   error?: number;
 
   constructor(private route: ActivatedRoute) {
@@ -19,11 +20,15 @@ export class InternshipsComponent implements OnInit {
           this.error = data.internships.status;
         } else {
           this.internships = data.internships;
+          this.filteredInternships = data.internships;
         }
       }
     );
   }
   ngOnInit(): void {
+  }
+  updateInternships(internships: Internship[]) {
+    this.filteredInternships = internships;
   }
 
 }
