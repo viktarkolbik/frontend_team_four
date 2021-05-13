@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  // backendURL: 'http://localhost:8080',
-  backendURL: 'https://exadel-docker.herokuapp.com',
+  backendURL: 'http://localhost:8080',
+  // backendURL: 'https://exadel-docker.herokuapp.com',
   // backendURL: 'https://intern-app-exadel-team4-be.herokuapp.com',
   production: false
 };

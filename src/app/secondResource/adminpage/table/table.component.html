@@ -47,13 +47,15 @@
     <ng-container matColumnDef="admin">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.recruiter" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
-        {{element.interview?.admin}}
+        {{element.interview?.adminUser.lastName}}
+        {{element.interview?.adminUser.firstName}}  
       </td>
     </ng-container>
     <ng-container matColumnDef="techSpecialist">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.techSpec" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
-        {{element.interview?.techSpecialist}}
+        {{element.interview?.techSpecialistUser.lastName}}
+        {{element.interview?.techSpecialistUser.firstName}}
       </td>
     </ng-container>
     <ng-container matColumnDef="primarySkill">
