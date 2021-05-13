@@ -1,14 +1,14 @@
 import {Component,  EventEmitter, Input, OnChanges, Output} from '@angular/core';
-import {Criterion, Filter, Internship, Location} from '../../../types';
+import {Criterion, Filter, Internship, Location} from '../types';
 
 @Component({
-  selector: 'ia-filter',
-  templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss']
+  selector: 'ia-filter-internships',
+  templateUrl: './filterInternships.component.html',
+  styleUrls: ['./filterInternships.component.scss']
 })
-export class FilterComponent implements OnChanges{
-  @Input() trainings!: Internship[];
-  @Output() onFilterTrainings: EventEmitter<Internship[]> = new EventEmitter<Internship[]>();
+export class FilterInternshipsComponent implements OnChanges{
+  @Input() internships!: Internship[];
+  @Output() filterInternships: EventEmitter<Internship[]> = new EventEmitter<Internship[]>();
   filters: {[key: string]: Filter} = {};
   cities?: string[];
   technologies?: string[];
@@ -18,11 +18,10 @@ export class FilterComponent implements OnChanges{
   constructor() {
   }
   ngOnChanges(){
-    this.onFilterTrainings.emit(this.trainings);
-    const setCities = (this.trainings.map(training => training.locations).flat());
-    const setCitiesArray = new Set(setCities.map(location => location.city.name))
+    const setCities = (this.internships.map(internship => internship.locations).flat());
+    const setCitiesArray = new Set(setCities.map(location => location.city.name));
     this.cities = Array.from(setCitiesArray);
-    const setTechnologiesArray = this.trainings.map(training => training.skills);
+    const setTechnologiesArray = this.internships.map(internship => internship.skills);
     const setTechnologies = new Set(setTechnologiesArray.flat());
     this.technologies = Array.from(setTechnologies);
     this.countries = Array.from(new Set(setCities.map(location => location.country.name)));
@@ -47,9 +46,9 @@ export class FilterComponent implements OnChanges{
     return filter;
   }
   updateTrainings(){
-    this.onFilterTrainings.emit(
-      this.trainings.filter(
-      (training) => {
+    this.filterInternships.emit(
+      this.internships.filter(
+      (internship) => {
         let condition = false;
         const filters = Object.values(this.filters);
         for (const filter of filters) {
@@ -58,13 +57,13 @@ export class FilterComponent implements OnChanges{
           condition = (filter.isChecked) ?
             filterCriteria.some(criterion => {
               // @ts-ignore
-              if(Array.isArray(training[filter.field])){
+              if(Array.isArray(internship[filter.field])){
                 // @ts-ignore
-                return criterion.isChecked && training[filter.field].includes(criterion.value);
+                return criterion.isChecked && internship[filter.field].includes(criterion.value);
               }
               else{
                 // @ts-ignore
-                return (criterion.isChecked && training.locations.map(location => location[filter.field].name.includes(criterion.value))
+                return (criterion.isChecked && internship.locations.map(location => location[filter.field].name.includes(criterion.value))
                   .some(location => location === true));
               }
         }) : true;

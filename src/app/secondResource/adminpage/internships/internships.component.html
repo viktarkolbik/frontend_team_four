@@ -1,7 +1,13 @@
 <div *ngIf = '!error; else Error' class="training_container">
+  <ia-filter-internships
+    class="filter"
+    [internships]="internships"
+    (filterInternships)="updateInternships($event)"
+  >
+  </ia-filter-internships>
   <div class="internship_wrapper">
     <ia-internship
-      *ngFor="let internship of internships"
+      *ngFor="let internship of filteredInternships"
       [internship] = "internship"
       class="internship"
     >

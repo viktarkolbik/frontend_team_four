@@ -11,7 +11,7 @@
     "kiev": "Киев",
     "warsawa": "Варшава"
   },
-  "filter": {
+  "filterInternships": {
     "filter": "Фильтрация",
     "country": "Страны",
     "city": "Города",
