@@ -44,6 +44,7 @@ const routes: Routes = [
       {
         path: 'techexpert',
         component: TechexpertComponent,
+        resolve: {interns: FormsAdminResolveService},
         canActivate: [IsTechExpertGuard]
       },
       {
