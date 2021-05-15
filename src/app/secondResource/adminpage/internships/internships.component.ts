@@ -13,7 +13,7 @@ export class InternshipsComponent implements OnInit {
   filteredInternships = [] as Internship[];
   error?: number;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private internshipservice: InternshipsService) {
     this.route.data.subscribe(
       (data) => {
         if (data.internships.error) {
@@ -31,4 +31,9 @@ export class InternshipsComponent implements OnInit {
     this.filteredInternships = internships;
   }
 
+  updateListIShips(id: string) {
+    this.filteredInternships = this.filteredInternships.filter(internship=>
+      internship.id !== id
+    );
+  }
 }

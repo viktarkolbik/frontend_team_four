@@ -11,24 +11,16 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class InternshipComponent implements OnInit {
   @Input() internship!: Internship;
+  @Output() deletingInternship: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private internshipservice: InternshipsService,
-              private route: ActivatedRoute) {
+  constructor(private internshipservice: InternshipsService) {
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   remove(id: string): void {
-    this.internshipservice.deleteInternshipById(id)
-      .subscribe(() => {
-        this.internshipservice.getInternshipList();
-      });
+    this.internshipservice.deleteInternshipById(id);
+    this.deletingInternship.emit(id);
   }
-  updateStatus(id: string): void {
-    this.internshipservice.deleteInternshipById(id)
-      .pipe(switchMap(() => this.route.params))
-      .pipe(switchMap((data) => this.internshipservice.getInternshipList()))
-      .subscribe(() => this.internshipservice.getInternshipList());
-  }
+
 }
