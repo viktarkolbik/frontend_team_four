@@ -7,7 +7,7 @@ import {FullLocation, Location} from '../../../types/location';
 import {LocationService} from '../../../core/services/location.service';
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
-import {Internship} from "../../../types";
+import {Internship} from '../../../types';
 
 @Component({
   selector: 'ia-trainingform',
@@ -19,12 +19,13 @@ export class InternshipformComponent implements OnInit {
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
   @ViewChild('skillInput') skillInput!: ElementRef<HTMLInputElement>;
   form: FormGroup;
-  formLocation: FormGroup;
+  //formLocation: FormGroup;
   internship?: Internship;
   skill = new FormControl('');
+  country = new FormControl('');
+  city = new FormControl('');
   countries = [] as Location[];
   cities = [] as Location[];
-  locations: FullLocation[];
   skills: string[] = [];
 
   formats: string[] = [
@@ -44,7 +45,6 @@ export class InternshipformComponent implements OnInit {
     this.countries = route.snapshot.data.location;
     this.internship = route.snapshot.data.internship;
     //add error handler----------------------------------------------------------
-    this.locations = this.internship?.locations || [];
     this.form = new FormGroup({
       capacity: new FormControl(
         this.internship?.capacity || '',
@@ -83,15 +83,15 @@ export class InternshipformComponent implements OnInit {
       techSkills: new FormControl(
         this.internship?.techSkills || '',
       ),
-      locations: new FormControl(this.locations),
+      locations: new FormArray(
+        this.internship?.locations?.map<FormControl>(location =>
+          new FormControl({...location})
+        ) || [],
+        ),
       publicationDate: new FormControl(this.internship?.publicationDate || this.today()),
     });
-    this.formLocation = new FormGroup({
-      country: new FormControl(),
-      city: new FormControl(),
-    });
   }
-  add(event: MatChipInputEvent): void {
+  addSkill(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
     const formArray: FormArray = this.form.get('skills') as FormArray;
@@ -106,7 +106,25 @@ export class InternshipformComponent implements OnInit {
     }
     this.skill.setValue(null);
   }
-  remove(fruit: string): void {
+  addLocation(): void {
+    const formArray: FormArray = this.form.get('locations') as FormArray;
+    formArray.push( new FormControl({
+      country: this.country.value,
+      city: this.city.value,
+    }));
+  }
+  removeLocation(deletedLocation: FullLocation): void {
+    const formArray: FormArray = this.form.get('locations') as FormArray;
+    const locations: FullLocation[] = formArray.value;
+    const index = locations.findIndex(location =>
+      location.country === deletedLocation.country
+      && location.city === deletedLocation.city
+    );
+    if(index >= 0) {
+      formArray.removeAt(index);
+    }
+  }
+  removeSkill(fruit: string): void {
     const formArray: FormArray = this.form.get('skills') as FormArray;
     const index = formArray.value.indexOf(fruit);
     if (index >= 0) {
@@ -134,11 +152,8 @@ export class InternshipformComponent implements OnInit {
   getKeys(obj: any): string[]{
     return Object.keys(obj);
   }
-  addLocation(): void {
-    this.locations.push(this.formLocation.value);
-  }
   loadCities(): void {
-    const countryId = this.formLocation.value.country.id;
+    const countryId = this.country.value.id;
     this.locationService.getCities(countryId).subscribe(data => {
       if(!data.error){
         this.cities = data;
@@ -175,8 +190,6 @@ export class InternshipformComponent implements OnInit {
   }
   resetForm(): void{
     this.form.reset();
-    this.formLocation.reset();
-    this.locations = [];
   }
   ngOnInit(): void {
   }
