@@ -18,16 +18,15 @@ import {Internship} from '../../../types';
 export class InternshipformComponent implements OnInit {
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
   @ViewChild('skillInput') skillInput!: ElementRef<HTMLInputElement>;
-  form: FormGroup;
-  //formLocation: FormGroup;
   internship?: Internship;
-  skill = new FormControl('');
-  country = new FormControl('');
-  city = new FormControl('');
   countries = [] as Location[];
   cities = [] as Location[];
   skills: string[] = [];
-
+  form: FormGroup;
+  country = new FormControl('');
+  city = new FormControl('');
+  skill = new FormControl('');
+  error: any;
   formats: string[] = [
     'ONLINE',
     'OFFLINE'
@@ -41,10 +40,19 @@ export class InternshipformComponent implements OnInit {
     private router: Router,
   )
   {
-    this.skills = route.snapshot.data.skills;
-    this.countries = route.snapshot.data.location;
-    this.internship = route.snapshot.data.internship;
-    //add error handler----------------------------------------------------------
+    const error = (
+      route.snapshot.data.skills?.error
+      || route.snapshot.data.countries?.error
+      || route.snapshot.data.internship?.error
+    );
+    if(error){
+      this.error = error;
+    }
+    else {
+      this.skills = route.snapshot.data.skills;
+      this.countries = route.snapshot.data.location;
+      this.internship = route.snapshot.data.internship;
+    }
     this.form = new FormGroup({
       capacity: new FormControl(
         this.internship?.capacity || '',
