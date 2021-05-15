@@ -167,7 +167,7 @@ export class InternshipformComponent implements OnInit {
         this.cities = data;
       }
       else {
-        this.snackBar.open(`Ошибка - Не удалось получить список городов, обновите страницу`, 'Ok');
+        this.snackBar.open(`Failed to get list of cities`, 'Ok');
       }
     });
   }
@@ -193,7 +193,7 @@ export class InternshipformComponent implements OnInit {
     const snackBarRef = this.snackBar.open(message, action);
     snackBarRef.afterDismissed().subscribe(() => {
       this.resetForm();
-      this.router.navigate(['adminpage']);
+      this.router.navigate(['/adminpage']);
     });
   }
   resetForm(): void{
