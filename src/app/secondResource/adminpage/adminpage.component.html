@@ -5,5 +5,5 @@
     <button mat-button routerLink="/adminpage/internlist" *ngIf="userInfo.userRole === 'ADMIN' || userInfo.userRole === 'SUPER_ADMIN'">{{"adminpage.internlist" | translate}}</button>
   </ng-container>
   <button id="log-out-button" mat-button routerLink="/loginpage" (click)="auth.logOut()">{{"adminpage.logOut" | translate}}</button>
-</mat-toolbar> -->
+</mat-toolbar>
 <router-outlet></router-outlet>

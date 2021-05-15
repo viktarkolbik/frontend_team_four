@@ -31,6 +31,9 @@
 .form-control{
   align-self: stretch;
   max-width: 80%;
+  textarea {
+    overflow: hidden;
+  }
 }
 .location-list-wrapper{
   margin-left: 20px;
