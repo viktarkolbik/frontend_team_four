@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Candidate } from 'src/app/types/candidate';
 
 @Component({
-  selector: 'ia-techexpert',
-  templateUrl: './techexpert.component.html',
-  styleUrls: ['./techexpert.component.scss']
+  selector: 'ia-internlist',
+  templateUrl: './internlist.component.html',
+  styleUrls: ['./internlist.component.scss']
 })
-export class TechexpertComponent implements OnInit {
 
+export class InternlistComponent implements  OnInit {
   error?: number;
-  interns = [] as Candidate[];
+  interns =  [] as Candidate[];
+
   constructor(private route: ActivatedRoute) {
     this.route.data.subscribe(
       (data) => {
@@ -20,10 +21,12 @@ export class TechexpertComponent implements OnInit {
           this.interns = data.interns;
         }
       }
-    )
-   }
+    );
+  }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
 }
+ 
+
