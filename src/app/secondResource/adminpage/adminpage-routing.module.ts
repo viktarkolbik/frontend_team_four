@@ -17,6 +17,7 @@ import { FormsAdminResolveService } from 'src/app/core/resolvers/forms-admin-res
 import { FormsResolveService } from 'src/app/core/resolvers/forms-resolve.service';
 import { InternshipformComponent } from './internshipform/internshipform.component';
 import { LocationResolver } from 'src/app/core/resolvers/location-resolve.service';
+import {SkillsResolveService} from "../../core/resolvers/skills-resolve.service";
 
 const routes: Routes = [
   {
@@ -50,7 +51,10 @@ const routes: Routes = [
       {
         path: 'internshipform',
         component: InternshipformComponent,
-        resolve: {location: LocationResolver}
+        resolve: {
+          location: LocationResolver,
+          skills: SkillsResolveService,
+        }
       },
       {
         path: 'internlist',

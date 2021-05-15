@@ -20,6 +20,10 @@ export class InternshipsService {
     return this.http.get<Internship>(`${this.basePath}/${id}`);
   }
 
+  getSkills(): Observable<[string]> {
+    return this.http.get<[string]>(`${this.basePath}/skills`);
+  }
+
   sendFormData(formData: any): Observable<any> {
     console.log(formData);
     const headers = new HttpHeaders({
