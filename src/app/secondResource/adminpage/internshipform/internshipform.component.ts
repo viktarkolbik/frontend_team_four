@@ -1,13 +1,12 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import { InternshipsService } from 'src/app/core/services/internships.service';
-import {ActivatedRoute, Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {FullLocation, Location} from '../../../types/location';
-import {LocationService} from "../../../core/services/location.service";
-import {MatAutocomplete, MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
-import {MatChipInputEvent} from "@angular/material/chips";
-import {COMMA, ENTER} from "@angular/cdk/keycodes";
+import {LocationService} from '../../../core/services/location.service';
+import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {MatChipInputEvent} from '@angular/material/chips';
 
 @Component({
   selector: 'ia-trainingform',
@@ -18,31 +17,17 @@ import {COMMA, ENTER} from "@angular/cdk/keycodes";
 export class InternshipformComponent implements OnInit {
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
   @ViewChild('skillInput') skillInput!: ElementRef<HTMLInputElement>;
-  separatorKeysCodes: number[] = [ENTER, COMMA];
   form: FormGroup;
   formLocation: FormGroup;
   skill = new FormControl('');
   countries = [] as Location[];
   cities = [] as Location[];
   locations = [] as FullLocation[];
+  skills: string[] = [];
 
   formats: string[] = [
     'ONLINE',
     'OFFLINE'
-  ];
-  skills: string[] = [
-    'JAVA_SCRIPT',
-    'C_PLUS_PLUS',
-    'C_SHARP',
-    'QA',
-    'JAVA',
-    'PYTHON',
-    'GOLANG',
-    'DEV_OPS',
-    'SAP',
-    'RUBY',
-    'RPA',
-    'PHP'
   ];
 
   constructor(
@@ -72,21 +57,17 @@ export class InternshipformComponent implements OnInit {
       country: new FormControl(),
       city: new FormControl(),
     });
-    const countries = route.snapshot.data.location;
-    if (!countries.error) {
-      this.countries = countries;
-    }
-    else {
-      if (countries.error.message != null) {
-        this.snackBar.open(`Ошибка ${countries.status} - Не удалось получить список стран, обновите страницу`, 'Ok');
-      }
-    }
+    this.skills = route.snapshot.data.skills;
+    this.countries = route.snapshot.data.location;
   }
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
     const formArray: FormArray = this.form.get('skills') as FormArray;
-    if ((value || '').trim()) {
+    if (
+      (value || '').trim()
+      && this.skills.includes(value)
+    ) {
       formArray.push(new FormControl(value.trim()));
     }
     if (input) {
@@ -102,9 +83,14 @@ export class InternshipformComponent implements OnInit {
     }
   }
   selected(event: MatAutocompleteSelectedEvent): void {
+    const value = event.option.viewValue;
     const formArray: FormArray = this.form.get('skills') as FormArray;
-    formArray.push(new FormControl(event.option.viewValue));
-    console.log(formArray);
+    if(!formArray.value.includes(value)){
+      formArray.push(new FormControl(value));
+    }
+    else {
+      this.snackBar.open('This technology has already been added', 'Ok');
+    }
     this.skillInput.nativeElement.value = '';
   }
   today(): Date {
