@@ -1,19 +1,24 @@
 <div class="container">
   <div class="content">
     <h1>{{ 'internshipform.h1' | translate}}</h1>
-    <form [formGroup]="formLocation" class="create-form">
+    <div class="create-form">
       <div class="form-control">
         <label class="star">{{'internshipform.locationList' | translate}}</label>
         <div class="location-list-wrapper">
           <mat-chip-list>
-            <mat-chip *ngFor="let location of locations">
+            <mat-chip
+              *ngFor="let location of form.get('locations')?.value"
+              [removable]="true"
+              (removed)="removeLocation(location)"
+            >
               {{location.city.name}}
+              <mat-icon matChipRemove>cancel</mat-icon>
             </mat-chip>
           </mat-chip-list>
           <div class="selector-location-list-wrapper">
             <mat-form-field appearance="standard" class="form-control">
               <label class="star">{{ 'regform.country' | translate}}</label>
-              <mat-select class="select-group" formControlName="country" required (selectionChange)="loadCities()">
+              <mat-select class="select-group" [formControl]="country" required (selectionChange)="loadCities()">
                 <mat-option *ngFor="let country of countries" [value]="country">
                   {{country.name}}
                 </mat-option>
@@ -22,7 +27,7 @@
 
             <mat-form-field appearance="standard" class="form-control">
               <label class="star">{{ 'regform.city' | translate}}</label>
-              <mat-select class="select-group" formControlName="city" required >
+              <mat-select class="select-group" [formControl]="city" required >
                 <mat-option *ngFor="let city of cities" [value]="city">
                   {{city.name}}
                 </mat-option>
@@ -32,7 +37,7 @@
           <button mat-flat-button color="primary" (click)="addLocation()">Add</button>
         </div>
       </div>
-    </form>
+    </div>
     <form [formGroup]="form" class="create-form">
       <mat-form-field appearance="standard" class="form-control">
         <label class="star">{{ 'internshipform.name' | translate}}</label>
@@ -69,7 +74,7 @@
           <mat-chip
             *ngFor="let skill of form.get('skills')?.value"
             [removable]="true"
-            (removed)="remove(skill)"
+            (removed)="removeSkill(skill)"
           >
             {{skill}}
             <mat-icon matChipRemove>cancel</mat-icon>
@@ -80,7 +85,7 @@
             [formControl]="skill"
             [matAutocomplete]="auto"
             [matChipInputFor]="chipList"
-            (matChipInputTokenEnd)="add($event)">
+            (matChipInputTokenEnd)="addSkill($event)">
         </mat-chip-list>
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
           <mat-option *ngFor="let fruit of skills" [value]="fruit">
