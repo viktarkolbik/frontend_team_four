@@ -193,7 +193,7 @@ export class InternshipformComponent implements OnInit {
     const snackBarRef = this.snackBar.open(message, action);
     snackBarRef.afterDismissed().subscribe(() => {
       this.resetForm();
-      this.router.navigate(['/adminpage']);
+      this.router.navigate(['/adminpage/internships']);
     });
   }
   resetForm(): void{
