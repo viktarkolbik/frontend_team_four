@@ -88,8 +88,10 @@
     "learn": "Start learning according to  to the chosen program"
   },
   "internshipform": {
+    "edit": "Editing internship",
     "capacity": "Capacity",
     "locationList": "Location list",
+    "locationButton": "Add location",
     "h1": "Create internship",
     "name": "Internship name",
     "description": "Internship description",
@@ -104,6 +106,8 @@
     "techSkills": "Technical skills",
     "publication": "Publication date",
     "create-btn": "Create",
+    "saveButton": "Save",
+    "cancelButton": "Cancel",
     "publicationdate": "Publication date"
   },
   "loginpage": {

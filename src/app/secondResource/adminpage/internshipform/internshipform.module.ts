@@ -13,13 +13,14 @@ import { MatButtonModule } from '@angular/material/button';
 import {CommonModule} from '@angular/common';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
     InternshipformComponent,
   ],
     imports: [
-      CommonModule,
+        CommonModule,
         MatFormFieldModule,
         TranslateModule,
         MatSelectModule,
@@ -33,6 +34,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
         MatButtonModule,
         MatExpansionModule,
         MatAutocompleteModule,
+        RouterModule,
     ],
   exports: [InternshipformComponent]
 })
