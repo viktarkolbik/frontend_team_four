@@ -7,6 +7,7 @@ import {FullLocation, Location} from '../../../types/location';
 import {LocationService} from '../../../core/services/location.service';
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
+import {Internship} from "../../../types";
 
 @Component({
   selector: 'ia-trainingform',
@@ -19,10 +20,11 @@ export class InternshipformComponent implements OnInit {
   @ViewChild('skillInput') skillInput!: ElementRef<HTMLInputElement>;
   form: FormGroup;
   formLocation: FormGroup;
+  internship?: Internship;
   skill = new FormControl('');
   countries = [] as Location[];
   cities = [] as Location[];
-  locations = [] as FullLocation[];
+  locations: FullLocation[];
   skills: string[] = [];
 
   formats: string[] = [
@@ -38,27 +40,56 @@ export class InternshipformComponent implements OnInit {
     private router: Router,
   )
   {
+    this.skills = route.snapshot.data.skills;
+    this.countries = route.snapshot.data.location;
+    this.internship = route.snapshot.data.internship;
+    //add error handler----------------------------------------------------------
+    this.locations = this.internship?.locations || [];
     this.form = new FormGroup({
-      capacity: new FormControl('', Validators.required),
-      name: new FormControl('', Validators.required),
-      description: new FormControl(''),
-      internshipFormat: new FormControl('', Validators.required),
-      skills: new FormArray([], Validators.required),
-      trainingRequirements: new FormControl(''),
-      startDate: new FormControl('', Validators.required),
-      endDate: new FormControl('', Validators.required),
-      registrationStartDate: new FormControl('', Validators.required),
-      registrationEndDate: new FormControl('', Validators.required),
-      techSkills: new FormControl(''),
-      locationList: new FormControl(this.locations),
-      publicationDate: new FormControl(this.today()),
+      capacity: new FormControl(
+        this.internship?.capacity || '',
+        Validators.required
+      ),
+      name: new FormControl(
+        this.internship?.name || '',
+        Validators.required
+      ),
+      description: new FormControl(this.internship?.description || ''),
+      internshipFormat: new FormControl(
+        this.internship?.internshipFormat || '',
+        Validators.required
+      ),
+      skills: new FormArray(
+        this.internship?.skills?.map(skill => new FormControl(skill)) || [],
+        Validators.required
+      ),
+      requirements: new FormControl(this.internship?.requirements || ''),
+      startDate: new FormControl(
+        this.internship?.startDate || '',
+        Validators.required
+      ),
+      endDate: new FormControl(
+        this.internship?.endDate || '',
+        Validators.required
+      ),
+      registrationStartDate: new FormControl(
+        this.internship?.registrationStartDate || '',
+        Validators.required
+      ),
+      registrationEndDate: new FormControl(
+        this.internship?.registrationEndDate || '',
+        Validators.required
+      ),
+      techSkills: new FormControl(
+        this.internship?.techSkills || '',
+      ),
+      locations: new FormControl(this.locations),
+      publicationDate: new FormControl(this.internship?.publicationDate || this.today()),
     });
     this.formLocation = new FormGroup({
       country: new FormControl(),
       city: new FormControl(),
     });
-    this.skills = route.snapshot.data.skills;
-    this.countries = route.snapshot.data.location;
   }
   add(event: MatChipInputEvent): void {
     const input = event.input;
@@ -119,7 +150,11 @@ export class InternshipformComponent implements OnInit {
   }
   submit(): void {
     const formValueJson = JSON.stringify(this.form.value);
-    this.internshipService.sendFormData(formValueJson).subscribe(
+    const internshipObservable = (this.internship?.id) ?
+      this.internshipService.updateInternship(formValueJson, this.internship.id) :
+      this.internshipService.sendFormData(formValueJson);
+
+    internshipObservable.subscribe(
       data => {
         const message = 'Your application sent successfully';
         this.openSnackbar(message, 'Ok');
