@@ -14,6 +14,9 @@ export class TimesettingsComponent implements OnInit {
   form: FormGroup;
   convenientTimeArray: number[] = [];
   minDate: Date;
+  crossStartFreeTime!: boolean;
+  crossEndFreeTime!: boolean;
+  crossInterviewTime: boolean = false;
   private convenientTime: {[key: string]: number} =
     {
       from: 9,
@@ -28,12 +31,31 @@ export class TimesettingsComponent implements OnInit {
       startHour: new FormControl('', Validators.required),
       endHour: new FormControl('', Validators.required)
     });
+    this.form.get("startHour")?.valueChanges.subscribe(data => {
+      const checkTimeStart = this.form.get("selectedDate")?.value.setHours(data);
+      this.crossStartFreeTime = !!this.checkStartTime(checkTimeStart)
+    })
+    this.form.get("endHour")?.valueChanges.subscribe(data => {
+      const checkTimeEnd = this.form.get("selectedDate")?.value.setHours(data);
+      this.crossEndFreeTime = !!this.checkEndTime(checkTimeEnd)
+    })
     auth.getUserInfo().subscribe(data => {
       this.Timeslots = data.userTimeSlots;
       this.userID = data.id;
     });
   }
-
+  checkStartTime(time: number): boolean {
+    const arrCheck = this.Timeslots.map((el: any) => [Date.parse(el.startDate), Date.parse(el.endDate)]);
+    return arrCheck.find((el: any) => {
+      return el[0] <= time && el[1] > time
+    });
+  }
+  checkEndTime(time: number): boolean {
+    const arrCheck = this.Timeslots.map((el: any) => [Date.parse(el.startDate), Date.parse(el.endDate)]);
+    return arrCheck.find((el: any) => {
+      return el[0] <= time && el[1] > time
+    });
+  }
   submit(): void {
     const formValue = this.form.value;
     const from = formValue.selectedDate.setHours(formValue.startHour);
@@ -43,7 +65,6 @@ export class TimesettingsComponent implements OnInit {
       roundUp: true,
       startDate: (new Date(from)).toISOString(),
     }]
-    console.log(newSlot);
     const formValueJson = JSON.stringify(newSlot);
     this.userService.sendTimeSlots(this.userID, formValueJson).subscribe(
       data => {

@@ -18,7 +18,7 @@
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-      <div class="selector-time">
+      <div class="selector-time" *ngIf="this.form.value.selectedDate">
         <mat-form-field appearance="fill" class="selector-time-item">
           <mat-label>{{ 'regform.comforttimeFrom' | translate}}</mat-label>
           <mat-select formControlName="startHour">
@@ -53,8 +53,14 @@
           mat-flat-button
           color="primary"
           (click)="submit()"
-          [disabled]="!true"
+          [disabled]="!form.valid || crossStartFreeTime || crossEndFreeTime || crossInterviewTime"
   >
     Добавить свободное время
   </button>
+  <mat-error *ngIf="crossStartFreeTime || crossEndFreeTime">
+    {{ 'timesetting.crossFreeTime' | translate}}
+  </mat-error>
+  <mat-error *ngIf="crossInterviewTime">
+    {{ 'timesetting.crossInterview' | translate}}
+  </mat-error>
 </div>

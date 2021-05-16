@@ -132,7 +132,9 @@
       "date": "Date",
       "from": "from",
       "to": "to"
-    }
+    },
+    "crossFreeTime" : "Selected time across time in vacancy slots",
+    "crossInterview": "Selected time across time in interview"
   },
   "admins": {
     "candidateRefused": "Candidate Refused",
