@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Internship} from '../../../types';
 import {InternshipsService} from '../../../core/services/internships.service';
+import {subscribeOn} from 'rxjs/operators';
 
 @Component({
   selector: 'ia-internships',
@@ -34,8 +35,11 @@ export class InternshipsComponent implements OnInit {
   updateListIShips(id: string) {
     this.internshipservice.deleteInternshipById(id)
       .subscribe(()=>{
-        this.filteredInternships = this.filteredInternships.filter(internship=> internship.id !== id);
-        this.internshipservice.getInternshipList();
+        this.internshipservice.getInternshipList()
+          .subscribe((data)=>{
+            this.internships = data.filter(internship=> internship.id !== id);
+            this.updateInternships(this.internships);
+          });
       });
   }
 }
