@@ -19,10 +19,6 @@ export class InternshipComponent implements OnInit {
   ngOnInit(): void {}
 
   remove(id: string): void {
-    this.internshipservice.deleteInternshipById(id)
-      .subscribe(()=>{
-        this.internshipservice.getInternshipList();
-      })
     this.deletingInternship.emit(id);
   }
 

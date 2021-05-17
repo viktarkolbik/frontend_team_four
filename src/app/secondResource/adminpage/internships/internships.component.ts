@@ -32,8 +32,10 @@ export class InternshipsComponent implements OnInit {
   }
 
   updateListIShips(id: string) {
-    this.filteredInternships = this.filteredInternships.filter(internship=>
-      internship.id !== id
-    );
+    this.internshipservice.deleteInternshipById(id)
+      .subscribe(()=>{
+        this.filteredInternships = this.filteredInternships.filter(internship=> internship.id !== id);
+        this.internshipservice.getInternshipList();
+      });
   }
 }
