@@ -16,20 +16,28 @@ export class InternshipsService {
     return this.http.get<Internship[]>(this.basePath);
   }
 
-  getInternshipById(id: string): Observable<any>{
-    return this.http.get<Internship>(`${this.basePath}/${id}`);
+  getInternshipById(id: string, fullRepresentation: boolean = true): Observable<any>{
+    return this.http.get<Internship>(`${this.basePath}/${id}?fullRepresentation=${fullRepresentation}`);
   }
 
-  deleteInternshipById(id: string): Observable<void>{
-    return this.http.delete<void>(`${this.basePath}/${id}`);
+  getSkills(): Observable<[string]> {
+    return this.http.get<[string]>(`${this.basePath}/skills`);
   }
 
-  sendFormData(formData: any): Observable<any> {
-    console.log(formData);
+  sendFormData(formData: any): Observable<Internship> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post(this.basePath, formData, {headers});
+    return this.http.post<Internship>(this.basePath, formData, {headers});
   }
 
+  updateInternship(formData: any, id: string): Observable<Internship>{
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.http.put<Internship>(`${this.basePath}/${id}`, formData, {headers});
+  }
+  deleteInternshipById(id: string): Observable<void>{
+    return this.http.delete<void>(`${this.basePath}/${id}`);
+  }
 }

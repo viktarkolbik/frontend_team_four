@@ -4,7 +4,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {InternshipComponent} from './internship.component';
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
-import {MatIconModule} from '@angular/material/icon';
+import {MatIconModule} from "@angular/material/icon";
 
 
 

@@ -2,13 +2,21 @@
   <div class="internship__name">{{internship.name}}</div>
   <div>{{internship.startDate}}</div>
   <div>{{internship.internshipFormat}}</div>
-  <div>{{internship.skills | json}}</div>
+  <div>{{internship.skills}}</div>
   <div class="example-button-container">
-    <button mat-flat-button color="primary" routerLink="/adminpage/admins/{{internship.id}}">
-      {{"adminpage.showCandidates" | translate}}
+  <button
+    class="edit-button"
+    mat-icon-button
+    color="primary"
+    routerLink="/adminpage/internshipform/{{internship.id}}"
+  >
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-flat-button color="primary" routerLink="/adminpage/admins/{{internship.id}}">
+    {{"adminpage.showCandidates" | translate}}
+  </button>
+    <button mat-mini-fab color="warn" (click)="remove(internship.id)">
+      <mat-icon>delete</mat-icon>
     </button>
-      <button mat-mini-fab color="warn" (click)="remove(internship.id)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
-    </div>
+</div>
+</div>

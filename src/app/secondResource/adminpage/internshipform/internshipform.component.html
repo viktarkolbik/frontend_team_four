@@ -1,181 +1,177 @@
 <div class="container">
-  <div class="content">
-    <h1>{{ 'internshipform.h1' | translate}}</h1>
-    <form [formGroup]="formLocation" class="create-form">
-      <div class="form-control">
-        <label class="star">{{'internshipform.locationList' | translate}}</label>
-        <div class="location-list-wrapper">
-          <mat-chip-list>
-            <mat-chip *ngFor="let location of locations">
-              {{location.city.name}}
-            </mat-chip>
-          </mat-chip-list>
-          <div class="selector-location-list-wrapper">
-            <mat-form-field appearance="standard" class="form-control">
-              <label class="star">{{ 'regform.country' | translate}}</label>
-              <mat-select class="select-group" formControlName="country" required (selectionChange)="loadCities()">
-                <mat-option *ngFor="let country of countries" [value]="country">
-                  {{country.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <mat-form-field appearance="standard" class="form-control">
-              <label class="star">{{ 'regform.city' | translate}}</label>
-              <mat-select class="select-group" formControlName="city" required >
-                <mat-option *ngFor="let city of cities" [value]="city">
-                  {{city.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-          <button mat-flat-button color="primary" (click)="addLocation()">Add</button>
-        </div>
-      </div>
-
-      <!--<mat-accordion class="form-control">
-        <label class="star">{{'internshipform.locationList' | translate}}</label>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-description>{{'internshipform.locationList' | translate}}</mat-panel-description>
-          </mat-expansion-panel-header>
-          <div>
+  <ng-container *ngIf = '!error; else Error'>
+    <div class="content">
+      <h1 *ngIf="!internship">{{ 'internshipform.h1' | translate}}</h1>
+      <h1 *ngIf="internship">{{ 'internshipform.edit' | translate}}</h1>
+      <div class="create-form">
+        <div class="form-control">
+          <label class="star">{{'internshipform.locationList' | translate}}</label>
+          <div class="location-list-wrapper">
             <mat-chip-list>
-              <mat-chip *ngFor="let location of locations">
+              <mat-chip
+                *ngFor="let location of form.get('locations')?.value"
+                [removable]="true"
+                (removed)="removeLocation(location)"
+              >
                 {{location.city.name}}
+                <mat-icon matChipRemove>cancel</mat-icon>
               </mat-chip>
             </mat-chip-list>
-            <mat-form-field appearance="standard" class="form-control">
-              <label class="star">{{ 'regform.country' | translate}}</label>
-              <mat-select class="select-group" formControlName="country" required (selectionChange)="loadCities()">
-                <mat-option *ngFor="let country of countries" [value]="country">
-                  {{country.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+            <div class="selector-location-list-wrapper">
+              <mat-form-field appearance="standard" class="form-control">
+                <label class="star">{{ 'regform.country' | translate}}</label>
+                <mat-select class="select-group" [formControl]="country" required (selectionChange)="loadCities()">
+                  <mat-option *ngFor="let country of countries" [value]="country">
+                    {{country.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
 
-            <mat-form-field appearance="standard" class="form-control">
-              <label class="star">{{ 'regform.city' | translate}}</label>
-              <mat-select class="select-group" formControlName="city" required >
-                <mat-option *ngFor="let city of cities" [value]="city">
-                  {{city.name}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <button mat-flat-button color="primary" (click)="addLocation()">Add</button>
+              <mat-form-field appearance="standard" class="form-control">
+                <label class="star">{{ 'regform.city' | translate}}</label>
+                <mat-select class="select-group" [formControl]="city" required >
+                  <mat-option *ngFor="let city of cities" [value]="city">
+                    {{city.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="addLocation()"
+              [disabled]="!(city.value && country.value)"
+            >
+              {{'internshipform.locationButton' | translate}}
+            </button>
           </div>
-        </mat-expansion-panel>
-      </mat-accordion>-->
-    </form>
-    <form [formGroup]="form" class="create-form">
-      <mat-form-field appearance="standard" class="form-control">
-        <label class="star">{{ 'internshipform.name' | translate}}</label>
-        <input matInput formControlName="name" type="text" placeholder="{{ 'internshipform.name' | translate}}">
-      </mat-form-field>
-
-      <mat-form-field appearance="standard" class="form-control">
-        <label class="star">{{ 'internshipform.capacity' | translate}}</label>
-        <input matInput formControlName="capacity" type="number" placeholder="{{ 'internshipform.capacity' | translate}}">
-      </mat-form-field>
-
-      <mat-form-field appearance="standard" class="form-control">
-        <label class="star">{{ 'internshipform.description' | translate}}</label>
-        <textarea matInput
-          cdkTextareaAutosize
-          formControlName="description"
-          placeholder="{{ 'internshipform.description' | translate}}"
-          maxlength="1000"
-        ></textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="standard" class="form-control">
-        <label class="star">{{ 'internshipform.format' | translate}}</label>
-        <mat-select class="select-group" formControlName="internshipFormat">
-          <mat-option *ngFor="let format of formats" [value]="format">
-            {{format}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="standard" class="form-control">
-        <label class="star">{{'internshipform.skills' | translate}}</label>
-        <mat-chip-list #chipList aria-label="Fruit selection">
-          <mat-chip
-            *ngFor="let skill of form.get('skills')?.value"
-            [removable]="true"
-            (removed)="remove(skill)"
-          >
-            {{skill}}
-            <mat-icon matChipRemove>cancel</mat-icon>
-          </mat-chip>
-          <input
-            placeholder="{{'internshipform.newSkill' | translate}}"
-            #skillInput
-            [formControl]="skill"
-            [matAutocomplete]="auto"
-            [matChipInputFor]="chipList"
-            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-            (matChipInputTokenEnd)="add($event)">
-        </mat-chip-list>
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let fruit of skills" [value]="fruit">
-            {{fruit}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-
-      <mat-form-field appearance="standard" class="form-control">
-        <label class="star">{{ 'internshipform.requirements' | translate}}</label>
-        <textarea matInput
-          cdkTextareaAutosize
-          formControlName="trainingRequirements"
-          placeholder="{{ 'internshipform.requirements' | translate}}"
-          maxlength="1000"
-        ></textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="standard" class="form-control">
-        <label class="star">{{ 'internshipform.techSkills' | translate}}</label>
-        <textarea matInput
-          cdkTextareaAutosize
-          formControlName="techSkills"
-          placeholder="{{ 'internshipform.techSkills' | translate}}"
-          maxlength="1000"
-        ></textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="standard" class="form-control">
-        <label class="star">{{ 'internshipform.duration' | translate}}</label>
-        <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate formControlName="startDate" placeholder="{{ 'internshipform.start-date' | translate}}">
-          <input matEndDate formControlName="endDate" placeholder="{{ 'internshipform.end-date' | translate}}">
-        </mat-date-range-input>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-      </mat-form-field>
-
-      <mat-form-field appearance="standard" class="form-control">
-        <label class="star">{{ 'internshipform.registry-duration' | translate}}</label>
-        <mat-date-range-input [rangePicker]="picker1">
-          <input matStartDate formControlName="registrationStartDate" placeholder="{{ 'internshipform.start-date' | translate}}">
-          <input matEndDate formControlName="registrationEndDate" placeholder="{{ 'internshipform.end-date' | translate}}">
-        </mat-date-range-input>
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker1></mat-date-range-picker>
-      </mat-form-field>
-
-      <div class="publication-date">
-        <label>{{'internshipform.publicationdate' | translate }}: {{today() | date:"dd/MM/yyyy"}}</label>
+        </div>
       </div>
-      <button
-        mat-flat-button
-        (click)="submit()"
-        color="primary"
-        [disabled]="form.invalid"
-      >
-        {{ 'internshipform.create-btn' | translate}}
-      </button>
-    </form>
-  </div>
+      <form [formGroup]="form" class="create-form">
+        <mat-form-field appearance="standard" class="form-control">
+          <label class="star">{{ 'internshipform.name' | translate}}</label>
+          <input matInput formControlName="name" type="text" placeholder="{{ 'internshipform.name' | translate}}">
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="form-control">
+          <label class="star">{{ 'internshipform.capacity' | translate}}</label>
+          <input matInput formControlName="capacity" type="number" placeholder="{{ 'internshipform.capacity' | translate}}">
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="form-control">
+          <label class="star">{{ 'internshipform.description' | translate}}</label>
+          <textarea
+            matInput
+            cdkTextareaAutosize
+            formControlName="description"
+            placeholder="{{ 'internshipform.description' | translate}}"
+            maxlength="1000"
+          ></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="form-control">
+          <label class="star">{{ 'internshipform.format' | translate}}</label>
+          <mat-select class="select-group" formControlName="internshipFormat">
+            <mat-option *ngFor="let format of formats" [value]="format">
+              {{format}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="form-control">
+          <label class="star">{{'internshipform.skills' | translate}}</label>
+          <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip
+              *ngFor="let skill of form.get('skills')?.value"
+              [removable]="true"
+              (removed)="removeSkill(skill)"
+            >
+              {{skill}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="{{'internshipform.newSkill' | translate}}"
+              #skillInput
+              [formControl]="skill"
+              [matAutocomplete]="auto"
+              [matChipInputFor]="chipList"
+              (matChipInputTokenEnd)="addSkill($event)">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let fruit of skills" [value]="fruit">
+              {{fruit}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="form-control">
+          <label class="star">{{ 'internshipform.requirements' | translate}}</label>
+          <textarea matInput
+                    cdkTextareaAutosize
+                    formControlName="requirements"
+                    placeholder="{{ 'internshipform.requirements' | translate}}"
+                    maxlength="1000"
+          ></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="form-control">
+          <label class="star">{{ 'internshipform.techSkills' | translate}}</label>
+          <textarea matInput
+                    cdkTextareaAutosize
+                    formControlName="techSkills"
+                    placeholder="{{ 'internshipform.techSkills' | translate}}"
+                    maxlength="1000"
+          ></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="form-control">
+          <label class="star">{{ 'internshipform.duration' | translate}}</label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate formControlName="startDate" placeholder="{{ 'internshipform.start-date' | translate}}">
+            <input matEndDate formControlName="endDate" placeholder="{{ 'internshipform.end-date' | translate}}">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+
+        <mat-form-field appearance="standard" class="form-control">
+          <label class="star">{{ 'internshipform.registry-duration' | translate}}</label>
+          <mat-date-range-input [rangePicker]="picker1">
+            <input matStartDate formControlName="registrationStartDate" placeholder="{{ 'internshipform.start-date' | translate}}">
+            <input matEndDate formControlName="registrationEndDate" placeholder="{{ 'internshipform.end-date' | translate}}">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker1></mat-date-range-picker>
+        </mat-form-field>
+
+        <div class="publication-date">
+          <label>{{'internshipform.publicationdate' | translate }}: {{today() | date:"dd/MM/yyyy"}}</label>
+        </div>
+        <div class="button-wrapper">
+          <button
+            mat-raised-button
+            routerLink="/adminpage/internships"
+          >
+            {{'internshipform.cancelButton' | translate}}
+          </button>
+          <button
+            mat-flat-button
+            (click)="submit()"
+            color="primary"
+            [disabled]="form.invalid"
+          >
+          <span *ngIf="!internship">
+            {{ 'internshipform.create-btn' | translate}}
+          </span>
+            <span *ngIf="internship">
+            {{ 'internshipform.saveButton' | translate}}
+          </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </ng-container>
+  <ng-template #Error>
+    <div class="error">Something went wrong, please try refreshing the page</div>
+  </ng-template>
 </div>
