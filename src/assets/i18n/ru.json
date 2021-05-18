@@ -11,7 +11,7 @@
     "kiev": "Киев",
     "warsawa": "Варшава"
   },
-  "filter": {
+  "filterInternships": {
     "filter": "Фильтрация",
     "country": "Страны",
     "city": "Города",
@@ -89,19 +89,26 @@
     "learn": "Начни обучение в соответствии с выбранной программой"
   },
   "internshipform": {
+    "edit": "Редактирование стажировки",
+    "capacity": "Вместимость",
+    "locationList": "Список локаций",
+    "locationButton": "Добавить локацию",
     "h1": "Создать стажировку",
     "name": "Название стажировки",
     "description": "Описание стажировки",
     "format": "Формат стажировки",
-    "language": "Технология стажировки",
+    "skills": "Технология стажировки",
+    "newSkill": "Новая технология",
     "requirements": "Требования к кандидату",
     "duration": "Продолжительность стажировки",
     "start-date": "Начало",
     "end-date": "Конец",
     "registry-duration": "Длительость регистрации",
-    "skills": "Технические требования",
+    "techSkills": "Технические требования",
     "publication": "Дата публикации",
     "create-btn": "Создать",
+    "saveButton": "Сохранить",
+    "cancelButton": "Отменить",
     "publicationdate": "Дата публикации"
   },
   "loginpage": {
@@ -117,6 +124,7 @@
   },
   "adminpage": {
     "internship": "Список стажировок",
+    "internlist": "Список кандидатов",
     "createInternship": "Создать стажировку",
     "logOut": "Выйти",
     "showCandidates": "Показать кандидатов"

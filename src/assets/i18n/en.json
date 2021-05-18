@@ -11,7 +11,7 @@
     "kiev": "Kiev",
     "warsawa": "Warsawa"
   },
-  "filter": {
+  "filterInternships": {
     "filter": "Filter",
     "country": "Country",
     "city": "City",
@@ -88,19 +88,26 @@
     "learn": "Start learning according to  to the chosen program"
   },
   "internshipform": {
+    "edit": "Editing internship",
+    "capacity": "Capacity",
+    "locationList": "Location list",
+    "locationButton": "Add location",
     "h1": "Create internship",
     "name": "Internship name",
     "description": "Internship description",
     "format": "Internship format",
-    "language": "Internship Language",
+    "skills": "Skills",
+    "newSkill": "newSkill",
     "requirements": "Requirements for a candidate",
     "duration": "Internship duration",
     "start-date": "Start",
     "end-date": "End",
     "registry-duration": "Registry duration",
-    "skills": "Technical skills",
+    "techSkills": "Technical skills",
     "publication": "Publication date",
     "create-btn": "Create",
+    "saveButton": "Save",
+    "cancelButton": "Cancel",
     "publicationdate": "Publication date"
   },
   "loginpage": {
@@ -116,6 +123,7 @@
   },
   "adminpage": {
     "internship": "Internships list",
+    "internlist": "Interns list",
     "createInternship": "Create internship",
     "logOut": "Log Out",
     "showCandidates": "Show Candidates"

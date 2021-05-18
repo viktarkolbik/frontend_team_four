@@ -3,6 +3,14 @@
   <div>{{internship.startDate}}</div>
   <div>{{internship.internshipFormat}}</div>
   <div>{{skills}}</div>
+  <button
+    class="edit-button"
+    mat-icon-button
+    color="primary"
+    routerLink="/adminpage/internshipform/{{internship.id}}"
+  >
+    <mat-icon>edit</mat-icon>
+  </button>
   <button mat-flat-button color="primary" routerLink="/adminpage/admins/{{internship.id}}">
     {{"adminpage.showCandidates" | translate}}
   </button>

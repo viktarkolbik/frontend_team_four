@@ -1,6 +1,33 @@
 <div *ngIf = '!error; else Error' class="training_container">
-  <ia-table [selectedCandidateID]="selectedCandidateID" [candidates]="candidates" (onSelectedCandidate)="updateSelectedCandidate($event)">
+  <ia-table
+    [selectedCandidateID]="selectedCandidateID"
+    [candidates]="candidates"
+    (onSelectedCandidate)="updateSelectedCandidate($event)"
+  >
     <ng-template>
+      <div class="interview">
+        <p>Schedule an interview with:</p>
+        <button
+          mat-raised-button
+          [disabled]="admins.length === 0"
+          (click)="openInterviewDialog(admins, 'ADMIN')"
+        >
+          HR
+        </button>
+        <button
+          mat-raised-button
+          [disabled]="techExperts.length === 0"
+          (click)="openInterviewDialog(techExperts, 'TECH_EXPERT')"
+        >
+          Technical expert
+        </button>
+        <ng-container *ngIf="techExperts.length === 0">
+          <p>no technical experts</p>
+        </ng-container>
+        <ng-container *ngIf="admins.length === 0">
+          <p>no admins</p>
+        </ng-container>
+      </div>
       <ng-container *ngIf="userInfo.userRole === 'SUPER_ADMIN'">
         <div class="control-button">
           <button
@@ -21,20 +48,6 @@
                   (click)="updateStatus(selectedCandidate.id , 'ACCEPTED')"
           >{{"admins.approve" | translate}}</button>
         </div>
-        <div>
-          <ng-container *ngIf="admins.length === 0">
-            <p>no admins</p>
-          </ng-container>
-          <mat-form-field appearance="fill">
-            <mat-label>Select admin</mat-label>
-            <mat-select [disabled]="admins.length === 0" [(ngModel)]="selectedAdminId">
-              <mat-option *ngFor="let admin of admins" [value]="admin.id">
-                {{admin.lastName + admin.firstName[0] + '.'}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <button mat-raised-button [disabled]="!selectedAdminId">Appoint</button>
-        </div>
       </ng-container>
       <ng-container *ngIf="userInfo.userRole === 'ADMIN'">
         <div class="control-button">
@@ -42,20 +55,6 @@
           <button mat-raised-button (click)="updateStatus(selectedCandidate.id , 'CANDIDATE_REFUSED')">Candidate Refused</button>
         </div>
       </ng-container>
-      <div>
-        <ng-container *ngIf="techExperts.length === 0">
-          <p>no technical experts</p>
-        </ng-container>
-        <mat-form-field appearance="fill">
-          <mat-label>Select technical expert</mat-label>
-          <mat-select [disabled]="techExperts.length === 0" [(ngModel)]="selectedTechExpertId">
-            <mat-option *ngFor="let techExpert of techExperts" [value]="techExpert.id">
-              {{techExpert.lastName + techExpert.firstName[0] + '.'}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button mat-raised-button [disabled]="!selectedTechExpertId">Appoint</button>
-      </div>
     </ng-template>
   </ia-table>
 </div>

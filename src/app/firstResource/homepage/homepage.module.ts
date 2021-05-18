@@ -6,7 +6,7 @@ import { HomepageRoutingModule } from './homepage-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { InternshipModule } from './internship/internship.module';
 import {FormsModule} from '@angular/forms';
-import {FilterModule} from './filter/filter.module';
+import {FilterInternshipsModule} from '../../filterInternships/filterInternships.module';
 import {InternshipsResolver} from '../../core/resolvers/internships-resolve.service';
 import {CommonModule} from '@angular/common';
 
@@ -18,7 +18,7 @@ import {CommonModule} from '@angular/common';
     CommonModule,
     HomepageRoutingModule,
     FormsModule,
-    FilterModule,
+    FilterInternshipsModule,
     TranslateModule,
     InternshipModule,
     HttpClientModule
