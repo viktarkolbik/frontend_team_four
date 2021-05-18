@@ -125,14 +125,17 @@
     "timeSettings": "Time Setting"
   },
   "timesetting": {
-    "freeSlots": "Available dates for interview",
+    "freeSlots": "Available slots for interview",
+    "interview": "Assigned interview",
     "addSlot": "Add slots for Interview",
+    "chooseSlot": "Choose interval free time ",
     "chooseDate": "Choose day",
     "slot": {
       "date": "Date",
       "from": "from",
       "to": "to"
     },
+    "addInterval": "Add free time interval",
     "crossFreeTime" : "Selected time across time in vacancy slots",
     "crossInterview": "Selected time across time in interview"
   },

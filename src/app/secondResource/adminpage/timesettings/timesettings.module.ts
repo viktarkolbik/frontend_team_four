@@ -15,9 +15,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {InterviewComponent} from './interview/interview.component';
+import {TimesettingsResolver} from '../../../core/resolvers/timesettings-resolve.service';
 
 @NgModule({
-  declarations: [TimesettingsComponent, SlotComponent],
+  declarations: [TimesettingsComponent, SlotComponent, InterviewComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -36,7 +38,9 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatExpansionModule,
     MatAutocompleteModule,
   ],
-  providers: [],
+  providers: [
+    TimesettingsResolver
+  ],
   exports: [TimesettingsComponent]
 })
 export class TimesettingsModule { }

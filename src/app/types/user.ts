@@ -8,4 +8,5 @@ export interface User {
   password: string;
   skills: string[];
   userRole: string;
+  interviewTime: number;
 }
