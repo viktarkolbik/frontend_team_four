@@ -1,8 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Internship} from '../../../../types';
 import {InternshipsService} from '../../../../core/services/internships.service';
-import {switchMap} from 'rxjs/operators';
-import {ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'ia-internship',
@@ -12,13 +11,15 @@ import {ActivatedRoute} from '@angular/router';
 export class InternshipComponent implements OnInit {
   @Input() internship!: Internship;
   @Output() deletingInternship: EventEmitter<string> = new EventEmitter<string>();
+  skills: string[] = [];
+  constructor(private internshipService: InternshipsService) { }
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.skills = this.internship.skills.map(skill => this.internshipService.getChangedSkills(skill));
+    console.log(this.skills);
+  }
 
   remove(id: string): void {
     this.deletingInternship.emit(id);
   }
-
 }

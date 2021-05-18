@@ -2,11 +2,12 @@
   width: 90%;
   margin: 0 auto;
   margin-bottom: 20px;
-  .filter{
-  }
   table {
     // min-height: 500px;
     width: 100%;
+    &:hover {
+      cursor: pointer;
+    }
     th {
       font-size: 1.0rem;
     }
@@ -21,7 +22,7 @@
 
     tr.rows-element:not(.example-expanded-row):hover {
       background: whitesmoke;
-    }
+      }
 
     tr.rows-element:not(.example-expanded-row):active {
       background: #efefef;
@@ -57,8 +58,4 @@
       font-size: 1rem;
     }
   }
-}
-
-
-@media (max-width:1900px) {
 }
