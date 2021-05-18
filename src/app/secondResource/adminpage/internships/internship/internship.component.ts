@@ -13,8 +13,7 @@ export class InternshipComponent implements OnInit {
   @Input() internship!: Internship;
   @Output() deletingInternship: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private internshipservice: InternshipsService) {
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 
