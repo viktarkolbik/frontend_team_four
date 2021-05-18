@@ -63,5 +63,7 @@ export class InternshipsService {
   getChangedSkills(technology:any) {
     return this.changedSkills[technology]
   }
-
+  deleteInternshipById(id: string): Observable<void>{
+    return this.http.delete<void>(`${this.basePath}/${id}`);
+  }
 }

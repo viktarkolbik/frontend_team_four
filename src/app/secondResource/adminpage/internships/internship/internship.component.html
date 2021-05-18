@@ -2,7 +2,8 @@
   <div class="internship__name">{{internship.name}}</div>
   <div>{{internship.startDate}}</div>
   <div>{{internship.internshipFormat}}</div>
-  <div>{{skills}}</div>
+  <div>{{internship.skills}}</div>
+  <div class="example-button-container">
   <button
     class="edit-button"
     mat-icon-button
@@ -14,4 +15,8 @@
   <button mat-flat-button color="primary" routerLink="/adminpage/admins/{{internship.id}}">
     {{"adminpage.showCandidates" | translate}}
   </button>
+    <button mat-mini-fab color="warn" (click)="remove(internship.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+</div>
 </div>
