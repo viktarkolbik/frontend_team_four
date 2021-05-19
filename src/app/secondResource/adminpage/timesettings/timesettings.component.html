@@ -60,7 +60,7 @@
 <div class="main">
   <div class="container">
     <div class="containerName">{{"timesetting.freeSlots" | translate}}</div>
-    <ia-slot *ngFor="let slot of Timeslots" [slot] ="slot"></ia-slot>
+    <ia-slot *ngFor="let slot of user.userTimeSlots" [slot] ="slot"></ia-slot>
   </div>
   <div class="container">
     <div class="containerName">{{"timesetting.interview" | translate}}</div>

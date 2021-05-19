@@ -3,6 +3,7 @@ import {AuthService} from '../../../core/services/auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../core/services/user.service';
 import {InterviewService} from '../../../core/services/interview.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'ia-timesettings',
@@ -10,10 +11,8 @@ import {InterviewService} from '../../../core/services/interview.service';
   styleUrls: ['./timesettings.component.scss']
 })
 export class TimesettingsComponent implements OnInit {
-  Timeslots: any;
+  user: any;
   Interviews: any;
-  InterviewDuration: any;
-  userID: string = "";
   form: FormGroup;
   convenientTimeArray: number[] = [];
   minDate: Date;
@@ -30,6 +29,7 @@ export class TimesettingsComponent implements OnInit {
     private auth: AuthService,
     private interview: InterviewService,
     private userService: UserService,
+    private route: ActivatedRoute,
   ) {
     this.minDate = new Date(Date.now());
     this.form = new FormGroup({
@@ -41,14 +41,12 @@ export class TimesettingsComponent implements OnInit {
       this.check();
     })
     auth.getUserInfo().subscribe(data => {
-      this.Timeslots = data.userTimeSlots;
-      this.userID = data.id;
-      this.InterviewDuration = data.interviewTime;
-      interview.getInterview(data.id, data.userRole).subscribe(data => {
-        this.Interviews = data;
+      this.user = data;
+      this.route.data.subscribe(data => {
+        this.Interviews = data.interview;
         this.Interviews.forEach((el: any) => {
           el.interviewEndTime = new Date(
-            Date.parse(el.adminInterviewDate) + this.InterviewDuration*60*1000)
+            Date.parse(el.adminInterviewDate) + this.user.interviewTime*60*1000)
             .toISOString();
         })
       })
@@ -78,7 +76,7 @@ export class TimesettingsComponent implements OnInit {
     return StartFreeTimeInArray || EndFreeTimeInArray || ArrayStartInNewSlot || ArrayEndInNewSlot
   }
   check():void {
-    const arrTimeFree = this.Timeslots.map((el: any) =>
+    const arrTimeFree = this.user.userTimeSlots.map((el: any) =>
       [Date.parse(el.startDate), Date.parse(el.endDate)]
     );
     const arrInterview = this.Interviews.map((el: any) =>
@@ -97,11 +95,11 @@ export class TimesettingsComponent implements OnInit {
       startDate: (new Date(from)).toISOString(),
     }]
     const formValueJson = JSON.stringify(newSlot);
-    this.userService.sendTimeSlots(this.userID, formValueJson).subscribe(
+    this.userService.sendTimeSlots(this.user.id, formValueJson).subscribe(
       data => {
-        this.Timeslots = data;
+        this.user.userTimeSlots = data;
         this.check()
-        console.log(data);
+        // console.log(data);
       },
       error => {
         console.log(error);

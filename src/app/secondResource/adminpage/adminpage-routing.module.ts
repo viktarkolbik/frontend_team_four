@@ -20,6 +20,7 @@ import { InternshipformComponent } from './internshipform/internshipform.compone
 import { LocationResolver } from 'src/app/core/resolvers/location-resolve.service';
 import {SkillsResolveService} from '../../core/resolvers/skills-resolve.service';
 import {InternshipResolver} from '../../core/resolvers/internship-resolve.service';
+import {TimesettingsResolver} from '../../core/resolvers/timesettings-resolve.service';
 
 const routes: Routes = [
   {
@@ -60,8 +61,11 @@ const routes: Routes = [
       },
       {
         path: 'timesettings',
-        component: TimesettingsComponent
-      },  
+        component: TimesettingsComponent,
+        resolve: {
+          interview: TimesettingsResolver
+        }
+      },
       {
         path: 'internshipform/:id',
         component: InternshipformComponent,
