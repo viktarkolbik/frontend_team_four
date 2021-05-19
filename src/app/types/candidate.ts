@@ -23,10 +23,28 @@ export interface Interview {
   admin: string;
   adminFeedback: string;
   adminInterviewDate?: string;
+  adminUser: {
+    firstName: string;
+    id: string;
+    lastName: string;
+    userRole: string;
+  },
   id: string;
   techFeedback: string;
   techSpecialist: string;
   techInterviewDate?: string;
+  techSpecialistUser: {
+    firstName: string;
+    id: string;
+    lastName: string;
+    userRole: string;
+  }
+}
+
+export interface Interviews {
+  id?: string;
+  userId: string;
+  userInterviewDate: string;
 }
 
 export interface ConvenientTime {

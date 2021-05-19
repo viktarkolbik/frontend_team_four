@@ -2,12 +2,12 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        {{ 'filter.filter' | translate}}
+        {{ 'filterInternships.filter' | translate}}
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="filtration">
       <div class="left">
-        <h3>{{ 'filter.country' | translate}}</h3>
+        <h3>{{ 'filterInternships.country' | translate}}</h3>
         <section class="example-section">
           <mat-checkbox
             color="primary"
@@ -20,7 +20,7 @@
         </section>
       </div>
       <div class="center">
-        <h3>{{ 'filter.city' | translate}}</h3>
+        <h3>{{ 'filterInternships.city' | translate}}</h3>
         <section class="example-section">
           <mat-checkbox
             color="primary"
@@ -33,7 +33,7 @@
         </section>
       </div>
       <div class="right">
-        <h3>  {{ 'filter.technologies' | translate}}</h3>
+        <h3>  {{ 'filterInternships.technologies' | translate}}</h3>
         <section class="example-section">
           <mat-checkbox
             color="primary"
@@ -52,7 +52,7 @@
       <ng-container *ngFor="let country of filters.countries.criteria | keyvalue" class="chip-container">
         <mat-chip [selectable]="selectable"
                   [removable]="removable"
-                  (removed)="removeFilter('countries', country.key)" 
+                  (removed)="removeFilter('countries', country.key)"
                   *ngIf="country.value.isChecked">
           {{country.key}}
           <mat-icon *ngIf="removable" matChipRemove>cancel</mat-icon>
@@ -61,7 +61,7 @@
       <ng-container *ngFor="let city of filters.cities.criteria | keyvalue" class="chip-container">
         <mat-chip [selectable]="selectable"
                   [removable]="removable"
-                  (removed)="removeFilter('cities', city.key)" 
+                  (removed)="removeFilter('cities', city.key)"
                   *ngIf="city.value.isChecked">
           {{city.key}}
           <mat-icon *ngIf="removable" matChipRemove>cancel</mat-icon>

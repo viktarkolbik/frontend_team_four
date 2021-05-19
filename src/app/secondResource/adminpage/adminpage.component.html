@@ -2,6 +2,7 @@
   <ng-container *ngIf="userInfo.userRole === 'SUPER_ADMIN' || userInfo.userRole === 'ADMIN'">
     <button mat-button routerLink="/adminpage/internships">{{"adminpage.internship" | translate}}</button>
     <button mat-button routerLink="/adminpage/internshipform" *ngIf="userInfo.userRole === 'SUPER_ADMIN'">{{"adminpage.createInternship" | translate}}</button>
+    <button mat-button routerLink="/adminpage/internlist" *ngIf="userInfo.userRole === 'ADMIN' || userInfo.userRole === 'SUPER_ADMIN'">{{"adminpage.internlist" | translate}}</button>
   </ng-container>
   <ng-container *ngIf="userInfo.userRole === 'ADMIN' || userInfo.userRole === 'TECH_EXPERT'">
     <button mat-button routerLink="/adminpage/timesettings">{{"adminpage.timeSettings" | translate}}</button>

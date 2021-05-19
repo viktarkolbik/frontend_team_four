@@ -49,6 +49,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   }
   ngOnChanges(changes: SimpleChanges) {
     this.dataSource = new MatTableDataSource(this.candidates);
+    this.dataSource.sort = this.sort;
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

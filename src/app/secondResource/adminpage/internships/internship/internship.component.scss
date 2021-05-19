@@ -1,4 +1,6 @@
 .internship{
+  width: 13rem;
+  height: 13rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,6 +8,7 @@
   padding: 20px;
   box-shadow: 4px 4px 8px 8px #c9cacaa8;
   transition: 0.5s ease-in-out;
+  position: relative;
   &:hover {
     box-shadow: 4px 4px 8px 8px #49bced8e;
     transition: 0.5s ease-in-out;
@@ -14,17 +17,30 @@
     margin-bottom: 10px;
   }
   .internship__name {
+    text-align: center;
     font-size: 1.1rem;
     font-weight: bold;
-    line-height: 2rem;
+    line-height: 1.1rem;
     text-transform: uppercase;
     color: #49BBED;
+    text-align: center;
+  }
+  .edit-button{
+    position: absolute;
+    top: 0px;
+    right: 5px;
   }
   button {
     transition: 0.5s ease-in-out;
+    margin: 0.25rem;
     &:hover {
       transform: scale(1.1);
       transition: 0.5s ease-in-out;
+      margin: 0.25rem;
     }
   }
+}
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
 }

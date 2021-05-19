@@ -1,12 +1,17 @@
 .training_container {
   width: 90%;
   margin: 0 auto;
+  padding-top: 30px;
+  .filter{
+    width: 65%;
+  }
   .internship_wrapper{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
     .internship{
-      margin: 20px auto;
+      margin: 20px;
     }
   }
 }

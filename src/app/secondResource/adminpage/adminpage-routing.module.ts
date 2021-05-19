@@ -6,16 +6,20 @@ import {InternshipsComponent} from './internships/internships.component';
 import {AdminsComponent} from './admins/admins.component';
 import {InternshipsResolver} from '../../core/resolvers/internships-resolve.service';
 import {TechexpertComponent} from './techexpert/techexpert.component';
-import {FormsResolveService} from '../../core/resolvers/forms-resolve.service';
 import {IsAdminsGuard} from '../../core/guards/is-admins.guard';
 import {IsTechExpertGuard} from '../../core/guards/is-tech-expert.guard';
 import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
 import {AdminsResolveService} from '../../core/resolvers/admins-resolve.service';
 import {TechExpertResolveService} from '../../core/resolvers/tech-expert-resolve.service';
 import {UserInfoGuard} from '../../core/guards/user-info.guard';
-import {InternshipformComponent} from "./internshipform/internshipform.component";
-import {LocationResolver} from "../../core/resolvers/location-resolve.service";
 import {TimesettingsComponent} from './timesettings/timesettings.component';
+import { InternlistComponent } from './internlist/internlist.component';
+import { FormsAdminResolveService } from 'src/app/core/resolvers/forms-admin-resolve.service';
+import { FormsResolveService } from 'src/app/core/resolvers/forms-resolve.service';
+import { InternshipformComponent } from './internshipform/internshipform.component';
+import { LocationResolver } from 'src/app/core/resolvers/location-resolve.service';
+import {SkillsResolveService} from '../../core/resolvers/skills-resolve.service';
+import {InternshipResolver} from '../../core/resolvers/internship-resolve.service';
 
 const routes: Routes = [
   {
@@ -43,16 +47,34 @@ const routes: Routes = [
       {
         path: 'techexpert',
         component: TechexpertComponent,
+        resolve: {interns: FormsAdminResolveService},
         canActivate: [IsTechExpertGuard]
       },
       {
         path: 'internshipform',
         component: InternshipformComponent,
-        resolve: {location: LocationResolver}
+        resolve: {
+          location: LocationResolver,
+          skills: SkillsResolveService,
+        }
       },
       {
         path: 'timesettings',
         component: TimesettingsComponent
+      },  
+      {
+        path: 'internshipform/:id',
+        component: InternshipformComponent,
+        resolve: {
+          location: LocationResolver,
+          skills: SkillsResolveService,
+          internship: InternshipResolver
+        }
+      },
+      {
+        path: 'internlist',
+        component: InternlistComponent,
+        resolve: {interns: FormsAdminResolveService}
       }
     ]
   }

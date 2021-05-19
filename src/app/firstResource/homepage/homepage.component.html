@@ -6,16 +6,16 @@
     </div>
     <div class="training_title">{{ 'homepage.internship' | translate}}</div>
     <div *ngIf = '!error; else Error' class="training_container">
-      <ia-filter *ngIf = '!error'
+      <ia-filter-internships *ngIf = '!error'
         id="filter-panel"
-        [trainings]="trainings"
-        (onFilterTrainings)="updateTrainings($event)"
+        [internships]="internships"
+        (filterInternships)="updateTrainings($event)"
       >
-      </ia-filter>
+      </ia-filter-internships>
       <div class="training_wrapper">
         <ia-internship
-          *ngFor="let training of filteredTrainings"
-          [training]="training"
+          *ngFor="let internship of filteredInternships"
+          [training]="internship"
         >
         </ia-internship>
       </div>
