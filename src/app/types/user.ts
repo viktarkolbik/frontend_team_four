@@ -1,5 +1,4 @@
 export interface User {
-  userTimeSlots: [];
   email: string;
   firstName: string;
   id: string;

@@ -25,7 +25,7 @@ import { InternlistModule } from './internlist/internlist.module';
     TechexpertModule,
     InternshipformModule,
     TranslateModule,
-    TimesettingsModule
+    TimesettingsModule,
     InternlistModule
   ],
   providers: [IsAuthorizedGuard],
