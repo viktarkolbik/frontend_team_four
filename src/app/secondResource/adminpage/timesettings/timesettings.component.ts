@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {AuthService} from '../../../core/services/auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../core/services/user.service';
@@ -45,8 +45,14 @@ export class TimesettingsComponent implements OnInit {
       this.route.data.subscribe(data => {
         this.Interviews = data.interview;
         this.Interviews.forEach((el: any) => {
+          if(this.user.userRole === "ADMIN") {
+            el.interviewStartTime = el.adminInterviewDate
+          }
+          else if (this.user.userRole === "TECH_EXPERT") {
+            el.interviewStartTime = el.techInterviewDate
+          }
           el.interviewEndTime = new Date(
-            Date.parse(el.adminInterviewDate) + this.user.interviewTime*60*1000)
+            Date.parse(el.interviewStartTime) + this.user.interviewTime*60*1000)
             .toISOString();
         })
       })
@@ -80,7 +86,7 @@ export class TimesettingsComponent implements OnInit {
       [Date.parse(el.startDate), Date.parse(el.endDate)]
     );
     const arrInterview = this.Interviews.map((el: any) =>
-      [Date.parse(el.adminInterviewDate), Date.parse(el.interviewEndTime)]
+      [Date.parse(el.interviewStartTime), Date.parse(el.interviewEndTime)]
     );
     this.crossFreeTime = this.checkCrossTime(arrTimeFree)
     this.crossInterviewTime = this.checkCrossTime(arrInterview)
