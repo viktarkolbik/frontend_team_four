@@ -93,8 +93,8 @@ export class TimesettingsComponent implements OnInit {
   }
   submit(): void {
     const formValue = this.form.value;
-    const from = formValue.selectedDate.setHours(formValue.startHour + 3);
-    const to = formValue.selectedDate.setHours(formValue.endHour + 3);
+    const from = formValue.selectedDate.setUTCHours(formValue.startHour);
+    const to = formValue.selectedDate.setUTCHours(formValue.endHour);
     const newSlot = [{
       endDate: (new Date(to)).toISOString(),
       roundUp: true,
