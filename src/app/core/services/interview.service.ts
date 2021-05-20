@@ -13,8 +13,8 @@ export class InterviewService {
   setInterviewTime(formId: string, interviewTime: Interview){
     return this.http.post(this.basePath + '/save-interview-time?formId=' + formId, interviewTime);
   }
-  getInterview(formId: string, userRole: string): Observable<{}>{
-    return this.http.get(
+  getInterview(formId: string, userRole: string): Observable<Interview[]>{
+    return this.http.get<Interview[]>(
       this.basePath,
       {params: {userId:formId, userRole:userRole}}
       );
