@@ -6,10 +6,11 @@ import {LoadingService} from '../services/loading.service';
 import {AuthService} from '../services/auth.service';
 import {User} from '../../types/user';
 import {InterviewService} from '../services/interview.service';
+import {Interview} from '../../types/candidate';
 
 
 @Injectable({ providedIn: 'root' })
-export class TimesettingsResolver implements Resolve<{}> {
+export class TimesettingsResolver implements Resolve<Interview[]> {
   userInfo = {} as User;
   constructor(
     private interview: InterviewService,
@@ -19,7 +20,7 @@ export class TimesettingsResolver implements Resolve<{}> {
 
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot ): Observable<{}> {
+    state: RouterStateSnapshot ): Observable<Interview[]> {
     this.loadingService.setLoadingState(true);
     return this.auth.getUserInfo()
       .pipe(
