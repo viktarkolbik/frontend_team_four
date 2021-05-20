@@ -1,0 +1,69 @@
+<div class="addTime">
+    <div class="containerName">{{"timesetting.addSlot" | translate}}</div>
+    <form [formGroup]="form" class="form-control" style="margin-top: 30px">
+        <mat-label>{{"timesetting.chooseSlot" | translate}}</mat-label>
+        <mat-form-field appearance="fill">
+          <mat-label>{{"timesetting.chooseDate" | translate}}</mat-label>
+          <input class="form-control"
+                 formControlName="selectedDate"
+                 matInput
+                 [min]='minDate'
+                 [matDatepicker]="picker">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="selector-time" *ngIf="this.form.value.selectedDate">
+          <mat-form-field appearance="fill" class="selector-time-item">
+            <mat-label>{{ 'regform.comforttimeFrom' | translate}}</mat-label>
+            <mat-select formControlName="startHour">
+              <mat-option
+                *ngFor="let time of convenientTimeArray"
+                [disabled]="
+                  time > form.controls['endHour'].value - 1
+                  && !!form.controls['endHour'].value
+                "
+                [value]="time"
+              >
+                {{time}}:00
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="selector-time-item">
+            <mat-label>{{ 'regform.comforttimeTo' | translate}}</mat-label>
+            <mat-select formControlName="endHour">
+              <mat-option
+                *ngFor="let time of convenientTimeArray"
+                [disabled]="time < form.controls['startHour'].value + 1"
+                [value]="time"
+              >
+                {{time}}:00
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </form>
+    <mat-error *ngIf="crossFreeTime">
+    {{ 'timesetting.crossFreeTime' | translate}}
+  </mat-error>
+    <mat-error *ngIf="crossInterviewTime">
+    {{ 'timesetting.crossInterview' | translate}}
+  </mat-error>
+    <button id="submit-button"
+            mat-flat-button
+            color="primary"
+            (click)="submit()"
+            [disabled]="!form.valid || crossFreeTime || crossInterviewTime"
+    >
+      {{"timesetting.addInterval" | translate}}
+    </button>
+  </div>
+<div class="main">
+  <div class="container">
+    <div class="containerName">{{"timesetting.freeSlots" | translate}}</div>
+    <ia-slot *ngFor="let slot of user.userTimeSlots" [slot] ="slot"></ia-slot>
+  </div>
+  <div class="container">
+    <div class="containerName">{{"timesetting.interview" | translate}}</div>
+    <ia-interview *ngFor="let interview of Interviews" [interview] ="interview" [user]="user"></ia-interview>
+  </div>
+</div>

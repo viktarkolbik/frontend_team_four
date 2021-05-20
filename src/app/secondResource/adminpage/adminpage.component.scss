@@ -1,8 +1,10 @@
 .mat-toolbar {
   position: relative;
-  #log-out-button {
+  display: flex;
+  .userName {
     position: absolute;
     right: 10px;
+    font-size: 0.9rem;
     //transform: translate(-100%);
   }
 }
