@@ -42,21 +42,10 @@ export class TimesettingsComponent implements OnInit {
     })
     auth.getUserInfo().subscribe(data => {
       this.user = data;
-      this.route.data.subscribe(data => {
-        this.Interviews = data.interview;
-        this.Interviews.forEach((el: any) => {
-          if(this.user.userRole === "ADMIN") {
-            el.interviewStartTime = el.adminInterviewDate
-          }
-          else if (this.user.userRole === "TECH_EXPERT") {
-            el.interviewStartTime = el.techInterviewDate
-          }
-          el.interviewEndTime = new Date(
-            Date.parse(el.interviewStartTime) + this.user.interviewTime*60*1000)
-            .toISOString();
-        })
-      })
     });
+    this.route.data.subscribe(data => {
+      this.Interviews = data.interview;
+    })
   }
   checkCrossTime(arr:[]):boolean {
     const arrCheck = arr;

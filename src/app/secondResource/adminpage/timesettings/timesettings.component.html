@@ -64,6 +64,6 @@
   </div>
   <div class="container">
     <div class="containerName">{{"timesetting.interview" | translate}}</div>
-    <ia-interview *ngFor="let interview of Interviews" [interview] ="interview"></ia-interview>
+    <ia-interview *ngFor="let interview of Interviews" [interview] ="interview" [user]="user"></ia-interview>
   </div>
 </div>
