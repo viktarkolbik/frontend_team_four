@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Interview} from '../../../../types/candidate';
 
 @Component({
   selector: 'ia-interview',
@@ -6,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./interview.component.scss']
 })
 export class InterviewComponent implements OnInit {
-  @Input() interview: any;
+  @Input() interview: Interview | undefined;
   constructor() { }
 
   ngOnInit(): void {
