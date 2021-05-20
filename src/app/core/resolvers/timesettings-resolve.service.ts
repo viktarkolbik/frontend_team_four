@@ -9,7 +9,7 @@ import {InterviewService} from '../services/interview.service';
 
 
 @Injectable({ providedIn: 'root' })
-export class TimesettingsResolver implements Resolve<User> {
+export class TimesettingsResolver implements Resolve<{}> {
   userInfo = {} as User;
   constructor(
     private interview: InterviewService,
@@ -19,7 +19,7 @@ export class TimesettingsResolver implements Resolve<User> {
 
   resolve(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot ): Observable<any> {
+    state: RouterStateSnapshot ): Observable<{}> {
     this.loadingService.setLoadingState(true);
     return this.auth.getUserInfo()
       .pipe(
