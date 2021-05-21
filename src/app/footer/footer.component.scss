@@ -7,7 +7,7 @@ footer {
   .contacts_wrapper{
     width: 80%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-direction: column;
     align-items: center;
     .footer_title {
@@ -21,7 +21,7 @@ footer {
     .footer_info {
       width: 80%;
       display: flex;
-      flex-wrap: wrap;
+      text-align: center;
       justify-content: space-between;
       .rights {
         width: 220px;
@@ -30,7 +30,6 @@ footer {
         justify-content: center;
         align-items: center;
         color: #fff;
-
         p {
           text-transform: uppercase;
         }
@@ -47,7 +46,7 @@ footer {
           width: 40px;
           height: 40px;
           &:hover {
-            transform: scale(1.5);
+            transform: scale(1.25);
             transition: all 0.5s ease-in-out;
           }
           &:last-child {
@@ -64,6 +63,7 @@ footer {
         align-items: center;
         p {
           transition: all 0.5s ease-in-out;
+          font-size: 0.9rem;
           &:hover {
               transform: scale(1.2);
               transition: all 0.5s ease-in-out;
@@ -82,8 +82,12 @@ footer {
   .footer_info {
     flex-direction: column;
     align-items: center;
-    .rights, .footer_wrapper_icon, .footer_contacts {
+    text-align: center;
+    justify-content: center;
+    .rights, .footer_title, .footer_wrapper_icon, .footer_contacts {
       margin: 0.5rem;
+      text-align: center;
     }
   }
 }
+
