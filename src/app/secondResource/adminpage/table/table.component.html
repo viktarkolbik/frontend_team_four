@@ -48,7 +48,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.recruiter" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
         {{element.interview?.admin?.lastName}}
-        {{element.interview?.admin?.firstName}}  
+        {{element.interview?.admin?.firstName}}
       </td>
     </ng-container>
     <ng-container matColumnDef="techSpecialist">
@@ -80,7 +80,7 @@
               <p>{{"adminTable.country" | translate}}: {{element.country.name}}</p>
               <p>{{"adminTable.city" | translate}}: {{element.city.name}}</p>
               <p>{{"adminTable.skill" | translate}}: {{element.primarySkill}}</p>
-              <p>{{"adminTable.experience" | translate}}: {{element.experience}}</p>
+              <p *ngIf="element.experience">{{"adminTable.experience" | translate}}: {{element.experience}}</p>
             </div>
             <ng-template class="control-panel" [ngTemplateOutlet]="template" ></ng-template>
           </div>

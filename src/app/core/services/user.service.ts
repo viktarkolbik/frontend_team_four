@@ -16,4 +16,7 @@ export class UserService {
   getUsersRole(idIntenship: string, role: string): Observable<User[]>{
     return this.http.get<User[]>(this.basePath + '?internshipId=' + idIntenship + '&role=' + role);
   }
+  getUsersSkills(skills: string[]): Observable<User[]>{
+    return this.http.get<User[]>(this.basePath + '/skills?skills=' + skills.join(','));
+  }
 }
