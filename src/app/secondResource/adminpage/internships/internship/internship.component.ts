@@ -16,7 +16,6 @@ export class InternshipComponent implements OnInit {
 
   ngOnInit(): void {
     this.skills = this.internship.skills.map(skill => this.internshipService.getChangedSkills(skill));
-    console.log(this.skills);
   }
 
   remove(id: string): void {
