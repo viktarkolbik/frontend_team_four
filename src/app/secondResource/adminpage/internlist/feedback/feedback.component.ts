@@ -21,6 +21,13 @@ export class FeedbackComponent {
       "feedback": this.feedback.value,
       "userId": this.data.userID
     }
-    this.formsService.putFeedback(this.data.formID, answer)
+    this.formsService.putFeedback(this.data.formID, answer).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }
