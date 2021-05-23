@@ -3,7 +3,6 @@
   margin: 0 auto;
   margin-bottom: 20px;
   table {
-    // min-height: 500px;
     width: 100%;
     &:hover {
       cursor: pointer;
@@ -56,6 +55,14 @@
       width: 100%;
       padding: 16px;
       font-size: 1rem;
+    }
+  }
+}
+
+@media (max-width:840px) {
+  .container {
+    table {
+      width: 50%;
     }
   }
 }
