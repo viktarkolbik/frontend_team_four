@@ -38,3 +38,10 @@
     text-transform: uppercase;
   }
 }
+
+@media (max-width: 500px) {
+  .training_course_container {
+    width: 15rem;
+    min-height: 13rem;
+  }
+}
