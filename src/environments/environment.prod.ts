@@ -1,4 +1,4 @@
 export const environment = {
-  backendURL: 'https://intern-app-exadel-team4-be.herokuapp.com',
+  backendURL: 'https://exadel-docker.herokuapp.com',
   production: false
 };
