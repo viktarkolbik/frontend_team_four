@@ -14,6 +14,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {Candidate} from '../../../types/candidate';
+import {User} from '../../../types/user';
 
 @Component({
   selector: 'ia-table',
@@ -31,6 +32,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ContentChild(TemplateRef) template?: TemplateRef<any>;
   @Input() candidates = [] as Candidate[];
+  @Input() user!:User;
   @Output() onSelectedCandidate: EventEmitter<Candidate> = new EventEmitter<Candidate>();
   selectedCandidate: Candidate | null = null;
   @Input() selectedCandidateID?: string;
@@ -43,7 +45,8 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     'formStatus',
     'admin',
     'techSpecialist',
-    'primarySkill'
+    'primarySkill',
+    'feedback'
   ];
   constructor() {
   }
@@ -59,6 +62,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+  }
+  addFeedBack(userID:string, formID:string, feedback:string) {
+    console.log (userID, formID, feedback)
   }
 }
 

@@ -3,6 +3,7 @@
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
+  <div>{{user.userRole}}</div>
   <table
     mat-table
     matSort
@@ -48,7 +49,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.recruiter" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
         {{element.interview?.admin?.lastName}}
-        {{element.interview?.admin?.firstName}}  
+        {{element.interview?.admin?.firstName}}
       </td>
     </ng-container>
     <ng-container matColumnDef="techSpecialist">
@@ -62,6 +63,16 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.skill" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
         {{element.primarySkill}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="feedback">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.feedback" | translate}}</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        <button
+          (click)="addFeedBack(user.id, element.id,'')"
+          [disabled]="element.interview.adminFeedback"
+        >add feedback</button>
+        {{element.interview.adminFeedback | json}}
       </td>
     </ng-container>
 
