@@ -125,6 +125,12 @@
   "adminpage": {
     "internship": "Список стажировок",
     "internlist": "Список кандидатов",
+    "feedback": {
+      "feedback": "Отзыв",
+      "textarea": "Введите текст отзыва",
+      "cancel": "Отмена",
+      "submit": "Отправить"
+    },
     "createInternship": "Создать стажировку",
     "logOut": "Выйти",
     "showCandidates": "Показать кандидатов",
@@ -164,6 +170,7 @@
     "lastname": "Фамилия",
     "country": "Страна",
     "city": "Город",
-    "experience": "Опыт"
+    "experience": "Опыт",
+    "addFeedback": "Добавить отзыв"
   }
 }

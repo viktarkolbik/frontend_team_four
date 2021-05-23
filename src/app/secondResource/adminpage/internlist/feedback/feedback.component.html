@@ -1,0 +1,31 @@
+<div class="content">
+  <p class="feedback">{{'adminpage.feedback.feedback' | translate}}</p>
+  <div class="mat-form-field-wrapper">
+    <mat-form-field appearance="fill" class="mat-form-field">
+      <textarea
+        matInput
+        placeholder="{{'adminpage.feedback.textarea' | translate}}"
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="5"
+        cdkAutosizeMaxRows="10"
+        [formControl]="feedback"
+      ></textarea>
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions class="button-wrapper">
+    <button
+      mat-button
+      [mat-dialog-close]="false"
+    >
+      {{'adminpage.feedback.cancel' | translate}}
+    </button>
+    <button
+      mat-button
+      [disabled]="!(true)"
+      (click)="submit()"
+      [mat-dialog-close]=""
+    >
+      {{'adminpage.feedback.submit' | translate}}
+    </button>
+  </mat-dialog-actions>
+</div>

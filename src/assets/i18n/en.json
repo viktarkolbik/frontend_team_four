@@ -124,6 +124,12 @@
   "adminpage": {
     "internship": "Internships list",
     "internlist": "Interns list",
+    "feedback": {
+      "feedback": "Feedback",
+      "textarea": "Type feedback text",
+      "cancel": "Cancel",
+      "submit": "Submit"
+    },
     "createInternship": "Create internship",
     "logOut": "Log Out",
     "showCandidates": "Show Candidates",
@@ -163,6 +169,7 @@
     "lastname": "Surname",
     "country": "Country",
     "city": "City",
-    "experience": "Experience"
+    "experience": "Experience",
+    "addFeedback": "Add feedback"
   }
 }

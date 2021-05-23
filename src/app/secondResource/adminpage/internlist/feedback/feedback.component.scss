@@ -1,0 +1,22 @@
+.content{
+  min-width: 40rem;
+  display: flex;
+  flex-direction: column;
+  p.feedback{
+    display: inline-block;
+    margin: 0 auto 10px;
+  }
+  .mat-form-field-wrapper{
+    display: flex;
+    justify-content: center;
+    .mat-form-field {
+      margin: 0 20px;
+      width: 35rem;
+    }
+  }
+  .button-wrapper {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+}

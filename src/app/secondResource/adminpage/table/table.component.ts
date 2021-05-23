@@ -15,6 +15,8 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {Candidate} from '../../../types/candidate';
 import {User} from '../../../types/user';
+import {MatDialog} from '@angular/material/dialog';
+import {FeedbackComponent} from '../internlist/feedback/feedback.component';
 
 @Component({
   selector: 'ia-table',
@@ -45,10 +47,9 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     'formStatus',
     'admin',
     'techSpecialist',
-    'primarySkill',
-    'feedback'
+    'primarySkill'
   ];
-  constructor() {
+  constructor(private dialog: MatDialog) {
   }
   ngOnChanges(changes: SimpleChanges) {
     this.dataSource = new MatTableDataSource(this.candidates);
@@ -59,12 +60,24 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   ngOnInit() {
+    if (this.user) {
+      this.displayedColumns.push('feedback')
+    }
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
-  addFeedBack(userID:string, formID:string, feedback:string) {
-    console.log (userID, formID, feedback)
+
+  openFeedBackDialog(userID:string, formID:string){
+    const dialogRef = this.dialog.open(FeedbackComponent, {data: {userID, formID}});
+    dialogRef.afterClosed().subscribe(
+      data => {
+        //console.log(data)
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }
 

@@ -3,7 +3,6 @@
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
-  <div>{{user.userRole}}</div>
   <table
     mat-table
     matSort
@@ -69,10 +68,10 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.feedback" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
         <button
-          (click)="addFeedBack(user.id, element.id,'')"
-          [disabled]="element.interview.adminFeedback"
-        >add feedback</button>
-        {{element.interview.adminFeedback | json}}
+          mat-stroked-button
+          (click)="openFeedBackDialog(user.id, element.id)"
+          [disabled]="!!element.interview.adminFeedback"
+        >{{"adminTable.addFeedback" | translate}}</button>
       </td>
     </ng-container>
 
