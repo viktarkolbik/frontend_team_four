@@ -37,7 +37,8 @@
             "style": "camelCase"
           }
         ],
-        "no-underscore-dangle": "off"
+        "no-underscore-dangle": "off",
+        "@typescript-eslint/naming-convention": "off"
       }
     },
     {
@@ -46,9 +47,10 @@
       ],
       "extends": [
         "plugin:@angular-eslint/template/recommended"
-      ],
-      "rules": {
-      }
+      ]
     }
-  ]
+  ],
+  "rules": {
+
+  }
 }
