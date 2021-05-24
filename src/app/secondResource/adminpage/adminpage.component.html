@@ -9,7 +9,7 @@
     <button mat-button routerLink="/adminpage/timesettings">{{"adminpage.timeSettings" | translate}}</button>
   </ng-container>
   <div class = "userName">{{userInfo.firstName}} {{userInfo.lastName}}
-  <button id="log-out-button" mat-button routerLink="/loginpage" (click)="auth.logOut()">{{"adminpage.logOut" | translate}}</button>
+    <button id="log-out-button" mat-button routerLink="/loginpage" (click)="auth.logOut()">{{"adminpage.logOut" | translate}}</button>
   </div>
 </mat-toolbar>
 <router-outlet></router-outlet>

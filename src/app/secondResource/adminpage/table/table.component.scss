@@ -3,7 +3,6 @@
   margin: 0 auto;
   margin-bottom: 20px;
   table {
-    // min-height: 500px;
     width: 100%;
     &:hover {
       cursor: pointer;
@@ -18,6 +17,7 @@
     td {
       font-size: 0.85rem;
       margin: 0 auto;
+      padding: 0 5px;
       text-align: center;
     }
     tr.example-detail-row {
@@ -68,6 +68,15 @@
         margin: 0.5rem;
         font-size: 0.85rem;
       }
+    }
+  }
+}
+
+@media (max-width:900px) {
+  .container {
+    overflow: scroll;
+    table {
+      width: 50%;
     }
   }
 }
