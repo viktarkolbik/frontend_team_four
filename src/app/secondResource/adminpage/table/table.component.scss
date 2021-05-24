@@ -10,6 +10,9 @@
     th {
       font-size: 1.0rem;
       text-align: center;
+      color: black;
+      font-weight: bold;
+      background: lavender;
     }
     td {
       font-size: 0.85rem;
@@ -35,7 +38,6 @@
 
     .example-element-detail {
       overflow: hidden;
-
     }
 
     .example-element-diagram {
@@ -54,9 +56,17 @@
     }
 
     .example-element-description {
-      width: 100%;
-      padding: 16px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      width: 95%;
+      padding: 1rem;
       font-size: 1rem;
+      & p {
+        display: inline;
+        margin: 0.5rem;
+        font-size: 0.85rem;
+      }
     }
   }
 }
