@@ -27,16 +27,16 @@ import {
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'phone-input',
+  selector: 'ia-phone-input',
   template: ''
 })
-export class FormFieldCustomControl {
+export class FormFieldCustomControlComponent {
   form: FormGroup = new FormGroup({
-    tel: new FormControl(new MyTel('', '', ''))
+    tel: new FormControl(new MyTelComponent('', '', ''))
   });
 }
 
-export class MyTel {
+export class MyTelComponent {
   constructor(
     public country: string,
     public cellular: string,
@@ -45,17 +45,17 @@ export class MyTel {
 }
 
 @Component({
-  selector: 'tel-input',
+  selector: 'ia-tel-input',
   templateUrl: 'tel-input.html',
   styleUrls: ['tel-input.css'],
-  providers: [{ provide: MatFormFieldControl, useExisting: MyTelInput }],
+  providers: [{ provide: MatFormFieldControl, useExisting: MyTelInputComponent }],
   host: {
     '[class.floating]': 'shouldLabelFloat',
     '[id]': 'id'
   }
 })
-export class MyTelInput
-  implements ControlValueAccessor, MatFormFieldControl<MyTel>, OnDestroy
+export class MyTelInputComponent
+  implements ControlValueAccessor, MatFormFieldControl<MyTelComponent>, OnDestroy
 {
   static nextId = 0;
   @ViewChild('country') countryInput!: HTMLInputElement;
@@ -66,7 +66,7 @@ export class MyTelInput
   stateChanges = new Subject<void>();
   focused = false;
   controlType = 'tel-input';
-  id = `tel-input-${MyTelInput.nextId++}`;
+  id = `tel-input-${MyTelInputComponent.nextId++}`;
   private _disabled = false;
   private _required = false;
   private _placeholder = '';
@@ -124,7 +124,7 @@ export class MyTelInput
     return null;
   }
   set value(tel: any) {
-    const { country, cellular, mobile } = tel || new MyTel('', '', '');
+    const { country, cellular, mobile } = tel || new MyTelComponent('', '', '');
     this.parts.setValue({ country, cellular, mobile });
     this.stateChanges.next();
   }
@@ -211,7 +211,7 @@ export class MyTelInput
     }
   }
 
-  writeValue(tel: MyTel | null): void {
+  writeValue(tel: MyTelComponent | null): void {
     this.value = tel;
   }
 

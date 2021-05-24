@@ -14,8 +14,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AcceptDialogComponent } from './accept-dialog/accept-dialog.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {
-  FormFieldCustomControl,
-  MyTelInput
+  FormFieldCustomControlComponent,
+  MyTelInputComponent
 } from './phone-input/phone-input.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
@@ -24,8 +24,8 @@ import { CommonModule } from '@angular/common';
   declarations: [
     RegformComponent,
     AcceptDialogComponent,
-    FormFieldCustomControl,
-    MyTelInput
+    FormFieldCustomControlComponent,
+    MyTelInputComponent
   ],
   imports: [
     CommonModule,
