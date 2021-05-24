@@ -81,9 +81,9 @@ export class RegformComponent implements OnInit {
       education: new FormControl(''),
       isConfirm: new FormControl('')
     });
-    this.form.get('country')?.valueChanges.subscribe(data => {
-      this.locationService.getCities(data.id).subscribe(data => {
-        this.cities = data;
+    this.form.get('country')?.valueChanges.subscribe(country => {
+      this.locationService.getCities(country.id).subscribe(city => {
+        this.cities = city;
       });
     });
     const data = route.snapshot.data.location;

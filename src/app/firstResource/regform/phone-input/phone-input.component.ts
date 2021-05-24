@@ -61,14 +61,16 @@ export class MyTelInput
   @ViewChild('country') countryInput!: HTMLInputElement;
   @ViewChild('cellular') cellularInput!: HTMLInputElement;
   @ViewChild('mobile') mobileInput!: HTMLInputElement;
-
+  @Input('aria-describedby') userAriaDescribedBy = '';
   parts: FormGroup;
   stateChanges = new Subject<void>();
   focused = false;
   controlType = 'tel-input';
   id = `tel-input-${MyTelInput.nextId++}`;
-  onChange = (_: any) => {};
-  onTouched = () => {};
+  private _disabled = false;
+  private _required = false;
+  private _placeholder = '';
+
 
   get empty() {
     const {
@@ -82,7 +84,6 @@ export class MyTelInput
     return this.focused || !this.empty;
   }
 
-  @Input('aria-describedby') userAriaDescribedBy = '';
 
   @Input()
   get placeholder(): string {
@@ -92,7 +93,6 @@ export class MyTelInput
     this._placeholder = value;
     this.stateChanges.next();
   }
-  private _placeholder = '';
 
   @Input()
   get required(): boolean {
@@ -102,7 +102,6 @@ export class MyTelInput
     this._required = coerceBooleanProperty(value);
     this.stateChanges.next();
   }
-  private _required = false;
 
   @Input()
   get disabled(): boolean {
@@ -113,7 +112,6 @@ export class MyTelInput
     this._disabled ? this.parts.disable() : this.parts.enable();
     this.stateChanges.next();
   }
-  private _disabled = false;
 
   @Input()
   get value(): any {
@@ -169,6 +167,8 @@ export class MyTelInput
       this.ngControl.valueAccessor = this;
     }
   }
+  onChange = (_: any) => {};
+  onTouched = () => {};
 
   autoFocusNext(
     control: AbstractControl,
@@ -193,8 +193,10 @@ export class MyTelInput
   setDescribedByIds(ids: string[]) {
     const controlElement = this._elementRef.nativeElement.querySelector(
       '.tel-input-container'
-    )!;
-    controlElement.setAttribute('aria-describedby', ids.join(' '));
+    );
+    if (controlElement) {
+      controlElement.setAttribute('aria-describedby', ids.join(' '));
+    }
   }
 
   onContainerClick() {

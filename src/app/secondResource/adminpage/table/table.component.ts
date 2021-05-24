@@ -38,13 +38,13 @@ import { Candidate } from '../../../types/candidate';
   ]
 })
 export class TableComponent implements OnInit, OnChanges, AfterViewInit {
+  @Input() selectedCandidateID?: string;
   @ViewChild(MatSort) sort!: MatSort;
   @ContentChild(TemplateRef) template?: TemplateRef<any>;
   @Input() candidates = [] as Candidate[];
   @Output() onSelectedCandidate: EventEmitter<Candidate> =
     new EventEmitter<Candidate>();
   selectedCandidate: Candidate | null = null;
-  @Input() selectedCandidateID?: string;
   dataSource!: MatTableDataSource<Candidate>;
   displayedColumns = [
     'lastName',

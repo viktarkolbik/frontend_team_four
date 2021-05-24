@@ -50,8 +50,8 @@ export class InternshipdescriptionComponent implements OnInit {
 
       this.techSkills = this.internship.techSkills.split(';');
       this.requirements = this.internship.requirements.split(';');
-      // @ts-ignore
       this.imgUrles = this.internship.skills
+      // @ts-ignore
         .map(skill => this.internshipService.getImagesUrl(skill))
         .filter(Boolean);
     }

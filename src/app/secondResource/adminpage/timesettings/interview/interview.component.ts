@@ -10,17 +10,20 @@ import { User } from '../../../../types/user';
 export class InterviewComponent implements OnInit {
   @Input() interview!: Interview;
   @Input() user!: User;
-  startTime = '';
-  endTime = '';
-  constructor() {}
+  startTime: string | undefined = '';
+  endTime: string | undefined = '';
+  constructor() {
+    this.startTime = ' ';
+  }
 
   ngOnInit(): void {
     if (this.user.userRole === 'ADMIN') {
-      this.startTime = this.interview.adminInterviewDate!;
+      this.startTime = this.interview.adminInterviewDate;
     } else if (this.user.userRole === 'TECH_EXPERT') {
-      this.endTime = this.interview.techInterviewDate!;
+      this.endTime = this.interview.techInterviewDate;
     }
     this.endTime = new Date(
+      //@ts-ignore
       Date.parse(this.startTime) + this.user.interviewTime * 60 * 1000
     ).toISOString();
   }

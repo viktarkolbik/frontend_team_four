@@ -74,17 +74,17 @@ export class FilterInternshipsComponent implements OnChanges {
             ? filterCriteria.some(criterion => {
                 // @ts-ignore
                 if (Array.isArray(internship[filter.field])) {
-                  // @ts-ignore
                   return (
                     criterion.isChecked &&
+                    // @ts-ignore
                     internship[filter.field].includes(criterion.value)
                   );
                 } else {
-                  // @ts-ignore
                   return (
                     criterion.isChecked &&
                     internship.locations
-                      .map(location =>
+                    .map(location =>
+                      // @ts-ignore
                         location[filter.field].name.includes(criterion.value)
                       )
                       .some(location => location === true)

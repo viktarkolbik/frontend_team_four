@@ -11,7 +11,6 @@ export class InternshipsService {
   basePath = `${environment.backendURL}/api/internships`;
   imgUrles: string[] = [];
   skills: string[] = [];
-  constructor(private http: HttpClient) {}
   images: { [key: string]: string } = {
     JS: '../../../../assets/icons/js.png',
     JAVA: '../../../../assets/icons/java.png',
@@ -30,6 +29,7 @@ export class InternshipsService {
     GO: ' Golang',
     QA: ' QA'
   };
+  constructor(private http: HttpClient) {}
 
   getInternshipList(): Observable<Internship[]> {
     return this.http.get<Internship[]>(this.basePath);
