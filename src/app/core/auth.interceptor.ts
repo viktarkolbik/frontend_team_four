@@ -33,13 +33,6 @@ export class AuthInterceptor implements HttpInterceptor {
         )
       });
       return next.handle(cloned);
-      //   .pipe( //show and inspect response at server
-      //   tap(event => {
-      //     if (event.type === HttpEventType.Response) {
-      //       console.log('InterceptResp', req.body);
-      //     }
-      //   })
-      // );
     } else {return next.handle(req);}
   }
 }
