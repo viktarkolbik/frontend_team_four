@@ -36,7 +36,8 @@
             "prefix": "ia",
             "style": "camelCase"
           }
-        ]
+        ],
+        "no-underscore-dangle": "off"
       }
     },
     {
@@ -47,7 +48,6 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {
-        "no-underscore-dangle": "off"
       }
     }
   ]
