@@ -22,10 +22,10 @@ export class AuthService {
   }
   login(userAuthData: Login): Observable<Token> {
     return this.http.post<Token>(this.loginURL, userAuthData).pipe(
-      catchError(err => {
+      catchError(err =>
         // console.log(err.error.message); // View error message
-        return throwError(err);
-      })
+         throwError(err)
+      )
     );
   }
   isAuth(): boolean {

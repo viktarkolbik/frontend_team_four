@@ -18,7 +18,7 @@ export class InterviewService {
   }
   getInterview(formId: string, userRole: string): Observable<Interview[]> {
     return this.http.get<Interview[]>(this.basePath, {
-      params: { userId: formId, userRole: userRole }
+      params: { userId: formId, userRole }
     });
   }
 }

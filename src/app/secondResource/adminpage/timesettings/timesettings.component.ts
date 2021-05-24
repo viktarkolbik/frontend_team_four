@@ -54,21 +54,13 @@ export class TimesettingsComponent implements OnInit {
       .get('selectedDate')
       ?.value.setHours(this.form.get('endHour')?.value);
 
-    const StartFreeTimeInArray = !!arrCheck.find((el: any) => {
-      return el[0] <= TimeStart && el[1] > TimeStart;
-    });
+    const StartFreeTimeInArray = !!arrCheck.find((el: any) => el[0] <= TimeStart && el[1] > TimeStart);
 
-    const EndFreeTimeInArray = !!arrCheck.find((el: any) => {
-      return el[0] < TimeEnd && el[1] >= TimeEnd;
-    });
+    const EndFreeTimeInArray = !!arrCheck.find((el: any) => el[0] < TimeEnd && el[1] >= TimeEnd);
 
-    const ArrayStartInNewSlot = !!arrCheck.find((el: any) => {
-      return el[0] < TimeEnd && el[0] >= TimeStart;
-    });
+    const ArrayStartInNewSlot = !!arrCheck.find((el: any) => el[0] < TimeEnd && el[0] >= TimeStart);
 
-    const ArrayEndInNewSlot = !!arrCheck.find((el: any) => {
-      return el[1] <= TimeEnd && el[1] > TimeStart;
-    });
+    const ArrayEndInNewSlot = !!arrCheck.find((el: any) => el[1] <= TimeEnd && el[1] > TimeStart);
 
     return (
       StartFreeTimeInArray ||

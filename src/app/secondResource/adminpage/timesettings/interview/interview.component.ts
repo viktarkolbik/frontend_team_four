@@ -10,8 +10,8 @@ import { User } from '../../../../types/user';
 export class InterviewComponent implements OnInit {
   @Input() interview!: Interview;
   @Input() user!: User;
-  startTime: string = '';
-  endTime: string = '';
+  startTime = '';
+  endTime = '';
   constructor() {}
 
   ngOnInit(): void {

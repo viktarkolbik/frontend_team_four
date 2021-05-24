@@ -40,6 +40,6 @@ export class AuthInterceptor implements HttpInterceptor {
       //     }
       //   })
       // );
-    } else return next.handle(req);
+    } else {return next.handle(req);}
   }
 }
