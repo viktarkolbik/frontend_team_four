@@ -9,10 +9,12 @@
     }
     th {
       font-size: 1.0rem;
+      text-align: center;
     }
     td {
       font-size: 0.85rem;
       margin: 0 auto;
+      padding: 0 5px;
     }
 
     tr.example-detail-row {
@@ -59,8 +61,9 @@
   }
 }
 
-@media (max-width:840px) {
+@media (max-width:900px) {
   .container {
+    overflow: scroll;
     table {
       width: 50%;
     }

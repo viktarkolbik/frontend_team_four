@@ -46,7 +46,11 @@
       "extends": [
         "plugin:@angular-eslint/template/recommended"
       ],
-      "rules": {}
+      "rules": {
+        "no-underscore-dangle": "off",
+        "prettier": "2.3.0",
+        "eslint-config-prettier": "^8.3.0"
+      }
     }
   ]
 }
