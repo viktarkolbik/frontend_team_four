@@ -9,12 +9,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [
-    TableComponent
-  ],
+  declarations: [TableComponent],
   imports: [
     CommonModule,
     TranslateModule,
@@ -28,8 +26,6 @@ import {CommonModule} from '@angular/common';
     MatSelectModule
   ],
   providers: [],
-  exports: [
-    TableComponent
-  ]
+  exports: [TableComponent]
 })
-export class TableModule { }
+export class TableModule {}

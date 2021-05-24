@@ -4,10 +4,10 @@
       <mat-icon>home</mat-icon>
     </button>
     <mat-form-field>
-      <mat-select [(value)]=selectedLang (selectionChange)="changeLang()">
+      <mat-select [(value)]="selectedLang" (selectionChange)="changeLang()">
         <mat-option value="en">English</mat-option>
         <mat-option value="ru">Русский</mat-option>
       </mat-select>
-  </mat-form-field>
+    </mat-form-field>
   </div>
 </div>

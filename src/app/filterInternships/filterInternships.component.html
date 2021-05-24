@@ -2,77 +2,102 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        {{ 'filterInternships.filter' | translate}}
+        {{ "filterInternships.filter" | translate }}
       </mat-panel-title>
     </mat-expansion-panel-header>
     <div class="filtration">
       <div class="left">
-        <h3>{{ 'filterInternships.country' | translate}}</h3>
+        <h3>{{ "filterInternships.country" | translate }}</h3>
         <section class="example-section">
           <mat-checkbox
             color="primary"
             *ngFor="let country of countries"
             [(ngModel)]="filters.countries.criteria[country].isChecked"
             (change)="updateTrainings()"
-            class="example-margin">
-            {{country}}
+            class="example-margin"
+          >
+            {{ country }}
           </mat-checkbox>
         </section>
       </div>
       <div class="center">
-        <h3>{{ 'filterInternships.city' | translate}}</h3>
+        <h3>{{ "filterInternships.city" | translate }}</h3>
         <section class="example-section">
           <mat-checkbox
             color="primary"
             *ngFor="let city of cities"
             [(ngModel)]="filters.cities.criteria[city].isChecked"
             (change)="updateTrainings()"
-            class="example-margin">
-            {{city}}
+            class="example-margin"
+          >
+            {{ city }}
           </mat-checkbox>
         </section>
       </div>
       <div class="right">
-        <h3>  {{ 'filterInternships.technologies' | translate}}</h3>
+        <h3>{{ "filterInternships.technologies" | translate }}</h3>
         <section class="example-section">
           <mat-checkbox
             color="primary"
             *ngFor="let technology of technologies"
             [(ngModel)]="filters.technologies.criteria[technology].isChecked"
             (change)="updateTrainings()"
-            class="example-margin">
-            {{technology}}
+            class="example-margin"
+          >
+            {{ technology }}
           </mat-checkbox>
         </section>
       </div>
     </div>
   </mat-expansion-panel>
   <div class="chips">
-    <mat-chip-list *ngIf="filters.cities.isChecked || filters.technologies.isChecked || filters.countries.isChecked" aria-label="city selection">
-      <ng-container *ngFor="let country of filters.countries.criteria | keyvalue" class="chip-container">
-        <mat-chip [selectable]="selectable"
-                  [removable]="removable"
-                  (removed)="removeFilter('countries', country.key)"
-                  *ngIf="country.value.isChecked">
-          {{country.key}}
+    <mat-chip-list
+      *ngIf="
+        filters.cities.isChecked ||
+        filters.technologies.isChecked ||
+        filters.countries.isChecked
+      "
+      aria-label="city selection"
+    >
+      <ng-container
+        *ngFor="let country of filters.countries.criteria | keyvalue"
+        class="chip-container"
+      >
+        <mat-chip
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="removeFilter('countries', country.key)"
+          *ngIf="country.value.isChecked"
+        >
+          {{ country.key }}
           <mat-icon *ngIf="removable" matChipRemove>cancel</mat-icon>
         </mat-chip>
       </ng-container>
-      <ng-container *ngFor="let city of filters.cities.criteria | keyvalue" class="chip-container">
-        <mat-chip [selectable]="selectable"
-                  [removable]="removable"
-                  (removed)="removeFilter('cities', city.key)"
-                  *ngIf="city.value.isChecked">
-          {{city.key}}
+      <ng-container
+        *ngFor="let city of filters.cities.criteria | keyvalue"
+        class="chip-container"
+      >
+        <mat-chip
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="removeFilter('cities', city.key)"
+          *ngIf="city.value.isChecked"
+        >
+          {{ city.key }}
           <mat-icon *ngIf="removable" matChipRemove>cancel</mat-icon>
         </mat-chip>
       </ng-container>
-      <ng-container *ngFor="let tech of filters.technologies.criteria | keyvalue" class="chip-container">
-        <mat-chip *ngIf="tech.value.isChecked"
-                  [selectable]="selectable"
-                  [removable]="removable"
-                  (removed)="removeFilter('technologies', tech.key)">
-          {{tech.key}}
+      <ng-container
+        *ngFor="let tech of filters.technologies.criteria | keyvalue"
+        class="chip-container"
+      >
+        <mat-chip
+          *ngIf="tech.value.isChecked"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="removeFilter('technologies', tech.key)"
+        >
+          {{ tech.key }}
           <mat-icon *ngIf="removable" matChipRemove>cancel</mat-icon>
         </mat-chip>
       </ng-container>

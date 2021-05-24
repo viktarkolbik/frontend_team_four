@@ -4,7 +4,7 @@
     margin: 0 auto;
     background-color: #e0e0e0;
     padding: 30px;
-    .content{
+    .content {
       max-width: 700px;
       margin: 0 auto;
       padding: 30px;
@@ -13,40 +13,40 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      .reg-form{
+      .reg-form {
         align-self: stretch;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
         padding-left: 20px;
-        .form-control{
+        .form-control {
           align-self: stretch;
           max-width: 380px;
-          mat-label.necessary::after{
-            content: '*';
+          mat-label.necessary::after {
+            content: "*";
             color: red;
             margin: 0 5px;
           }
         }
-        .radio-group{
+        .radio-group {
           display: flex;
           flex-direction: column;
           margin: 10px 20px;
         }
-        .radio-button{
+        .radio-button {
           margin: 5px 0;
         }
-        .selector-time{
+        .selector-time {
           width: 180px;
           display: flex;
           justify-content: space-between;
           margin-top: 0.5rem;
         }
-        .selector-time-item{
+        .selector-time-item {
           width: 80px;
         }
-        .input-wrapper{
+        .input-wrapper {
           position: relative;
           margin-top: 0.5rem;
         }
@@ -59,13 +59,13 @@
           opacity: 0;
           cursor: pointer;
         }
-        #select-file-button{
+        #select-file-button {
           position: relative;
         }
         ::ng-deep .mat-checkbox-layout {
           white-space: normal;
         }
-        #submit-button{
+        #submit-button {
           margin-top: 20px;
         }
       }
@@ -76,13 +76,13 @@
 @media (max-width: 500px) {
   :host {
     .container {
-      .content{
+      .content {
         padding: 10px;
-        h1, p {
+        h1,
+        p {
           margin: 5px;
         }
       }
- 
-    } 
+    }
   }
 }

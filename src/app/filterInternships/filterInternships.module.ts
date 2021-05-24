@@ -9,9 +9,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [
-    FilterInternshipsComponent
-  ],
+  declarations: [FilterInternshipsComponent],
   imports: [
     CommonModule,
     MatExpansionModule,
@@ -21,8 +19,6 @@ import { MatIconModule } from '@angular/material/icon';
     MatChipsModule,
     MatIconModule
   ],
-  exports: [
-    FilterInternshipsComponent
-  ]
+  exports: [FilterInternshipsComponent]
 })
-export class FilterInternshipsModule { }
+export class FilterInternshipsModule {}

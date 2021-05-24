@@ -8,22 +8,17 @@ import { Candidate } from 'src/app/types/candidate';
   styleUrls: ['./techexpert.component.scss']
 })
 export class TechexpertComponent implements OnInit {
-
   error?: number;
   interns = [] as Candidate[];
   constructor(private route: ActivatedRoute) {
-    this.route.data.subscribe(
-      (data) => {
-        if (data.interns.error) {
-          this.error = data.interns.status;
-        } else {
-          this.interns = data.interns;
-        }
+    this.route.data.subscribe(data => {
+      if (data.interns.error) {
+        this.error = data.interns.status;
+      } else {
+        this.interns = data.interns;
       }
-    )
-   }
-
-  ngOnInit(): void {
+    });
   }
 
+  ngOnInit(): void {}
 }

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../../core/services/auth.service';
-import {ParseTime, User, UserParseDate} from '../../../types/user';
-import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
-import {Candidate} from '../../../types/candidate';
-import {FormsService} from '../../../core/services/forms.service';
-import {catchError, map, switchMap} from 'rxjs/operators';
-import {InterviewService} from '../../../core/services/interview.service';
-import {InterviewDialogComponent} from './interview-dialog/interview-dialog.component';
-import {MatDialog} from '@angular/material/dialog';
-import {of} from 'rxjs';
-import {UserService} from "../../../core/services/user.service";
+import { AuthService } from '../../../core/services/auth.service';
+import { ParseTime, User, UserParseDate } from '../../../types/user';
+import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { Candidate } from '../../../types/candidate';
+import { FormsService } from '../../../core/services/forms.service';
+import { catchError, map, switchMap } from 'rxjs/operators';
+import { InterviewService } from '../../../core/services/interview.service';
+import { InterviewDialogComponent } from './interview-dialog/interview-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { of } from 'rxjs';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'ia-admins',
@@ -31,75 +31,95 @@ export class AdminsComponent implements OnInit {
     private interviewService: InterviewService,
     private dialog: MatDialog,
     private userService: UserService
-    ) {
-    auth.getUserInfo().subscribe(data => this.userInfo = data);
-    this.route.data.subscribe(
-      (data) => {
-        if (data.candidates.error || data.admins.error || data.techExperts.error) {
-          this.error = data.candidates.error || data.admins.error || data.techExperts.error;
-        } else {
-          this.candidates = data.candidates;
-          this.admins = this.usersParseDate(data.admins);
-          this.techExperts = this.usersParseDate(data.techExperts);
-        }
+  ) {
+    auth.getUserInfo().subscribe(data => (this.userInfo = data));
+    this.route.data.subscribe(data => {
+      if (
+        data.candidates.error ||
+        data.admins.error ||
+        data.techExperts.error
+      ) {
+        this.error =
+          data.candidates.error || data.admins.error || data.techExperts.error;
+      } else {
+        this.candidates = data.candidates;
+        this.admins = this.usersParseDate(data.admins);
+        this.techExperts = this.usersParseDate(data.techExperts);
       }
-    );
+    });
   }
-  updateSelectedCandidate(candidate: Candidate){
+  updateSelectedCandidate(candidate: Candidate) {
     this.selectedCandidate = candidate;
     this.selectedCandidateID = candidate && candidate.id;
   }
-  usersParseDate(users: User[]): UserParseDate[]{
+  usersParseDate(users: User[]): UserParseDate[] {
     return users.map<UserParseDate>(user => {
-      const userParseDate = {...user} as UserParseDate;
-      userParseDate.userTimeSlots = user.userTimeSlots.map<ParseTime>(timeSlot => {
-        const timeSlotParseTime = {...timeSlot} as ParseTime;
-        timeSlotParseTime.startDate = new Date(timeSlot.startDate + 'Z');
-        timeSlotParseTime.endDate = new Date(timeSlot.endDate + 'Z');
-        return timeSlotParseTime;
-      });
+      const userParseDate = { ...user } as UserParseDate;
+      userParseDate.userTimeSlots = user.userTimeSlots.map<ParseTime>(
+        timeSlot => {
+          const timeSlotParseTime = { ...timeSlot } as ParseTime;
+          timeSlotParseTime.startDate = new Date(timeSlot.startDate + 'Z');
+          timeSlotParseTime.endDate = new Date(timeSlot.endDate + 'Z');
+          return timeSlotParseTime;
+        }
+      );
       return userParseDate;
     });
   }
-  openInterviewDialog(users: User[], role: string){
+  openInterviewDialog(users: User[], role: string) {
     let internshipId = '';
-    const dialogRef = this.dialog.open(InterviewDialogComponent, {data: {users, role}});
-    dialogRef.afterClosed()
+    const dialogRef = this.dialog.open(InterviewDialogComponent, {
+      data: { users, role }
+    });
+    dialogRef
+      .afterClosed()
       .pipe(
         switchMap(interview => {
-          if(interview){
-            if(this.selectedCandidate.interview?.adminInterviewDate && role === 'ADMIN'){
+          if (interview) {
+            if (
+              this.selectedCandidate.interview?.adminInterviewDate &&
+              role === 'ADMIN'
+            ) {
               return this.formsService.putInterviewTime(
-                this.selectedCandidate.id, interview, this.selectedCandidate.interview.id
+                this.selectedCandidate.id,
+                interview,
+                this.selectedCandidate.interview.id
+              );
+            } else if (
+              this.selectedCandidate.interview?.techInterviewDate &&
+              role === 'TECH_EXPERT'
+            ) {
+              return this.formsService.putInterviewTime(
+                this.selectedCandidate.id,
+                interview,
+                this.selectedCandidate.interview.id
+              );
+            } else {
+              return this.formsService.setInterviewTime(
+                this.selectedCandidate.id,
+                interview
               );
             }
-            else if(this.selectedCandidate.interview?.techInterviewDate && role === 'TECH_EXPERT'){
-              return this.formsService.putInterviewTime(
-                this.selectedCandidate.id, interview, this.selectedCandidate.interview.id
-              );
-            }
-            else {
-              return this.formsService.setInterviewTime(this.selectedCandidate.id, interview);
-            }
-          }
-          else {
+          } else {
             return of(new Error('Cancel'));
           }
         }),
         switchMap(() => this.route.params),
-        switchMap((data) => {
+        switchMap(data => {
           internshipId = data.id;
           return this.formsService.getCandidatesList(data.id);
         }),
-        switchMap((candidates) => {
+        switchMap(candidates => {
           this.candidates = candidates;
           return this.userService.getUsersRole(internshipId, 'ADMIN');
         }),
-        switchMap((admins) => {
+        switchMap(admins => {
           this.admins = this.usersParseDate(admins);
           return this.userService.getUsersRole(internshipId, 'TECH_EXPERT');
         })
-      ).subscribe( techExpert => {
+      )
+      .subscribe(
+        techExpert => {
           this.techExperts = this.usersParseDate(techExpert);
         },
         error => {
@@ -107,13 +127,12 @@ export class AdminsComponent implements OnInit {
         }
       );
   }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   updateStatus(id: string, status: string): void {
-    this.formsService.updateStatusCandidate(id, status)
+    this.formsService
+      .updateStatusCandidate(id, status)
       .pipe(switchMap(() => this.route.params))
-      .pipe(switchMap((data) => this.formsService.getCandidatesList(data.id)))
-      .subscribe(data => this.candidates = data);
-    }
-
+      .pipe(switchMap(data => this.formsService.getCandidatesList(data.id)))
+      .subscribe(data => (this.candidates = data));
+  }
 }

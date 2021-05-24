@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import {HomepageModule} from './homepage/homepage.module';
-import {InternshipdescriptionModule} from './internshipdescription/internshipdescription.module';
-import {RegformModule} from './regform/regform.module';
-import {CommonModule} from '@angular/common';
+import { HomepageModule } from './homepage/homepage.module';
+import { InternshipdescriptionModule } from './internshipdescription/internshipdescription.module';
+import { RegformModule } from './regform/regform.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [],
@@ -10,9 +10,9 @@ import {CommonModule} from '@angular/common';
     CommonModule,
     HomepageModule,
     InternshipdescriptionModule,
-    RegformModule,
+    RegformModule
   ],
   providers: [],
   exports: []
 })
-export class FirstResourceModule { }
+export class FirstResourceModule {}

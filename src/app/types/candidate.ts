@@ -16,7 +16,6 @@ export interface Candidate {
   primarySkill: string;
   skype: string;
   timeForCallList: ConvenientTime[];
-
 }
 
 export interface Interview {
@@ -28,7 +27,7 @@ export interface Interview {
     id: string;
     lastName: string;
     userRole: string;
-  },
+  };
   id: string;
   techFeedback: string;
   techSpecialist: string;
@@ -38,7 +37,7 @@ export interface Interview {
     id: string;
     lastName: string;
     userRole: string;
-  }
+  };
 }
 
 export interface Interviews {

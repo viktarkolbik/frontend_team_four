@@ -141,7 +141,7 @@
       "to": "to"
     },
     "addInterval": "Add free time interval",
-    "crossFreeTime" : "Selected time across time in vacancy slots",
+    "crossFreeTime": "Selected time across time in vacancy slots",
     "crossInterview": "Selected time across time in interview"
   },
   "admins": {

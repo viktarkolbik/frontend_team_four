@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Interview} from '../../../../types/candidate';
-import {User} from '../../../../types/user';
+import { Component, Input, OnInit } from '@angular/core';
+import { Interview } from '../../../../types/candidate';
+import { User } from '../../../../types/user';
 
 @Component({
   selector: 'ia-interview',
@@ -8,22 +8,20 @@ import {User} from '../../../../types/user';
   styleUrls: ['./interview.component.scss']
 })
 export class InterviewComponent implements OnInit {
-  @Input() interview!: Interview ;
+  @Input() interview!: Interview;
   @Input() user!: User;
-  startTime: string = "";
-  endTime: string= "";
-  constructor() { }
+  startTime: string = '';
+  endTime: string = '';
+  constructor() {}
 
   ngOnInit(): void {
-    if(this.user.userRole === "ADMIN") {
-      this.startTime = this.interview.adminInterviewDate!
-    }
-    else if (this.user.userRole === "TECH_EXPERT") {
-      this.endTime = this.interview.techInterviewDate!
+    if (this.user.userRole === 'ADMIN') {
+      this.startTime = this.interview.adminInterviewDate!;
+    } else if (this.user.userRole === 'TECH_EXPERT') {
+      this.endTime = this.interview.techInterviewDate!;
     }
     this.endTime = new Date(
-      Date.parse(this.startTime) + this.user.interviewTime*60*1000)
-      .toISOString();
+      Date.parse(this.startTime) + this.user.interviewTime * 60 * 1000
+    ).toISOString();
   }
-
 }

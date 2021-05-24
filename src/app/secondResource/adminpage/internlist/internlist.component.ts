@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Candidate } from 'src/app/types/candidate';
 
@@ -7,26 +7,19 @@ import { Candidate } from 'src/app/types/candidate';
   templateUrl: './internlist.component.html',
   styleUrls: ['./internlist.component.scss']
 })
-
-export class InternlistComponent implements  OnInit {
+export class InternlistComponent implements OnInit {
   error?: number;
-  interns =  [] as Candidate[];
+  interns = [] as Candidate[];
 
   constructor(private route: ActivatedRoute) {
-    this.route.data.subscribe(
-      (data) => {
-        if (data.interns.error) {
-          this.error = data.interns.status;
-        } else {
-          this.interns = data.interns;
-        }
+    this.route.data.subscribe(data => {
+      if (data.interns.error) {
+        this.error = data.interns.status;
+      } else {
+        this.interns = data.interns;
       }
-    );
+    });
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }
- 
-

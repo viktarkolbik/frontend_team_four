@@ -10,7 +10,6 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { TableModule } from '../table/table.module';
 
-
 @NgModule({
   declarations: [InternlistComponent],
   imports: [
@@ -23,10 +22,9 @@ import { TableModule } from '../table/table.module';
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
-    MatSelectModule, 
+    MatSelectModule,
     TableModule
-    
-  ], 
+  ],
   exports: [InternlistComponent]
 })
-export class InternlistModule { }
+export class InternlistModule {}

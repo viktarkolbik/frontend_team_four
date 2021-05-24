@@ -8,7 +8,7 @@
       cursor: pointer;
     }
     th {
-      font-size: 1.0rem;
+      font-size: 1rem;
       text-align: center;
     }
     td {
@@ -23,7 +23,7 @@
 
     tr.rows-element:not(.example-expanded-row):hover {
       background: whitesmoke;
-      }
+    }
 
     tr.rows-element:not(.example-expanded-row):active {
       background: #efefef;
@@ -35,7 +35,6 @@
 
     .example-element-detail {
       overflow: hidden;
-
     }
 
     .example-element-diagram {
@@ -61,7 +60,7 @@
   }
 }
 
-@media (max-width:900px) {
+@media (max-width: 900px) {
   .container {
     overflow: scroll;
     table {

@@ -1,45 +1,45 @@
 <div class="container">
   <div class="content">
-    <h1>{{ 'regform.h1' | translate}}</h1>
+    <h1>{{ "regform.h1" | translate }}</h1>
     <p>
-      {{ 'regform.annotation1' | translate}}
+      {{ "regform.annotation1" | translate }}
       <span style="color: red"> * </span>
-      {{ 'regform.annotation2' | translate}}
+      {{ "regform.annotation2" | translate }}
     </p>
     <form class="reg-form" [formGroup]="form" enctype="multipart/form-data">
       <mat-form-field appearance="standard" class="form-control">
-        <mat-label>{{ 'regform.name' | translate}}</mat-label>
+        <mat-label>{{ "regform.name" | translate }}</mat-label>
         <input
           matInput
           formControlName="firstName"
           type="text"
-          placeholder="{{ 'regform.name' | translate}}"
+          placeholder="{{ 'regform.name' | translate }}"
           maxlength="50"
           required
-        >
+        />
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <mat-label>{{ 'regform.surname' | translate}}</mat-label>
+        <mat-label>{{ "regform.surname" | translate }}</mat-label>
         <input
           matInput
           formControlName="lastName"
           type="text"
-          placeholder="{{ 'regform.surname' | translate}}"
+          placeholder="{{ 'regform.surname' | translate }}"
           maxlength="50"
           required
-        >
+        />
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <mat-label>{{ 'regform.patronymic' | translate}}</mat-label>
+        <mat-label>{{ "regform.patronymic" | translate }}</mat-label>
         <input
           matInput
           formControlName="middleName"
           type="text"
-          placeholder="{{ 'regform.patronymic' | translate}}"
+          placeholder="{{ 'regform.patronymic' | translate }}"
           maxlength="50"
-        >
+        />
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
@@ -48,25 +48,22 @@
           matInput
           formControlName="email"
           type="email"
-          placeholder="{{ 'regform.email' | translate}} Email"
+          placeholder="{{ 'regform.email' | translate }} Email"
           maxlength="254"
           required
-        >
+        />
         <mat-error *ngIf="form.get('email')?.hasError('email')">
-          {{ 'regform.emailError' | translate}}
+          {{ "regform.emailError" | translate }}
         </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <mat-label>{{ 'regform.phone' | translate}}</mat-label>
-        <tel-input
-          formControlName="phoneNumber"
-          required
-        ></tel-input>
+        <mat-label>{{ "regform.phone" | translate }}</mat-label>
+        <tel-input formControlName="phoneNumber" required></tel-input>
         <mat-icon matSuffix>phone</mat-icon>
         <mat-hint>ex. 375-99-1234567</mat-hint>
         <mat-error>
-          {{ 'regform.phoneError' | translate}}
+          {{ "regform.phoneError" | translate }}
         </mat-error>
       </mat-form-field>
 
@@ -79,11 +76,13 @@
           placeholder="Skype"
           maxlength="254"
           required
-        >
+        />
       </mat-form-field>
 
       <div class="form-control" style="margin-top: 30px">
-        <mat-label class="necessary">{{ 'regform.englishlevel' | translate}}</mat-label>
+        <mat-label class="necessary">{{
+          "regform.englishlevel" | translate
+        }}</mat-label>
         <mat-radio-group
           aria-labelledby="radio-group-label"
           class="radio-group"
@@ -93,62 +92,71 @@
           <mat-radio-button
             class="radio-button"
             color="primary"
-            *ngFor="let level of getKeys(englishLevel)" [value]="level"
+            *ngFor="let level of getKeys(englishLevel)"
+            [value]="level"
           >
-            {{englishLevel[level]}}
+            {{ englishLevel[level] }}
           </mat-radio-button>
         </mat-radio-group>
       </div>
 
       <mat-form-field appearance="standard" class="form-control">
-        <mat-label>{{ 'regform.country' | translate}}</mat-label>
-        <mat-select
-          class="select-group"
-          formControlName="country"
-          required
-        >
-          <mat-option *ngFor="let country of getKeys(countries)" [value]="countries[country]">
-            {{countries[country].name}}
+        <mat-label>{{ "regform.country" | translate }}</mat-label>
+        <mat-select class="select-group" formControlName="country" required>
+          <mat-option
+            *ngFor="let country of getKeys(countries)"
+            [value]="countries[country]"
+          >
+            {{ countries[country].name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control" *ngIf="cities">
-        <mat-label>{{ 'regform.city' | translate}}</mat-label>
+        <mat-label>{{ "regform.city" | translate }}</mat-label>
         <mat-select class="select-group" required formControlName="city">
-          <mat-option *ngFor="let city of getKeys(cities)" [value]="cities[city]">
-            {{cities[city].name}}
+          <mat-option
+            *ngFor="let city of getKeys(cities)"
+            [value]="cities[city]"
+          >
+            {{ cities[city].name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <form [formGroup]="timeForCallList[0]" class="form-control" style="margin-top: 30px">
-        <mat-label>{{ 'regform.comforttime' | translate}}</mat-label>
+      <form
+        [formGroup]="timeForCallList[0]"
+        class="form-control"
+        style="margin-top: 30px"
+      >
+        <mat-label>{{ "regform.comforttime" | translate }}</mat-label>
         <div class="selector-time">
           <mat-form-field appearance="fill" class="selector-time-item">
-            <mat-label>{{ 'regform.comforttimeFrom' | translate}}</mat-label>
+            <mat-label>{{ "regform.comforttimeFrom" | translate }}</mat-label>
             <mat-select formControlName="startHour">
               <mat-option
                 *ngFor="let time of convenientTimeArray"
                 [disabled]="
-                  time > timeForCallList[0].controls['startHour'].value - 1
-                  && !!timeForCallList[0].controls['endHour'].value
+                  time > timeForCallList[0].controls['startHour'].value - 1 &&
+                  !!timeForCallList[0].controls['endHour'].value
                 "
                 [value]="time"
               >
-                {{time}}:00
+                {{ time }}:00
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="fill" class="selector-time-item">
-            <mat-label>{{ 'regform.comforttimeTo' | translate}}</mat-label>
+            <mat-label>{{ "regform.comforttimeTo" | translate }}</mat-label>
             <mat-select formControlName="endHour">
               <mat-option
                 *ngFor="let time of convenientTimeArray"
-                [disabled]="time < timeForCallList[0].controls['startHour'].value + 1"
+                [disabled]="
+                  time < timeForCallList[0].controls['startHour'].value + 1
+                "
                 [value]="time"
               >
-                {{time}}:00
+                {{ time }}:00
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -157,29 +165,31 @@
       <form action="" [formGroup]="timeForCallList[1]" class="form-control">
         <div class="selector-time">
           <mat-form-field appearance="fill" class="selector-time-item">
-            <mat-label>{{ 'regform.comforttimeFrom' | translate}}</mat-label>
+            <mat-label>{{ "regform.comforttimeFrom" | translate }}</mat-label>
             <mat-select formControlName="startHour">
               <mat-option
                 *ngFor="let time of convenientTimeArray2"
                 [disabled]="
-                  time > timeForCallList[1].controls['endHour'].value - 1
-                  && !!timeForCallList[1].controls['endHour'].value
+                  time > timeForCallList[1].controls['endHour'].value - 1 &&
+                  !!timeForCallList[1].controls['endHour'].value
                 "
                 [value]="time"
               >
-                {{time}}:00
+                {{ time }}:00
               </mat-option>
             </mat-select>
           </mat-form-field>
           <mat-form-field appearance="fill" class="selector-time-item">
-            <mat-label>{{ 'regform.comforttimeTo' | translate}}</mat-label>
+            <mat-label>{{ "regform.comforttimeTo" | translate }}</mat-label>
             <mat-select formControlName="endHour">
               <mat-option
                 *ngFor="let time of convenientTimeArray2"
-                [disabled]="time < timeForCallList[1].controls['startHour'].value + 1"
+                [disabled]="
+                  time < timeForCallList[1].controls['startHour'].value + 1
+                "
                 [value]="time"
               >
-                {{time}}:00
+                {{ time }}:00
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -187,56 +197,53 @@
       </form>
 
       <mat-form-field appearance="standard" class="form-control">
-        <mat-label>{{ 'regform.primarySkill' | translate}}</mat-label>
-        <input matInput
-               type="text"
-               formControlName="primarySkill"
-               placeholder="{{ 'regform.primarySkill' | translate}}"
-               maxlength="50"
-        >
+        <mat-label>{{ "regform.primarySkill" | translate }}</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="primarySkill"
+          placeholder="{{ 'regform.primarySkill' | translate }}"
+          maxlength="50"
+        />
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <mat-label>{{ 'regform.experience' | translate}}</mat-label>
-        <textarea matInput
+        <mat-label>{{ "regform.experience" | translate }}</mat-label>
+        <textarea
+          matInput
           cdkTextareaAutosize
           formControlName="experience"
-          placeholder="{{ 'regform.experience' | translate}}"
+          placeholder="{{ 'regform.experience' | translate }}"
           maxlength="500"
         ></textarea>
       </mat-form-field>
 
       <mat-form-field appearance="standard" class="form-control">
-        <mat-label>{{ 'regform.education' | translate}}</mat-label>
-        <textarea matInput
+        <mat-label>{{ "regform.education" | translate }}</mat-label>
+        <textarea
+          matInput
           cdkTextareaAutosize
           formControlName="education"
-          placeholder="{{ 'regform.education' | translate}}"
+          placeholder="{{ 'regform.education' | translate }}"
           maxlength="500"
         ></textarea>
       </mat-form-field>
 
       <div class="form-control" style="margin-top: 20px">
-        <mat-label>{{ 'regform.resume' | translate}}</mat-label>
+        <mat-label>{{ "regform.resume" | translate }}</mat-label>
       </div>
       <div class="input-wrapper">
-        <button
-          id="select-file-button"
-          mat-flat-button
-          color="primary"
-        >{{ 'regform.choosefile' | translate}}</button>
-        <input
-          id="select-file-input"
-          type="file"
-          (change)="addFile($event)"
-        >
+        <button id="select-file-button" mat-flat-button color="primary">
+          {{ "regform.choosefile" | translate }}
+        </button>
+        <input id="select-file-input" type="file" (change)="addFile($event)" />
       </div>
-      <label>{{file?.name}}</label>
+      <label>{{ file?.name }}</label>
       <mat-error *ngIf="fileSize">
-        {{ 'regform.errorfilesize' | translate}} {{maxSizeFile/1000}} kB
+        {{ "regform.errorfilesize" | translate }} {{ maxSizeFile / 1000 }} kB
       </mat-error>
       <mat-error *ngIf="isNotSupportFormat">
-        {{ 'regform.errorfileformat' | translate}}
+        {{ "regform.errorfileformat" | translate }}
       </mat-error>
 
       <mat-checkbox
@@ -244,15 +251,23 @@
         color="primary"
         formControlName="isConfirm"
       >
-        {{ 'regform.agree' | translate}}
+        {{ "regform.agree" | translate }}
       </mat-checkbox>
-      <button id="submit-button"
+      <button
+        id="submit-button"
         mat-flat-button
         color="primary"
         (click)="openDialog()"
-        [disabled]="!(form.valid && form.get('isConfirm')?.value && !isNotSupportFormat && !fileSize)"
+        [disabled]="
+          !(
+            form.valid &&
+            form.get('isConfirm')?.value &&
+            !isNotSupportFormat &&
+            !fileSize
+          )
+        "
       >
-        {{ 'regform.submit' | translate}}
+        {{ "regform.submit" | translate }}
       </button>
     </form>
   </div>

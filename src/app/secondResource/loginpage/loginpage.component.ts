@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../../core/services/auth.service';
-import {Router} from '@angular/router';
-import {StorageService} from '../../core/services/storage.service';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../core/services/auth.service';
+import { Router } from '@angular/router';
+import { StorageService } from '../../core/services/storage.service';
 
 @Component({
   selector: 'ia-login-page',
@@ -15,32 +15,37 @@ export class LoginpageComponent implements OnInit {
   errorServer = '';
   errorLogin: '' | undefined;
 
-  constructor(private authService: AuthService,
-              private routeService: Router,
-              private storage: StorageService) {
+  constructor(
+    private authService: AuthService,
+    private routeService: Router,
+    private storage: StorageService
+  ) {
     this.form = new FormGroup({
       loginEmail: new FormControl(''), //   [Validators.required, Validators.email]
       loginPassword: new FormControl('')
     });
-
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   loginAuth() {
-    this.authService.login({
-      login: this.form.value.loginEmail,
-      password: this.form.value.loginPassword
-    }).subscribe(dataAuth => {
-      this.storage.setAuthToken(dataAuth.token);
-      this.storage.setUserId(dataAuth.id);
-      this.form.reset();
-      this.routeService.navigate(['/adminpage']);
-    }, error => {
-      this.errorLogin = error.error.message;
-      this.errorServer = error.message;
-    });
+    this.authService
+      .login({
+        login: this.form.value.loginEmail,
+        password: this.form.value.loginPassword
+      })
+      .subscribe(
+        dataAuth => {
+          this.storage.setAuthToken(dataAuth.token);
+          this.storage.setUserId(dataAuth.id);
+          this.form.reset();
+          this.routeService.navigate(['/adminpage']);
+        },
+        error => {
+          this.errorLogin = error.error.message;
+          this.errorServer = error.message;
+        }
+      );
   }
 
   logOut() {

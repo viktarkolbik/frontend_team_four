@@ -1,5 +1,12 @@
 <div class="content">
-  <div>{{"timesetting.slot.date" | translate}} : {{startTime | date:"dd / MM / YYYY"}}</div>
-  <div>{{"timesetting.slot.from" | translate}} {{startTime | date:"HH:mm"}}</div>
-  <div>{{"timesetting.slot.to" | translate}} {{endTime | date:"HH:mm"}}</div>
+  <div>
+    {{ "timesetting.slot.date" | translate }} :
+    {{ startTime | date: "dd / MM / YYYY" }}
+  </div>
+  <div>
+    {{ "timesetting.slot.from" | translate }} {{ startTime | date: "HH:mm" }}
+  </div>
+  <div>
+    {{ "timesetting.slot.to" | translate }} {{ endTime | date: "HH:mm" }}
+  </div>
 </div>

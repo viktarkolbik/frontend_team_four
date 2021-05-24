@@ -10,32 +10,30 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-import {CommonModule} from '@angular/common';
-import {MatExpansionModule} from "@angular/material/expansion";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {RouterModule} from "@angular/router";
+import { CommonModule } from '@angular/common';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-    InternshipformComponent,
+  declarations: [InternshipformComponent],
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    TranslateModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule,
+    MatButtonModule,
+    MatExpansionModule,
+    MatAutocompleteModule,
+    RouterModule
   ],
-    imports: [
-        CommonModule,
-        MatFormFieldModule,
-        TranslateModule,
-        MatSelectModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatChipsModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatIconModule,
-        MatButtonModule,
-        MatExpansionModule,
-        MatAutocompleteModule,
-        RouterModule,
-    ],
   exports: [InternshipformComponent]
 })
-export class InternshipformModule { }
+export class InternshipformModule {}

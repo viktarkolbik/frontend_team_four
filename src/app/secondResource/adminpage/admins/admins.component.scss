@@ -1,9 +1,15 @@
-.control-button{
+.control-button {
   display: flex;
   justify-content: space-around;
   width: 95%;
   margin: 2rem auto;
 }
-.Red {background-color: rgba(128,0,0,0.7)}
-.Yellow {background-color: rgba(255,255,0,0.7)}
-.Green{background-color: rgba(0,128,0,0.7)}
+.Red {
+  background-color: rgba(128, 0, 0, 0.7);
+}
+.Yellow {
+  background-color: rgba(255, 255, 0, 0.7);
+}
+.Green {
+  background-color: rgba(0, 128, 0, 0.7);
+}

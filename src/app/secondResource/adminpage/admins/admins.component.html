@@ -1,4 +1,4 @@
-<div *ngIf = '!error; else Error' class="training_container">
+<div *ngIf="!error; else Error" class="training_container">
   <ia-table
     [selectedCandidateID]="selectedCandidateID"
     [candidates]="candidates"
@@ -32,27 +32,48 @@
         <div class="control-button">
           <button
             mat-raised-button
-            (click)="updateStatus(selectedCandidate.id , 'CANDIDATE_REFUSED')"
-          >{{"admins.candidateRefused" | translate}}</button>
+            (click)="updateStatus(selectedCandidate.id, 'CANDIDATE_REFUSED')"
+          >
+            {{ "admins.candidateRefused" | translate }}
+          </button>
           <button
             mat-raised-button
             class="Red"
-            (click)="updateStatus(selectedCandidate.id , 'REJECTED')"
-          >{{"admins.decline" | translate}}</button>
-          <button mat-raised-button
-                  class="Yellow"
-                  (click)="updateStatus(selectedCandidate.id , 'NOT_MATCHED')"
-          >{{"admins.waiting" | translate}}</button>
-          <button mat-raised-button
-                  class="Green"
-                  (click)="updateStatus(selectedCandidate.id , 'ACCEPTED')"
-          >{{"admins.approve" | translate}}</button>
+            (click)="updateStatus(selectedCandidate.id, 'REJECTED')"
+          >
+            {{ "admins.decline" | translate }}
+          </button>
+          <button
+            mat-raised-button
+            class="Yellow"
+            (click)="updateStatus(selectedCandidate.id, 'NOT_MATCHED')"
+          >
+            {{ "admins.waiting" | translate }}
+          </button>
+          <button
+            mat-raised-button
+            class="Green"
+            (click)="updateStatus(selectedCandidate.id, 'ACCEPTED')"
+          >
+            {{ "admins.approve" | translate }}
+          </button>
         </div>
       </ng-container>
       <ng-container *ngIf="userInfo.userRole === 'ADMIN'">
         <div class="control-button">
-          <button mat-raised-button class="Red" (click)="updateStatus(selectedCandidate.id , 'REJECTED')">Decline intern</button>
-          <button mat-raised-button (click)="updateStatus(selectedCandidate.id , 'CANDIDATE_REFUSED')">Candidate Refused</button>
+          <button
+            mat-raised-button
+            class="Red"
+            (click)="updateStatus(selectedCandidate.id, 'REJECTED')"
+          >
+            Decline intern
+          </button>
+          <button
+            mat-raised-button
+            (click)="updateStatus(selectedCandidate.id, 'CANDIDATE_REFUSED')"
+          >
+            Candidate Refused
+          </button>
         </div>
       </ng-container>
     </ng-template>

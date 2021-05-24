@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 
 import { HeaderComponent } from './header.component';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {TranslateModule} from '@ngx-translate/core';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {AppRoutingModule} from '../app-routing.module';
-import {CommonModule} from '@angular/common';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { AppRoutingModule } from '../app-routing.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [
-    HeaderComponent
-  ],
+  declarations: [HeaderComponent],
   imports: [
     CommonModule,
     MatSelectModule,
@@ -20,11 +18,9 @@ import {CommonModule} from '@angular/common';
     TranslateModule,
     MatIconModule,
     MatButtonModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
-  exports: [
-    HeaderComponent
-  ]
+  exports: [HeaderComponent]
 })
-export class HeaderModule { }
+export class HeaderModule {}
