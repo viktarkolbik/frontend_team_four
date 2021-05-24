@@ -3,13 +3,13 @@
   margin: 0 auto;
   margin-bottom: 20px;
   table {
-    // min-height: 500px;
     width: 100%;
     &:hover {
       cursor: pointer;
     }
     th {
       font-size: 1.0rem;
+      text-align: center;
       color: black;
       font-weight: bold;
       background: lavender;
@@ -17,6 +17,7 @@
     td {
       font-size: 0.85rem;
       margin: 0 auto;
+      padding: 0 5px;
     }
 
     tr.example-detail-row {
@@ -66,6 +67,15 @@
         margin: 0.5rem;
         font-size: 0.85rem;
       }
+    }
+  }
+}
+
+@media (max-width:900px) {
+  .container {
+    overflow: scroll;
+    table {
+      width: 50%;
     }
   }
 }
