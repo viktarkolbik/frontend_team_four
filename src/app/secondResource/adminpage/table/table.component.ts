@@ -42,7 +42,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ContentChild(TemplateRef) template?: TemplateRef<any>;
   @Input() candidates = [] as Candidate[];
-  @Output() onSelectedCandidate: EventEmitter<Candidate> =
+  @Output() SelectedCandidate: EventEmitter<Candidate> =
     new EventEmitter<Candidate>();
   selectedCandidate: Candidate | null = null;
   dataSource!: MatTableDataSource<Candidate>;

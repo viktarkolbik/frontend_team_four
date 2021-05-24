@@ -49,6 +49,7 @@ export class MyTelComponent {
   templateUrl: 'tel-input.html',
   styleUrls: ['tel-input.css'],
   providers: [{ provide: MatFormFieldControl, useExisting: MyTelInputComponent }],
+  //@ts-ignore
   host: {
     '[class.floating]': 'shouldLabelFloat',
     '[id]': 'id'
@@ -109,7 +110,11 @@ export class MyTelInputComponent
   }
   set disabled(value: boolean) {
     this._disabled = coerceBooleanProperty(value);
-    this._disabled ? this.parts.disable() : this.parts.enable();
+    if (this._disabled) {
+     this.parts.disable();
+    } else {
+      this.parts.enable();
+    }
     this.stateChanges.next();
   }
 
