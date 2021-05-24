@@ -162,6 +162,7 @@
     "lastname": "Surname",
     "country": "Country",
     "city": "City",
-    "experience": "Experience"
+    "experience": "Experience",
+    "education": "Education"
   }
 }

@@ -9,29 +9,30 @@
     }
     th {
       font-size: 1.0rem;
-      text-align: center;
       color: black;
       font-weight: bold;
       background: lavender;
+      text-align: center;
     }
     td {
       font-size: 0.85rem;
       margin: 0 auto;
       padding: 0 5px;
+      text-align: center;
     }
-
     tr.example-detail-row {
       height: 0;
     }
 
-    tr.rows-element:not(.example-expanded-row):hover {
+    tr:hover, tr.rows-element:not(.example-expanded-row):hover {
       background: whitesmoke;
+      font-weight: 500;
       }
-
-    tr.rows-element:not(.example-expanded-row):active {
-      background: #efefef;
+    td.mat-cell:last-of-type:hover {
+      background: whitesmoke;
+      color: indigo;
+      font-weight: 400;
     }
-
     .rows-element td {
       border-bottom-width: 0;
     }
