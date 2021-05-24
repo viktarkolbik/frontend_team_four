@@ -25,7 +25,6 @@ export class InternlistComponent implements  OnInit {
           this.error = data.interns.status;
         } else {
           this.interns = data.interns;
-          //console.log(this.interns)
         }
       }
     );
