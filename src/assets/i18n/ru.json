@@ -163,7 +163,6 @@
     "lastname": "Фамилия",
     "country": "Страна",
     "city": "Город",
-    "experience": "Опыт",
-    "education": "Образование"
+    "experience": "Опыт"
   }
 }

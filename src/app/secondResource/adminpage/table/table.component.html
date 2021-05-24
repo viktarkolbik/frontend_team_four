@@ -34,7 +34,7 @@
     </ng-container>
     <ng-container matColumnDef="englishLevel">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.englishLevel" | translate}}</th>
-      <td class="rows-element" mat-cell *matCellDef="let element" style="text-align: center;">
+      <td class="rows-element" mat-cell *matCellDef="let element">
         {{element.englishLevel}}
       </td>
     </ng-container>
@@ -80,7 +80,6 @@
               <p>{{"adminTable.city" | translate}}: {{element.city.name}}</p>
               <p *ngIf="element.primarySkill">{{"adminTable.skill" | translate}}: {{element.primarySkill}}</p>
               <p *ngIf="element.experience">{{"adminTable.experience" | translate}}: {{element.experience}}</p>
-              <p *ngIf="element.education">{{"adminTable.education" | translate}}: {{element.education}}</p>
 <!--            </div>-->
 
           </div>

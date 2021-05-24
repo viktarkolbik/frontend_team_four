@@ -10,9 +10,19 @@
     th {
       font-size: 1.0rem;
       color: black;
-      font-weight: bold;
       background: lavender;
       text-align: center;
+      &:first-child {
+        padding-left: 10px;
+      }
+       &:last-child {
+        padding-right: 10px;
+      }
+      ::ng-deep .mat-sort-header-container {
+        display: flex;
+        justify-content: center;
+        padding-left: 10px;
+      }
     }
     td {
       font-size: 0.85rem;
