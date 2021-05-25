@@ -20,7 +20,6 @@ export class AdminsComponent implements OnInit {
   userInfo = {} as User;
   candidates = [] as Candidate[];
   selectedCandidate!: Candidate;
-  selectedCandidateID: string | null = null;
   admins = [] as UserParseDate[];
   techExperts = [] as UserParseDate[];
   error?: number;
@@ -47,7 +46,6 @@ export class AdminsComponent implements OnInit {
   }
   updateSelectedCandidate(candidate: Candidate){
     this.selectedCandidate = candidate;
-    this.selectedCandidateID = candidate && candidate.id;
   }
   usersParseDate(users: User[]): UserParseDate[]{
     return users.map<UserParseDate>(user => {
