@@ -33,7 +33,6 @@ export class InternshipWithUsersResolveService implements Resolve<Internship> {
           return this.userService.getUsersSkills(internship.skills);
         }),
         switchMap(techExperts => {
-          of({internship: this.internship, techExperts});
           this.techExpert = techExperts;
           return this.userService.getUsersRole(route.params.id,'TECH_EXPERT');
         }),

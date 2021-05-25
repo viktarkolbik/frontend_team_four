@@ -50,7 +50,13 @@
       <form [formGroup]="form" class="create-form">
         <mat-form-field appearance="standard" class="form-control">
           <label class="star">{{ 'internshipform.name' | translate}}</label>
-          <input matInput formControlName="name" type="text" placeholder="{{ 'internshipform.name' | translate}}">
+          <input
+            matInput
+            formControlName="name"
+            type="text"
+            placeholder="{{ 'internshipform.name' | translate}}"
+            maxlength="50"
+          >
         </mat-form-field>
 
         <mat-form-field appearance="standard" class="form-control">
@@ -65,7 +71,7 @@
             cdkTextareaAutosize
             formControlName="description"
             placeholder="{{ 'internshipform.description' | translate}}"
-            maxlength="1000"
+            maxlength="500"
           ></textarea>
         </mat-form-field>
 
@@ -141,36 +147,13 @@
           </ng-template>
         </div>
 
-        <!--<div class="form-control assigned-users">
-          <label class="star">Admins</label>
-          <div class="list">
-            <ng-container *ngFor="let user of admins">
-              <section>
-                <mat-checkbox
-                  color="primary"
-                  [formControl] = "usersCheckbox.get(user.id)"
-                  (change)="onExpertChange($event)"
-                >
-                  {{user.firstName + ' ' + user.lastName}}
-                  <div *ngIf="form.get('skills')?.value.length > 1">
-                    <ng-container *ngFor="let skill of form.get('skills')?.value">
-                      <span *ngIf="user.skills.includes(skill)">{{skill}}</span>
-                    </ng-container>
-                  </div>
-                </mat-checkbox>
-              </section>
-              <mat-divider></mat-divider>
-            </ng-container>
-          </div>
-        </div>-->
-
         <mat-form-field appearance="standard" class="form-control">
           <label class="star">{{ 'internshipform.requirements' | translate}}</label>
           <textarea matInput
                     cdkTextareaAutosize
                     formControlName="requirements"
                     placeholder="{{ 'internshipform.requirements' | translate}}"
-                    maxlength="1000"
+                    maxlength="500"
           ></textarea>
         </mat-form-field>
 
@@ -180,7 +163,7 @@
                     cdkTextareaAutosize
                     formControlName="techSkills"
                     placeholder="{{ 'internshipform.techSkills' | translate}}"
-                    maxlength="1000"
+                    maxlength="150"
           ></textarea>
         </mat-form-field>
 

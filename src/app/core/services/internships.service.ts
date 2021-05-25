@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Internship} from '../../types';
 import {Observable} from 'rxjs';
 import { environment } from 'src/environments/environment';
+import {User} from "../../types/user";
 
 @Injectable({
   providedIn: 'root'
@@ -51,12 +52,12 @@ export class InternshipsService {
     return this.http.post<Internship>(this.basePath, formData, {headers});
   }
 
-  assignUsers(internshipId: string, users: string[]){
-    return this.http.post(`${this.basePath}/${internshipId}/users/assign?userIds=${users.join(',')}`, null);
+  assignUsers(internshipId: string, users: string[]): Observable<Internship>{
+    return this.http.post<Internship>(`${this.basePath}/${internshipId}/users/assign?userIds=${users.join(',')}`, null);
   }
 
-  reassignUsers(internshipId: string, users: string[]){
-    return this.http.put(`${this.basePath}/${internshipId}/users/replace?userIds=${users.join(',')}`, null);
+  reassignUsers(internshipId: string, users: string[]): Observable<Internship>{
+    return this.http.put<Internship>(`${this.basePath}/${internshipId}/users/replace?userIds=${users.join(',')}`, null);
   }
 
   updateInternship(formData: any, id: string): Observable<Internship>{

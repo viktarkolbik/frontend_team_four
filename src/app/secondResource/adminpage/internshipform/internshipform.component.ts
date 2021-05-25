@@ -241,7 +241,7 @@ export class InternshipformComponent implements OnInit {
         )
       )
       .subscribe(
-        data => {
+        () => {
           const message = 'Your application sent successfully';
           this.openSnackbar(message, 'Ok');
         },
