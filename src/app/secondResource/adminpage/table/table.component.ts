@@ -17,6 +17,8 @@ import {Candidate} from '../../../types/candidate';
 import {User} from '../../../types/user';
 import {MatDialog} from '@angular/material/dialog';
 import {FeedbackComponent} from '../internlist/feedback/feedback.component';
+import {switchMap} from 'rxjs/operators';
+import {FormsService} from '../../../core/services/forms.service';
 
 @Component({
   selector: 'ia-table',
@@ -49,7 +51,10 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     'techSpecialist',
     'primarySkill'
   ];
-  constructor(private dialog: MatDialog) {
+  constructor(
+    private dialog: MatDialog,
+    private formsService: FormsService
+  ) {
   }
   ngOnChanges(changes: SimpleChanges) {
     this.dataSource = new MatTableDataSource(this.candidates);
@@ -70,9 +75,14 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
 
   openFeedBackDialog(userID:string, formID:string){
     const dialogRef = this.dialog.open(FeedbackComponent, {data: {userID, formID}});
-    dialogRef.afterClosed().subscribe(
+    dialogRef.afterClosed()
+      .pipe(
+        switchMap(() => this.formsService.getCandidatesListByUserId(this.user.id))
+      )
+      .subscribe(
       data => {
-        //console.log(data)
+        this.candidates = data;
+        console.log(this.candidates)
       },
       error => {
         console.log(error);
