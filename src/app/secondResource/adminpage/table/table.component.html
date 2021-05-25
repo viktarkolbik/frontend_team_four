@@ -69,7 +69,7 @@
         <div
           class="example-element-detail"
 
-          [@detailExpand]="element.id === selectedCandidateID ? 'expanded' : 'collapsed'"
+          [@detailExpand]="element.id === selectedCandidate?.id ? 'expanded' : 'collapsed'"
         >
           <div class="example-element-description">
            <div class="main-info">
@@ -91,7 +91,7 @@
                 {{element.interview?.techFeedback}}
               </div>
             </div>
-            
+
           </div>
           <ng-template class="control-panel" [ngTemplateOutlet]="template" ></ng-template>
         </div>
@@ -101,11 +101,11 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let element; columns: displayedColumns;"
         class="rows-element"
-        [class.rows-element]="selectedCandidate === element"
         (click)="
-          selectedCandidate = selectedCandidate === element ? null : element;
+          selectedCandidate = selectedCandidate?.id === element.id ? null : element;
           onSelectedCandidate.emit(selectedCandidate);
         "
+        [class.rows-element]="selectedCandidate?.id === element.id"
     >
     </tr>
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>

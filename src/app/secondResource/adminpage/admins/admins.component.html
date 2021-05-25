@@ -1,6 +1,5 @@
 <div *ngIf = '!error; else Error' class="training_container">
   <ia-table
-    [selectedCandidateID]="selectedCandidateID"
     [candidates]="candidates"
     (onSelectedCandidate)="updateSelectedCandidate($event)"
   >
