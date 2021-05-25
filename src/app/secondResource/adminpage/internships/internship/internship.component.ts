@@ -18,6 +18,7 @@ export class InternshipComponent implements OnInit {
     this.skills = this.internship.skills.map(skill => this.internshipService.getChangedSkills(skill));
   }
 
+
   remove(id: string): void {
     this.deletingInternship.emit(id);
   }

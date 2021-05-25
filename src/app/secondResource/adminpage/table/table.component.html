@@ -72,7 +72,7 @@
           [@detailExpand]="element.id === selectedCandidateID ? 'expanded' : 'collapsed'"
         >
           <div class="example-element-description">
-<!--            <div>-->
+           <div class="main-info">
               <p>{{"adminTable.name" | translate}}: {{element.firstName}}</p>
               <p>{{"adminTable.lastname" | translate}}: {{element.lastName}}</p>
               <p>Email: {{element.email}}</p>
@@ -80,8 +80,18 @@
               <p>{{"adminTable.city" | translate}}: {{element.city.name}}</p>
               <p *ngIf="element.primarySkill">{{"adminTable.skill" | translate}}: {{element.primarySkill}}</p>
               <p *ngIf="element.experience">{{"adminTable.experience" | translate}}: {{element.experience}}</p>
-<!--            </div>-->
-
+            </div>
+            <div class="feedbacks">
+              <div class="feedback" *ngIf="element.interview?.adminFeedback">
+                <h4>Recruiter's feedback</h4>
+                {{element.interview?.adminFeedback}}
+              </div>
+              <div class="feedback" *ngIf="element.interview?.techFeedback">
+                <p>Technical specialists's feedback</p>
+                {{element.interview?.techFeedback}}
+              </div>
+            </div>
+            
           </div>
           <ng-template class="control-panel" [ngTemplateOutlet]="template" ></ng-template>
         </div>
