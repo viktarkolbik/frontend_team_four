@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {FormControl} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {FormsService} from '../../../../core/services/forms.service';
 
 @Component({
@@ -9,7 +9,10 @@ import {FormsService} from '../../../../core/services/forms.service';
   styleUrls: ['feedback.component.scss']
 })
 export class FeedbackComponent {
-  feedback: FormControl = new FormControl('');
+  feedback: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.minLength(50)
+  ]);
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {userID:string, formID:string},

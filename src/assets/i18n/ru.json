@@ -129,7 +129,9 @@
       "feedback": "Отзыв",
       "textarea": "Введите текст отзыва",
       "cancel": "Отмена",
-      "submit": "Отправить"
+      "submit": "Отправить",
+      "errorRequired": "Обязательное поле",
+      "errorMinLength": "Минимальная длина отзыва 50 символов"
     },
     "createInternship": "Создать стажировку",
     "logOut": "Выйти",

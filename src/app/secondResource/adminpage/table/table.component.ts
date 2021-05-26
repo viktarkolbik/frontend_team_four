@@ -82,7 +82,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
       .subscribe(
       data => {
         this.candidates = data;
-        console.log(this.candidates)
+        this.dataSource = new MatTableDataSource(this.candidates);
       },
       error => {
         console.log(error);

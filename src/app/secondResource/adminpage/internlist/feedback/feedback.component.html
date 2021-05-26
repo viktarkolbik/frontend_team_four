@@ -12,6 +12,14 @@
       ></textarea>
     </mat-form-field>
   </div>
+  <div class="error">
+    <mat-error *ngIf="feedback.errors?.required">
+      {{'adminpage.feedback.errorRequired' | translate}}
+    </mat-error>
+    <mat-error *ngIf="feedback.errors?.minlength">
+      {{'adminpage.feedback.errorMinLength' | translate}}
+    </mat-error>
+  </div>
   <mat-dialog-actions class="button-wrapper">
     <button
       mat-button
@@ -21,7 +29,7 @@
     </button>
     <button
       mat-button
-      [disabled]="false"
+      [disabled]="!feedback.valid"
       (click)="submit()"
     >
       {{'adminpage.feedback.submit' | translate}}

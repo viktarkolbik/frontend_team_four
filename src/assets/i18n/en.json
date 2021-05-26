@@ -128,7 +128,9 @@
       "feedback": "Feedback",
       "textarea": "Type feedback text",
       "cancel": "Cancel",
-      "submit": "Submit"
+      "submit": "Submit",
+      "errorRequired": "This field is required",
+      "errorMinLength": "Minimal length is 50 characters"
     },
     "createInternship": "Create internship",
     "logOut": "Log Out",
