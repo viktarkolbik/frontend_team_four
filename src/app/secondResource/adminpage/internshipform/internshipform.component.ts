@@ -85,7 +85,7 @@ export class InternshipformComponent implements OnInit {
         [
           Validators.required,
           Validators.maxLength(50)
-        ] 
+        ]
       ),
       description: new FormControl(this.internship?.description || ''),
       internshipFormat: new FormControl(
@@ -245,17 +245,15 @@ export class InternshipformComponent implements OnInit {
           (this.route.snapshot.params.id) ?
             this.internshipService.reassignUsers(data.id, users) :
             this.internshipService.assignUsers(data.id, users)
-        ),
-        tap(() => {
-          this.loadingService.setLoadingState(false);
-        })
-      )
-      .subscribe(
+        )
+      ).subscribe(
         () => {
+          this.loadingService.setLoadingState(false);
           const message = 'Your application sent successfully';
           this.openSnackbar(message, 'Ok');
         },
         error => {
+          this.loadingService.setLoadingState(false);
           const message = 'Error happened please try again later';
           this.openSnackbar(message, 'Ok');
           console.log(error);
