@@ -20,6 +20,7 @@ import { LocationResolver } from 'src/app/core/resolvers/location-resolve.servic
 import {SkillsResolveService} from '../../core/resolvers/skills-resolve.service';
 import {InternshipResolver} from '../../core/resolvers/internship-resolve.service';
 import {InternshipWithUsersResolveService} from "../../core/resolvers/internship-with-users-resolve.service";
+import {AllAdminsResolveService} from "../../core/resolvers/all-admins-resolve.service";
 
 const routes: Routes = [
   {
@@ -56,6 +57,7 @@ const routes: Routes = [
         resolve: {
           location: LocationResolver,
           skills: SkillsResolveService,
+          admins: AllAdminsResolveService,
         }
       },
       {
@@ -64,7 +66,8 @@ const routes: Routes = [
         resolve: {
           location: LocationResolver,
           skills: SkillsResolveService,
-          internshipData: InternshipWithUsersResolveService
+          internshipData: InternshipWithUsersResolveService,
+          admins: AllAdminsResolveService,
         }
       },
       {

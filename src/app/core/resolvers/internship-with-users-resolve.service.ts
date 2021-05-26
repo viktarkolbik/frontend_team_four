@@ -13,6 +13,7 @@ import {User} from "../../types/user";
 export class InternshipWithUsersResolveService implements Resolve<Internship> {
   internship = {} as Internship;
   techExpert = [] as User[];
+  assignedAdmins = [] as User[];
   constructor(
     private internshipService: InternshipsService,
     private loadingService: LoadingService,
@@ -30,7 +31,11 @@ export class InternshipWithUsersResolveService implements Resolve<Internship> {
         }),
         switchMap(internship => {
           this.internship = internship;
-          return this.userService.getUsersSkills(internship.skills);
+          return this.userService.getUsersRole(internship.id, 'ADMIN');
+        }),
+        switchMap(assignedAdmins => {
+          this.assignedAdmins = assignedAdmins;
+          return this.userService.getUsersSkills(this.internship.skills);
         }),
         switchMap(techExperts => {
           this.techExpert = techExperts;
@@ -40,6 +45,7 @@ export class InternshipWithUsersResolveService implements Resolve<Internship> {
           of({
             internship: this.internship,
             techExperts: this.techExpert,
+            assignedAdmins: this.assignedAdmins,
             assignedTechExpert
           })
         ),

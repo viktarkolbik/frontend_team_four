@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../../types/user';
 import {environment} from '../../../environments/environment';
+import {filter, map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,15 @@ export class UserService {
   getUserId(id: string): Observable<User>{
     return this.http.get<User>(this.basePath + '/' + id);
   }
-  getUsersRole(idIntenship: string, role: string): Observable<User[]>{
-    return this.http.get<User[]>(this.basePath + '?internshipId=' + idIntenship + '&role=' + role);
+  getUsersRole(idInternship: string, role: string): Observable<User[]>{
+    return this.http.get<User[]>(this.basePath + '?internshipId=' + idInternship + '&role=' + role);
   }
   getUsersSkills(skills: string[]): Observable<User[]>{
-    return this.http.get<User[]>(this.basePath + '/skills?skills=' + skills.join(','));
+    return this.http.get<User[]>(this.basePath + '/skills?skills=' + skills.join(',')).pipe(
+      map(users => users.filter(user => user.userRole === 'TECH_EXPERT'))
+    );
+  }
+  getAllUsersRole(role: string): Observable<User[]> {
+    return this.http.get<User[]>(this.basePath + '/roles?role=' + role);
   }
 }

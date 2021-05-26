@@ -147,6 +147,43 @@
           </ng-template>
         </div>
 
+        <div class="form-control assigned-users">
+          <label class="star">Recruiters</label>
+          <mat-chip-list>
+            <ng-container *ngFor="let user of admins">
+              <mat-chip
+                *ngIf="usersCheckbox.get(user.id)?.value"
+                [removable]="true"
+                (removed)="uncheckUser(user.id)"
+              >
+                {{user.lastName + ' ' + user.firstName[0] + '.'}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+            </ng-container>
+          </mat-chip-list>
+          <div *ngIf="admins.length !== 0; else EmptyAdmins" class="list">
+            <ng-container *ngFor="let user of admins">
+              <section>
+                <mat-checkbox
+                  color="primary"
+                  [formControl] = "usersCheckbox.get(user.id)"
+                >
+                  {{user.firstName + ' ' + user.lastName}}
+                  <div *ngIf="form.get('skills')?.value.length > 1">
+                    <ng-container *ngFor="let skill of form.get('skills')?.value">
+                      <span *ngIf="user.skills.includes(skill)">{{skill}}</span>
+                    </ng-container>
+                  </div>
+                </mat-checkbox>
+              </section>
+              <mat-divider></mat-divider>
+            </ng-container>
+          </div>
+          <ng-template #EmptyAdmins>
+            No recruiters
+          </ng-template>
+        </div>
+
         <mat-form-field appearance="standard" class="form-control">
           <label class="star">{{ 'internshipform.requirements' | translate}}</label>
           <textarea matInput

@@ -62,14 +62,16 @@ export class InternshipformComponent implements OnInit {
       this.skills = route.snapshot.data.skills;
       this.countries = route.snapshot.data.location;
       this.internship = route.snapshot.data.internshipData?.internship;
+      this.admins = route.snapshot.data.admins;
       if (this.route.snapshot.params.id){
+        this.assignedAdmins = route.snapshot.data.internshipData?.assignedAdmins;
         this.assignedTechExpert = route.snapshot.data.internshipData?.assignedTechExpert;
         this.techExperts = route.snapshot.data.internshipData?.techExperts;
         this.techExperts.sort((user1, user2) =>
           (user1.firstName > user2.firstName) ? 1 : -1
         );
-        this.updateUsersCheckbox();
       }
+      this.updateUsersCheckbox();
     }
     this.form = new FormGroup({
       capacity: new FormControl(
