@@ -10,8 +10,9 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {Internship} from '../../../types';
 import {User} from '../../../types/user';
 import {UserService} from '../../../core/services/user.service';
-import {switchMap} from 'rxjs/operators';
+import {switchMap, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {LoadingService} from "../../../core/services/loading.service";
 
 @Component({
   selector: 'ia-trainingform',
@@ -48,6 +49,7 @@ export class InternshipformComponent implements OnInit {
     private locationService: LocationService,
     private userService: UserService,
     private router: Router,
+    private loadingService: LoadingService,
   )
   {
     const error = (
@@ -233,14 +235,17 @@ export class InternshipformComponent implements OnInit {
     const internshipObservable: Observable<Internship> = (this.internship?.id && this.route.snapshot.params.id) ?
       this.internshipService.updateInternship(formValueJson, this.internship.id) :
       this.internshipService.sendFormData(formValueJson);
-
+    this.loadingService.setLoadingState(true);
     internshipObservable
       .pipe(
         switchMap(data =>
           (this.route.snapshot.params.id) ?
             this.internshipService.reassignUsers(data.id, users) :
             this.internshipService.assignUsers(data.id, users)
-        )
+        ),
+        tap(() => {
+          this.loadingService.setLoadingState(false);
+        })
       )
       .subscribe(
         () => {
