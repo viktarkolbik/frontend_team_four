@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'replace'
+  name: 'replaceStatus'
 })
-export class ReplacePipe implements PipeTransform {
+export class ReplaceStatusPipe implements PipeTransform {
 
   transform(value: string): string {
     return value.replace(/_/g, ' ');

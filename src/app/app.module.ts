@@ -14,13 +14,11 @@ import { AuthService } from './core/services/auth.service';
 import { AuthInterceptor } from './core/auth.interceptor';
 import {BrowserModule} from '@angular/platform-browser';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
-import { ReplacePipe } from './core/replace.pipe';
 import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReplacePipe,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +40,6 @@ import {FormsModule} from '@angular/forms';
       useClass: AuthInterceptor,
       multi: true
     }
-  ],
-  exports: [
-    ReplacePipe
   ],
   bootstrap: [AppComponent]
 })

@@ -10,11 +10,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {CommonModule} from '@angular/common';
-import {AppModule} from '../../../app.module';
+import {ReplaceStatusPipe} from '../../../core/replacestatus.pipe';
 
 @NgModule({
   declarations: [
-    TableComponent
+    TableComponent,
+    ReplaceStatusPipe
   ],
   imports: [
     CommonModule,
@@ -27,7 +28,6 @@ import {AppModule} from '../../../app.module';
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
-    AppModule,
   ],
   providers: [],
   exports: [
