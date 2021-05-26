@@ -1,10 +1,23 @@
 .mat-toolbar {
+  height: auto;
   position: relative;
   display: flex;
+  padding: 5px 0;
   .userName {
     position: absolute;
     right: 10px;
-    font-size: 0.9rem;
-    //transform: translate(-100%);
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 540px) {
+  .mat-toolbar {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .userName {
+      position: static;
+    }
   }
 }

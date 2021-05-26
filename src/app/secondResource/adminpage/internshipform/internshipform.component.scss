@@ -69,3 +69,9 @@ mat-option {
   }
 }
 
+@media (max-width: 540px) {
+  .content {
+    width: 90%;
+    padding: 10px;
+  }
+}
