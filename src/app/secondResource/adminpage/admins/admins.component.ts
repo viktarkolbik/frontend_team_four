@@ -73,7 +73,7 @@ export class AdminsComponent implements OnInit {
                 this.selectedCandidate.id, interview, this.selectedCandidate.interview.id
               );
             }
-            else if(this.selectedCandidate.interview?.techInterviewDate && role === 'TECH_EXPERT'){
+            else if(this.selectedCandidate.interview && role === 'TECH_EXPERT'){
               return this.formsService.putInterviewTime(
                 this.selectedCandidate.id, interview, this.selectedCandidate.interview.id
               );
