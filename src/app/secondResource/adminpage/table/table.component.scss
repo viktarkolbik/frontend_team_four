@@ -3,38 +3,52 @@
   margin: 0 auto;
   margin-bottom: 20px;
   table {
-    // min-height: 500px;
     width: 100%;
     &:hover {
       cursor: pointer;
     }
     th {
       font-size: 1.0rem;
+      color: black;
+      background: lavender;
+      text-align: center;
+      &:first-child {
+        padding-left: 10px;
+      }
+       &:last-child {
+        padding-right: 10px;
+      }
+      ::ng-deep .mat-sort-header-container {
+        display: flex;
+        justify-content: center;
+        padding-left: 10px;
+      }
     }
     td {
       font-size: 0.85rem;
       margin: 0 auto;
+      padding: 0 5px;
+      text-align: center;
     }
-
     tr.example-detail-row {
       height: 0;
     }
 
-    tr.rows-element:not(.example-expanded-row):hover {
+    tr:hover, tr.rows-element:not(.example-expanded-row):hover {
       background: whitesmoke;
+      font-weight: 500;
       }
-
-    tr.rows-element:not(.example-expanded-row):active {
-      background: #efefef;
+    td.mat-cell:last-of-type:hover {
+      background: whitesmoke;
+      color: indigo;
+      font-weight: 400;
     }
-
     .rows-element td {
       border-bottom-width: 0;
     }
 
     .example-element-detail {
       overflow: hidden;
-
     }
 
     .example-element-diagram {
@@ -53,9 +67,54 @@
     }
 
     .example-element-description {
-      width: 100%;
-      padding: 16px;
-      font-size: 1rem;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px;
+      & p {
+        width: 60%;
+        margin: 0.5rem;
+        font-size: 1.1rem;
+        text-align: start;
+      }
+      .main-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 50%;
+        padding: 1rem;
+      }
+      .feedbacks {
+        width: 50%;
+        display: flex;
+        justify-content: flex-start;
+        margin: 15px 0;
+        .feedback {
+          width: 250px;
+          height: 250px;
+          padding: 5px;
+          margin-right: 20px;
+          border: 3px solid #49BBED;
+          border-radius: 10px;
+          color: black;
+          overflow-y: auto;
+          &:last-child {
+            margin-right: 0px;
+          }
+          h4 {
+          color: rgb(52, 137, 173);
+          font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width:900px) {
+  .container {
+    overflow: scroll;
+    table {
+      width: 50%;
     }
   }
 }

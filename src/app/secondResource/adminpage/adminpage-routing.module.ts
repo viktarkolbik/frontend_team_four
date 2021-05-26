@@ -12,6 +12,7 @@ import {IsAuthorizedGuard} from '../../core/guards/is-authorized.guard';
 import {AdminsResolveService} from '../../core/resolvers/admins-resolve.service';
 import {TechExpertResolveService} from '../../core/resolvers/tech-expert-resolve.service';
 import {UserInfoGuard} from '../../core/guards/user-info.guard';
+import {TimesettingsComponent} from './timesettings/timesettings.component';
 import { InternlistComponent } from './internlist/internlist.component';
 import { FormsAdminResolveService } from 'src/app/core/resolvers/forms-admin-resolve.service';
 import { FormsResolveService } from 'src/app/core/resolvers/forms-resolve.service';
@@ -21,6 +22,7 @@ import {SkillsResolveService} from '../../core/resolvers/skills-resolve.service'
 import {InternshipResolver} from '../../core/resolvers/internship-resolve.service';
 import {InternshipWithUsersResolveService} from "../../core/resolvers/internship-with-users-resolve.service";
 import {AllAdminsResolveService} from "../../core/resolvers/all-admins-resolve.service";
+import {TimesettingsResolver} from '../../core/resolvers/timesettings-resolve.service';
 
 const routes: Routes = [
   {
@@ -58,6 +60,13 @@ const routes: Routes = [
           location: LocationResolver,
           skills: SkillsResolveService,
           admins: AllAdminsResolveService,
+        }
+      },
+      {
+        path: 'timesettings',
+        component: TimesettingsComponent,
+        resolve: {
+          interview: TimesettingsResolver
         }
       },
       {

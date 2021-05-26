@@ -82,7 +82,10 @@ export class InternshipformComponent implements OnInit {
       ),
       name: new FormControl(
         this.internship?.name || '',
-        Validators.required
+        [
+          Validators.required,
+          Validators.maxLength(50)
+        ] 
       ),
       description: new FormControl(this.internship?.description || ''),
       internshipFormat: new FormControl(

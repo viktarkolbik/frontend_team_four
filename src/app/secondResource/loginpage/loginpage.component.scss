@@ -1,7 +1,10 @@
 :host {
   .container {
+    height: 100vh;
     max-width: 100%;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
     background-color: #e0e0e0;
     padding: 20px;
     & p.error {
@@ -12,9 +15,9 @@
       h1 {
         margin: 3rem;
       }
-      width: 55%;
+      width: 50%;
       margin: 0 auto;
-      padding: 20px;
+      padding: 15px;
       background-color: white;
       border-radius: 10px;
       display: flex;
@@ -26,7 +29,6 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        padding-left: 20px;
         .form-control{
           width: 80%;
           label {
@@ -39,6 +41,7 @@
             color: red;
             margin: 0px 5px;
           }
+          
         }
       }
     }
@@ -46,4 +49,23 @@
 }
 button[mat-raised-button] {
   margin: 2rem;
+}
+
+
+@media (max-width: 680px) {
+  :host {
+    .container {
+    padding: 10px;
+      .content{
+        width: 80%;
+        padding: 10px;
+        h1 {
+          margin: 1rem;
+        }
+      }
+    }
+  } 
+  button[mat-raised-button] {
+    margin: 1rem;
+  }
 }

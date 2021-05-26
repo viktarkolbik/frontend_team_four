@@ -1,7 +1,9 @@
 <ia-header>
 </ia-header>
 <ia-spinner *ngIf="loadingService.isLoading$ | async"></ia-spinner>
-<router-outlet #Router>
-</router-outlet>
+<div class="height">
+  <router-outlet>
+  </router-outlet>
+</div>
 <ia-footer>
 </ia-footer>

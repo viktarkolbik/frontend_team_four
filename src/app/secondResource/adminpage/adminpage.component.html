@@ -2,8 +2,14 @@
   <ng-container *ngIf="userInfo.userRole === 'SUPER_ADMIN' || userInfo.userRole === 'ADMIN'">
     <button mat-button routerLink="/adminpage/internships">{{"adminpage.internship" | translate}}</button>
     <button mat-button routerLink="/adminpage/internshipform" *ngIf="userInfo.userRole === 'SUPER_ADMIN'">{{"adminpage.createInternship" | translate}}</button>
-    <button mat-button routerLink="/adminpage/internlist" *ngIf="userInfo.userRole === 'ADMIN' || userInfo.userRole === 'SUPER_ADMIN'">{{"adminpage.internlist" | translate}}</button>
+    <button mat-button routerLink="/adminpage/internlist" *ngIf="userInfo.userRole === 'ADMIN'">{{"adminpage.internlist" | translate}}</button>
   </ng-container>
-  <button id="log-out-button" mat-button routerLink="/loginpage" (click)="auth.logOut()">{{"adminpage.logOut" | translate}}</button>
+  <ng-container *ngIf="userInfo.userRole === 'ADMIN' || userInfo.userRole === 'TECH_EXPERT'">
+    <button mat-button routerLink="/adminpage/techexpert" *ngIf="userInfo.userRole === 'TECH_EXPERT'">{{"adminpage.internlist" | translate}}</button>
+    <button mat-button routerLink="/adminpage/timesettings">{{"adminpage.timeSettings" | translate}}</button>
+  </ng-container>
+  <div class = "userName">{{userInfo.firstName}} {{userInfo.lastName}}
+    <button id="log-out-button" mat-button routerLink="/loginpage" (click)="auth.logOut()">{{"adminpage.logOut" | translate}}</button>
+  </div>
 </mat-toolbar>
 <router-outlet></router-outlet>
