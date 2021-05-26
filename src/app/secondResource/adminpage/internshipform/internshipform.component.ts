@@ -8,6 +8,11 @@ import {LocationService} from '../../../core/services/location.service';
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import {Internship} from '../../../types';
+import {User} from '../../../types/user';
+import {UserService} from '../../../core/services/user.service';
+import {switchMap, tap} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {LoadingService} from "../../../core/services/loading.service";
 
 @Component({
   selector: 'ia-trainingform',
@@ -19,6 +24,10 @@ export class InternshipformComponent implements OnInit {
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
   @ViewChild('skillInput') skillInput!: ElementRef<HTMLInputElement>;
   internship?: Internship;
+  admins = [] as User[];
+  assignedAdmins = [] as User[];
+  techExperts = [] as User[];
+  assignedTechExpert = [] as User[];
   countries = [] as Location[];
   cities = [] as Location[];
   skills: string[] = [];
@@ -27,6 +36,7 @@ export class InternshipformComponent implements OnInit {
   city = new FormControl('');
   skill = new FormControl('');
   error: any;
+  usersCheckbox = new Map();
   formats: string[] = [
     'ONLINE',
     'OFFLINE'
@@ -37,13 +47,15 @@ export class InternshipformComponent implements OnInit {
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private locationService: LocationService,
+    private userService: UserService,
     private router: Router,
+    private loadingService: LoadingService,
   )
   {
     const error = (
       route.snapshot.data.skills?.error
       || route.snapshot.data.countries?.error
-      || route.snapshot.data.internship?.error
+      || route.snapshot.data.internshipData?.error
     );
     if(error){
       this.error = error;
@@ -51,7 +63,17 @@ export class InternshipformComponent implements OnInit {
     else {
       this.skills = route.snapshot.data.skills;
       this.countries = route.snapshot.data.location;
-      this.internship = route.snapshot.data.internship;
+      this.internship = route.snapshot.data.internshipData?.internship;
+      this.admins = route.snapshot.data.admins;
+      if (this.route.snapshot.params.id){
+        this.assignedAdmins = route.snapshot.data.internshipData?.assignedAdmins;
+        this.assignedTechExpert = route.snapshot.data.internshipData?.assignedTechExpert;
+        this.techExperts = route.snapshot.data.internshipData?.techExperts;
+        this.techExperts.sort((user1, user2) =>
+          (user1.firstName > user2.firstName) ? 1 : -1
+        );
+      }
+      this.updateUsersCheckbox();
     }
     this.form = new FormGroup({
       capacity: new FormControl(
@@ -63,7 +85,7 @@ export class InternshipformComponent implements OnInit {
         [
           Validators.required,
           Validators.maxLength(50)
-        ] 
+        ]
       ),
       description: new FormControl(this.internship?.description || ''),
       internshipFormat: new FormControl(
@@ -116,6 +138,40 @@ export class InternshipformComponent implements OnInit {
       input.value = '';
     }
     this.skill.setValue(null);
+  }
+  updateTechExpert(): void{
+    this.userService.getUsersSkills(this.form.get('skills')?.value)
+      .subscribe(techExpert => {
+        this.techExperts = techExpert;
+        this.updateUsersCheckbox();
+      });
+  }
+  updateUsersCheckbox(): void {
+    this.usersCheckbox.clear();
+    this.techExperts.forEach(techExpert => {
+      this.usersCheckbox.set(techExpert.id, new FormControl(false));
+    });
+    this.admins.forEach(admin => {
+      this.usersCheckbox.set(admin.id, new FormControl(false));
+    });
+    this.assignedTechExpert.forEach(techExpert => {
+      const checkbox = this.usersCheckbox.get(techExpert.id);
+      if(checkbox) {
+        checkbox.setValue(true);
+      }
+    });
+    this.assignedAdmins.forEach(admin => {
+      const checkbox = this.usersCheckbox.get(admin.id);
+      if(checkbox){
+        checkbox.setValue(true);
+      }
+    });
+  }
+  uncheckUser(userId: string): void {
+    const checkbox = this.usersCheckbox.get(userId);
+    if(checkbox){
+      checkbox.setValue(false);
+    }
   }
   addLocation(): void {
     const formArray: FormArray = this.form.get('locations') as FormArray;
@@ -176,21 +232,33 @@ export class InternshipformComponent implements OnInit {
   }
   submit(): void {
     const formValueJson = JSON.stringify(this.form.value);
-    const internshipObservable = (this.internship?.id) ?
+    const users = Array.from(this.usersCheckbox.keys()).filter(userId =>
+      this.usersCheckbox.get(userId).value
+    );
+    const internshipObservable: Observable<Internship> = (this.internship?.id && this.route.snapshot.params.id) ?
       this.internshipService.updateInternship(formValueJson, this.internship.id) :
       this.internshipService.sendFormData(formValueJson);
-
-    internshipObservable.subscribe(
-      data => {
-        const message = 'Your application sent successfully';
-        this.openSnackbar(message, 'Ok');
-      },
-      error => {
-        const message = 'Error happened please try again later';
-        this.openSnackbar(message, 'Ok');
-        console.log(error);
-      }
-    );
+    this.loadingService.setLoadingState(true);
+    internshipObservable
+      .pipe(
+        switchMap(data =>
+          (this.route.snapshot.params.id) ?
+            this.internshipService.reassignUsers(data.id, users) :
+            this.internshipService.assignUsers(data.id, users)
+        )
+      ).subscribe(
+        () => {
+          this.loadingService.setLoadingState(false);
+          const message = 'Your application sent successfully';
+          this.openSnackbar(message, 'Ok');
+        },
+        error => {
+          this.loadingService.setLoadingState(false);
+          const message = 'Error happened please try again later';
+          this.openSnackbar(message, 'Ok');
+          console.log(error);
+        }
+      );
   }
   openSnackbar(message: string, action: string): void{
     const snackBarRef = this.snackBar.open(message, action);

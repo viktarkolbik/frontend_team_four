@@ -14,6 +14,8 @@ import {CommonModule} from '@angular/common';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {RouterModule} from "@angular/router";
+import {MatListModule} from "@angular/material/list";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import {RouterModule} from "@angular/router";
         MatExpansionModule,
         MatAutocompleteModule,
         RouterModule,
+        MatListModule,
+        MatCheckboxModule,
     ],
   exports: [InternshipformComponent]
 })
