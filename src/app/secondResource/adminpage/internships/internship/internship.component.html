@@ -5,6 +5,7 @@
   <div>{{skills}}</div>
   <div class="example-button-container">
     <button
+      *ngIf="userInfo.userRole === 'SUPER_ADMIN'"
       class="edit-button"
       mat-icon-button
       color="primary"
@@ -15,7 +16,12 @@
     <button mat-flat-button color="primary" routerLink="/adminpage/admins/{{internship.id}}">
       {{"adminpage.showCandidates" | translate}}
     </button>
-    <button mat-mini-fab color="warn" (click)="remove(internship.id)">
+    <button
+      *ngIf="userInfo.userRole === 'SUPER_ADMIN'"
+      mat-mini-fab
+      color="warn"
+      (click)="remove(internship.id)"
+    >
       <mat-icon>delete</mat-icon>
     </button>
   </div>

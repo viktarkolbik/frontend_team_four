@@ -18,7 +18,8 @@
     "technologies": "Technologies"
   },
   "internship": {
-    "showMore": "show more"
+    "showMore": "show more",
+    "technology" : "Technology"
   },
   "footer": {
     "contacts": "Contacts",
