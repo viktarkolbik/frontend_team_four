@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormControl} from '@angular/forms';
 import {FormsService} from '../../../../core/services/forms.service';
 
@@ -13,7 +13,8 @@ export class FeedbackComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public data: {userID:string, formID:string},
-    private formsService: FormsService
+    private formsService: FormsService,
+    private dialogRef: MatDialogRef<FeedbackComponent>
   ) {
   }
   submit(){
@@ -24,7 +25,8 @@ export class FeedbackComponent {
     this.formsService.putFeedback(this.data.formID, answer).subscribe(
       data => {
         console.log(data);
-      },
+        this.dialogRef.close();
+        },
       error => {
         console.log(error);
       }
