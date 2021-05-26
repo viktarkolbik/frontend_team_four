@@ -79,7 +79,7 @@
               <p>{{"adminTable.country" | translate}}: {{element.country.name}}</p>
               <p>{{"adminTable.city" | translate}}: {{element.city.name}}</p>
               <p *ngIf="element.primarySkill">{{"adminTable.skill" | translate}}: {{element.primarySkill}}</p>
-              <p *ngIf="element.experience">{{"adminTable.experience" | translate}}: {{element.experience}}</p>
+              <p class="experience" *ngIf="element.experience">{{"adminTable.experience" | translate}}: {{element.experience}}</p>
             </div>
             <div class="feedbacks">
               <div class="feedback" *ngIf="element.interview?.adminFeedback">
