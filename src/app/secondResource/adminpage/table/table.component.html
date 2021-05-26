@@ -1,8 +1,13 @@
 <div class="container">
-  <mat-form-field class="filter">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
-  </mat-form-field>
+  <div class="nav">
+    <mat-form-field class="filter">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+    <div class="capacity" *ngIf="internship">
+      {{"adminTable.approved" | translate}} {{approvedCandidates.length}}
+      {{"adminTable.from" | translate}} {{internship.capacity}}</div>
+  </div>
   <table
     mat-table
     matSort
@@ -91,7 +96,7 @@
                 {{element.interview?.techFeedback}}
               </div>
             </div>
-            
+
           </div>
           <ng-template class="control-panel" [ngTemplateOutlet]="template" ></ng-template>
         </div>

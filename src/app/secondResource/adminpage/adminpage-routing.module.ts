@@ -42,6 +42,7 @@ const routes: Routes = [
           candidates: FormsResolveService,
           admins: AdminsResolveService,
           techExperts: TechExpertResolveService,
+          internship: InternshipResolver
         },
         canActivate: [IsAdminsGuard]
       },
