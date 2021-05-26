@@ -14,10 +14,13 @@ import { AuthService } from './core/services/auth.service';
 import { AuthInterceptor } from './core/auth.interceptor';
 import {BrowserModule} from '@angular/platform-browser';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
+import { ReplacePipe } from './core/replace.pipe';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ReplacePipe,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
     FooterModule,
     SpinnerModule,
     ErrorpageModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule
   ],
   providers: [
     AuthService, {
@@ -38,6 +42,9 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
       useClass: AuthInterceptor,
       multi: true
     }
+  ],
+  exports: [
+    ReplacePipe
   ],
   bootstrap: [AppComponent]
 })

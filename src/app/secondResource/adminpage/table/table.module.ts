@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {CommonModule} from '@angular/common';
+import {AppModule} from '../../../app.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {CommonModule} from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    AppModule,
   ],
   providers: [],
   exports: [
