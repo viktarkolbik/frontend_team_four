@@ -18,7 +18,9 @@
     "technologies": "Технологии"
   },
   "internship": {
-    "showMore": "Подробнее"
+    "showMore": "Подробнее",
+    "technology" : "Технологии"
+
   },
   "footer": {
     "contacts": "Контакты",
