@@ -10,11 +10,12 @@
     padding: 0 3rem;
     position: fixed;
     width: 100vw;
-    background:rgba(0,0,0,0.2);
+    background:rgba(0, 0, 0, 0.41);
     z-index: 999;
     button {
       margin: 0.5rem 0;
       margin-left: 8rem;
+      background-color: rgba(255, 255, 255, 0.473);      
     }
     mat-form-field{
       display: flex;

@@ -179,6 +179,9 @@
     "approved": "принято",
     "from" : "из",
     "assignHR": "Назначить HR",
-    "assignTS": "Назначить Тех.Спец."
+    "assignTS": "Назначить Тех.Спец.",
+    "recruiterInterviewDate": "Дата собеседования с рекрутером",
+    "techInterviewDate": "Дата технического собеседования",
+    "englishLevel": "Уровень английского"
   }
 }
