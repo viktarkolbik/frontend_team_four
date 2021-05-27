@@ -177,6 +177,9 @@
     "experience": "Опыт",
     "addFeedback": "Добавить отзыв",
     "approved": "принято",
-    "from" : "из"
+    "from" : "из",
+    "recruiterInterviewDate": "Дата собеседования с рекрутером",
+    "techInterviewDate": "Дата технического собеседования",
+    "englishLevel": "Уровень английского"
   }
 }

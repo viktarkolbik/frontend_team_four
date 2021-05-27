@@ -175,6 +175,9 @@
     "experience": "Experience",
     "addFeedback": "Add feedback",
     "approved": "approved",
-    "from" : "from"
+    "from" : "from",
+    "recruiterInterviewDate": "Recruiter interview date",
+    "techInterviewDate": "Technical interview date",
+    "englishLevel": "English level"
   }
 }
