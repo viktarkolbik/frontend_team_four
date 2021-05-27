@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Candidate } from 'src/app/types/candidate';
+import {AuthService} from '../../../core/services/auth.service';
+import {User} from '../../../types/user';
 
 @Component({
   selector: 'ia-techexpert',
@@ -11,7 +13,11 @@ export class TechexpertComponent implements OnInit {
 
   error?: number;
   interns = [] as Candidate[];
-  constructor(private route: ActivatedRoute) {
+  user!: User
+  constructor(
+    private route: ActivatedRoute,
+    private auth: AuthService
+  ) {
     this.route.data.subscribe(
       (data) => {
         if (data.interns.error) {
@@ -21,6 +27,7 @@ export class TechexpertComponent implements OnInit {
         }
       }
     )
+    auth.getUserInfo().subscribe(data => this.user = data)
    }
 
   ngOnInit(): void {
