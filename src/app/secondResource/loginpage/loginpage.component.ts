@@ -19,10 +19,9 @@ export class LoginpageComponent implements OnInit {
               private routeService: Router,
               private storage: StorageService) {
     this.form = new FormGroup({
-      loginEmail: new FormControl(''), //   [Validators.required, Validators.email]
-      loginPassword: new FormControl('')
+      loginEmail: new FormControl('', [Validators.required, Validators.email]),
+      loginPassword: new FormControl('', Validators.required)
     });
-
   }
 
   ngOnInit(): void {
