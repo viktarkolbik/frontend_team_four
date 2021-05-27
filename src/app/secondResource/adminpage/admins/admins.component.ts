@@ -20,7 +20,6 @@ export class AdminsComponent implements OnInit {
   userInfo = {} as User;
   candidates = [] as Candidate[];
   selectedCandidate!: Candidate;
-  selectedCandidateID: string | null = null;
   admins = [] as UserParseDate[];
   techExperts = [] as UserParseDate[];
   error?: number;
@@ -47,7 +46,6 @@ export class AdminsComponent implements OnInit {
   }
   updateSelectedCandidate(candidate: Candidate){
     this.selectedCandidate = candidate;
-    this.selectedCandidateID = candidate && candidate.id;
   }
   usersParseDate(users: User[]): UserParseDate[]{
     return users.map<UserParseDate>(user => {
@@ -73,7 +71,7 @@ export class AdminsComponent implements OnInit {
                 this.selectedCandidate.id, interview, this.selectedCandidate.interview.id
               );
             }
-            else if(this.selectedCandidate.interview?.techInterviewDate && role === 'TECH_EXPERT'){
+            else if(this.selectedCandidate.interview && role === 'TECH_EXPERT'){
               return this.formsService.putInterviewTime(
                 this.selectedCandidate.id, interview, this.selectedCandidate.interview.id
               );
