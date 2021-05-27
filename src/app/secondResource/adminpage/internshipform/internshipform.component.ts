@@ -36,7 +36,10 @@ export class InternshipformComponent implements OnInit {
   city = new FormControl('');
   skill = new FormControl('');
   error: any;
-  usersCheckbox = new Map();
+  adminsCheckbox = new Map();
+  techExpertsCheckbox = new Map();
+  hasUsers: boolean = false;
+
   formats: string[] = [
     'ONLINE',
     'OFFLINE'
@@ -72,8 +75,10 @@ export class InternshipformComponent implements OnInit {
         this.techExperts.sort((user1, user2) =>
           (user1.firstName > user2.firstName) ? 1 : -1
         );
+        this.updateTechExpertsCheckbox();
       }
-      this.updateUsersCheckbox();
+      this.updateAdminsCheckbox();
+      this.updateUsersValidation();
     }
     this.form = new FormGroup({
       capacity: new FormControl(
@@ -151,35 +156,49 @@ export class InternshipformComponent implements OnInit {
     this.userService.getUsersSkills(this.form.get('skills')?.value)
       .subscribe(techExpert => {
         this.techExperts = techExpert;
-        this.updateUsersCheckbox();
+        this.updateTechExpertsCheckbox();
       });
   }
-  updateUsersCheckbox(): void {
-    this.usersCheckbox.clear();
-    this.techExperts.forEach(techExpert => {
-      this.usersCheckbox.set(techExpert.id, new FormControl(false));
-    });
+  updateAdminsCheckbox(): void {
+    this.adminsCheckbox.clear();
     this.admins.forEach(admin => {
-      this.usersCheckbox.set(admin.id, new FormControl(false));
-    });
-    this.assignedTechExpert.forEach(techExpert => {
-      const checkbox = this.usersCheckbox.get(techExpert.id);
-      if(checkbox) {
-        checkbox.setValue(true);
-      }
+      this.adminsCheckbox.set(admin.id, new FormControl(false));
     });
     this.assignedAdmins.forEach(admin => {
-      const checkbox = this.usersCheckbox.get(admin.id);
+      const checkbox = this.adminsCheckbox.get(admin.id);
       if(checkbox){
         checkbox.setValue(true);
       }
     });
   }
-  uncheckUser(userId: string): void {
-    const checkbox = this.usersCheckbox.get(userId);
+  updateTechExpertsCheckbox(): void {
+    this.techExpertsCheckbox.clear();
+    this.techExperts.forEach(techExpert => {
+      this.techExpertsCheckbox.set(techExpert.id, new FormControl(false));
+    });
+    this.assignedTechExpert.forEach(techExpert => {
+      const checkbox = this.techExpertsCheckbox.get(techExpert.id);
+      if(checkbox) {
+        checkbox.setValue(true);
+      }
+    });
+  }
+  uncheckTechExpert(userId: string): void {
+    const checkbox = this.techExpertsCheckbox.get(userId);
     if(checkbox){
       checkbox.setValue(false);
     }
+  }
+  uncheckRecruiter(userId: string): void {
+    const checkbox = this.adminsCheckbox.get(userId);
+    if(checkbox){
+      checkbox.setValue(false);
+    }
+  }
+  updateUsersValidation(): void {
+    const adminsCheckboxValue = Array.from(this.adminsCheckbox.values()).map(control => control.value);
+    const techExpertCheckboxValue = Array.from(this.techExpertsCheckbox.values()).map(control => control.value);
+    this.hasUsers = (adminsCheckboxValue.includes(true) && techExpertCheckboxValue.includes(true));
   }
   addLocation(): void {
     const formArray: FormArray = this.form.get('locations') as FormArray;
@@ -240,9 +259,13 @@ export class InternshipformComponent implements OnInit {
   }
   submit(): void {
     const formValueJson = JSON.stringify(this.form.value);
-    const users = Array.from(this.usersCheckbox.keys()).filter(userId =>
-      this.usersCheckbox.get(userId).value
+    const techExperts = Array.from(this.techExpertsCheckbox.keys()).filter(userId =>
+      this.techExpertsCheckbox.get(userId).value
     );
+    const admins = Array.from(this.adminsCheckbox.keys()).filter(userId =>
+      this.adminsCheckbox.get(userId).value
+    );
+    const users = admins.concat(techExperts);
     const internshipObservable: Observable<Internship> = (this.internship?.id && this.route.snapshot.params.id) ?
       this.internshipService.updateInternship(formValueJson, this.internship.id) :
       this.internshipService.sendFormData(formValueJson);
