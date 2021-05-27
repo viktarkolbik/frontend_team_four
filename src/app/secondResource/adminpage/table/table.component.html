@@ -104,11 +104,15 @@
              <p class="experience" *ngIf="element.experience">{{"adminTable.experience" | translate}}: {{element.experience}}</p>
              <p *ngIf="element.interview?.adminInterviewDate">
                {{"adminTable.recruiterInterviewDate" | translate}}
-               : {{element.interview?.adminInterviewDate | date: "dd MMM hh:mm"}}
+               : {{getLocaleDate(element.interview?.adminInterviewDate) | date: "dd MMM HH:mm"}}
+                (GMT {{getParseDate(element.interview?.adminInterviewDate).getHours() - getParseDate(element.interview?.adminInterviewDate).getUTCHours() > 0 ? '+': '-'}}
+               {{getParseDate(element.interview?.adminInterviewDate).getHours() - getParseDate(element.interview?.adminInterviewDate).getUTCHours()}})
              </p>
              <p *ngIf="element.interview?.techInterviewDate">
                {{"adminTable.techInterviewDate" | translate}}
-               : {{element.interview?.techInterviewDate | date: "dd MMM hh:mm"}}
+               : {{getLocaleDate(element.interview?.techInterviewDate) | date: "dd MMM HH:mm"}}
+               (GMT {{getParseDate(element.interview?.techInterviewDate).getHours() - getParseDate(element.interview?.techInterviewDate).getUTCHours() > 0 ? '+': '-'}}
+               {{getParseDate(element.interview?.techInterviewDate).getHours() - getParseDate(element.interview?.techInterviewDate).getUTCHours()}})
              </p>
             </div>
             <div class="feedbacks">

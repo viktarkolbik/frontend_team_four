@@ -75,7 +75,15 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
-
+  getParseDate(str: string): Date {
+    const date = new Date(str + 'Z');
+    return date;
+  }
+  getLocaleDate(str: string) {
+    const date = this.getParseDate(str);
+    const utc = date.getTime();
+    return new Date(utc);
+  }
   openFeedBackDialog(userID:string, formID:string){
     const dialogRef = this.dialog.open(FeedbackComponent, {data: {userID, formID}});
     dialogRef.afterClosed()
