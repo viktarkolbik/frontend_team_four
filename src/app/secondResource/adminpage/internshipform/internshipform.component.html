@@ -111,13 +111,13 @@
         </mat-form-field>
 
         <div class="form-control assigned-users">
-          <label class="star">Technical experts</label>
+          <label class="star">{{"internshipform.techExperts" | translate}}</label>
           <mat-chip-list>
             <ng-container *ngFor="let user of techExperts">
               <mat-chip
-                *ngIf="usersCheckbox.get(user.id)?.value"
+                *ngIf="techExpertsCheckbox.get(user.id)?.value"
                 [removable]="true"
-                (removed)="uncheckUser(user.id)"
+                (removed)="uncheckTechExpert(user.id); updateUsersValidation()"
               >
                 {{user.lastName + ' ' + user.firstName[0] + '.'}}
                 <mat-icon matChipRemove>cancel</mat-icon>
@@ -129,7 +129,8 @@
               <section>
                 <mat-checkbox
                   color="primary"
-                  [formControl] = "usersCheckbox.get(user.id)"
+                  [formControl] = "techExpertsCheckbox.get(user.id)"
+                  (change)="updateUsersValidation()"
                 >
                   {{user.firstName + ' ' + user.lastName}}
                   <div *ngIf="form.get('skills')?.value.length > 1">
@@ -143,18 +144,18 @@
             </ng-container>
           </div>
           <ng-template #EmptyTechExpertList>
-            No  technical expert for selected technology
+            {{"internshipform.noTechExperts" | translate}}
           </ng-template>
         </div>
 
         <div class="form-control assigned-users">
-          <label class="star">Recruiters</label>
+          <label class="star">{{"internshipform.recruiters" | translate}}</label>
           <mat-chip-list>
             <ng-container *ngFor="let user of admins">
               <mat-chip
-                *ngIf="usersCheckbox.get(user.id)?.value"
+                *ngIf="adminsCheckbox.get(user.id)?.value"
                 [removable]="true"
-                (removed)="uncheckUser(user.id)"
+                (removed)="uncheckRecruiter(user.id); updateUsersValidation()"
               >
                 {{user.lastName + ' ' + user.firstName[0] + '.'}}
                 <mat-icon matChipRemove>cancel</mat-icon>
@@ -166,21 +167,17 @@
               <section>
                 <mat-checkbox
                   color="primary"
-                  [formControl] = "usersCheckbox.get(user.id)"
+                  [formControl] = "adminsCheckbox.get(user.id)"
+                  (change)="updateUsersValidation()"
                 >
                   {{user.firstName + ' ' + user.lastName}}
-                  <div *ngIf="form.get('skills')?.value.length > 1">
-                    <ng-container *ngFor="let skill of form.get('skills')?.value">
-                      <span *ngIf="user.skills.includes(skill)">{{skill}}</span>
-                    </ng-container>
-                  </div>
                 </mat-checkbox>
               </section>
               <mat-divider></mat-divider>
             </ng-container>
           </div>
           <ng-template #EmptyAdmins>
-            No recruiters
+            {{"internshipform.noTechExperts" | translate}}
           </ng-template>
         </div>
 
@@ -235,7 +232,7 @@
             mat-flat-button
             (click)="submit()"
             color="primary"
-            [disabled]="form.invalid"
+            [disabled]="!(form.valid && hasUsers)"
           >
           <span *ngIf="!internship">
             {{ 'internshipform.create-btn' | translate}}

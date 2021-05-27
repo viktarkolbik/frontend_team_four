@@ -111,7 +111,11 @@
     "create-btn": "Создать",
     "saveButton": "Сохранить",
     "cancelButton": "Отменить",
-    "publicationdate": "Дата публикации"
+    "publicationdate": "Дата публикации",
+    "recruiters": "Рекрутеры",
+    "techExperts": "Технические эксперты",
+    "noTechExperts": "Нет технических экспертов для выбраной технологии",
+    "noAdmins": "Нет рекрутеров"
   },
   "loginpage": {
     "h1": "Авторизуйтесь:",

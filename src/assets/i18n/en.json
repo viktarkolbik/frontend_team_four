@@ -109,7 +109,11 @@
     "create-btn": "Create",
     "saveButton": "Save",
     "cancelButton": "Cancel",
-    "publicationdate": "Publication date"
+    "publicationdate": "Publication date",
+    "recruiters": "Recruiters",
+    "techExperts": "Technical experts",
+    "noTechExperts": "No  technical expert for selected technology",
+    "noAdmins": "No recruiters"
   },
   "loginpage": {
     "h1": "Login",
