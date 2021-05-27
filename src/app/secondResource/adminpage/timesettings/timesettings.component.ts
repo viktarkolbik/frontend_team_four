@@ -93,8 +93,7 @@ export class TimesettingsComponent implements OnInit {
     this.userService.sendTimeSlots(this.user.id, formValueJson).subscribe(
       data => {
         this.user.userTimeSlots = data;
-        this.check()
-        // console.log(data);
+        this.form.reset()
       },
       error => {
         console.log(error);
