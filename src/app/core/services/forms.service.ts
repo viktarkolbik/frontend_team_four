@@ -36,8 +36,8 @@ export class FormsService {
   putInterviewTime(formId: string, interview: Interview, interviewId: string){
     return this.http.put(this.basePath + '/' + formId + '/interviews/' + interviewId, interview);
   }
-  putFeedback(formID:string, feedback:{feedback:string, userId:string}): Observable<any>{
-    return this.http.put(
+  putFeedback(formID:string, feedback:{feedback:string, userId:string}): Observable<void>{
+    return this.http.put<void>(
       `${this.basePath}/${formID}/feedback`,
       feedback
     );

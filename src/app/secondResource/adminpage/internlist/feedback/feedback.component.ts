@@ -26,8 +26,7 @@ export class FeedbackComponent {
       "userId": this.data.userID
     }
     this.formsService.putFeedback(this.data.formID, answer).subscribe(
-      data => {
-        console.log(data);
+      () => {
         this.dialogRef.close();
         },
       error => {
