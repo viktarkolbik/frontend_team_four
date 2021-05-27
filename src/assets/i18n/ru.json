@@ -1,4 +1,13 @@
 {
+  "ADMIN_INTERVIEW_PASSED": "Интервью с HR пройдено",
+  "ACCEPTED": "Принят",
+  "ADMIN_INTERVIEW_ASSIGNED": "Интервью с HR назначено",
+  "CANDIDATE_REFUSED": "Кандидат отказался",
+  "NOT_MATCHED": "В ожидании",
+  "REGISTERED": "Зарегистрирован",
+  "REJECTED": "Отклонен",
+  "TECH_INTERVIEW_ASSIGNED": "Интервью с тех.спец. назначено",
+  "TECH_INTERVIEW_PASSED": "Интервью с тех.спец. пройдено",
   "language": "Русский",
   "homepage": {
     "errorMessage": "Что то пошло не так попробуйте обновить страницу",

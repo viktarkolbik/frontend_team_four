@@ -45,8 +45,14 @@
     </ng-container>
     <ng-container matColumnDef="formStatus">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.status" | translate}}</th>
-      <td class="rows-element" mat-cell *matCellDef="let element">
-        {{element.formStatus | replaceStatus | titlecase}}
+      <td class="rows-element"
+          mat-cell *matCellDef="let element"
+          [ngClass]="{
+          green:(element.formStatus==='ACCEPTED'),
+          red:(element.formStatus==='REJECTED'),
+          yelloy:(element.formStatus==='NOT_MATCHED')
+          }">
+        {{element.formStatus | translate}}
       </td>
     </ng-container>
     <ng-container matColumnDef="admin">

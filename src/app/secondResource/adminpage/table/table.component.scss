@@ -121,6 +121,18 @@
     }
   }
 }
+.red,.green,.yellow {
+  border-radius: 0.5rem;
+}
+.red {
+  background-color: rgba(255, 51, 51, 0.7);
+}
+.green {
+  background-color: rgba(51, 251, 51, 0.7);
+}
+.yellow {
+  background-color: rgba(255, 251, 51, 0.7);
+}
 
 @media (max-width:900px) {
   .container {
