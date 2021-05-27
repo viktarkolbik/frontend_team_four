@@ -13,7 +13,7 @@
     font-size: 1rem;
     text-align: center;
   }
-  .forImages{
+  .forImages {
     display: flex;
     margin: 10px auto 0;
     .training_course_img {
@@ -21,11 +21,11 @@
       height: 55px;
       margin-right: 10px;
       &:last-child {
-      margin-right: 0px;
+        margin-right: 0px;
       }
     }
   }
-  .training_course_name{
+  .training_course_name {
     width: 90%;
     font-size: 18px;
     line-height: 24px;

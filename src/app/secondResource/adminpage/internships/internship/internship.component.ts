@@ -1,9 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Internship} from '../../../../types';
-import {InternshipsService} from '../../../../core/services/internships.service';
-import {AuthService} from "../../../../core/services/auth.service";
-import {User} from "../../../../types/user";
-
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Internship } from '../../../../types';
+import { InternshipsService } from '../../../../core/services/internships.service';
+import { AuthService } from '../../../../core/services/auth.service';
+import { User } from '../../../../types/user';
 
 @Component({
   selector: 'ia-internship',
@@ -12,7 +11,8 @@ import {User} from "../../../../types/user";
 })
 export class InternshipComponent implements OnInit {
   @Input() internship!: Internship;
-  @Output() deletingInternship: EventEmitter<string> = new EventEmitter<string>();
+  @Output() deletingInternship: EventEmitter<string> =
+    new EventEmitter<string>();
   skills: string[] = [];
   userInfo = {} as User;
   constructor(
@@ -25,9 +25,10 @@ export class InternshipComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.skills = this.internship.skills.map(skill => this.internshipService.getChangedSkills(skill));
+    this.skills = this.internship.skills.map(skill =>
+      this.internshipService.getChangedSkills(skill)
+    );
   }
-
 
   remove(id: string): void {
     this.deletingInternship.emit(id);

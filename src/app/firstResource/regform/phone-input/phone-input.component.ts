@@ -1,5 +1,5 @@
-import {FocusMonitor} from '@angular/cdk/a11y';
-import {coerceBooleanProperty} from '@angular/cdk/coercion';
+import { FocusMonitor } from '@angular/cdk/a11y';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   Component,
   ElementRef,
@@ -19,12 +19,16 @@ import {
   NgControl,
   Validators
 } from '@angular/forms';
-import {MAT_FORM_FIELD, MatFormField, MatFormFieldControl} from '@angular/material/form-field';
-import {Subject} from 'rxjs';
+import {
+  MAT_FORM_FIELD,
+  MatFormField,
+  MatFormFieldControl
+} from '@angular/material/form-field';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'phone-input',
-  template: '',
+  template: ''
 })
 export class FormFieldCustomControl {
   form: FormGroup = new FormGroup({
@@ -47,23 +51,26 @@ export class MyTel {
   providers: [{ provide: MatFormFieldControl, useExisting: MyTelInput }],
   host: {
     '[class.floating]': 'shouldLabelFloat',
-    '[id]': 'id',
+    '[id]': 'id'
   }
 })
 export class MyTelInput
-  implements ControlValueAccessor, MatFormFieldControl<MyTel>, OnDestroy {
+  implements ControlValueAccessor, MatFormFieldControl<MyTel>, OnDestroy
+{
   static nextId = 0;
   @ViewChild('country') countryInput!: HTMLInputElement;
   @ViewChild('cellular') cellularInput!: HTMLInputElement;
   @ViewChild('mobile') mobileInput!: HTMLInputElement;
-
+  @Input('aria-describedby') userAriaDescribedBy = '';
   parts: FormGroup;
   stateChanges = new Subject<void>();
   focused = false;
   controlType = 'tel-input';
   id = `tel-input-${MyTelInput.nextId++}`;
-  onChange = (_: any) => {};
-  onTouched = () => {};
+  private _placeholder = '';
+  private _required = false;
+  private _disabled = false;
+
 
   get empty() {
     const {
@@ -77,7 +84,6 @@ export class MyTelInput
     return this.focused || !this.empty;
   }
 
-  @Input('aria-describedby') userAriaDescribedBy: string = "";
 
   @Input()
   get placeholder(): string {
@@ -87,7 +93,7 @@ export class MyTelInput
     this._placeholder = value;
     this.stateChanges.next();
   }
-  private _placeholder: string = "";
+
 
   @Input()
   get required(): boolean {
@@ -97,7 +103,7 @@ export class MyTelInput
     this._required = coerceBooleanProperty(value);
     this.stateChanges.next();
   }
-  private _required = false;
+
 
   @Input()
   get disabled(): boolean {
@@ -108,7 +114,7 @@ export class MyTelInput
     this._disabled ? this.parts.disable() : this.parts.enable();
     this.stateChanges.next();
   }
-  private _disabled = false;
+
 
   @Input()
   get value(): any {
@@ -135,8 +141,8 @@ export class MyTelInput
     private _focusMonitor: FocusMonitor,
     private _elementRef: ElementRef<HTMLElement>,
     @Optional() @Inject(MAT_FORM_FIELD) public _formField: MatFormField,
-    @Optional() @Self() public ngControl: NgControl) {
-
+    @Optional() @Self() public ngControl: NgControl
+  ) {
     this.parts = formBuilder.group({
       country: [
         null,
@@ -164,8 +170,12 @@ export class MyTelInput
       this.ngControl.valueAccessor = this;
     }
   }
-
-  autoFocusNext(control: AbstractControl, nextElement?: HTMLInputElement): void {
+  onChange = (_: any) => {};
+  onTouched = () => {};
+  autoFocusNext(
+    control: AbstractControl,
+    nextElement?: HTMLInputElement
+  ): void {
     if (!control.errors && nextElement) {
       this._focusMonitor.focusVia(nextElement, 'program');
     }
@@ -183,8 +193,9 @@ export class MyTelInput
   }
 
   setDescribedByIds(ids: string[]) {
-    const controlElement = this._elementRef.nativeElement
-      .querySelector('.tel-input-container')!;
+    const controlElement = this._elementRef.nativeElement.querySelector(
+      '.tel-input-container'
+    )!;
     controlElement.setAttribute('aria-describedby', ids.join(' '));
   }
 

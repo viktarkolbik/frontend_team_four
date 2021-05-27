@@ -13,8 +13,11 @@ export class HomepageComponent implements OnInit {
   filteredInternships!: Internship[];
   error: number | undefined;
 
-  constructor(private internshipsService: InternshipsService, private route: ActivatedRoute) {
-    this.route.data.subscribe((data) => {
+  constructor(
+    private internshipsService: InternshipsService,
+    private route: ActivatedRoute
+  ) {
+    this.route.data.subscribe(data => {
       this.internships = data.internships;
       this.filteredInternships = data.internships;
     });
@@ -23,8 +26,7 @@ export class HomepageComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   updateTrainings(internships: Internship[]) {
     this.filteredInternships = internships;

@@ -1,25 +1,27 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { InternshipsService } from 'src/app/core/services/internships.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
-import {FullLocation, Location} from '../../../types/location';
-import {LocationService} from '../../../core/services/location.service';
-import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
-import {MatChipInputEvent} from '@angular/material/chips';
-import {Internship} from '../../../types';
-import {User} from '../../../types/user';
-import {UserService} from '../../../core/services/user.service';
-import {switchMap, tap} from 'rxjs/operators';
-import {Observable} from 'rxjs';
-import {LoadingService} from "../../../core/services/loading.service";
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { FullLocation, Location } from '../../../types/location';
+import { LocationService } from '../../../core/services/location.service';
+import {
+  MatAutocomplete,
+  MatAutocompleteSelectedEvent
+} from '@angular/material/autocomplete';
+import { MatChipInputEvent } from '@angular/material/chips';
+import { Internship } from '../../../types';
+import { User } from '../../../types/user';
+import { UserService } from '../../../core/services/user.service';
+import { switchMap, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { LoadingService } from '../../../core/services/loading.service';
 
 @Component({
   selector: 'ia-trainingform',
   templateUrl: './internshipform.component.html',
   styleUrls: ['./internshipform.component.scss']
 })
-
 export class InternshipformComponent implements OnInit {
   @ViewChild('auto') matAutocomplete!: MatAutocomplete;
   @ViewChild('skillInput') skillInput!: ElementRef<HTMLInputElement>;
@@ -38,12 +40,9 @@ export class InternshipformComponent implements OnInit {
   error: any;
   adminsCheckbox = new Map();
   techExpertsCheckbox = new Map();
-  hasUsers: boolean = false;
+  hasUsers = false;
 
-  formats: string[] = [
-    'ONLINE',
-    'OFFLINE'
-  ];
+  formats: string[] = ['ONLINE', 'OFFLINE'];
 
   constructor(
     private internshipService: InternshipsService,
@@ -52,28 +51,27 @@ export class InternshipformComponent implements OnInit {
     private locationService: LocationService,
     private userService: UserService,
     private router: Router,
-    private loadingService: LoadingService,
-  )
-  {
-    const error = (
-      route.snapshot.data.skills?.error
-      || route.snapshot.data.countries?.error
-      || route.snapshot.data.internshipData?.error
-    );
-    if(error){
+    private loadingService: LoadingService
+  ) {
+    const error =
+      route.snapshot.data.skills?.error ||
+      route.snapshot.data.countries?.error ||
+      route.snapshot.data.internshipData?.error;
+    if (error) {
       this.error = error;
-    }
-    else {
+    } else {
       this.skills = route.snapshot.data.skills;
       this.countries = route.snapshot.data.location;
       this.internship = route.snapshot.data.internshipData?.internship;
       this.admins = route.snapshot.data.admins;
-      if (this.route.snapshot.params.id){
-        this.assignedAdmins = route.snapshot.data.internshipData?.assignedAdmins;
-        this.assignedTechExpert = route.snapshot.data.internshipData?.assignedTechExpert;
+      if (this.route.snapshot.params.id) {
+        this.assignedAdmins =
+          route.snapshot.data.internshipData?.assignedAdmins;
+        this.assignedTechExpert =
+          route.snapshot.data.internshipData?.assignedTechExpert;
         this.techExperts = route.snapshot.data.internshipData?.techExperts;
         this.techExperts.sort((user1, user2) =>
-          (user1.firstName > user2.firstName) ? 1 : -1
+          user1.firstName > user2.firstName ? 1 : -1
         );
         this.updateTechExpertsCheckbox();
       }
@@ -85,17 +83,14 @@ export class InternshipformComponent implements OnInit {
         this.internship?.capacity || '',
         Validators.required
       ),
-      name: new FormControl(
-        this.internship?.name || '',
-        [
-          Validators.required,
-          Validators.maxLength(50)
-        ]
-      ),
+      name: new FormControl(this.internship?.name || '', [
+        Validators.required,
+        Validators.maxLength(50)
+      ]),
       description: new FormControl(
         this.internship?.description || '',
         Validators.required
-        ),
+      ),
       internshipFormat: new FormControl(
         this.internship?.internshipFormat || '',
         Validators.required
@@ -107,7 +102,7 @@ export class InternshipformComponent implements OnInit {
       requirements: new FormControl(
         this.internship?.requirements || '',
         Validators.required
-        ),
+      ),
       startDate: new FormControl(
         this.internship?.startDate || '',
         Validators.required
@@ -129,22 +124,21 @@ export class InternshipformComponent implements OnInit {
         Validators.required
       ),
       locations: new FormArray(
-        this.internship?.locations?.map<FormControl>(location =>
-          new FormControl({...location})
+        this.internship?.locations?.map<FormControl>(
+          location => new FormControl({ ...location })
         ) || [],
         Validators.required
-        ),
-      publicationDate: new FormControl(this.internship?.publicationDate || this.today()),
+      ),
+      publicationDate: new FormControl(
+        this.internship?.publicationDate || this.today()
+      )
     });
   }
   addSkill(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
     const formArray: FormArray = this.form.get('skills') as FormArray;
-    if (
-      (value || '').trim()
-      && this.skills.includes(value)
-    ) {
+    if ((value || '').trim() && this.skills.includes(value)) {
       formArray.push(new FormControl(value.trim()));
     }
     if (input) {
@@ -152,8 +146,9 @@ export class InternshipformComponent implements OnInit {
     }
     this.skill.setValue(null);
   }
-  updateTechExpert(): void{
-    this.userService.getUsersSkills(this.form.get('skills')?.value)
+  updateTechExpert(): void {
+    this.userService
+      .getUsersSkills(this.form.get('skills')?.value)
       .subscribe(techExpert => {
         this.techExperts = techExpert;
         this.updateTechExpertsCheckbox();
@@ -166,7 +161,7 @@ export class InternshipformComponent implements OnInit {
     });
     this.assignedAdmins.forEach(admin => {
       const checkbox = this.adminsCheckbox.get(admin.id);
-      if(checkbox){
+      if (checkbox) {
         checkbox.setValue(true);
       }
     });
@@ -178,43 +173,52 @@ export class InternshipformComponent implements OnInit {
     });
     this.assignedTechExpert.forEach(techExpert => {
       const checkbox = this.techExpertsCheckbox.get(techExpert.id);
-      if(checkbox) {
+      if (checkbox) {
         checkbox.setValue(true);
       }
     });
   }
   uncheckTechExpert(userId: string): void {
     const checkbox = this.techExpertsCheckbox.get(userId);
-    if(checkbox){
+    if (checkbox) {
       checkbox.setValue(false);
     }
   }
   uncheckRecruiter(userId: string): void {
     const checkbox = this.adminsCheckbox.get(userId);
-    if(checkbox){
+    if (checkbox) {
       checkbox.setValue(false);
     }
   }
   updateUsersValidation(): void {
-    const adminsCheckboxValue = Array.from(this.adminsCheckbox.values()).map(control => control.value);
-    const techExpertCheckboxValue = Array.from(this.techExpertsCheckbox.values()).map(control => control.value);
-    this.hasUsers = (adminsCheckboxValue.includes(true) && techExpertCheckboxValue.includes(true));
+    const adminsCheckboxValue = Array.from(this.adminsCheckbox.values()).map(
+      control => control.value
+    );
+    const techExpertCheckboxValue = Array.from(
+      this.techExpertsCheckbox.values()
+    ).map(control => control.value);
+    this.hasUsers =
+      adminsCheckboxValue.includes(true) &&
+      techExpertCheckboxValue.includes(true);
   }
   addLocation(): void {
     const formArray: FormArray = this.form.get('locations') as FormArray;
-    formArray.push( new FormControl({
-      country: this.country.value,
-      city: this.city.value,
-    }));
+    formArray.push(
+      new FormControl({
+        country: this.country.value,
+        city: this.city.value
+      })
+    );
   }
   removeLocation(deletedLocation: FullLocation): void {
     const formArray: FormArray = this.form.get('locations') as FormArray;
     const locations: FullLocation[] = formArray.value;
-    const index = locations.findIndex(location =>
-      location.country === deletedLocation.country
-      && location.city === deletedLocation.city
+    const index = locations.findIndex(
+      location =>
+        location.country === deletedLocation.country &&
+        location.city === deletedLocation.city
     );
-    if(index >= 0) {
+    if (index >= 0) {
       formArray.removeAt(index);
     }
   }
@@ -228,10 +232,9 @@ export class InternshipformComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     const value = event.option.viewValue;
     const formArray: FormArray = this.form.get('skills') as FormArray;
-    if(!formArray.value.includes(value)){
+    if (!formArray.value.includes(value)) {
       formArray.push(new FormControl(value));
-    }
-    else {
+    } else {
       this.snackBar.open('This technology has already been added', 'Ok');
     }
     this.skillInput.nativeElement.value = '';
@@ -239,45 +242,49 @@ export class InternshipformComponent implements OnInit {
   today(): Date {
     return new Date();
   }
-  onSkillChange(event: any){
+  onSkillChange(event: any) {
     const formArray: FormArray = this.form.get('skills') as FormArray;
     formArray.push(new FormControl(event.target.value));
   }
-  getKeys(obj: any): string[]{
+  getKeys(obj: any): string[] {
     return Object.keys(obj);
   }
   loadCities(): void {
     const countryId = this.country.value.id;
     this.locationService.getCities(countryId).subscribe(data => {
-      if(!data.error){
+      if (!data.error) {
         this.cities = data;
-      }
-      else {
+      } else {
         this.snackBar.open(`Failed to get list of cities`, 'Ok');
       }
     });
   }
   submit(): void {
     const formValueJson = JSON.stringify(this.form.value);
-    const techExperts = Array.from(this.techExpertsCheckbox.keys()).filter(userId =>
-      this.techExpertsCheckbox.get(userId).value
+    const techExperts = Array.from(this.techExpertsCheckbox.keys()).filter(
+      userId => this.techExpertsCheckbox.get(userId).value
     );
-    const admins = Array.from(this.adminsCheckbox.keys()).filter(userId =>
-      this.adminsCheckbox.get(userId).value
+    const admins = Array.from(this.adminsCheckbox.keys()).filter(
+      userId => this.adminsCheckbox.get(userId).value
     );
     const users = admins.concat(techExperts);
-    const internshipObservable: Observable<Internship> = (this.internship?.id && this.route.snapshot.params.id) ?
-      this.internshipService.updateInternship(formValueJson, this.internship.id) :
-      this.internshipService.sendFormData(formValueJson);
+    const internshipObservable: Observable<Internship> =
+      this.internship?.id && this.route.snapshot.params.id
+        ? this.internshipService.updateInternship(
+            formValueJson,
+            this.internship.id
+          )
+        : this.internshipService.sendFormData(formValueJson);
     this.loadingService.setLoadingState(true);
     internshipObservable
       .pipe(
         switchMap(data =>
-          (this.route.snapshot.params.id) ?
-            this.internshipService.reassignUsers(data.id, users) :
-            this.internshipService.assignUsers(data.id, users)
+          this.route.snapshot.params.id
+            ? this.internshipService.reassignUsers(data.id, users)
+            : this.internshipService.assignUsers(data.id, users)
         )
-      ).subscribe(
+      )
+      .subscribe(
         () => {
           this.loadingService.setLoadingState(false);
           const message = 'Your application sent successfully';
@@ -291,16 +298,15 @@ export class InternshipformComponent implements OnInit {
         }
       );
   }
-  openSnackbar(message: string, action: string): void{
+  openSnackbar(message: string, action: string): void {
     const snackBarRef = this.snackBar.open(message, action);
     snackBarRef.afterDismissed().subscribe(() => {
       this.resetForm();
       this.router.navigate(['/adminpage/internships']);
     });
   }
-  resetForm(): void{
+  resetForm(): void {
     this.form.reset();
   }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

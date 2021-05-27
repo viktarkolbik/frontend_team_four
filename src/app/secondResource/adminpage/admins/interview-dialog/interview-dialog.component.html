@@ -1,6 +1,6 @@
 <div class="content">
   <p class="schedule">Schedule an interview</p>
-  <p>Timezone: {{timezone}}</p>
+  <p>Timezone: {{ timezone }}</p>
   <div class="mat-form-field-wrapper">
     <mat-form-field color="accent" appearance="fill" class="mat-form-field">
       <mat-label>Pick date</mat-label>
@@ -10,25 +10,20 @@
         [matDatepicker]="picker"
         [formControl]="datePicker"
         (dateInput)="filterUsers()"
-      >
+      />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker color="primary"></mat-datepicker>
     </mat-form-field>
     <mat-form-field appearance="fill" class="mat-form-field">
       <mat-label>Time</mat-label>
-      <mat-select
-        [(ngModel)]="selectedTime"
-        (selectionChange)="filterUsers()"
-      >
+      <mat-select [(ngModel)]="selectedTime" (selectionChange)="filterUsers()">
         <mat-option *ngFor="let time of usersTime" [value]="time">
-          {{time}}
+          {{ time }}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill" class="mat-form-field">
-      <mat-label *ngIf="data.role === 'ADMIN'">
-        Select admin
-      </mat-label>
+      <mat-label *ngIf="data.role === 'ADMIN'"> Select admin </mat-label>
       <mat-label *ngIf="data.role === 'TECH_EXPERT'">
         Select technical expert
       </mat-label>
@@ -38,18 +33,13 @@
         (selectionChange)="filterUsers()"
       >
         <mat-option *ngFor="let user of usersForSelect" [value]="user">
-          {{user.lastName + user.firstName[0] + '.'}}
+          {{ user.lastName + user.firstName[0] + "." }}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
   <mat-dialog-actions class="button-wrapper">
-    <button
-      mat-button
-      [mat-dialog-close]="false"
-    >
-      Cancel
-    </button>
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
     <button
       mat-button
       [disabled]="!(selectedTime && selectedUser.id && datePicker.value)"

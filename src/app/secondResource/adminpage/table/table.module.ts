@@ -9,18 +9,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import {CommonModule} from '@angular/common';
-import {ReplaceStatusPipe} from '../../../core/replacestatus.pipe';
-import {FeedbackComponent} from '../internlist/feedback/feedback.component';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
+import { CommonModule } from '@angular/common';
+import { ReplaceStatusPipe } from '../../../core/replacestatus.pipe';
+import { FeedbackComponent } from '../internlist/feedback/feedback.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [
-    TableComponent,
-    ReplaceStatusPipe,
-    FeedbackComponent
-  ],
+  declarations: [TableComponent, ReplaceStatusPipe, FeedbackComponent],
   imports: [
     CommonModule,
     TranslateModule,
@@ -39,4 +35,4 @@ import {MatButtonModule} from '@angular/material/button';
   exports: [TableComponent],
   entryComponents: [FeedbackComponent]
 })
-export class TableModule { }
+export class TableModule {}

@@ -1,10 +1,10 @@
 <div class="content">
-  <p class="feedback">{{'adminpage.feedback.feedback' | translate}}</p>
+  <p class="feedback">{{ "adminpage.feedback.feedback" | translate }}</p>
   <div class="mat-form-field-wrapper">
     <mat-form-field appearance="fill" class="mat-form-field">
       <textarea
         matInput
-        placeholder="{{'adminpage.feedback.textarea' | translate}}"
+        placeholder="{{ 'adminpage.feedback.textarea' | translate }}"
         cdkTextareaAutosize
         cdkAutosizeMinRows="5"
         cdkAutosizeMaxRows="10"
@@ -14,25 +14,18 @@
   </div>
   <div class="error">
     <mat-error *ngIf="feedback.errors?.required">
-      {{'adminpage.feedback.errorRequired' | translate}}
+      {{ "adminpage.feedback.errorRequired" | translate }}
     </mat-error>
     <mat-error *ngIf="feedback.errors?.minlength">
-      {{'adminpage.feedback.errorMinLength' | translate}}
+      {{ "adminpage.feedback.errorMinLength" | translate }}
     </mat-error>
   </div>
   <mat-dialog-actions class="button-wrapper">
-    <button
-      mat-button
-      [mat-dialog-close]="false"
-    >
-      {{'adminpage.feedback.cancel' | translate}}
+    <button mat-button [mat-dialog-close]="false">
+      {{ "adminpage.feedback.cancel" | translate }}
     </button>
-    <button
-      mat-button
-      [disabled]="!feedback.valid"
-      (click)="submit()"
-    >
-      {{'adminpage.feedback.submit' | translate}}
+    <button mat-button [disabled]="!feedback.valid" (click)="submit()">
+      {{ "adminpage.feedback.submit" | translate }}
     </button>
   </mat-dialog-actions>
 </div>

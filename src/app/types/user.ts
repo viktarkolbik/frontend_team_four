@@ -38,5 +38,3 @@ export interface ParseTime {
   id: string;
   userId?: string;
 }
-
-

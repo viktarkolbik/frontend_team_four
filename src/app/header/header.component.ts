@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
-import {StorageService} from '../core/services/storage.service';
+import { TranslateService } from '@ngx-translate/core';
+import { StorageService } from '../core/services/storage.service';
 
 @Component({
   selector: 'ia-header',
@@ -9,16 +9,21 @@ import {StorageService} from '../core/services/storage.service';
 })
 export class HeaderComponent implements OnInit {
   public selectedLang: string;
-  constructor(public translate: TranslateService, private storageService: StorageService) {
+  constructor(
+    public translate: TranslateService,
+    private storageService: StorageService
+  ) {
     translate.addLangs(['en', 'ru']);
     const lang = this.storageService.getLang();
     if (!lang) {
       const langs = this.translate.getLangs();
       const browserLang = this.translate.getBrowserLang();
-      this.selectedLang = ((langs.indexOf(browserLang)) === -1) ? this.translate.getDefaultLang() : browserLang;
+      this.selectedLang =
+        langs.indexOf(browserLang) === -1
+          ? this.translate.getDefaultLang()
+          : browserLang;
       this.storageService.setLang(this.selectedLang);
-    }
-    else {
+    } else {
       this.selectedLang = lang;
     }
     this.translate.use(this.selectedLang);
@@ -28,6 +33,5 @@ export class HeaderComponent implements OnInit {
     this.translate.use(this.selectedLang);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

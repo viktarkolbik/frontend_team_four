@@ -28,7 +28,7 @@
   },
   "internship": {
     "showMore": "show more",
-    "technology" : "Technology"
+    "technology": "Technology"
   },
   "footer": {
     "contacts": "Contacts",
@@ -163,7 +163,7 @@
       "to": "to"
     },
     "addInterval": "Add free time interval",
-    "crossFreeTime" : "Selected time across time in vacancy slots",
+    "crossFreeTime": "Selected time across time in vacancy slots",
     "crossInterview": "Selected time across time in interview"
   },
   "admins": {
@@ -188,7 +188,7 @@
     "experience": "Experience",
     "addFeedback": "Add feedback",
     "approved": "approved",
-    "from" : "from",
+    "from": "from",
     "assignHR": "Assign HR",
     "assignTS": "Assign Tech. Spec.",
     "recruiterInterviewDate": "Recruiter interview date",

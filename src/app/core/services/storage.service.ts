@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class StorageService {
   private storage: Storage = window.localStorage;
 
-  constructor() { }
+  constructor() {}
 
   getLang(): string | null {
     return this.storage.getItem('lang');

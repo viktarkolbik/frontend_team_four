@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AuthService} from '../../core/services/auth.service';
-import {User} from '../../types/user';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
+import { User } from '../../types/user';
 
 @Component({
   selector: 'ia-adminpage',
@@ -10,12 +10,10 @@ import {User} from '../../types/user';
 })
 export class AdminpageComponent implements OnInit {
   userInfo = {} as User;
-  constructor(public auth: AuthService)  {
+  constructor(public auth: AuthService) {
     this.auth.getUserInfo().subscribe(data => {
       this.userInfo = data;
     });
   }
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

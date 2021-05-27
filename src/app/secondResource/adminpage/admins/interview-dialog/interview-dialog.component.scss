@@ -4,21 +4,21 @@
   background-color: rgba(0, 0, 0, 0.06);
 }
 
-::ng-deep.mat-calendar-body-disabled >
-.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical){
+::ng-deep.mat-calendar-body-disabled
+  > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
   font-size: 13px;
   background-color: rgba(0, 0, 0, 0);
 }
 
-.content{
+.content {
   min-width: 300px;
   display: flex;
   flex-direction: column;
-  p.schedule{
+  p.schedule {
     display: inline-block;
     margin: 0 auto 10px;
   }
-  .mat-form-field-wrapper{
+  .mat-form-field-wrapper {
     display: flex;
     flex-direction: column;
     .mat-form-field {

@@ -5,20 +5,14 @@ import { InternshipComponent } from './internship.component';
 import { HomepageRoutingModule } from '../homepage-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 
-
-
 @NgModule({
-  declarations: [
-    InternshipComponent
-  ],
+  declarations: [InternshipComponent],
   imports: [
     CommonModule,
     MatButtonModule,
     HomepageRoutingModule,
     TranslateModule
   ],
-  exports: [
-    InternshipComponent
-  ]
+  exports: [InternshipComponent]
 })
-export class InternshipModule { }
+export class InternshipModule {}

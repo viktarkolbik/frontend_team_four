@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 import { InternshipdescriptionRoutingModule } from './internshipdescription-routing.module';
 import { InternshipdescriptionComponent } from './internshipdescription.component';
@@ -9,11 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { InternshipResolver } from '../../core/resolvers/internship-resolve.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-
 @NgModule({
-  declarations: [
-    InternshipdescriptionComponent
-  ],
+  declarations: [InternshipdescriptionComponent],
   imports: [
     CommonModule,
     InternshipdescriptionRoutingModule,
@@ -22,11 +19,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     HttpClientModule,
     MatSnackBarModule
   ],
-  providers: [
-    InternshipResolver
-  ],
-  exports: [
-    InternshipdescriptionComponent
-  ]
+  providers: [InternshipResolver],
+  exports: [InternshipdescriptionComponent]
 })
-export class InternshipdescriptionModule { }
+export class InternshipdescriptionModule {}

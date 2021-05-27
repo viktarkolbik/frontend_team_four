@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {LoadingService} from './core/services/loading.service';
+import { LoadingService } from './core/services/loading.service';
 
 @Component({
   selector: 'ia-root',
@@ -8,6 +8,5 @@ import {LoadingService} from './core/services/loading.service';
 })
 export class AppComponent {
   title = 'InternApp';
-  constructor(public loadingService: LoadingService) {
-  }
+  constructor(public loadingService: LoadingService) {}
 }
