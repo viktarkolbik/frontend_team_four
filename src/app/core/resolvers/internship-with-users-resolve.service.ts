@@ -26,9 +26,6 @@ export class InternshipWithUsersResolveService implements Resolve<Internship> {
     this.loadingService.setLoadingState(true);
     return this.internshipService.getInternshipById(route.params.id)
       .pipe(
-        tap(() => {
-          this.loadingService.setLoadingState(false);
-        }),
         switchMap(internship => {
           this.internship = internship;
           return this.userService.getUsersRole(internship.id, 'ADMIN');
@@ -41,14 +38,15 @@ export class InternshipWithUsersResolveService implements Resolve<Internship> {
           this.techExpert = techExperts;
           return this.userService.getUsersRole(route.params.id,'TECH_EXPERT');
         }),
-        switchMap(assignedTechExpert =>
-          of({
+        switchMap(assignedTechExpert => {
+          this.loadingService.setLoadingState(false);
+          return of({
             internship: this.internship,
             techExperts: this.techExpert,
             assignedAdmins: this.assignedAdmins,
             assignedTechExpert
-          })
-        ),
+          });
+        }),
         catchError(err => {
           this.loadingService.setLoadingState(false);
           return of (err);

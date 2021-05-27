@@ -1,0 +1,20 @@
+<div>
+  <div mat-dialog-content>
+    Do you want to delete the internship?
+  </div>
+  <mat-dialog-actions class="button-wrapper">
+    <button
+      mat-button
+      [mat-dialog-close]="false"
+    >
+      Cancel
+    </button>
+    <button
+      mat-button
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+    >
+      Delete
+    </button>
+  </mat-dialog-actions>
+</div>
