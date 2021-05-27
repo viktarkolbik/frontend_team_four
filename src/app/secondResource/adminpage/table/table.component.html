@@ -104,15 +104,19 @@
              <p class="experience" *ngIf="element.experience">{{"adminTable.experience" | translate}}: <span>{{element.experience}}</span></p>
              <p *ngIf="element.interview?.adminInterviewDate">
                {{"adminTable.recruiterInterviewDate" | translate}}
-               : {{getLocaleDate(element.interview?.adminInterviewDate) | date: "dd MMM HH:mm"}}
-                (GMT {{getParseDate(element.interview?.adminInterviewDate).getHours() - getParseDate(element.interview?.adminInterviewDate).getUTCHours() > 0 ? '+': '-'}}
-               {{getParseDate(element.interview?.adminInterviewDate).getHours() - getParseDate(element.interview?.adminInterviewDate).getUTCHours()}})
+               <span>
+                 : {{getLocaleDate(element.interview?.adminInterviewDate) | date: "dd MMM HH:mm"}}
+                 (GMT {{getParseDate(element.interview?.adminInterviewDate).getHours() - getParseDate(element.interview?.adminInterviewDate).getUTCHours() > 0 ? '+': '-'}}
+                 {{getParseDate(element.interview?.adminInterviewDate).getHours() - getParseDate(element.interview?.adminInterviewDate).getUTCHours()}})
+               </span>
              </p>
              <p *ngIf="element.interview?.techInterviewDate">
                {{"adminTable.techInterviewDate" | translate}}
-               : {{getLocaleDate(element.interview?.techInterviewDate) | date: "dd MMM HH:mm"}}
-               (GMT {{getParseDate(element.interview?.techInterviewDate).getHours() - getParseDate(element.interview?.techInterviewDate).getUTCHours() > 0 ? '+': '-'}}
-               {{getParseDate(element.interview?.techInterviewDate).getHours() - getParseDate(element.interview?.techInterviewDate).getUTCHours()}})
+               <span>
+                 : {{getLocaleDate(element.interview?.techInterviewDate) | date: "dd MMM HH:mm"}}
+                 (GMT {{getParseDate(element.interview?.techInterviewDate).getHours() - getParseDate(element.interview?.techInterviewDate).getUTCHours() > 0 ? '+': '-'}}
+                 {{getParseDate(element.interview?.techInterviewDate).getHours() - getParseDate(element.interview?.techInterviewDate).getUTCHours()}})
+               </span>
              </p>
             </div>
             <div class="feedbacks">
