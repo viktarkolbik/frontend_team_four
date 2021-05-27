@@ -20,6 +20,8 @@ import { InternshipformComponent } from './internshipform/internshipform.compone
 import { LocationResolver } from 'src/app/core/resolvers/location-resolve.service';
 import {SkillsResolveService} from '../../core/resolvers/skills-resolve.service';
 import {InternshipResolver} from '../../core/resolvers/internship-resolve.service';
+import {InternshipWithUsersResolveService} from "../../core/resolvers/internship-with-users-resolve.service";
+import {AllAdminsResolveService} from "../../core/resolvers/all-admins-resolve.service";
 import {TimesettingsResolver} from '../../core/resolvers/timesettings-resolve.service';
 
 const routes: Routes = [
@@ -57,6 +59,7 @@ const routes: Routes = [
         resolve: {
           location: LocationResolver,
           skills: SkillsResolveService,
+          admins: AllAdminsResolveService,
         }
       },
       {
@@ -72,7 +75,8 @@ const routes: Routes = [
         resolve: {
           location: LocationResolver,
           skills: SkillsResolveService,
-          internship: InternshipResolver
+          internshipData: InternshipWithUsersResolveService,
+          admins: AllAdminsResolveService,
         }
       },
       {

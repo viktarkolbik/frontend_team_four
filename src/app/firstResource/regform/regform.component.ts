@@ -7,6 +7,8 @@ import {AcceptDialogComponent} from './accept-dialog/accept-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 import {LocationService} from '../../core/services/location.service';
+import {tap} from "rxjs/operators";
+import {LoadingService} from "../../core/services/loading.service";
 
 @Component({
   selector: 'ia-regform',
@@ -51,7 +53,8 @@ export class RegformComponent implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router,
     private locationService: LocationService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private loadingService: LoadingService
   ) {
     this.subscription = route.params.subscribe(params => this.idInternship = params.id);
     this.timeForCallList = [
@@ -136,7 +139,10 @@ export class RegformComponent implements OnInit {
     formData.append('form', formValueBinary);
     if (this.file){ formData.append('file', this.file); }
     let message: string;
-    this.formService.sendFormData(formData).subscribe(
+    this.loadingService.setLoadingState(true);
+    this.formService.sendFormData(formData)
+      .pipe(tap(() => {this.loadingService.setLoadingState(false);}))
+      .subscribe(
       data => {
         message = 'Your application sent successfully';
         this.openSnackbar(message, 'Ok');
