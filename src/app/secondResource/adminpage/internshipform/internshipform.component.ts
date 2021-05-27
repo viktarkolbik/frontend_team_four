@@ -87,7 +87,10 @@ export class InternshipformComponent implements OnInit {
           Validators.maxLength(50)
         ]
       ),
-      description: new FormControl(this.internship?.description || ''),
+      description: new FormControl(
+        this.internship?.description || '',
+        Validators.required
+        ),
       internshipFormat: new FormControl(
         this.internship?.internshipFormat || '',
         Validators.required
@@ -96,7 +99,10 @@ export class InternshipformComponent implements OnInit {
         this.internship?.skills?.map(skill => new FormControl(skill)) || [],
         Validators.required
       ),
-      requirements: new FormControl(this.internship?.requirements || ''),
+      requirements: new FormControl(
+        this.internship?.requirements || '',
+        Validators.required
+        ),
       startDate: new FormControl(
         this.internship?.startDate || '',
         Validators.required
@@ -115,11 +121,13 @@ export class InternshipformComponent implements OnInit {
       ),
       techSkills: new FormControl(
         this.internship?.techSkills || '',
+        Validators.required
       ),
       locations: new FormArray(
         this.internship?.locations?.map<FormControl>(location =>
           new FormControl({...location})
         ) || [],
+        Validators.required
         ),
       publicationDate: new FormControl(this.internship?.publicationDate || this.today()),
     });
