@@ -113,7 +113,7 @@
   },
   "loginpage": {
     "h1": "Login",
-    "fieldlogin": "please, enter your e-mail",
+    "fieldlogin": "please, enter your login",
     "fieldpassword": "please, enter your password",
     "login": "Your login",
     "password": "Your password",
