@@ -37,10 +37,11 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ContentChild(TemplateRef) template?: TemplateRef<any>;
   @Input() candidates = [] as Candidate[];
-  @Input() user!:User;
+  @Input() user!: User;
   @Input() internship!: Internship;
   @Output() onSelectedCandidate: EventEmitter<Candidate> = new EventEmitter<Candidate>();
   selectedCandidate: Candidate | null = null;
+  @Input() selectedCandidateID?: string;
   dataSource!: MatTableDataSource<Candidate>;
   displayedColumns = [
     'lastName',
@@ -56,8 +57,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   constructor(
     private dialog: MatDialog,
     private formsService: FormsService
-  ) {
-  }
+  ) {}
   ngOnChanges(changes: SimpleChanges) {
     this.dataSource = new MatTableDataSource(this.candidates);
     this.dataSource.sort = this.sort;
