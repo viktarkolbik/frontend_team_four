@@ -175,6 +175,8 @@
     "experience": "Experience",
     "addFeedback": "Add feedback",
     "approved": "approved",
-    "from" : "from"
+    "from" : "from",
+    "assignHR": "Assign HR",
+    "assignTS": "Assign Tech. Spec."
   }
 }

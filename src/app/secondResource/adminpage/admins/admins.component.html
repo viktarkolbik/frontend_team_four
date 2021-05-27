@@ -9,17 +9,21 @@
         <p>Schedule an interview with:</p>
         <button
           mat-raised-button
-          [disabled]="admins.length === 0"
+          [disabled]="admins.length === 0 ||
+          !(selectedCandidate?.formStatus==='ADMIN_INTERVIEW_ASSIGNED' ||
+          selectedCandidate?.formStatus==='REGISTERED')"
           (click)="openInterviewDialog(admins, 'ADMIN')"
         >
-          HR
+          {{"adminTable.assignHR" | translate}}
         </button>
         <button
           mat-raised-button
-          [disabled]="techExperts.length === 0"
+          [disabled]="techExperts.length === 0 ||
+          !(selectedCandidate?.formStatus==='ADMIN_INTERVIEW_PASSED' ||
+          selectedCandidate?.formStatus==='TECH_INTERVIEW_ASSIGNED')"
           (click)="openInterviewDialog(techExperts, 'TECH_EXPERT')"
         >
-          Technical expert
+          {{"adminTable.assignTS" | translate}}
         </button>
         <ng-container *ngIf="techExperts.length === 0">
           <p>no technical experts</p>

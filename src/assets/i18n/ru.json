@@ -177,6 +177,8 @@
     "experience": "Опыт",
     "addFeedback": "Добавить отзыв",
     "approved": "принято",
-    "from" : "из"
+    "from" : "из",
+    "assignHR": "Назначить HR",
+    "assignTS": "Назначить Тех.Спец."
   }
 }
