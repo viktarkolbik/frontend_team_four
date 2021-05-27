@@ -30,7 +30,8 @@ export class InternshipsService {
     JS: " JavaScript",
     JAVA: " Java",
     GO: " Golang",
-    QA: " QA"
+    QA: " QA",
+    PYTHON: "Python",
   }
 
   getInternshipList(): Observable<Internship[]>{
@@ -70,7 +71,7 @@ export class InternshipsService {
     return this.images[technology]
   }
   getChangedSkills(technology: any) {
-    return this.changedSkills[technology];
+    return this.changedSkills[technology] || technology;
   }
   deleteInternshipById(id: string): Observable<void>{
     return this.http.delete<void>(`${this.basePath}/${id}`);

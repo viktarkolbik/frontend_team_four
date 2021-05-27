@@ -1,5 +1,6 @@
 import {Component,  EventEmitter, Input, OnChanges, Output} from '@angular/core';
 import {Criterion, Filter, Internship, Location} from '../types';
+import {InternshipsService} from "../core/services/internships.service";
 
 @Component({
   selector: 'ia-filter-internships',
@@ -15,7 +16,7 @@ export class FilterInternshipsComponent implements OnChanges{
   countries?: string[];
   removable = true;
   selectable = true;
-  constructor() {
+  constructor(private internshipService: InternshipsService) {
   }
   ngOnChanges(){
     const setCities = (this.internships.map(internship => internship.locations).flat());
@@ -29,6 +30,9 @@ export class FilterInternshipsComponent implements OnChanges{
     this.filters.countries = this.getFilter('country', this.countries);
     this.filters.cities = this.getFilter('city', this.cities);
     this.filters.technologies = this.getFilter('skills', this.technologies);
+  }
+  getChangeSkill(skill: string): string {
+    return this.internshipService.getChangedSkills(skill);
   }
   getFilter(field: string, criteria: string[]): Filter{
     const filter: Filter = {
