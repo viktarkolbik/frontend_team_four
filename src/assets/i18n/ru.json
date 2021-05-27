@@ -176,5 +176,7 @@
     "city": "Город",
     "experience": "Опыт",
     "addFeedback": "Добавить отзыв"
+    "approved": "принято",
+    "from" : "из"
   }
 }
