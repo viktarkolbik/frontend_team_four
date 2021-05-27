@@ -127,6 +127,14 @@
   "adminpage": {
     "internship": "Список стажировок",
     "internlist": "Список кандидатов",
+    "feedback": {
+      "feedback": "Отзыв",
+      "textarea": "Введите текст отзыва",
+      "cancel": "Отмена",
+      "submit": "Отправить",
+      "errorRequired": "Обязательное поле",
+      "errorMinLength": "Минимальная длина отзыва 50 символов"
+    },
     "createInternship": "Создать стажировку",
     "logOut": "Выйти",
     "showCandidates": "Показать кандидатов",
@@ -161,10 +169,14 @@
     "recruiter": "Рекрутер",
     "techSpec": "Технический специалист",
     "skill": "Основной навык",
+    "feedback": "Отзыв",
     "name": "Имя",
     "lastname": "Фамилия",
     "country": "Страна",
     "city": "Город",
-    "experience": "Опыт"
+    "experience": "Опыт",
+    "addFeedback": "Добавить отзыв"
+    "approved": "принято",
+    "from" : "из"
   }
 }

@@ -19,7 +19,7 @@ export class InterviewComponent implements OnInit {
       this.startTime = this.interview.adminInterviewDate!
     }
     else if (this.user.userRole === "TECH_EXPERT") {
-      this.endTime = this.interview.techInterviewDate!
+      this.startTime = this.interview.techInterviewDate!
     }
     this.endTime = new Date(
       Date.parse(this.startTime) + this.user.interviewTime*60*1000)
