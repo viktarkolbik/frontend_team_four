@@ -1,4 +1,13 @@
 {
+  "ADMIN_INTERVIEW_PASSED": "HR interview passed",
+  "ACCEPTED": "Accepted",
+  "ADMIN_INTERVIEW_ASSIGNED": "HR interview assigned",
+  "CANDIDATE_REFUSED": "Candidate refused",
+  "NOT_MATCHED": "Not Matched",
+  "REGISTERED": "Registered",
+  "REJECTED": "Rejected",
+  "TECH_INTERVIEW_ASSIGNED": "Tech expert interview assigned",
+  "TECH_INTERVIEW_PASSED": "Tech expert interview passed",
   "language": "English",
   "homepage": {
     "errorMessage": "Something is going wrong, try reload page",
