@@ -10,10 +10,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {CommonModule} from '@angular/common';
+import {FeedbackComponent} from '../internlist/feedback/feedback.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
-    TableComponent
+    TableComponent,
+    FeedbackComponent
   ],
   imports: [
     CommonModule,
@@ -25,11 +29,12 @@ import {CommonModule} from '@angular/common';
     MatFormFieldModule,
     MatInputModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [],
-  exports: [
-    TableComponent
-  ]
+  exports: [TableComponent],
+  entryComponents: [FeedbackComponent]
 })
 export class TableModule { }

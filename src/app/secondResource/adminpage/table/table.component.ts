@@ -14,6 +14,11 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {Candidate} from '../../../types/candidate';
+import {User} from '../../../types/user';
+import {MatDialog} from '@angular/material/dialog';
+import {FeedbackComponent} from '../internlist/feedback/feedback.component';
+import {switchMap} from 'rxjs/operators';
+import {FormsService} from '../../../core/services/forms.service';
 import {Internship} from '../../../types';
 
 @Component({
@@ -32,6 +37,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
   @ContentChild(TemplateRef) template?: TemplateRef<any>;
   @Input() candidates = [] as Candidate[];
+  @Input() user!:User;
   @Input() internship!: Internship;
   @Output() onSelectedCandidate: EventEmitter<Candidate> = new EventEmitter<Candidate>();
   selectedCandidate: Candidate | null = null;
@@ -47,7 +53,10 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     'primarySkill'
   ];
   approvedCandidates = [] as Candidate[];
-  constructor() {
+  constructor(
+    private dialog: MatDialog,
+    private formsService: FormsService
+  ) {
   }
   ngOnChanges(changes: SimpleChanges) {
     this.dataSource = new MatTableDataSource(this.candidates);
@@ -59,9 +68,29 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   ngOnInit() {
+    if (this.user) {
+      this.displayedColumns.push('feedback')
+    }
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+  }
+
+  openFeedBackDialog(userID:string, formID:string){
+    const dialogRef = this.dialog.open(FeedbackComponent, {data: {userID, formID}});
+    dialogRef.afterClosed()
+      .pipe(
+        switchMap(() => this.formsService.getCandidatesListByUserId(this.user.id))
+      )
+      .subscribe(
+      data => {
+        this.candidates = data;
+        this.dataSource = new MatTableDataSource(this.candidates);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }
 

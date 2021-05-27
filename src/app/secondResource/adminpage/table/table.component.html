@@ -69,7 +69,23 @@
         {{element.primarySkill}}
       </td>
     </ng-container>
-
+    <ng-container matColumnDef="feedback">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.feedback" | translate}}</th>
+      <td class="rows-element" mat-cell *matCellDef="let element">
+        <button
+          *ngIf="user.userRole==='ADMIN' || user.userRole==='SUPER_ADMIN'"
+          mat-stroked-button
+          (click)="openFeedBackDialog(user.id, element.id)"
+          [disabled]="!!element.interview.adminFeedback || element.formStatus !== 'ADMIN_INTERVIEW_ASSIGNED'"
+        >{{"adminTable.addFeedback" | translate}}</button>
+        <button
+          *ngIf="user.userRole==='TECH_EXPERT'"
+          mat-stroked-button
+          (click)="openFeedBackDialog(user.id, element.id)"
+          [disabled]="!!element.interview.techFeedback || element.formStatus !== 'TECH_INTERVIEW_ASSIGNED'"
+        >{{"adminTable.addFeedback" | translate}}</button>
+      </td>
+    </ng-container>
     <ng-container matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
         <div
