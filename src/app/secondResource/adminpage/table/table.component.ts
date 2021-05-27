@@ -27,6 +27,8 @@ import { FeedbackComponent } from '../internlist/feedback/feedback.component';
 import { switchMap } from 'rxjs/operators';
 import { FormsService } from '../../../core/services/forms.service';
 import { Internship } from '../../../types';
+import {DomSanitizer} from "@angular/platform-browser";
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'ia-table',
@@ -53,6 +55,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     new EventEmitter<Candidate>();
   selectedCandidate: Candidate | null = null;
   @Input() selectedCandidateID?: string;
+  fileUrl: any;
   dataSource!: MatTableDataSource<Candidate>;
   displayedColumns = [
     'lastName',
@@ -65,7 +68,11 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     'primarySkill'
   ];
   approvedCandidates = [] as Candidate[];
-  constructor(private dialog: MatDialog, private formsService: FormsService) {}
+  constructor(
+    private dialog: MatDialog,
+    private formsService: FormsService,
+    private sanitizer: DomSanitizer
+  ) {}
   ngOnChanges(changes: SimpleChanges) {
     this.dataSource = new MatTableDataSource(this.candidates);
     this.dataSource.sort = this.sort;
@@ -84,6 +91,20 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
+  }
+  getFile(id: string) {
+    this.formsService.getFile(id)
+      .subscribe(
+        data => {
+          if(data.body){
+            const blob = new Blob([data.body], { type: 'application/octet-stream' });
+            saveAs(blob, 'CV.pdf')
+          }
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
   getParseDate(str: string): Date {
     const date = new Date(str + 'Z');

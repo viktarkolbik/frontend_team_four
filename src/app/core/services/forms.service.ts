@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Candidate, Interview } from '../../types/candidate';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import {map, tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,16 @@ import { environment } from '../../../environments/environment';
 export class FormsService {
   basePath = `${environment.backendURL}/api/forms`;
   constructor(private http: HttpClient) {}
+  getFile(id: string) {
+    const headers = new HttpHeaders({
+      'accept': "*/*",
+    });
+    return this.http.get(`${this.basePath}/${id}/file`, {
 
+      observe: 'response',
+      responseType: 'blob'
+    });
+  }
   getCandidatesListByUserId(id: string | null): Observable<Candidate[]> {
     return this.http.get<Candidate[]>(this.basePath + '?userId=' + id);
   }

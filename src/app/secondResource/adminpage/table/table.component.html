@@ -225,6 +225,14 @@
                   }})
                 </span>
               </p>
+              <button
+                mat-flat-button
+                [disabled]="!element.filePath"
+                (click)="getFile(element.id)"
+              >
+                Download CV
+              </button>
+              <a [href]="fileUrl" download>DownloadFile</a>
             </div>
             <div class="feedbacks">
               <div class="feedback" *ngIf="element.interview?.adminFeedback">
