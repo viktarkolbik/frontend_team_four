@@ -11,11 +11,15 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import {CommonModule} from '@angular/common';
 import {ReplaceStatusPipe} from '../../../core/replacestatus.pipe';
+import {FeedbackComponent} from '../internlist/feedback/feedback.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
     TableComponent,
-    ReplaceStatusPipe
+    ReplaceStatusPipe,
+    FeedbackComponent
   ],
   imports: [
     CommonModule,
@@ -28,10 +32,11 @@ import {ReplaceStatusPipe} from '../../../core/replacestatus.pipe';
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [],
-  exports: [
-    TableComponent
-  ]
+  exports: [TableComponent],
+  entryComponents: [FeedbackComponent]
 })
 export class TableModule { }

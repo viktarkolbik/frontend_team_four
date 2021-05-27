@@ -10,7 +10,7 @@
       *ngFor="let internship of filteredInternships"
       [internship] = "internship"
       class="internship"
-      (deletingInternship)="updateListIShips($event)"
+      (deletingInternship)="removeInternship($event)"
     >
     </ia-internship>
   </div>

@@ -125,6 +125,14 @@
   "adminpage": {
     "internship": "Internships list",
     "internlist": "Interns list",
+    "feedback": {
+      "feedback": "Feedback",
+      "textarea": "Type feedback text",
+      "cancel": "Cancel",
+      "submit": "Submit",
+      "errorRequired": "This field is required",
+      "errorMinLength": "Minimal length is 50 characters"
+    },
     "createInternship": "Create internship",
     "logOut": "Log Out",
     "showCandidates": "Show Candidates",
@@ -159,10 +167,14 @@
     "recruiter": "Recruiter",
     "techSpec": "Technical Specialist",
     "skill": "Primary Skill",
+    "feedback": "Feedback",
     "name": "Name",
     "lastname": "Surname",
     "country": "Country",
     "city": "City",
-    "experience": "Experience"
+    "experience": "Experience",
+    "addFeedback": "Add feedback",
+    "approved": "approved",
+    "from" : "from"
   }
 }
