@@ -165,6 +165,8 @@
     "lastname": "Фамилия",
     "country": "Страна",
     "city": "Город",
-    "experience": "Опыт"
+    "experience": "Опыт",
+    "approved": "принято",
+    "from" : "из"
   }
 }
