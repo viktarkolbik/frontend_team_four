@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ia-slot',
@@ -7,9 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class SlotComponent implements OnInit {
   @Input() slot: any;
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

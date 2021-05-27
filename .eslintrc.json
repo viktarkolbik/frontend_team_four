@@ -36,7 +36,9 @@
             "prefix": "ia",
             "style": "camelCase"
           }
-        ]
+        ],
+        "no-underscore-dangle": "off",
+        "@typescript-eslint/naming-convention": "off"
       }
     },
     {

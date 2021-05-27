@@ -39,7 +39,7 @@ export interface Training {
 export interface Filter {
   field: string;
   isChecked: boolean;
-  criteria: {[key: string]: Criterion};
+  criteria: { [key: string]: Criterion };
 }
 export interface Criterion {
   value: string;

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {Internship} from '../../../types';
-import {InternshipsService} from '../../../core/services/internships.service';
-import {switchMap} from 'rxjs/operators';
-import {MatDialog} from "@angular/material/dialog";
-import {LoadingService} from "../../../core/services/loading.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {AcceptDialogComponent} from "./accept-dialog/accept-dialog.component";
+import { ActivatedRoute } from '@angular/router';
+import { Internship } from '../../../types';
+import { InternshipsService } from '../../../core/services/internships.service';
+import { switchMap } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { LoadingService } from '../../../core/services/loading.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AcceptDialogComponent } from './accept-dialog/accept-dialog.component';
 
 @Component({
   selector: 'ia-internships',
@@ -23,21 +23,18 @@ export class InternshipsComponent implements OnInit {
     private internshipservice: InternshipsService,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private loadingService: LoadingService,
+    private loadingService: LoadingService
   ) {
-    this.route.data.subscribe(
-      (data) => {
-        if (data.internships.error) {
-          this.error = data.internships.status;
-        } else {
-          this.internships = data.internships;
-          this.filteredInternships = data.internships;
-        }
+    this.route.data.subscribe(data => {
+      if (data.internships.error) {
+        this.error = data.internships.status;
+      } else {
+        this.internships = data.internships;
+        this.filteredInternships = data.internships;
       }
-    );
+    });
   }
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   updateInternships(internships: Internship[]) {
     this.filteredInternships = internships;
   }
@@ -45,15 +42,18 @@ export class InternshipsComponent implements OnInit {
   removeInternship(id: string) {
     const dialogRef = this.dialog.open(AcceptDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
-      if (result){
+      if (result) {
         this.loadingService.setLoadingState(true);
-        this.internshipservice.deleteInternshipById(id).pipe(
-          switchMap(() => this.internshipservice.getInternshipList()))
+        this.internshipservice
+          .deleteInternshipById(id)
+          .pipe(switchMap(() => this.internshipservice.getInternshipList()))
           .subscribe(
-            (data) => {
-            this.internships = data.filter(internship=> internship.id !== id);
-            this.updateInternships(data);
-            this.loadingService.setLoadingState(false);
+            data => {
+              this.internships = data.filter(
+                internship => internship.id !== id
+              );
+              this.updateInternships(data);
+              this.loadingService.setLoadingState(false);
             },
             error => {
               this.loadingService.setLoadingState(false);

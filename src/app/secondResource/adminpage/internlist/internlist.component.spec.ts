@@ -8,9 +8,8 @@ describe('InternlistComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InternlistComponent ]
-    })
-    .compileComponents();
+      declarations: [InternlistComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

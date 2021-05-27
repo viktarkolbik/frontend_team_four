@@ -28,64 +28,64 @@
   justify-content: flex-start;
   padding-left: 20px;
 }
-.form-control{
+.form-control {
   align-self: stretch;
   max-width: 80%;
   textarea {
     overflow: hidden;
   }
 }
-.assigned-users{
+.assigned-users {
   margin-top: 20px;
-  .list{
+  .list {
     max-height: 200px;
     overflow-y: auto;
     padding-left: 15px;
     margin: 10px;
-    div{
+    div {
       display: flex;
       flex-wrap: wrap;
       font-size: 12px;
-      span{
+      span {
         padding-left: 10px;
       }
     }
-    mat-divider{
+    mat-divider {
       padding-bottom: 5px;
     }
   }
   ::-webkit-scrollbar-button {
-    background-repeat:no-repeat;
-    width:5px;
-    height:0px
+    background-repeat: no-repeat;
+    width: 5px;
+    height: 0px;
   }
 
   ::-webkit-scrollbar-track {
-    background-color:#ecedee
+    background-color: #ecedee;
   }
 
   ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 0px;
     border-radius: 2px;
-    background-color:#49BBED;
+    background-color: #49bbed;
   }
 
-  ::-webkit-scrollbar-thumb:hover{
+  ::-webkit-scrollbar-thumb:hover {
     background-color: #384b52;
   }
 
-  ::-webkit-resizer{
-    background-repeat:no-repeat;
-    width:4px;
-    height:0px
+  ::-webkit-resizer {
+    background-repeat: no-repeat;
+    width: 4px;
+    height: 0px;
   }
 
-  ::-webkit-scrollbar{
+  ::-webkit-scrollbar {
     width: 4px;
   }
 }
 
-.location-list-wrapper{
+.location-list-wrapper {
   margin-left: 20px;
 }
 label {
@@ -93,15 +93,15 @@ label {
   margin-bottom: 15px;
   font-size: 18px;
 }
-label.star::after{
-  content: '*';
+label.star::after {
+  content: "*";
   color: red;
   margin: 0px 5px;
 }
-button{
+button {
   padding: 0 15px;
 }
-.button-wrapper{
+.button-wrapper {
   display: flex;
   justify-content: space-between;
   width: 100%;

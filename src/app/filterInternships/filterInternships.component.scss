@@ -1,4 +1,4 @@
-.example-section{
+.example-section {
   display: flex;
   flex-direction: column;
 }
@@ -15,7 +15,9 @@
 @media (max-width: 870px) {
   .filtration {
     flex-direction: column;
-    .left, .center, .right {
+    .left,
+    .center,
+    .right {
       margin: 10px;
       h3 {
         margin: 0;

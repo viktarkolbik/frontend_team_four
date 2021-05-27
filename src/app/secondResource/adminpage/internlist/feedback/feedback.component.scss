@@ -1,12 +1,13 @@
-.content{
+.content {
   min-width: 80%;
   display: flex;
   flex-direction: column;
-  p.feedback{
+  p.feedback {
     display: inline-block;
     margin: 0 auto 10px;
   }
-  .mat-form-field-wrapper, .error{
+  .mat-form-field-wrapper,
+  .error {
     display: flex;
     justify-content: center;
     .mat-form-field {

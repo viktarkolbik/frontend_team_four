@@ -1,19 +1,21 @@
 <div class="wrapper">
   <main class="training">
     <div class="head">
-      <p>{{ 'homepage.p1' | translate}}</p>
-      <p>{{ 'homepage.p2' | translate}}</p>
+      <p>{{ "homepage.p1" | translate }}</p>
+      <p>{{ "homepage.p2" | translate }}</p>
     </div>
-    <div class="training_title">{{ 'homepage.internship' | translate}}</div>
-    <div *ngIf = '!error; else Error' class="training_container">
-      <ia-filter-internships *ngIf = '!error'
+    <div class="training_title">{{ "homepage.internship" | translate }}</div>
+    <div *ngIf="!error; else Error" class="training_container">
+      <ia-filter-internships
+        *ngIf="!error"
         id="filter-panel"
         [internships]="internships"
         (filterInternships)="updateTrainings($event)"
       >
       </ia-filter-internships>
       <div class="training_wrapper">
-        <ia-internship class="trn"
+        <ia-internship
+          class="trn"
           *ngFor="let internship of filteredInternships"
           [training]="internship"
         >
@@ -21,25 +23,25 @@
       </div>
     </div>
     <ng-template #Error>
-      <div class="error">{{ 'homepage.errorMessage' | translate}}</div>
+      <div class="error">{{ "homepage.errorMessage" | translate }}</div>
     </ng-template>
   </main>
 
   <section class="locations">
-        <p class="uni_title">{{ 'homepage.locations' | translate}}</p>
-        <div class="loc-content">
-          <div class="loc-group">
-            <p class="place">{{ 'homepage.minsk' | translate}}</p>
-            <div class="locations_bg minsk"></div>
-          </div>
-          <div class="loc-group">
-            <p class="place">{{ 'homepage.kiev' | translate}}</p>
-            <div class="locations_bg kiev"></div>
-          </div>
-          <div class="loc-group">
-            <p class="place">{{ 'homepage.warsawa' | translate}}</p>
-            <div class="locations_bg warsawa"></div>
-          </div>
-        </div>
+    <p class="uni_title">{{ "homepage.locations" | translate }}</p>
+    <div class="loc-content">
+      <div class="loc-group">
+        <p class="place">{{ "homepage.minsk" | translate }}</p>
+        <div class="locations_bg minsk"></div>
+      </div>
+      <div class="loc-group">
+        <p class="place">{{ "homepage.kiev" | translate }}</p>
+        <div class="locations_bg kiev"></div>
+      </div>
+      <div class="loc-group">
+        <p class="place">{{ "homepage.warsawa" | translate }}</p>
+        <div class="locations_bg warsawa"></div>
+      </div>
+    </div>
   </section>
 </div>

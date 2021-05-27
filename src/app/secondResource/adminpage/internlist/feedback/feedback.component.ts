@@ -1,7 +1,7 @@
-import {Component, Inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {FormControl, Validators} from '@angular/forms';
-import {FormsService} from '../../../../core/services/forms.service';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { FormControl, Validators } from '@angular/forms';
+import { FormsService } from '../../../../core/services/forms.service';
 
 @Component({
   selector: 'ia-feedback-dialog',
@@ -15,20 +15,19 @@ export class FeedbackComponent {
   ]);
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public data: {userID:string, formID:string},
+    public data: { userID: string; formID: string },
     private formsService: FormsService,
     private dialogRef: MatDialogRef<FeedbackComponent>
-  ) {
-  }
-  submit(){
-    let answer = {
-      "feedback": this.feedback.value,
-      "userId": this.data.userID
-    }
+  ) {}
+  submit() {
+    const answer = {
+      feedback: this.feedback.value,
+      userId: this.data.userID
+    };
     this.formsService.putFeedback(this.data.formID, answer).subscribe(
       () => {
         this.dialogRef.close();
-        },
+      },
       error => {
         console.log(error);
       }

@@ -1,7 +1,8 @@
 import {
   AfterViewInit,
   Component,
-  ContentChild, EventEmitter,
+  ContentChild,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
@@ -10,16 +11,22 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {MatTableDataSource} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
-import {Candidate} from '../../../types/candidate';
-import {User} from '../../../types/user';
-import {MatDialog} from '@angular/material/dialog';
-import {FeedbackComponent} from '../internlist/feedback/feedback.component';
-import {switchMap} from 'rxjs/operators';
-import {FormsService} from '../../../core/services/forms.service';
-import {Internship} from '../../../types';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { Candidate } from '../../../types/candidate';
+import { User } from '../../../types/user';
+import { MatDialog } from '@angular/material/dialog';
+import { FeedbackComponent } from '../internlist/feedback/feedback.component';
+import { switchMap } from 'rxjs/operators';
+import { FormsService } from '../../../core/services/forms.service';
+import { Internship } from '../../../types';
 
 @Component({
   selector: 'ia-table',
@@ -27,11 +34,14 @@ import {Internship} from '../../../types';
   styleUrls: ['./table.component.scss'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      )
+    ])
+  ]
 })
 export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
@@ -39,7 +49,8 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() candidates = [] as Candidate[];
   @Input() user!: User;
   @Input() internship!: Internship;
-  @Output() onSelectedCandidate: EventEmitter<Candidate> = new EventEmitter<Candidate>();
+  @Output() onSelectedCandidate: EventEmitter<Candidate> =
+    new EventEmitter<Candidate>();
   selectedCandidate: Candidate | null = null;
   @Input() selectedCandidateID?: string;
   dataSource!: MatTableDataSource<Candidate>;
@@ -54,14 +65,13 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     'primarySkill'
   ];
   approvedCandidates = [] as Candidate[];
-  constructor(
-    private dialog: MatDialog,
-    private formsService: FormsService
-  ) {}
+  constructor(private dialog: MatDialog, private formsService: FormsService) {}
   ngOnChanges(changes: SimpleChanges) {
     this.dataSource = new MatTableDataSource(this.candidates);
     this.dataSource.sort = this.sort;
-    this.approvedCandidates = this.candidates.filter(el => el.formStatus === "ACCEPTED");
+    this.approvedCandidates = this.candidates.filter(
+      el => el.formStatus === 'ACCEPTED'
+    );
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -69,7 +79,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   }
   ngOnInit() {
     if (this.user) {
-      this.displayedColumns.push('feedback')
+      this.displayedColumns.push('feedback');
     }
   }
   ngAfterViewInit() {
@@ -84,21 +94,25 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     const utc = date.getTime();
     return new Date(utc);
   }
-  openFeedBackDialog(userID:string, formID:string){
-    const dialogRef = this.dialog.open(FeedbackComponent, {data: {userID, formID}});
-    dialogRef.afterClosed()
+  openFeedBackDialog(userID: string, formID: string) {
+    const dialogRef = this.dialog.open(FeedbackComponent, {
+      data: { userID, formID }
+    });
+    dialogRef
+      .afterClosed()
       .pipe(
-        switchMap(() => this.formsService.getCandidatesListByUserId(this.user.id))
+        switchMap(() =>
+          this.formsService.getCandidatesListByUserId(this.user.id)
+        )
       )
       .subscribe(
-      data => {
-        this.candidates = data;
-        this.dataSource = new MatTableDataSource(this.candidates);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+        data => {
+          this.candidates = data;
+          this.dataSource = new MatTableDataSource(this.candidates);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
 }
-

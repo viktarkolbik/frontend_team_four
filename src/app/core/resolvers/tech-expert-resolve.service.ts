@@ -1,33 +1,37 @@
-import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {Observable, of} from 'rxjs';
-import {Injectable} from '@angular/core';
-import {LoadingService} from '../services/loading.service';
-import {catchError, tap} from 'rxjs/operators';
-import {User} from '../../types/user';
-import {UserService} from '../services/user.service';
+import {
+  ActivatedRouteSnapshot,
+  Resolve,
+  RouterStateSnapshot
+} from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { LoadingService } from '../services/loading.service';
+import { catchError, tap } from 'rxjs/operators';
+import { User } from '../../types/user';
+import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
-
-export class TechExpertResolveService implements Resolve <User[]> {
+export class TechExpertResolveService implements Resolve<User[]> {
   constructor(
     private userService: UserService,
-    private loadingService: LoadingService,
+    private loadingService: LoadingService
   ) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<User[]> {
+  resolve(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<User[]> {
     this.loadingService.setLoadingState(true);
-    return this.userService.getUsersRole(route.params.id, 'TECH_EXPERT')
-      .pipe(
-        tap(() => {
-          this.loadingService.setLoadingState(false);
-        }),
-        catchError(err => {
-            this.loadingService.setLoadingState(false);
-            return of (err);
-          }
-        )
-      );
+    return this.userService.getUsersRole(route.params.id, 'TECH_EXPERT').pipe(
+      tap(() => {
+        this.loadingService.setLoadingState(false);
+      }),
+      catchError(err => {
+        this.loadingService.setLoadingState(false);
+        return of(err);
+      })
+    );
   }
 }

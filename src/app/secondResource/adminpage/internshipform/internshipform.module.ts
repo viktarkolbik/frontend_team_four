@@ -10,36 +10,34 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
-import {CommonModule} from '@angular/common';
-import {MatExpansionModule} from "@angular/material/expansion";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {RouterModule} from "@angular/router";
-import {MatListModule} from "@angular/material/list";
-import {MatCheckboxModule} from "@angular/material/checkbox";
+import { CommonModule } from '@angular/common';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { RouterModule } from '@angular/router';
+import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
-  declarations: [
-    InternshipformComponent,
+  declarations: [InternshipformComponent],
+  imports: [
+    CommonModule,
+    MatFormFieldModule,
+    TranslateModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatChipsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule,
+    MatButtonModule,
+    MatExpansionModule,
+    MatAutocompleteModule,
+    RouterModule,
+    MatListModule,
+    MatCheckboxModule
   ],
-    imports: [
-        CommonModule,
-        MatFormFieldModule,
-        TranslateModule,
-        MatSelectModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatChipsModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatIconModule,
-        MatButtonModule,
-        MatExpansionModule,
-        MatAutocompleteModule,
-        RouterModule,
-        MatListModule,
-        MatCheckboxModule,
-    ],
   exports: [InternshipformComponent]
 })
-export class InternshipformModule { }
+export class InternshipformModule {}
