@@ -175,6 +175,8 @@
     "country": "Страна",
     "city": "Город",
     "experience": "Опыт",
-    "addFeedback": "Добавить отзыв"
+    "addFeedback": "Добавить отзыв",
+    "approved": "принято",
+    "from" : "из"
   }
 }

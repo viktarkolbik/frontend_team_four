@@ -10,6 +10,7 @@ import {InterviewDialogComponent} from './interview-dialog/interview-dialog.comp
 import {MatDialog} from '@angular/material/dialog';
 import {of} from 'rxjs';
 import {UserService} from "../../../core/services/user.service";
+import {Internship} from '../../../types';
 
 @Component({
   selector: 'ia-admins',
@@ -20,10 +21,10 @@ export class AdminsComponent implements OnInit {
   userInfo = {} as User;
   candidates = [] as Candidate[];
   selectedCandidate!: Candidate;
-  selectedCandidateID: string | null = null;
   admins = [] as UserParseDate[];
   techExperts = [] as UserParseDate[];
   error?: number;
+  internship!: Internship;
   constructor(
     auth: AuthService,
     private formsService: FormsService,
@@ -41,13 +42,13 @@ export class AdminsComponent implements OnInit {
           this.candidates = data.candidates;
           this.admins = this.usersParseDate(data.admins);
           this.techExperts = this.usersParseDate(data.techExperts);
+          this.internship = data.internship;
         }
       }
     );
   }
   updateSelectedCandidate(candidate: Candidate){
     this.selectedCandidate = candidate;
-    this.selectedCandidateID = candidate && candidate.id;
   }
   usersParseDate(users: User[]): UserParseDate[]{
     return users.map<UserParseDate>(user => {
@@ -73,7 +74,7 @@ export class AdminsComponent implements OnInit {
                 this.selectedCandidate.id, interview, this.selectedCandidate.interview.id
               );
             }
-            else if(this.selectedCandidate.interview?.techInterviewDate && role === 'TECH_EXPERT'){
+            else if(this.selectedCandidate.interview && role === 'TECH_EXPERT'){
               return this.formsService.putInterviewTime(
                 this.selectedCandidate.id, interview, this.selectedCandidate.interview.id
               );

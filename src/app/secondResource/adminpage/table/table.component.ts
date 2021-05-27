@@ -19,6 +19,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {FeedbackComponent} from '../internlist/feedback/feedback.component';
 import {switchMap} from 'rxjs/operators';
 import {FormsService} from '../../../core/services/forms.service';
+import {Internship} from '../../../types';
 
 @Component({
   selector: 'ia-table',
@@ -37,6 +38,7 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
   @ContentChild(TemplateRef) template?: TemplateRef<any>;
   @Input() candidates = [] as Candidate[];
   @Input() user!:User;
+  @Input() internship!: Internship;
   @Output() onSelectedCandidate: EventEmitter<Candidate> = new EventEmitter<Candidate>();
   selectedCandidate: Candidate | null = null;
   @Input() selectedCandidateID?: string;
@@ -51,14 +53,15 @@ export class TableComponent implements OnInit, OnChanges, AfterViewInit {
     'techSpecialist',
     'primarySkill'
   ];
+  approvedCandidates = [] as Candidate[];
   constructor(
     private dialog: MatDialog,
     private formsService: FormsService
   ) {
-  }
   ngOnChanges(changes: SimpleChanges) {
     this.dataSource = new MatTableDataSource(this.candidates);
     this.dataSource.sort = this.sort;
+    this.approvedCandidates = this.candidates.filter(el => el.formStatus === "ACCEPTED");
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

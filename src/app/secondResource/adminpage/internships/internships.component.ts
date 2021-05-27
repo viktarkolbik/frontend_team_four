@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Internship} from '../../../types';
 import {InternshipsService} from '../../../core/services/internships.service';
-import {subscribeOn, switchMap} from 'rxjs/operators';
+import {switchMap} from 'rxjs/operators';
+import {MatDialog} from "@angular/material/dialog";
+import {LoadingService} from "../../../core/services/loading.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {AcceptDialogComponent} from "./accept-dialog/accept-dialog.component";
 
 @Component({
   selector: 'ia-internships',
@@ -14,7 +18,13 @@ export class InternshipsComponent implements OnInit {
   filteredInternships = [] as Internship[];
   error?: number;
 
-  constructor(private route: ActivatedRoute, private internshipservice: InternshipsService) {
+  constructor(
+    private route: ActivatedRoute,
+    private internshipservice: InternshipsService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private loadingService: LoadingService,
+  ) {
     this.route.data.subscribe(
       (data) => {
         if (data.internships.error) {
@@ -32,13 +42,26 @@ export class InternshipsComponent implements OnInit {
     this.filteredInternships = internships;
   }
 
-  updateListIShips(id: string) {
-    // console.log(this.internships)
-    this.internshipservice.deleteInternshipById(id).pipe(
-      switchMap(() => this.internshipservice.getInternshipList()))
-      .subscribe((data)=>{
-        this.internships = data.filter(internship=> internship.id !== id); // alternative
-        this.updateInternships(data);
-      });
+  removeInternship(id: string) {
+    const dialogRef = this.dialog.open(AcceptDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        this.loadingService.setLoadingState(true);
+        this.internshipservice.deleteInternshipById(id).pipe(
+          switchMap(() => this.internshipservice.getInternshipList()))
+          .subscribe(
+            (data) => {
+            this.internships = data.filter(internship=> internship.id !== id);
+            this.updateInternships(data);
+            this.loadingService.setLoadingState(false);
+            },
+            error => {
+              this.loadingService.setLoadingState(false);
+              const message = 'Error happened please try again later';
+              this.snackBar.open(message, 'Ok');
+            }
+          );
+      }
+    });
   }
 }

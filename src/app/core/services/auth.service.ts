@@ -13,7 +13,7 @@ import {User} from '../../types/user';
 
 export class AuthService {
   private loginURL = `${environment.backendURL}/api/auth/login`;
-  private userInfo$ = new BehaviorSubject({} as User);
+  private userInfo$ = new BehaviorSubject<User>({} as User);
   constructor(private http: HttpClient, private storage: StorageService) {
   }
   setUserInfo(userInfo: User){
@@ -37,5 +37,6 @@ export class AuthService {
   logOut() {
     this.storage.setAuthToken('');
     this.storage.setUserId('');
+    this.setUserInfo({} as User);
   }
 }
