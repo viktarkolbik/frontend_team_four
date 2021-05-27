@@ -18,7 +18,7 @@
               </mat-chip>
             </mat-chip-list>
             <div class="selector-location-list-wrapper">
-              <mat-form-field appearance="standard" class="form-control">
+              <mat-form-field appearance="standard" class="form-control" style="margin-right: 20px;">
                 <label class="star">{{ 'regform.country' | translate}}</label>
                 <mat-select class="select-group" [formControl]="country" required (selectionChange)="loadCities()">
                   <mat-option *ngFor="let country of countries" [value]="country">
