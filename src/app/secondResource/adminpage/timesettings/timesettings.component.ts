@@ -1,4 +1,4 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../core/services/auth.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../core/services/user.service';
@@ -18,6 +18,16 @@ export class TimesettingsComponent implements OnInit {
   minDate: Date;
   crossFreeTime!: boolean;
   crossInterviewTime!: boolean;
+  timeLocale = new Date().getTimezoneOffset();
+  timezone: string;
+  timeToLocaleSlots = (slots:any) => {
+    slots.map((el:any) => {
+      el.startDate = Date.parse(el.startDate) - (this.timeLocale * 60 *1000);
+      el.startDate = new Date(el.startDate).toISOString();
+      el.endDate = Date.parse(el.endDate) - (this.timeLocale * 60 *1000);
+      el.endDate = new Date(el.endDate).toISOString();
+    })
+  }
   private convenientTime: {[key: string]: number} =
     {
       from: 9,
@@ -31,6 +41,7 @@ export class TimesettingsComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
   ) {
+    this.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     this.minDate = new Date(Date.now());
     this.form = new FormGroup({
       selectedDate: new FormControl('', Validators.required),
@@ -42,9 +53,25 @@ export class TimesettingsComponent implements OnInit {
     })
     auth.getUserInfo().subscribe(data => {
       this.user = data;
+      this.timeToLocaleSlots(this.user.userTimeSlots)
     });
     this.route.data.subscribe(data => {
-      this.Interviews = data.interview;
+      this.Interviews = data.interview
+      this.Interviews.map((el:any) => {
+        if (this.user.userRole === 'ADMIN') {
+          el.adminInterviewDate = Date.parse(el.adminInterviewDate) - (this.timeLocale * 60 * 1000);
+          el.adminInterviewDate = new Date(el.adminInterviewDate).toISOString();
+          el.startTime = el.adminInterviewDate
+        }
+        if (this.user.userRole === 'TECH_EXPERT') {
+          el.techInterviewDate = Date.parse(el.techInterviewDate) - (this.timeLocale * 60 * 1000);
+          el.techInterviewDate = new Date(el.techInterviewDate).toISOString();
+          el.startTime = el.techInterviewDate
+        }
+        el.endTime = new Date(
+          Date.parse(el.startTime) + this.user.interviewTime*60*1000)
+          .toISOString();
+      })
     })
   }
   checkCrossTime(arr:[]):boolean {
@@ -75,15 +102,15 @@ export class TimesettingsComponent implements OnInit {
       [Date.parse(el.startDate), Date.parse(el.endDate)]
     );
     const arrInterview = this.Interviews.map((el: any) =>
-      [Date.parse(el.interviewStartTime), Date.parse(el.interviewEndTime)]
+      [Date.parse(el.startTime), Date.parse(el.endTime)]
     );
     this.crossFreeTime = this.checkCrossTime(arrTimeFree)
     this.crossInterviewTime = this.checkCrossTime(arrInterview)
   }
   submit(): void {
     const formValue = this.form.value;
-    const from = formValue.selectedDate.setUTCHours(formValue.startHour);
-    const to = formValue.selectedDate.setUTCHours(formValue.endHour);
+    const from = formValue.selectedDate.setHours(formValue.startHour);
+    const to = formValue.selectedDate.setHours(formValue.endHour);
     const newSlot = [{
       endDate: (new Date(to)).toISOString(),
       roundUp: true,
@@ -93,6 +120,7 @@ export class TimesettingsComponent implements OnInit {
     this.userService.sendTimeSlots(this.user.id, formValueJson).subscribe(
       data => {
         this.user.userTimeSlots = data;
+        this.timeToLocaleSlots(this.user.userTimeSlots)
         this.form.reset()
       },
       error => {

@@ -20,6 +20,8 @@ export interface Candidate {
 }
 
 export interface Interview {
+  startTime?: string;
+  endTime?: string;
   admin: string;
   adminFeedback: string;
   adminInterviewDate?: string;
