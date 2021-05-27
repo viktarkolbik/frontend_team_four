@@ -46,7 +46,7 @@
     <ng-container matColumnDef="formStatus">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>{{"adminTable.status" | translate}}</th>
       <td class="rows-element" mat-cell *matCellDef="let element">
-        {{element.formStatus}}
+        {{element.formStatus | replaceStatus | titlecase}}
       </td>
     </ng-container>
     <ng-container matColumnDef="admin">

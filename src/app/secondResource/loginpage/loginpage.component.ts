@@ -22,10 +22,9 @@ export class LoginpageComponent implements OnInit {
     private loadingService: LoadingService
   ) {
     this.form = new FormGroup({
-      loginEmail: new FormControl(''), //   [Validators.required, Validators.email]
-      loginPassword: new FormControl('')
+      loginEmail: new FormControl('', Validators.required),
+      loginPassword: new FormControl('', Validators.required)
     });
-
   }
 
   ngOnInit(): void {

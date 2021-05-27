@@ -14,10 +14,11 @@ import { AuthService } from './core/services/auth.service';
 import { AuthInterceptor } from './core/auth.interceptor';
 import {BrowserModule} from '@angular/platform-browser';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +31,8 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
     FooterModule,
     SpinnerModule,
     ErrorpageModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule
   ],
   providers: [
     AuthService, {
