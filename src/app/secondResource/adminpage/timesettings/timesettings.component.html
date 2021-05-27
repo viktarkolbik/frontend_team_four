@@ -1,4 +1,5 @@
 <div class="addTime">
+    <p>Timezone: {{timezone}}</p>
     <div class="containerName">{{"timesetting.addSlot" | translate}}</div>
     <form [formGroup]="form" class="form-control" style="margin-top: 30px">
         <mat-label>{{"timesetting.chooseSlot" | translate}}</mat-label>
@@ -64,6 +65,6 @@
   </div>
   <div class="container">
     <div class="containerName">{{"timesetting.interview" | translate}}</div>
-    <ia-interview *ngFor="let interview of Interviews" [interview] ="interview" [user]="user"></ia-interview>
+    <ia-interview *ngFor="let interview of Interviews" [interview] ="interview"></ia-interview>
   </div>
 </div>

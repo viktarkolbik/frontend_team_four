@@ -88,6 +88,12 @@
         align-items: flex-start;
         width: 50%;
         padding: 1rem;
+        p {
+          font-weight: bold;
+          span {
+          font-weight: normal;
+          }
+        }
       }
       .feedbacks {
         width: 50%;

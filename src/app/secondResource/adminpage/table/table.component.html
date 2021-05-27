@@ -95,13 +95,13 @@
         >
           <div class="example-element-description">
            <div class="main-info">
-             <p>{{"adminTable.name" | translate}}: {{element.firstName}}</p>
-             <p>{{"adminTable.lastname" | translate}}: {{element.lastName}}</p>
-             <p>Email: {{element.email}}</p>
-             <p>{{"adminTable.country" | translate}}: {{element.country.name}}</p>
-             <p>{{"adminTable.city" | translate}}: {{element.city.name}}</p>
-             <p *ngIf="element.primarySkill">{{"adminTable.skill" | translate}}: {{element.primarySkill}}</p>
-             <p class="experience" *ngIf="element.experience">{{"adminTable.experience" | translate}}: {{element.experience}}</p>
+             <p>{{"adminTable.name" | translate}}: <span> {{element.firstName}}</span> </p>
+             <p>{{"adminTable.lastname" | translate}}: <span>{{element.lastName}}</span></p>
+             <p>Email: <span>{{element.email}} </span></p>
+             <p>{{"adminTable.country" | translate}}: <span>{{element.country.name}}</span></p>
+             <p>{{"adminTable.city" | translate}}: <span>{{element.city.name}}</span></p>
+             <p *ngIf="element.primarySkill">{{"adminTable.skill" | translate}}: <span>{{element.primarySkill}}</span></p>
+             <p class="experience" *ngIf="element.experience">{{"adminTable.experience" | translate}}: <span>{{element.experience}}</span></p>
              <p *ngIf="element.interview?.adminInterviewDate">
                {{"adminTable.recruiterInterviewDate" | translate}}
                : {{getLocaleDate(element.interview?.adminInterviewDate) | date: "dd MMM HH:mm"}}
