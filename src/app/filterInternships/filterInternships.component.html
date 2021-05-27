@@ -41,7 +41,7 @@
             [(ngModel)]="filters.technologies.criteria[technology].isChecked"
             (change)="updateTrainings()"
             class="example-margin">
-            {{technology}}
+            {{getChangeSkill(technology)}}
           </mat-checkbox>
         </section>
       </div>
