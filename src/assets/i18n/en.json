@@ -176,6 +176,8 @@
     "addFeedback": "Add feedback",
     "approved": "approved",
     "from" : "from",
+    "assignHR": "Assign HR",
+    "assignTS": "Assign Tech. Spec.",
     "recruiterInterviewDate": "Recruiter interview date",
     "techInterviewDate": "Technical interview date",
     "englishLevel": "English level"
